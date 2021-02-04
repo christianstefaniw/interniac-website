@@ -111,13 +111,6 @@ END CTA BUTTONS
 LANDING PAGE
  */
 
-
-#wave-landing{
-    z-index: -1;
-    position: absolute;
-    margin: auto;
-}
-
 #wave-landing-container{
     display: inline-block;
 }
@@ -159,5 +152,5 @@ END FONTS
 
 @media screen and (max-width: 991px) {
     #wave-landing-container { display: none; }
-
+    #background-wrap { display: none; }
 }
