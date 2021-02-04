@@ -57,7 +57,6 @@ h1,h2,h3,h4,h5,h6{
     margin-top: 20rem;
 }
 
-
 .inner-shadow {
   box-shadow: var(--inner-shadow);
 }
@@ -148,6 +147,9 @@ LANDING PAGE
     z-index: -1;
 }
 
+#about-section{
+    margin-top: 0;
+}
 
 .title{
     font-size: 3.5rem;
@@ -217,4 +219,5 @@ END FONTS
 @media screen and (max-width: 991px) {
     #wave-landing-container { display: none; }
     #background-wrap { display: none; }
+    #about-section{ margin-top: 20rem; }
 }
