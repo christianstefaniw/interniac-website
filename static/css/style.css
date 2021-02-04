@@ -118,6 +118,9 @@ LANDING PAGE
     margin: auto;
 }
 
+#wave-landing-container{
+    display: inline-block;
+}
 
 
 .title{
@@ -154,7 +157,7 @@ FONTS
 END FONTS
  */
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
     #wave-landing-container { display: none; }
 
 }
