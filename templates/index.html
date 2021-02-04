@@ -15,6 +15,7 @@
         <link rel="shortcut icon" type="image/png" href="{% static 'assets/favicon.ico' %}"/>
 
 
+        <script src="https://kit.fontawesome.com/a76f8913d2.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
                 integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
                 crossorigin="anonymous"></script>
@@ -119,6 +120,22 @@
                 </div>
             </section>
 
+            <section class="content-gap" id="benefits-of-internship">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-5">
+                        <div class="inner-shadow img-box">
+                            <img class="card-img-top" src="{% static "assets/images/benefits-of-internship.png" %}" alt="Benefits of an internship">
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+        </div>
+            <section>
+
+            </section>
+        <div class="container-fluid">
             <section id="7-habits" class="content-gap">
 
                 <h2>Seven Habits of Highly Effective Teens</h2>
@@ -244,7 +261,10 @@
                         </p>
                     </div>
                     <div class="col-md-5">
-                        <iframe width="100%" height="100%" src="https://freakonomics.com/podcast/nsq-maximizer-satisficer/"></iframe>
+                        <iframe id="" width="100%" height="100%" src="https://freakonomics.com/podcast/nsq-maximizer-satisficer/"></iframe>
+                        <a id="expand-max-or-stat" target="_blank" href="https://freakonomics.com/podcast/nsq-maximizer-satisficer/">
+                            <i id="expand-max-or-stat-icon" class="fas fa-expand-arrows-alt"></i>
+                        </a>
                     </div>
                 </div>
             </section>
@@ -253,6 +273,7 @@
         </div>
 
 
+        <!--
         <section>
             <div id="background-wrap">
                 <div class="bubble x1"></div>
@@ -262,11 +283,13 @@
                 <div class="bubble x5"></div>
             </div>
         </section>
+        -->
 
 
         <footer>
             <a href='https://www.freepik.com/vectors/templates'>Templates vector created by freepik - www.freepik.com</a>
         </footer>
 
+        <script src="{% static "js/script.js" %}"></script>
     </body>
 </html>

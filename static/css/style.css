@@ -211,6 +211,30 @@ END IMAGES
 END 7 HABITS STUFF
  */
 
+/*
+MAX OR STAT
+ */
+
+#expand-max-or-stat{
+    color: black;
+}
+
+
+#expand-max-or-stat-icon{
+    transition: all 0.5s ease-in;
+    text-align: center;
+    padding: 5px;
+    width: 100%;
+}
+
+#expand-max-or-stat-icon:hover{
+    transition: all 0.5s ease-out;
+    background-color: lightgrey;
+}
+
+/*
+END MAX OR STAT
+ */
 
 /*
 FONTS
@@ -227,6 +251,11 @@ END FONTS
 
 @media screen and (max-width: 991px) {
     #wave-landing-container { display: none; }
-    #background-wrap { display: none; }
     #about-section{ margin-top: 20rem; }
+}
+
+@media screen and (max-width: 764px) {
+    #wave-landing-container { display: none; }
+    /* #background-wrap { display: none; } */
+    #v-pills-tabContent { margin-top: 2rem; }
 }
