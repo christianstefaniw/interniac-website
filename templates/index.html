@@ -3,11 +3,18 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
         <link rel="stylesheet" href="{% static "css/style.css" %}"/>
         <link rel="stylesheet" href="{% static "css/bubbles.css" %}"/>
+
+
         <link rel="shortcut icon" type="image/png" href="{% static 'assets/favicon.ico' %}"/>
+
+
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
                 integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
                 crossorigin="anonymous"></script>
@@ -16,8 +23,12 @@
                 crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
               integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
         <title>ConnectX</title>
+
     </head>
+
     <body>
         <section id="nav">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -70,7 +81,7 @@
                         </div>
                     </div>
                     <div class="col-md-6" id="wave-landing-container">
-                        <img style="z-index: -1" src="{% static "assets/images/wave-blue.svg" %}" alt="wave"/>
+                        <img src="{% static "assets/images/wave-blue.svg" %}" alt="wave"/>
                     </div>
 
                 </div>
@@ -79,10 +90,13 @@
 
 
         <div class="container-fluid">
-            <section id="about-section" class="content-gap">
+            <section id="about-section">
                 <div class="row">
                     <div class="col-md-4">
-                        <img id="intern-1" src="{% static "assets/images/intern-1.png" %}" alt="intern photo"/>
+                        <div class="inner-shadow img-box">
+                            <img class="outer-shadow" src="{% static "assets/images/intern-1.jpg" %}" alt="intern photo"/>
+                        </div>
+
                     </div>
                     <div class="col-md-8">
                         <h1>It Shouldn't be That Hard to Get Work Experience</h1>
@@ -91,15 +105,121 @@
                             American college student changes majors due to career confusion, getting a
                             high school internship is more valuable than ever before. However, pre-college work experience
                             is difficult to come by and oftentimes opportunities are given to students who have strong networks
-                            (either through a parent or their school). Today, there is no platform through which high school students all
-                            over the country can find an internship on their own. We aim to build a platform that supports high schoolers
-                            attending public schools and empowers businesses in hiring bright students. ConnectX fills the gap in our education
-                            system by simplifying the process for employers to start internship programs and source candidates who are eager to
+                            (either through a parent or their school). Today, there is no platform through which high school
+                            students all
+                            over the country can find an internship on their own. We aim to build a platform that supports high
+                            schoolers
+                            attending public schools and empowers businesses in hiring bright students. ConnectX fills the gap
+                            in our education
+                            system by simplifying the process for employers to start internship programs and source candidates
+                            who are eager to
                             gain valuable out-of-the-classroom work experience.
                         </p>
                     </div>
                 </div>
             </section>
+
+            <section id="7-habits" class="content-gap">
+
+                <h2 style="text-align: center">Seven Habits of Highly Effective Teens</h2>
+                <p style="text-align: center" class="text-muted">As we aspire to be good interns, let’s remember to be great people.</p>
+
+                <div>
+                    <ul class="nav nav-pills nav-fill">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="habit-1-tab" data-toggle="tab" href="#habit-1" role="tab"
+                               aria-controls="habit-1" aria-selected="true">Habit One: Be Proactive</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="habit-2-tab" data-toggle="tab" href="#habit-2" role="tab"
+                               aria-controls="habit-2" aria-selected="true">Habit Two: Begin with the End in Mind</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="habit-3-tab" data-toggle="tab" href="#habit-3" role="tab"
+                               aria-controls="habit-3" aria-selected="true">Habit Three: Put First Things First</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="habit-4-tab" data-toggle="tab" href="#habit-4" role="tab"
+                               aria-controls="habit-4" aria-selected="true">Habit Four: Think Win-Win</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="habit-5-tab" data-toggle="tab" href="#habit-5" role="tab"
+                               aria-controls="habit-5" aria-selected="true">Habit Five: Seek First to Understand, Then to be
+                                Understood</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="habit-6-tab" data-toggle="tab" href="#habit-6" role="tab"
+                               aria-controls="habit-6" aria-selected="true">Habit Six: Synergize</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="habit-7-tab" data-toggle="tab" href="#habit-7" role="tab"
+                               aria-controls="habit-7" aria-selected="true">Habit Seven: Sharpen the Saw</a>
+                        </li>
+                    </ul>
+                </div>
+
+
+
+                <div class="tab-content" id="7-habits-content">
+
+                    <div class="tab-pane fade show active" id="habit-1" role="tabpanel" aria-labelledby="habit-1-tab">
+                        The choice is yours.
+                        <br>
+                        <br>
+                        Be proactive, not reactive. Proactive people make choices based on their values, think before they act.
+                        They have an internal locus of control and recognize what falls outside of their control.
+                    </div>
+
+                    <div class="tab-pane fade" id="habit-2" role="tabpanel" aria-labelledby="habit-2-tab">
+                        Control your own destiny or someone else will.
+                        <br>
+                        <br>
+                        Develop a clear picture of where you want to tale your life. Set goals, understand your values.
+                        Not necessarily a career or college decision, but specifically the direction you’d like in life. Take each
+                        step in the right direction.
+                    </div>
+
+                    <div class="tab-pane fade" id="habit-3" role="tabpanel" aria-labelledby="habit-3-tab">
+                        Will and won’t power.
+                        <br>
+                        <br>
+                        Learn to manage and prioritize your time so that your first things first come first and not last.
+                    </div>
+
+                    <div class="tab-pane fade" id="habit-4" role="tabpanel" aria-labelledby="habit-4-tab">
+                        Life is an all-you-can-eat buffet.
+                        <br>
+                        <br>
+                        This is the foundation for getting along well with people. This begins with the belief that we are all equal,
+                        no one is inferior or superior and no one needs to be. Plenty of success to go around, it’s about “both”.
+                    </div>
+
+                    <div class="tab-pane fade" id="habit-5" role="tabpanel" aria-labelledby="habit-5-tab">
+                        You have two ears and one mouth.
+                        <br>
+                        <br>
+                        Listen with your eyes, heart, and ears. Make sure you understand a problem before attempting to solve it.
+                    </div>
+
+                    <div class="tab-pane fade" id="habit-6" role="tabpanel" aria-labelledby="habit-6-tab">
+                        The “high” way.
+                        <br>
+                        <br>
+                        Work with more people to create a solution better than you can alone. It’s not your way or their way, it’s the “higher” way.
+                    </div>
+
+                    <div class="tab-pane fade" id="habit-7" role="tabpanel" aria-labelledby="habit-7-tab">
+                        It’s “Me Time”.
+                        <br>
+                        <br>
+                        Care for your body, mind, heart, and soul. Stay balanced and continue sharpening all aspects of your identity.
+                        It’s okay not to know who you are, but keep yourself in the phase of discovery with a healthy mindset.
+                    </div>
+                </div>
+
+            </section>
+
+            <div class="content-gap"></div>
         </div>
 
 
@@ -112,8 +232,6 @@
                 <div class="bubble x5"></div>
             </div>
         </section>
-
-
 
 
         <footer>

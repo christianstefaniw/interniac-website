@@ -9,17 +9,26 @@ GENERAL
     --gradient-primary-two: #2db6ee;
     --gradient-secondary-one: #fd5288;
     --gradient-secondary-two: #ee886c;
+    --inner-shadow: inset 3px 3px 3px #d0d0d0, inset -3px -3px 3px #f8f8f8;
+    --outer-shadow: 3px 3px 3px #d0d0d0, -3px -3px 3px #f8f8f8;
 }
 
 html {
     overflow-x: hidden;
     box-sizing: border-box;
     scroll-behavior: smooth;
-
 }
 
-*,*::before,*::after {
-    box-sizing: inherit;
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+
+::before,::after {
+    box-sizing: border-box;
+
 }
 
 a{
@@ -28,17 +37,36 @@ a{
 
 html > body {
     margin: 0;
+    padding: 0;
     font-family: 'font', sans-serif;
 }
 
+p{
+    line-height: 2;
+}
+
+h1,h2,h3,h4,h5,h6{
+    line-height: 1.5 !important;
+}
 
 .container-fluid {
     max-width: 1600px;
 }
 
 .content-gap{
-    margin-top: 5rem;
+    margin-top: 20rem;
 }
+
+
+.inner-shadow {
+  box-shadow: var(--inner-shadow);
+}
+
+
+.outer-shadow {
+  box-shadow: var(--outer-shadow);
+}
+
 
 /*
 END GENERAL
@@ -123,7 +151,6 @@ LANDING PAGE
 
 .title{
     font-size: 3.5rem;
-    line-height: 1.5;
     font-weight: bolder;
 }
 
@@ -143,16 +170,35 @@ END LANDING PAGE
 
 
 /*
+IMAGES
+ */
+
+.img-box{
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.img-box img{
+    width: 100%;
+    border: 10px solid transparent;
+    border-radius: 5px;
+}
+
+/*
+END IMAGES
+ */
+
+
+/*
 ABOUT CONNECTX
  */
 
-#intern-1{
-    width: 100% !important;
-}
+
 
 /*
 END ABOUT CONNECTX
  */
+
 
 
 /*
