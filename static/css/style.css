@@ -70,6 +70,7 @@ CTA BUTTONS
     transition: all 1s ease;
     padding: 10px 25px;
     border-radius: 10px;
+    margin-top: 1rem;
     color: white !important;
     font-size: 1.4rem;
     background: linear-gradient(90deg, var(--gradient-secondary-one), var(--gradient-secondary-two));
@@ -90,6 +91,7 @@ CTA BUTTONS
     border-radius: 12px;
     color: white !important;
     font-size: 1.4rem;
+    margin-top: 1rem;
     background: linear-gradient(90deg, var(--gradient-primary-one), var(--gradient-primary-two));
 }
 
