@@ -157,7 +157,7 @@ FONTS
 END FONTS
  */
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 991px) {
     #wave-landing-container { display: none; }
 
 }
