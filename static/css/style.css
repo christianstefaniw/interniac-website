@@ -118,6 +118,11 @@ LANDING PAGE
     margin: auto;
 }
 
+#wave-landing-container{
+    display: none;
+}
+
+
 .title{
     font-size: 3.5rem;
     line-height: 1.5;
@@ -152,9 +157,7 @@ FONTS
 END FONTS
  */
 
+@media screen and (max-width: 1000px) {
+    /*#wave-landing-container { display: none; }*/
 
-@media screen and (max-width: 600px) {
-    #wave-landing{
-        display: none;
-    }
 }

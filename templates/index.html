@@ -6,6 +6,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{% static "css/style.css" %}"/>
+        <link rel="stylesheet" href="{% static "css/bubbles.css" %}"/>
         <link rel="shortcut icon" type="image/png" href="{% static 'assets/favicon.ico' %}"/>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
                 integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -56,30 +57,41 @@
                 <div class="row">
                     <div class="col-md-5">
                         <div id="landing-text">
-                            <div>
-                                <p class="subtitle">
-                                    Jumpstart your career with ConnectX
-                                </p>
-                            </div>
-                            <div>
-                                <h1 class="title">
-                                    Connecting High School Students to Valuable Internships
-                                </h1>
-                            </div>
+                            <p class="subtitle">
+                                Jumpstart your career with ConnectX
+                            </p>
+                            <h1 class="title">
+                                Connecting High School Students to Valuable Internships
+                            </h1>
                         </div>
-
                         <div class="row justify-content-around">
                             <a class="cta-btn-1">CTA Button 1</a>
                             <a class="cta-btn-2">CTA Button 2</a>
                         </div>
 
                     </div>
-                    <div class="col-md-6">
+                    <div id="wave-landing-container">
                         <img id="wave-landing" src="{% static "assets/images/wave.svg" %}" alt="wave"/>
                     </div>
+
                 </div>
             </section>
         </div>
+
+        <section>
+            <div id="background-wrap">
+                <div class="bubble x1"></div>
+                <div class="bubble x2"></div>
+                <div class="bubble x3"></div>
+                <div class="bubble x4"></div>
+                <div class="bubble x5"></div>
+                <div class="bubble x6"></div>
+                <div class="bubble x7"></div>
+                <div class="bubble x8"></div>
+                <div class="bubble x9"></div>
+                <div class="bubble x10"></div>
+            </div>
+        </section>
 
 
     </body>
