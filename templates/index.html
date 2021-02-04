@@ -4,10 +4,82 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="{% static "css/style.css" %}"/>
         <link rel="shortcut icon" type="image/png" href="{% static 'assets/favicon.ico' %}"/>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <title>ConnectX</title>
     </head>
     <body>
-    <img src="{% static "assets/logo.png" %}" alt="broken"/>
+        <section id="nav">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">
+                    <img width="50" height="50" src="{% static "assets/images/logo-transparent.png" %}" alt="logo"/>
+                    ＣｏｎｎｅｃｔＸ
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item nav-item-active">
+                            <a class="nav-link active" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Careers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Students</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Employers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </section>
+
+        <div class="container-fluid">
+            <section id="landing">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div id="landing-text">
+                            <div>
+                                <p class="subtitle">
+                                    Jumpstart your career with ConnectX
+                                </p>
+                            </div>
+                            <div>
+                                <h1 class="title">
+                                    Connecting High School Students to Valuable Internships
+                                </h1>
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-around">
+                            <a class="cta-btn-1">CTA Button 1</a>
+                            <a class="cta-btn-2">CTA Button 2</a>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <img id="wave-landing" src="{% static "assets/images/wave.svg" %}" alt="wave"/>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
     </body>
 </html>

@@ -1,0 +1,158 @@
+
+/*
+GENERAL
+ */
+:root{
+    --primary-color: #040456;
+    --secondary-color: #FFFFFFFF;
+    --gradient-primary-one: #2c7ee4;
+    --gradient-primary-two: #2db6ee;
+    --gradient-secondary-one: #fd5288;
+    --gradient-secondary-two: #ee886c;
+}
+
+html {
+    overflow-x: hidden;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+
+}
+
+*,*::before,*::after {
+    box-sizing: inherit;
+}
+
+a{
+    text-decoration: none;
+}
+
+html > body {
+    margin: 0;
+    font-family: 'font', sans-serif;
+}
+
+
+.container-fluid {
+    max-width: 1600px;
+}
+
+/*
+END GENERAL
+ */
+
+
+/*
+NAV
+ */
+
+.nav-item{
+    margin-left: 1.5rem !important;
+}
+
+.nav-item-active{
+    background-color: transparent;
+    border-radius: 30px;
+    border: 1px solid black;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+/*
+END NAV
+ */
+
+
+/*
+CTA BUTTONS
+ */
+
+.cta-btn-1{
+    transition: all 1s ease;
+    padding: 10px 25px;
+    border-radius: 10px;
+    color: white !important;
+    font-size: 1.4rem;
+    background: linear-gradient(90deg, var(--gradient-secondary-one), var(--gradient-secondary-two));
+}
+
+.cta-btn-1:hover {
+    cursor: pointer;
+    border-radius: 30px;
+    transition: all 1s ease;
+}
+
+
+
+.cta-btn-2{
+    transition: all 1s ease;
+    padding: 10px 25px;
+    text-decoration: none;
+    border-radius: 12px;
+    color: white !important;
+    font-size: 1.4rem;
+    background: linear-gradient(90deg, var(--gradient-primary-one), var(--gradient-primary-two));
+}
+
+.cta-btn-2:hover {
+    cursor: pointer;
+    border-radius: 30px;
+    transition: all 1s ease;
+}
+
+/*
+END CTA BUTTONS
+ */
+
+
+
+/*
+LANDING PAGE
+ */
+
+
+#wave-landing{
+    z-index: -1;
+    position: absolute;
+    margin: auto;
+}
+
+.title{
+    font-size: 3.5rem;
+    line-height: 1.5;
+    font-weight: bolder;
+}
+
+.subtitle{
+    color: #7cc2fa;
+}
+
+#landing-text{
+    margin-top: 5rem;
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+/*
+END LANDING PAGE
+ */
+
+
+/*
+FONTS
+ */
+
+@font-face {
+  font-family: font;
+  src: url('../assets/fonts/geometria-cufonfonts/Geometria-Medium.ttf');
+}
+
+/*
+END FONTS
+ */
+
+
+@media screen and (max-width: 600px) {
+    #wave-landing{
+        display: none;
+    }
+}
