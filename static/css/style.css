@@ -154,7 +154,7 @@ FONTS
 END FONTS
  */
 
-@media screen and (max-width: 1000px) {
-    /*#wave-landing-container { display: none; }*/
+@media screen and (max-width: 700px) {
+    #wave-landing-container { display: none; }
 
 }
