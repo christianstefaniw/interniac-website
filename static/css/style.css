@@ -237,6 +237,7 @@ MAX OR STAT
 END MAX OR STAT
  */
 
+
 /*
 FONTS
  */
@@ -248,6 +249,68 @@ FONTS
 
 /*
 END FONTS
+ */
+
+/*
+DOT DECORATION
+ */
+.dot {
+    animation: MoveUpDown 2s linear infinite;
+    position: relative;
+    left: 0;
+    bottom: 0;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.grid-container {
+    grid-template-columns: auto auto auto;
+    display: inline-grid;
+}
+
+@keyframes MoveUpDown {
+  0%, 100% {
+    bottom: 0;
+  }
+  50% {
+    bottom: 20px;
+  }
+}
+
+.dot-container{
+    padding: 3px;
+}
+
+/*
+END DOT DECORATION
+ */
+
+/*
+FOOTER
+ */
+
+footer{
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    text-align: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.socials{
+    margin-bottom: 1rem;
+}
+
+.icon{
+    margin-left: 1rem;
+    margin-right: 1rem;
+    color: white;
+}
+
+/*
+END FOOTER
  */
 
 @media screen and (max-width: 991px) {
