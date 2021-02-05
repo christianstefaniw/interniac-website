@@ -99,7 +99,7 @@ CTA BUTTONS
 .cta-btn-1{
     transition: all 1s ease;
     padding: 10px 25px;
-    border-radius: 10px;
+    border-radius: 30px;
     margin-top: 1rem;
     color: white !important;
     font-size: 1.4rem;
@@ -108,7 +108,7 @@ CTA BUTTONS
 
 .cta-btn-1:hover {
     cursor: pointer;
-    border-radius: 30px;
+    box-shadow:  0 0 0 3px #000000;
     transition: all 1s ease;
 }
 
@@ -118,7 +118,7 @@ CTA BUTTONS
     transition: all 1s ease;
     padding: 10px 25px;
     text-decoration: none;
-    border-radius: 12px;
+    border-radius: 30px;
     color: white !important;
     font-size: 1.4rem;
     margin-top: 1rem;
@@ -127,7 +127,7 @@ CTA BUTTONS
 
 .cta-btn-2:hover {
     cursor: pointer;
-    border-radius: 30px;
+    box-shadow:  0 0 0 3px #000000;
     transition: all 1s ease;
 }
 
@@ -230,6 +230,7 @@ MAX OR STAT
 #expand-max-or-stat-icon:hover{
     transition: all 0.5s ease-out;
     background-color: lightgrey;
+    cursor: pointer;
 }
 
 /*
