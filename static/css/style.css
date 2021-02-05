@@ -19,6 +19,13 @@ html {
     scroll-behavior: smooth;
 }
 
+html > body {
+    margin: 0;
+    padding: 0;
+    font-family: 'font', sans-serif;
+    overflow-x: hidden;
+}
+
 *{
     box-sizing: border-box;
     margin: 0;
@@ -35,11 +42,6 @@ a{
     text-decoration: none;
 }
 
-html > body {
-    margin: 0;
-    padding: 0;
-    font-family: 'font', sans-serif;
-}
 
 p{
     line-height: 2;
@@ -151,7 +153,7 @@ LANDING PAGE
 }
 
 .title{
-    font-size: 3.5rem;
+    font-size: 3rem;
     font-weight: bolder;
 }
 
