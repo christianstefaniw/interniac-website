@@ -270,6 +270,7 @@ DOT DECORATION
 .grid-container {
     grid-template-columns: auto auto auto;
     display: inline-grid;
+    margin-top: 5rem;
 }
 
 @keyframes MoveUpDown {
