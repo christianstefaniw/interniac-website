@@ -84,7 +84,7 @@ NAV
 .nav-item-active{
     background-color: transparent;
     border-radius: 30px;
-    box-shadow: 0 0 0 1px #000000;
+    border: 1px solid black;
     padding-left: 5px;
     padding-right: 5px;
 }
@@ -280,5 +280,5 @@ END FOOTER
 @media screen and (max-width: 991px) {
     #landing-text { margin-top: 5rem }
     #wave-landing-container { display: none; }
-    #about-section{ margin-top: 2rem; }
+    #about-section{ margin-top: 8rem; }
 }
