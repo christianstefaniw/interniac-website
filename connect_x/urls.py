@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 
-from .views import HomePage
+from home.views import HomePage
 from careers.views import CareersPage
 from students.views import StudentsPage
 from employers.views import EmployersPage
@@ -16,5 +16,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
-handler500 = 'connect_x.views.Error404Handler'
+handler500 = 'home.views.Error404Handler'
 

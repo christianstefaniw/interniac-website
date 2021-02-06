@@ -11,6 +11,17 @@ GENERAL
     --gradient-secondary-two: #ee886c;
     --inner-shadow: inset 3px 3px 3px #d0d0d0, inset -3px -3px 3px #f8f8f8;
     --outer-shadow: 3px 3px 3px #d0d0d0, -3px -3px 3px #f8f8f8;
+    --form-input-bg: #e8e8ec
+}
+
+
+input, textarea {
+    /*width: 100%;*/
+    display:block;
+    border-radius: 30px;
+    background-color: var(--form-input-bg);
+    border: none;
+    padding: 5px 5px 5px 10px;
 }
 
 html {
@@ -26,6 +37,7 @@ html > body {
     overflow-x: hidden;
 }
 
+
 *{
     box-sizing: border-box;
     margin: 0;
@@ -33,10 +45,11 @@ html > body {
     outline: none;
 }
 
+
 ::before,::after {
     box-sizing: border-box;
-
 }
+
 
 a{
     text-decoration: none;
@@ -46,6 +59,7 @@ a{
 p{
     line-height: 2;
 }
+
 
 h1,h2,h3,h4,h5,h6{
     line-height: 1.5 !important;
@@ -251,6 +265,106 @@ DOT DECORATION
 END DOT DECORATION
  */
 
+
+/*
+CONTACT FORM
+ */
+
+/* send button */
+
+#lnch {
+  font-size: 18px;
+  color: #fff;
+  line-height: 1;
+  padding: 20px 25px;
+  text-align: center;
+  border-radius: 50px;
+  transition: 0.5s ease background-color, 0.5s ease box-shadow;
+  background: var(--primary-color);
+}
+
+#lnch_btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 20px;
+  line-height: 1;
+  color: #fff;
+  padding: 18px 12px;
+  cursor: pointer;
+  transition: 0.3s ease transform;
+}
+#lnch.launching {
+  background-color: #f39c12;
+  box-shadow: 0 20px 30px -6px #f39c12;
+}
+#lnch_btn.launching {
+  transform: rotateZ(-90deg);
+  animation: shake 0.3s ease 0.5s infinite;
+}
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0) rotateZ(-90deg);
+  }
+  20%,
+  80% {
+    transform: translate3d(1px, 0, 0) rotateZ(-90deg);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-1px, 0, 0) rotateZ(-90deg);
+  }
+  40%,
+  60% {
+    transform: translate3d(1px, 0, 0) rotateZ(-90deg);
+  }
+}
+
+#lnch.launched {
+  background-color: #27ae60;
+  box-shadow: 0 20px 30px -6px #27ae60;
+}
+
+#lnch_btn.launched {
+  transform: rotateZ(-90deg);
+  animation: moveUp 1s ease 0s forwards;
+}
+@keyframes moveUp {
+  0% {
+    margin-top: 0;
+    transform: scale(1) rotateZ(-90deg);
+  }
+  100% {
+    color: #ff1f5a;
+    margin-top: -100px;
+    transform: scale(0) rotateZ(-90deg);
+  }
+}
+#send-container {
+  margin-top: 2rem;
+  position: relative;
+  width: 250px;
+}
+
+/* end send button */
+
+
+#contact-header{
+    margin-bottom: 2rem;
+}
+
+#contact-title{
+    color: var(--primary-color);
+    font-weight: bolder;
+}
+
+/*
+END CONTACT FORM
+ */
+
+
 /*
 FOOTER
  */
@@ -284,6 +398,11 @@ END FOOTER
     #landing-text { margin-top: 5rem }
     #wave-landing-container { display: none; }
     #about-section{ margin-top: 8rem; }
+}
+
+@media screen and (max-width: 765px) {
+    input, textarea{ width: 100%; }
+    #msg-img { display: none; }
 }
 
 /* END BREAK POINTS */

@@ -143,7 +143,34 @@
                     </div>
                 </div>
             </section>
+
             <div class="content-gap"></div>
+
+            <section id="contact">
+                <div id="contact-header">
+                    <h1 id="contact-title">Let's Talk</h1>
+                    <p class="text-muted">Want to get in touch? We'd love to hear from you, please fill out <br> the form and we'll get back to you promptly.</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <form>
+                            {% csrf_token %}
+                                {{ form.as_p }}
+
+                            <div id="send-container">
+                              <div id="lnch">Send Message</div>
+                              <div id="lnch_btn"><i class="fas fa-space-shuttle"></i></div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="msg-img" class="col-md-6">
+                        <img width="100%" src="{% static 'assets/images/message.svg' %}" alt="message"/>
+                    </div>
+
+                </div>
+            </section>
         </div>
 
 
@@ -160,6 +187,9 @@
         -->
 
 
+        <div class="content-gap"></div>
+
+
         <section>
             <footer>
                 <div>
@@ -171,6 +201,7 @@
                     <p>© 2021 Interniac. All rights reserved</p>
                 </div>
                 <!-- <a href='https://www.freepik.com/vectors/templates'>Templates vector created by freepik - www.freepik.com</a> -->
+                <!-- <a href='https://www.freepik.com/vectors/business'>Business vector created by pikisuperstar - www.freepik.com</a> -->
             </footer>
         </section>
 
