@@ -1,3 +1,4 @@
+// is element visible
 (function($) {
   $.fn.visible = function(partial) {
 
@@ -15,28 +16,4 @@
   };
 
 })(jQuery);
-
-var win = $(window);
-
-var allSlideUp = $(".slider-up");
-var allSlidesRight = $(".slider-right")
-
-win.scroll(function(event) {
-
-  allSlideUp.each(function(i, el) {
-    var el = $(el);
-    if (el.visible(true)) {
-      el.addClass("slide-up");
-    }
-  });
-
-  allSlidesRight.each(function(i, el) {
-    var el = $(el);
-    if (el.visible(true)) {
-
-      el.addClass("slide-right");
-    }
-  });
-
-});
 
