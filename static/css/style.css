@@ -405,4 +405,8 @@ END FOOTER
     #msg-img { display: none; }
 }
 
+@media screen and (max-width: 266px) {
+    #send-container { width: 100% }
+}
+
 /* END BREAK POINTS */
