@@ -1,0 +1,76 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+            <link rel="stylesheet" href="{% static "css/style.css" %}"/>
+            <link rel="stylesheet" href="{% static "css/bubbles.css" %}"/>
+
+
+            <link rel="shortcut icon" type="image/png" href="{% static 'assets/favicon.ico' %}"/>
+
+
+            <script src="https://kit.fontawesome.com/a76f8913d2.js" crossorigin="anonymous"></script>
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                    crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                    crossorigin="anonymous"></script>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+                  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+            <title>Interniac</title>
+    </head>
+    <body>
+        <section id="nav">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <img width="50" height="50" src="{% static "assets/images/logo-transparent.png" %}" alt="logo"/>
+                    Ｉｎｔｅｒｎｉａｃ
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'careers' %}">Careers</a>
+                        </li>
+                        <li class="nav-item nav-item-active">
+                            <a class="nav-link active" href="{% url 'students' %}">Students</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'employers' %}">Employers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'aboutus' %}">About Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </section>
+
+        <section>
+            <footer>
+                <div class="socials row justify-content-center">
+                    <a target="_blank" href="https://www.instagram.com/_connectx/"><i class="icon fab fa-instagram fa-2x"></i></a>
+                    <a target="_blank" href="https://www.tiktok.com/@_connectx?lang=en"><i class="icon fab fa-tiktok fa-2x"></i></a>
+                    <a target="_blank" href="https://www.facebook.com/connectx.founders"><i class="icon fab fa-facebook fa-2x"></i></a>
+                </div>
+                <p>© 2021 Interniac. All rights reserved</p>
+            </footer>
+        </section>
+
+    </body>
+</html>

@@ -84,7 +84,7 @@ NAV
 .nav-item-active{
     background-color: transparent;
     border-radius: 30px;
-    border: 1px solid black;
+    box-shadow: 0 0 0 1px #000000;
     padding-left: 5px;
     padding-right: 5px;
 }
@@ -158,15 +158,21 @@ LANDING PAGE
 }
 
 .subtitle{
-    color: #7cc2fa;
+    color: #105ffa;
 }
 
 #landing-text{
-    margin-top: 5rem;
+    margin-top: 9rem;
     text-align: left;
     margin-bottom: 2rem;
 }
 
+
+#working{
+    position: absolute;
+    margin-left: 500px;
+    margin-top: 100px;
+}
 /*
 END LANDING PAGE
  */
@@ -193,51 +199,6 @@ END IMAGES
 
 
 /*
-
-
-/*
-7 HABITS STUFF
- */
-
-.habits-content{
-    margin-top: 2.5rem;
-}
-
-#v-pills-tab-habits{
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    margin-bottom: 0;
-}
-
-/*
-END 7 HABITS STUFF
- */
-
-/*
-MAX OR STAT
- */
-
-#expand-max-or-stat{
-    color: black;
-}
-
-
-#expand-max-or-stat-icon{
-    transition: all 0.5s ease-in;
-    text-align: center;
-    padding: 5px;
-    width: 100%;
-}
-
-#expand-max-or-stat-icon:hover{
-    transition: all 0.5s ease-out;
-    background-color: lightgrey;
-    cursor: pointer;
-}
-
-/*
-END MAX OR STAT
- */
 
 
 /*
@@ -317,12 +278,7 @@ END FOOTER
  */
 
 @media screen and (max-width: 991px) {
+    #landing-text { margin-top: 5rem }
     #wave-landing-container { display: none; }
-    #about-section{ margin-top: 20rem; }
-}
-
-@media screen and (max-width: 764px) {
-    #wave-landing-container { display: none; }
-    /* #background-wrap { display: none; } */
-    #v-pills-tabContent { margin-top: 2rem; }
+    #about-section{ margin-top: 2rem; }
 }
