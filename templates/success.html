@@ -1,0 +1,34 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="shortcut icon" type="image/png" href="{% static 'assets/favicon.ico' %}"/>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Interniac</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://kit.fontawesome.com/a76f8913d2.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="{% static 'css/success-error.css' %}">
+    </head>
+    <body>
+    <div class="container">
+       <div class="row">
+          <div class="col-md-6 mx-auto mt-5">
+             <div class="success">
+                <div class="success_header" style="background-color: #67c47f">
+                   <div class="check"><i class="fa fa-check" aria-hidden="true"></i></div>
+                </div>
+                <div class="content">
+                   <h1>Success !</h1>
+                   <p>We received your request.<br>Thank you.</p>
+                   <a href="{% url 'home' %}">Go to Home</a>
+                </div>
+
+             </div>
+          </div>
+       </div>
+    </div>
+    </body>
+</html>

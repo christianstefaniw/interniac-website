@@ -157,6 +157,11 @@ END CTA BUTTONS
 LANDING PAGE
  */
 
+#id_email_signup{
+    width: 100%;
+    border-radius: 0 !important;
+}
+
 #wave-landing-container{
     display: inline-block;
     z-index: -1;
@@ -400,9 +405,10 @@ END FOOTER
     #about-section{ margin-top: 8rem; }
 }
 
-@media screen and (max-width: 765px) {
+@media screen and (max-width: 767px) {
     input, textarea{ width: 100%; }
     #msg-img { display: none; }
+    #id_email_signup { margin-bottom: 1rem; }
 }
 
 @media screen and (max-width: 266px) {

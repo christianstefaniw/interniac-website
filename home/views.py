@@ -1,7 +1,7 @@
+from django.http import HttpResponseRedirect
 from django.views.generic import TemplateView
-from django.shortcuts import render
 
-from .forms import ContactForm
+from .forms import ContactForm, EmailForm
 
 
 class HomePage(TemplateView):
@@ -9,9 +9,15 @@ class HomePage(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
-        context['form'] = ContactForm()
+        context['contact_form'] = ContactForm()
+        context['email_form'] = EmailForm()
         return context
 
-
-def Error404Handler(request):
-    return render(request, '404.html')
+    def post(self, request, *args, **kwargs):
+        if 'email_signup' in self.request.POST:
+            form = EmailForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return HttpResponseRedirect('/success')
+            else:
+                return HttpResponseRedirect('/error')

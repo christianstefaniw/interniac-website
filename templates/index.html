@@ -77,10 +77,33 @@
                             </h1>
 
                         </div>
+
+
+                        <div>
+                            <form method="post" id="email_signup">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-sm-7">
+                                        {{ email_form.email_signup }}
+                                    </div>
+                                    <div class="col-md-5">
+                                        <button type="submit" class="btn btn-primary">Sign up!</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <p class="text-muted">Sign up for our newsletter</p>
+                        </div>
+
+
+                        <!--
                         <div id="landing-buttons" class="row justify-content-between">
                             <a class="cta-btn-1">Student Resources</a>
                             <a class="cta-btn-2" style="margin-right: 2.5rem">Internships</a>
                         </div>
+                        -->
+
+
                         <div class="grid-container">
                             <div class="dot-container">
                                 <div class="dot" style="background-color: red"></div>
@@ -156,7 +179,7 @@
                     <div class="col-md-6">
                         <form>
                             {% csrf_token %}
-                                {{ form.as_p }}
+                                {{ contact_form.as_p }}
 
                             <div id="send-container">
                               <div id="lnch">Send Message</div>
