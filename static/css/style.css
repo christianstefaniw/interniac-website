@@ -278,17 +278,6 @@ END FOOTER
  */
 
 
-/* BREAK POINTS */
-
-@media screen and (max-width: 991px) {
-    #landing-text { margin-top: 5rem }
-    #wave-landing-container { display: none; }
-    #about-section{ margin-top: 8rem; }
-}
-
-/* END BREAK POINTS */
-
-
 /* ANIMATIONS */
 
 
@@ -333,3 +322,17 @@ END FOOTER
 /* right */
 
 /* END ANIMATIONS /*
+
+
+/* BREAK POINTS */
+
+@media screen and (max-width: 991px) {
+    #landing-text { margin-top: 5rem }
+    #wave-landing-container { display: none; }
+    #about-section{ margin-top: 8rem; }
+    .slide-right{ animation: none; }
+    .slider-right{ transform: none; }
+    .slide-up { animation: none; transform: none; }
+}
+
+/* END BREAK POINTS */
