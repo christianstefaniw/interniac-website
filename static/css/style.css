@@ -277,8 +277,59 @@ footer{
 END FOOTER
  */
 
+
+/* BREAK POINTS */
+
 @media screen and (max-width: 991px) {
     #landing-text { margin-top: 5rem }
     #wave-landing-container { display: none; }
     #about-section{ margin-top: 8rem; }
 }
+
+/* END BREAK POINTS */
+
+
+/* ANIMATIONS */
+
+
+/* up */
+
+.slider-up {
+  position: relative;
+}
+
+.slide-up {
+  transform: translateY(150px);
+  animation: come-in 1s ease forwards;
+}
+
+@keyframes come-in {
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* end up */
+
+
+/* right */
+
+.slider-right {
+    transform: translateX(-100%);
+}
+
+.slide-right {
+    animation: slide-in 2s forwards;
+}
+
+@keyframes slide-in {
+    100% { transform: translateX(0%); }
+}
+
+@-webkit-keyframes slide-in {
+    100% { -webkit-transform: translateX(0%); }
+}
+
+/* right */
+
+/* END ANIMATIONS /*
