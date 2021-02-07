@@ -216,7 +216,7 @@ END LANDING PAGE
 
 .stat:hover {
     cursor: pointer;
-    margin-top: 0.5em;
+    margin-top: 0.5rem;
     box-shadow: 0 0.4em 0.5em rgb(0, 0, 0.8);
 }
 
@@ -488,6 +488,19 @@ END FOOTER
 /* END DECORATIONS */
 
 
+/* EVENTS */
+
+.event-card{
+    margin: auto;
+}
+
+.event-card-last{
+    margin: auto;
+}
+
+/* END EVENTS */
+
+
 /* BREAK POINTS */
 
 @media screen and (max-width: 991px) {
@@ -515,6 +528,16 @@ END FOOTER
 
     #id_email_signup {
         margin-bottom: 1rem;
+    }
+
+    .event-card{
+        margin-bottom: 3rem;
+    }
+
+    .stat:hover{
+        cursor: pointer;
+        margin: 1.5rem 0 ;
+        box-shadow: 0 0.4em 0.5em rgb(0, 0, 0.8);
     }
 }
 

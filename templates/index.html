@@ -174,7 +174,7 @@
                 <h1 class="text-center font-weight-bold mb-4">Upcoming Events</h1>
                 <div class="row justify-content-start">
                     {% for event in events %}
-                        <div class="col-md-3 m-auto">
+                        <div class="col-md-3 {% if forloop.last %} event-card-last {% else %} event-card {% endif %}">
                             <div class="card" style="border-radius: 10px">
                                 <img width="100%" class="card-img-top" src="{{ event.img.url }}" alt="Card image cap">
                                 <div class="card-body">
@@ -305,6 +305,6 @@
             </footer>
         </section>
 
-        <script src="{% static 'js/script.js' %}"></script>
+        <script src="{% static 'js/launch-btn.js' %}"></script>
     </body>
 </html>
