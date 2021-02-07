@@ -1,8 +1,7 @@
-
 /*
 GENERAL
  */
-:root{
+:root {
     --primary-color: #040456;
     --secondary-color: #FFFFFFFF;
     --gradient-primary-one: #2c7ee4;
@@ -17,7 +16,7 @@ GENERAL
 
 input, textarea {
     /*width: 100%;*/
-    display:block;
+    display: block;
     border-radius: 30px;
     background-color: var(--form-input-bg);
     border: none;
@@ -38,7 +37,7 @@ html > body {
 }
 
 
-*{
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -46,40 +45,35 @@ html > body {
 }
 
 
-::before,::after {
+::before, ::after {
     box-sizing: border-box;
 }
 
 
-a{
+a {
     text-decoration: none;
 }
 
 
-p{
+p {
     line-height: 2;
-}
-
-
-h1,h2,h3,h4,h5,h6{
-    line-height: 1.5 !important;
 }
 
 .container-fluid {
     max-width: 1600px;
 }
 
-.content-gap{
+.content-gap {
     margin-top: 10rem;
 }
 
 .inner-shadow {
-  box-shadow: var(--inner-shadow);
+    box-shadow: var(--inner-shadow);
 }
 
 
 .outer-shadow {
-  box-shadow: var(--outer-shadow);
+    box-shadow: var(--outer-shadow);
 }
 
 /*
@@ -91,11 +85,11 @@ END GENERAL
 NAV
  */
 
-.nav-item{
+.nav-item {
     margin-left: 1.5rem !important;
 }
 
-.nav-item-active{
+.nav-item-active {
     background-color: transparent;
     border-radius: 30px;
     border: 1px solid black;
@@ -112,7 +106,7 @@ END NAV
 CTA BUTTONS
  */
 
-.cta-btn-1{
+.cta-btn-1 {
     transition: all 1s ease;
     padding: 10px 25px;
     border-radius: 30px;
@@ -124,13 +118,12 @@ CTA BUTTONS
 
 .cta-btn-1:hover {
     cursor: pointer;
-    box-shadow:  0 0 0 3px #000000;
+    box-shadow: 0 0 0 3px #000000;
     transition: all 1s ease;
 }
 
 
-
-.cta-btn-2{
+.cta-btn-2 {
     transition: all 1s ease;
     padding: 10px 25px;
     text-decoration: none;
@@ -143,7 +136,7 @@ CTA BUTTONS
 
 .cta-btn-2:hover {
     cursor: pointer;
-    box-shadow:  0 0 0 3px #000000;
+    box-shadow: 0 0 0 3px #000000;
     transition: all 1s ease;
 }
 
@@ -152,46 +145,52 @@ END CTA BUTTONS
  */
 
 
-
 /*
 LANDING PAGE
  */
 
-#id_email_signup{
+
+#landing-bg {
+    background-color: #ffffff;
+}
+
+#id_email_signup {
     width: 100%;
-    border-radius: 0 !important;
+    border-radius: 0;
 }
 
-#wave-landing-container{
+#wave-landing-container {
     display: inline-block;
-    z-index: -1;
 }
 
-#about-section{
+#about-section {
     margin-top: 0;
 }
 
-.title{
+.title {
+    line-height: 1.5 !important;
+    color: black;
     font-size: 3rem;
     font-weight: bolder;
 }
 
-.subtitle{
+.subtitle {
     color: #105ffa;
 }
 
-#landing-text{
+#landing-text {
     margin-top: 9rem;
     text-align: left;
     margin-bottom: 2rem;
 }
 
 
-#working{
+#working {
     position: absolute;
     margin-left: 500px;
     margin-top: 100px;
 }
+
 /*
 END LANDING PAGE
  */
@@ -201,12 +200,12 @@ END LANDING PAGE
 IMAGES
  */
 
-.img-box{
+.img-box {
     padding: 15px;
     border-radius: 5px;
 }
 
-.img-box img{
+.img-box img {
     width: 100%;
     border: 10px solid transparent;
     border-radius: 5px;
@@ -225,8 +224,8 @@ FONTS
  */
 
 @font-face {
-  font-family: font;
-  src: url('../assets/fonts/geometria-cufonfonts/Geometria-Medium.ttf');
+    font-family: font;
+    src: url('../assets/fonts/geometria-cufonfonts/Geometria-Medium.ttf');
 }
 
 /*
@@ -254,15 +253,15 @@ DOT DECORATION
 }
 
 @keyframes MoveUpDown {
-  0%, 100% {
-    bottom: 0;
-  }
-  50% {
-    bottom: 20px;
-  }
+    0%, 100% {
+        bottom: 0;
+    }
+    50% {
+        bottom: 20px;
+    }
 }
 
-.dot-container{
+.dot-container {
     padding: 3px;
 }
 
@@ -278,89 +277,94 @@ CONTACT FORM
 /* send button */
 
 #lnch {
-  font-size: 18px;
-  color: #fff;
-  line-height: 1;
-  padding: 20px 25px;
-  text-align: center;
-  border-radius: 50px;
-  transition: 0.5s ease background-color, 0.5s ease box-shadow;
-  background: var(--primary-color);
+    font-size: 18px;
+    color: #fff;
+    line-height: 1;
+    padding: 20px 25px;
+    text-align: center;
+    border-radius: 50px;
+    transition: 0.5s ease background-color, 0.5s ease box-shadow;
+    background: var(--primary-color);
 }
 
 #lnch_btn {
-  position: absolute;
-  top: 0;
-  right: 0;
-  font-size: 20px;
-  line-height: 1;
-  color: #fff;
-  padding: 18px 12px;
-  cursor: pointer;
-  transition: 0.3s ease transform;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 20px;
+    line-height: 1;
+    color: #fff;
+    padding: 18px 12px;
+    cursor: pointer;
+    transition: 0.3s ease transform;
 }
+
 #lnch.launching {
-  background-color: #f39c12;
-  box-shadow: 0 20px 30px -6px #f39c12;
+    background-color: #f39c12;
+    box-shadow: 0 20px 30px -6px #f39c12;
 }
+
 #lnch_btn.launching {
-  transform: rotateZ(-90deg);
-  animation: shake 0.3s ease 0.5s infinite;
+    transform: rotateZ(-90deg);
+    animation: shake 0.3s ease 0.5s infinite;
 }
+
 @keyframes shake {
-  10%,
-  90% {
-    transform: translate3d(-1px, 0, 0) rotateZ(-90deg);
-  }
-  20%,
-  80% {
-    transform: translate3d(1px, 0, 0) rotateZ(-90deg);
-  }
-  30%,
-  50%,
-  70% {
-    transform: translate3d(-1px, 0, 0) rotateZ(-90deg);
-  }
-  40%,
-  60% {
-    transform: translate3d(1px, 0, 0) rotateZ(-90deg);
-  }
+    10%,
+    90% {
+        transform: translate3d(-1px, 0, 0) rotateZ(-90deg);
+    }
+    20%,
+    80% {
+        transform: translate3d(1px, 0, 0) rotateZ(-90deg);
+    }
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-1px, 0, 0) rotateZ(-90deg);
+    }
+    40%,
+    60% {
+        transform: translate3d(1px, 0, 0) rotateZ(-90deg);
+    }
 }
 
 #lnch.launched {
-  background-color: #27ae60;
-  box-shadow: 0 20px 30px -6px #27ae60;
+    background-color: #27ae60;
+    box-shadow: 0 20px 30px -6px #27ae60;
 }
 
 #lnch_btn.launched {
-  transform: rotateZ(-90deg);
-  animation: moveUp 1s ease 0s forwards;
+    transform: rotateZ(-90deg);
+    animation: moveUp 1s ease 0s forwards;
 }
+
 @keyframes moveUp {
-  0% {
-    margin-top: 0;
-    transform: scale(1) rotateZ(-90deg);
-  }
-  100% {
-    color: #ff1f5a;
-    margin-top: -100px;
-    transform: scale(0) rotateZ(-90deg);
-  }
+    0% {
+        margin-top: 0;
+        transform: scale(1) rotateZ(-90deg);
+    }
+    100% {
+        color: #ff1f5a;
+        margin-top: -100px;
+        transform: scale(0) rotateZ(-90deg);
+    }
 }
+
 #send-container {
-  margin-top: 2rem;
-  position: relative;
-  width: 250px;
+    margin-top: 2rem;
+    position: relative;
+    width: 250px;
 }
 
 /* end send button */
 
 
-#contact-header{
+#contact-header {
     margin-bottom: 2rem;
 }
 
-#contact-title{
+#contact-title {
     color: var(--primary-color);
     font-weight: bolder;
 }
@@ -374,7 +378,7 @@ END CONTACT FORM
 FOOTER
  */
 
-footer{
+footer {
     background-color: var(--primary-color);
     color: var(--secondary-color);
     text-align: center;
@@ -382,11 +386,11 @@ footer{
     padding-bottom: 2rem;
 }
 
-.socials{
+.socials {
     margin-bottom: 1rem;
 }
 
-.icon{
+.icon {
     margin-left: 1rem;
     margin-right: 1rem;
     color: white;
@@ -397,22 +401,72 @@ END FOOTER
  */
 
 
+/* PROFILE CARD */
+
+.thumb-lg {
+    height: 200px;
+    width: 200px;
+}
+
+.lh-1 {
+    line-height: 1.5 !important;
+}
+
+.more {
+    display: none;
+}
+
+/* END PROFILE CARD */
+
+
+/* DECORATIONS */
+
+.circle-decoration {
+    z-index: -1;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+}
+
+/* END DECORATIONS */
+
+
 /* BREAK POINTS */
 
 @media screen and (max-width: 991px) {
-    #landing-text { margin-top: 5rem }
-    #wave-landing-container { display: none; }
-    #about-section{ margin-top: 8rem; }
+    #landing-text {
+        margin-top: 5rem
+    }
+
+    #wave-landing-container {
+        display: none;
+    }
+
+    #about-section {
+        margin-top: 8rem;
+    }
 }
 
 @media screen and (max-width: 767px) {
-    input, textarea{ width: 100%; }
-    #msg-img { display: none; }
-    #id_email_signup { margin-bottom: 1rem; }
+    input, textarea {
+        width: 100%;
+    }
+
+    #msg-img {
+        display: none;
+    }
+
+    #id_email_signup {
+        margin-bottom: 1rem;
+    }
 }
 
 @media screen and (max-width: 266px) {
-    #send-container { width: 100% }
+    #send-container {
+        width: 100%
+    }
 }
 
 /* END BREAK POINTS */
