@@ -180,7 +180,9 @@
                                 <div class="card-body">
                                     <h5 class="card-title">{{ event.name }}</h5>
                                     <p class="card-text text-muted">{{ event.description | truncatechars:300 }}
-                                        <a target="_blank" href="{% url 'read_more' pk=event.id %}">read more</a>
+                                        {% if event.description|length > 300 %}
+                                            <a target="_blank" href="{% url 'read_more' pk=event.id %}">read more</a>
+                                        {% endif %}
                                     </p>
                                     <a target="_blank" href="{{ event.meet_url }}" class="btn btn-primary w-100">Register</a>
                                     <p class="text-center mt-2">
