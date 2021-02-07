@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 from django.views.generic import TemplateView
 
 from .forms import ContactForm, EmailForm
+from .models import Statistics
 
 
 class HomePage(TemplateView):
@@ -11,6 +12,7 @@ class HomePage(TemplateView):
         context = super().get_context_data()
         context['contact_form'] = ContactForm()
         context['email_form'] = EmailForm()
+        context['stats'] = Statistics.objects.all()
         return context
 
     def post(self, request, *args, **kwargs):

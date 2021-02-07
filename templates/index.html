@@ -136,9 +136,8 @@
                             </div>
 
                         </div>
-                        <div class="col-md-6" id="wave-landing-container">
+                        <div class="col-md-7" id="wave-landing-container">
                             <img src="{% static "assets/images/wave-blue.svg" %}" alt="wave"/>
-
                         </div>
 
                     </div>
@@ -147,7 +146,7 @@
        </div>
 
         <div class="container-fluid">
-            <section id="about-section">
+            <section class="mt-0" id="about-section">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="inner-shadow img-box">
@@ -156,7 +155,7 @@
 
                     </div>
                     <div class="col-md-8">
-                        <h1>IT SHOULDN'T BE THAT HARD TO GET WORK EXPERIENCE</h1>
+                        <h1 class="font-weight-bold">It Shouldn't Be That Hard To Get Work Experience</h1>
                         <p>
                             Given how competitive college admissions are and how often the average American college student changes majors due to
                             career confusion, getting a high school internship is more valuable than ever before. However, pre-college work experience
@@ -167,6 +166,50 @@
                     </div>
                 </div>
             </section>
+
+
+
+            <div class="content-gap"></div>
+
+            <h1 class="text-center font-weight-bold">Statistics</h1>
+
+            {% for stat in stats %}
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="stati bg-turquoise ">
+                            <i class="icon-exclamation icons"></i>
+                              <div>
+                                <b>{{ stat.students }}</b>
+                                  <span>
+                                      Students
+                                  </span>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="stati bg-turquoise ">
+                            <i class="icon-exclamation icons"></i>
+                            <div>
+                                <b>{{ stat.employers }}</b>
+                                <span>
+                                    Employers
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="stati bg-turquoise ">
+                            <i class="icon-exclamation icons"></i>
+                            <div>
+                                <b>{{ stat.professionals }}</b>
+                                <span>
+                                    Professionals
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
 
             <div class="content-gap"></div>
 

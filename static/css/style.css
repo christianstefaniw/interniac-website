@@ -13,6 +13,9 @@ GENERAL
     --form-input-bg: #e8e8ec
 }
 
+.bg-primary {
+    background-color: var(--primary-color) !important;
+}
 
 input, textarea {
     /*width: 100%;*/
@@ -64,7 +67,7 @@ p {
 }
 
 .content-gap {
-    margin-top: 10rem;
+    margin-top: 6rem;
 }
 
 .inner-shadow {
@@ -156,15 +159,12 @@ LANDING PAGE
 
 #id_email_signup {
     width: 100%;
-    border-radius: 0;
+    border-radius: 5px;
+    padding: 7px;
 }
 
 #wave-landing-container {
     display: inline-block;
-}
-
-#about-section {
-    margin-top: 0;
 }
 
 .title {
@@ -195,6 +195,61 @@ LANDING PAGE
 END LANDING PAGE
  */
 
+/* STATISTICS */
+
+.stati {
+    background: #fff;
+    height: 6em;
+    padding: 1em;
+    margin: 1em 0;
+    transition: margin 0.5s ease, box-shadow 0.5s ease;
+    box-shadow: 0px 0.2em 0.4em rgb(0, 0, 0.8);
+}
+
+.stati:hover {
+    cursor: pointer;
+    margin-top: 0.5em;
+    box-shadow: 0 0.4em 0.5em rgb(0, 0, 0.8);
+}
+
+.stati i {
+    font-size: 3.5em;
+}
+
+.stati div {
+    width: calc(100% - 3.5em);
+    display: block;
+    float: right;
+    text-align: right;
+}
+
+.stati div b {
+    font-size: 2.2em;
+    width: 100%;
+    padding-top: 0px;
+    margin-top: -0.2em;
+    margin-bottom: -0.2em;
+    display: block;
+}
+
+.stati div span {
+    font-size: 1em;
+    width: 100%;
+    color: #ffffff; !important;
+    display: block;
+}
+
+.stati.left div {
+    float: left;
+    text-align: left;
+}
+
+.stati.bg-turquoise {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* END STATISTICS */
 
 /*
 IMAGES
@@ -417,6 +472,16 @@ END FOOTER
 }
 
 /* END PROFILE CARD */
+
+
+/* ABOUT TABS */
+
+#offers {
+    margin-top: 7rem;
+    background-color: white !important;
+}
+
+/* END ABOUT TABS */
 
 
 /* DECORATIONS */

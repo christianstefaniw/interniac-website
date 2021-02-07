@@ -61,218 +61,300 @@
             </nav>
         </section>
 
-        <section>
-
-            <div class="container mt-5">
-                <h1>Founders</h1>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="pt-2 pb-2">
-                            <!--<div class="circle-decoration" style="background-color: #c986e5"></div>-->
-                            <div class="thumb-lg"><img src="{% static 'assets/images/the_team/aria.png' %}"
-                                                       class="rounded-circle img-thumbnail" alt="profile-image"></div>
-                            <div class="mt-2">
-                                <h4 class="text-left mb-0">Aria Parekh</h4>
-                                <p class="text-muted text-left">Founder</p>
-                            </div>
-                            <p class="text-left text-muted lh-1">Aria Parekh is a sophomore at John Champe High
-                                School. She loves to draw, play the piano, read, watch Friends, and do any water-related
-                                activity including swimming, kayaking, and jet skiing. She is a part of Future Business
-                                Leaders of America. She is also the 10th-grade treasurer, runs cross country, and tutors
-                                two elementary kids.</p>
-                            <!--<div class="circle-decoration" style="background-color: turquoise"></div>-->
+        <div class="container">
+            <section id="mission">
+                <div class="mt-5 jumbotron">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h1>Our mission</h1>
+                            <p>Interniac is a marketplace that supports high schoolers and empowers businesses in hiring bright
+                                students.</p>
                         </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="pt-2 pb-2">
-                            <div class="thumb-lg"><img src="{% static 'assets/images/the_team/purva.png' %}"
-                                                       class="rounded-circle img-thumbnail" alt="profile-image"></div>
-                            <div class="mt-2">
-                                <h4 class="text-left mb-0">Purva Shah</h4>
-                                <p class="text-muted text-left">Founder</p>
-                            </div>
-                            <!--<div class="circle-decoration" style="background-color: #9ade6d"></div>-->
-                            <p class="text-left text-muted lh-1">Purva Shah is a high school senior from Tampa, Florida.
-                                Some fun facts--
-                                She loves ice cream, dogs, and this fire team. Purva also plays the flute, participates in
-                                the RNF Student Service
-                                Program for service and leadership, and you can also find her on the Florida Aquarium floor
-                                as part of the youth
-                                council. She plans to continue her education at a university after high school and long-term
-                                work on the analytics
-                                of global poverty issues.</p>
+                        <div class="col-md-8">
+                            <img class="float-right" width="50%" src="{% static 'assets/images/work-chat.svg' %}"
+                                 alt="work chat"/>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="pt-2 pb-2">
-                            <div class="thumb-lg"><img src="{% static 'assets/images/the_team/yash.png' %}"
-                                                       class="rounded-circle img-thumbnail" alt="profile-image"></div>
-                            <div class="mt-2">
-                                <h4 class="text-left mb-0">Yash Vardhan</h4>
-                                <p class="text-muted text-left">Founder</p>
-                            </div>
-                            <p class="text-left text-muted lh-1">Yash Vardhan is a Senior at Seminole High School in Orlando,
-                                Florida.
-                                Outside of BPA, Yash competes in the FIRST Tech Challenge Robotics competition, National History
-                                Fair,
-                                Tae Kwon Do, and Soccer. He also enjoys traditional Indian dance and playing the guitar.
-                                Additionally, Yash
-                                runs his own business called “Unavigate,” a service geared towards connecting high schoolers to
-                                college
-                                students in order to assist with the college application process. He also plans to attend the
-                                University of
-                                Pennsylvania to study business & engineering and hopes to one day open his own company.</p>
-                        </div>
-                    </div>
+            </section>
 
-                    <div class="col-lg-6">
-                        <div class="pt-2 pb-2">
-                            <div class="thumb-lg"><img src="{% static 'assets/images/the_team/rahi.png' %}"
-                                                       class="rounded-circle img-thumbnail" alt="profile-image"></div>
-                            <div class="mt-2">
-                                <!--<div class="circle-decoration" style="background-color: #4075e0"></div>-->
-                                <h4 class="text-left mb-0">Rahi Shah</h4>
-                                <p class="text-muted text-left">Founder</p>
-                            </div>
-                            <p class="text-left text-muted lh-1">Rahi Shah is a junior at Rochester High School in Rochester
-                                Hills, Michigan.
-                                She is a part of many organizations at her school including National Honors Society,
-                                Business Professionals of America,
-                                Rotary Interact, and Key Club. She loves volunteering and giving back her time to the
-                                community. Rahi is the Junior Class
-                                President of the National Social Studies Honors Society and is also on the executive youth
-                                board of a local nonprofit known
-                                as the Rochester Area Neighborhood House. She enjoys public speaking and is the Co-Captain
-                                of Finesse Academy's alumni club.
-                                Apart from extracurriculars, Rahi runs cross country and plays lacrosse.</p>
-                        </div>
-                    </div>
+            <section id="offers" class="jumbotron inner-shadow p-4">
+                <div class="outer-shadow p-4">
+                    <ul class="nav nav-pills mb-3 nav-justified" id="pills-tab" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill"
+                       href="#pills-students" role="tab" aria-controls="pills-home"
+                       aria-selected="true">
+                        Student benefits
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill"
+                       href="#pills-employers" role="tab" aria-controls="pills-profile"
+                       aria-selected="false">
+                        Employer benefits
+                    </a>
+                  </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+                  <div class="tab-pane fade show active"
+                       id="pills-students" role="tabpanel"
+                       aria-labelledby="pills-students-tab">
+                      <p>
+                          Interniac serves as a marketplace for internships where students can shop for internships that interest them.
+                          Students are able to create their own profile that turns into a standardized resume when applying for the job.
+                          They also have access to a bi-weekly newsletter with career spotlights and professional development resources.
+                      </p>
+
+                  </div>
+                  <div class="tab-pane fade"
+                       id="pills-employers" role="tabpanel"
+                       aria-labelledby="pills-employers-tab">
+                      <p>
+                          Interniac is the one-stop-shop for employers looking to build successful and
+                          hassle-free internship programs. Employers can create a job description, view candidates’
+                          profiles, and hire the perfect intern directly on our platform. Companies should focus solely
+                          on mentoring and extracting value from their interns both before and after the internship, and let
+                          us handle all the logistics.
+                      </p>
+
+                  </div>
                 </div>
-                <!--<div class="circle-decoration" style="background-color: turquoise"></div>-->
-                <h1 class="mt-5">Team Members</h1>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="pt-2 pb-2">
-                            <div class="thumb-lg"><img src="{% static 'assets/images/the_team/omkar.png' %}"
-                                                       class="rounded-circle img-thumbnail" alt="profile-image"></div>
-                            <div class="mt-2">
-                                <h4 class="text-left mb-0">Omkar Ghodke</h4>
-                                <p class="text-muted text-left">Team Member</p>
-                            </div>
-                            <p class="text-left text-muted lh-1">Omkar Ghodke is a junior at Rochester High School. Omkar enjoys
-                                singing and playing
-                                basketball. He joined Interniac because he loved the idea of providing opportunities to high
-                                schoolers like himself,
-                                which will help them prepare for their careers and connect them to their future by giving great
-                                internship opportunities!</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="pt-2 pb-2">
-                            <div class="thumb-lg"><img src="{% static 'assets/images/the_team/tvisha.png' %}"
-                                                       class="rounded-circle img-thumbnail" alt="profile-image"></div>
-                            <div class="mt-2">
-                                <h4 class="text-left mb-0">Tvisha Bakshi</h4>
-                                <p class="text-muted text-left">Team Member</p>
-                            </div>
-                            <!--<div class="circle-decoration" style="background-color: #9a9ae0"></div>-->
-                            <p class="text-left text-muted lh-1">Tvisha Bakshi is a sophomore at Lightridge High School.
-                                She believes that gaining experience and expanding one’s skill set is just as, if not, more
-                                important than simply learning in a classroom. From her experience, it is extremely hard to
-                                find internships as a high schooler when all companies are looking for college students. That
-                                is why when she heard about Interniac and its mission to provide students in high school with
-                                these opportunities, she knew that she wanted to be apart of it! She looks forward to helping
-                                other
-                                kids find internships and gain experience through Interniac’s work!</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="card-box">
-                            <!--<div class="circle-decoration" style="background-color: #4eeef3"></div>-->
+                </div>
+
+            </section>
+
+
+            <section id="the-team" style="margin-top: 7rem">
+                <div class="mt-5">
+                    <h1>Founders</h1>
+                    <div class="row">
+                        <div class="col-lg-6">
                             <div class="pt-2 pb-2">
-                                <div class="thumb-lg"><img src="{% static 'assets/images/the_team/dhruv.png' %}"
+                                <!--<div class="circle-decoration" style="background-color: #c986e5"></div>-->
+                                <div class="thumb-lg"><img width="100%" src="{% static 'assets/images/the_team/aria.png' %}"
                                                            class="rounded-circle img-thumbnail" alt="profile-image"></div>
                                 <div class="mt-2">
-                                    <h4 class="text-left mb-0">Dhruv Dighrasker</h4>
+                                    <h4 class="text-left mb-0">Aria Parekh</h4>
+                                    <p class="text-muted text-left">Founder</p>
+                                </div>
+                                <p class="text-left text-muted lh-1">Aria Parekh is a sophomore at John Champe High
+                                    School. She loves to draw, play the piano, read, watch Friends, and do any water-related
+                                    activity including swimming, kayaking, and jet skiing. She is a part of Future Business
+                                    Leaders of America. She is also the 10th-grade treasurer, runs cross country, and tutors
+                                    two elementary kids.</p>
+                                <!--<div class="circle-decoration" style="background-color: turquoise"></div>-->
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="pt-2 pb-2">
+                                <div class="thumb-lg"><img width="100%" src="{% static 'assets/images/the_team/purva.png' %}"
+                                                           class="rounded-circle img-thumbnail" alt="profile-image"></div>
+                                <div class="mt-2">
+                                    <h4 class="text-left mb-0">Purva Shah</h4>
+                                    <p class="text-muted text-left">Founder</p>
+                                </div>
+                                <!--<div class="circle-decoration" style="background-color: #9ade6d"></div>-->
+                                <p class="text-left text-muted lh-1">Purva Shah is a high school senior from Tampa, Florida.
+                                    Some fun facts--
+                                    She loves ice cream, dogs, and this fire team. Purva also plays the flute, participates in
+                                    the RNF Student Service
+                                    Program for service and leadership, and you can also find her on the Florida Aquarium floor
+                                    as part of the youth
+                                    council. She plans to continue her education at a university after high school and long-term
+                                    work on the analytics
+                                    of global poverty issues.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="pt-2 pb-2">
+                                <div class="thumb-lg"><img width="100%" src="{% static 'assets/images/the_team/yash.png' %}"
+                                                           class="rounded-circle img-thumbnail" alt="profile-image"></div>
+                                <div class="mt-2">
+                                    <h4 class="text-left mb-0">Yash Vardhan</h4>
+                                    <p class="text-muted text-left">Founder</p>
+                                </div>
+                                <p class="text-left text-muted lh-1">Yash Vardhan is a Senior at Seminole High School in
+                                    Orlando,
+                                    Florida.
+                                    Outside of BPA, Yash competes in the FIRST Tech Challenge Robotics competition, National
+                                    History
+                                    Fair,
+                                    Tae Kwon Do, and Soccer. He also enjoys traditional Indian dance and playing the guitar.
+                                    Additionally, Yash
+                                    runs his own business called “Unavigate,” a service geared towards connecting high schoolers
+                                    to
+                                    college
+                                    students in order to assist with the college application process. He also plans to attend
+                                    the
+                                    University of
+                                    Pennsylvania to study business & engineering and hopes to one day open his own company.</p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="pt-2 pb-2">
+                                <div class="thumb-lg"><img width="100%" src="{% static 'assets/images/the_team/rahi.png' %}"
+                                                           class="rounded-circle img-thumbnail" alt="profile-image"></div>
+                                <div class="mt-2">
+                                    <!--<div class="circle-decoration" style="background-color: #4075e0"></div>-->
+                                    <h4 class="text-left mb-0">Rahi Shah</h4>
+                                    <p class="text-muted text-left">Founder</p>
+                                </div>
+                                <p class="text-left text-muted lh-1">Rahi Shah is a junior at Rochester High School in Rochester
+                                    Hills, Michigan.
+                                    She is a part of many organizations at her school including National Honors Society,
+                                    Business Professionals of America,
+                                    Rotary Interact, and Key Club. She loves volunteering and giving back her time to the
+                                    community. Rahi is the Junior Class
+                                    President of the National Social Studies Honors Society and is also on the executive youth
+                                    board of a local nonprofit known
+                                    as the Rochester Area Neighborhood House. She enjoys public speaking and is the Co-Captain
+                                    of Finesse Academy's alumni club.
+                                    Apart from extracurriculars, Rahi runs cross country and plays lacrosse.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="circle-decoration" style="background-color: turquoise"></div>-->
+                    <h1 class="mt-5">Team Members</h1>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="pt-2 pb-2">
+                                <div class="thumb-lg"><img width="100%" src="{% static 'assets/images/the_team/omkar.png' %}"
+                                                           class="rounded-circle img-thumbnail" alt="profile-image"></div>
+                                <div class="mt-2">
+                                    <h4 class="text-left mb-0">Omkar Ghodke</h4>
                                     <p class="text-muted text-left">Team Member</p>
                                 </div>
-                                <p class="text-left text-muted lh-1">Dhruv Dighrasker is a junior in Troy, Michigan, and an
-                                    interest of his is
-                                    helping students, whether it’s through tutoring, providing resources, or any other type of
-                                    assistance. In his
-                                    free time, he likes running, mostly long distances, and working out. He is also gaining a
-                                    lot of interest in </p>
+                                <p class="text-left text-muted lh-1">Omkar Ghodke is a junior at Rochester High School. Omkar
+                                    enjoys
+                                    singing and playing
+                                    basketball. He joined Interniac because he loved the idea of providing opportunities to high
+                                    schoolers like himself,
+                                    which will help them prepare for their careers and connect them to their future by giving
+                                    great
+                                    internship opportunities!</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="pt-2 pb-2">
+                                <div class="thumb-lg"><img width="100%" src="{% static 'assets/images/the_team/tvisha.png' %}"
+                                                           class="rounded-circle img-thumbnail" alt="profile-image"></div>
+                                <div class="mt-2">
+                                    <h4 class="text-left mb-0">Tvisha Bakshi</h4>
+                                    <p class="text-muted text-left">Team Member</p>
+                                </div>
+                                <!--<div class="circle-decoration" style="background-color: #9a9ae0"></div>-->
+                                <p class="text-left text-muted lh-1">Tvisha Bakshi is a sophomore at Lightridge High School.
+                                    She believes that gaining experience and expanding one’s skill set is just as, if not, more
+                                    important than simply learning in a classroom. From her experience, it is extremely hard to
+                                    find internships as a high schooler when all companies are looking for college students.
+                                    That
+                                    is why when she heard about Interniac and its mission to provide students in high school
+                                    with
+                                    these opportunities, she knew that she wanted to be apart of it! She looks forward to
+                                    helping
+                                    other
+                                    kids find internships and gain experience through Interniac’s work!</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="card-box">
+                                <!--<div class="circle-decoration" style="background-color: #4eeef3"></div>-->
+                                <div class="pt-2 pb-2">
+                                    <div class="thumb-lg"><img width="100%"
+                                                               src="{% static 'assets/images/the_team/dhruv.png' %}"
+                                                               class="rounded-circle img-thumbnail" alt="profile-image"></div>
+                                    <div class="mt-2">
+                                        <h4 class="text-left mb-0">Dhruv Dighrasker</h4>
+                                        <p class="text-muted text-left">Team Member</p>
+                                    </div>
+                                    <p class="text-left text-muted lh-1">Dhruv Dighrasker is a junior in Troy, Michigan, and an
+                                        interest of his is
+                                        helping students, whether it’s through tutoring, providing resources, or any other type
+                                        of
+                                        assistance. In his
+                                        free time, he likes running, mostly long distances, and working out. He is also gaining
+                                        a
+                                        lot of interest in </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row mt-5">
-                    <div class="col-lg-4">
-                        <!--<div class="circle-decoration" style="background-color: #4eeef3"></div>-->
-                        <div class="pt-2 pb-2">
-                            <div class="thumb-lg"><img src="{% static 'assets/images/the_team/manav.png' %}"
-                                                       class="rounded-circle img-thumbnail" alt="profile-image"></div>
-                            <div class="mt-2">
-                                <h4 class="text-left mb-0">Manav Gandhi</h4>
-                                <p class="text-muted text-left">Team Member</p>
+                    <div class="row mt-5">
+                        <div class="col-lg-4">
+                            <!--<div class="circle-decoration" style="background-color: #4eeef3"></div>-->
+                            <div class="pt-2 pb-2">
+                                <div class="thumb-lg"><img width="100%" src="{% static 'assets/images/the_team/manav.png' %}"
+                                                           class="rounded-circle img-thumbnail" alt="profile-image"></div>
+                                <div class="mt-2">
+                                    <h4 class="text-left mb-0">Manav Gandhi</h4>
+                                    <p class="text-muted text-left">Team Member</p>
+                                </div>
+                                <p class="text-left text-muted lh-1">Manav Gandhi is a junior at Oakton High school. Looking for
+                                    internships during his
+                                    sophomore year, all he found was busywork. He felt that the entire process of applying and
+                                    finding the
+                                    right internship was long and hard just because of his age. Seeking to help make a change
+                                    and
+                                    make this process
+                                    easier, he joined Interniac and hopes he can help students like himself find internships
+                                    with
+                                    companies in an
+                                    efficient way!</p>
                             </div>
-                            <p class="text-left text-muted lh-1">Manav Gandhi is a junior at Oakton High school. Looking for
-                                internships during his
-                                sophomore year, all he found was busywork. He felt that the entire process of applying and
-                                finding the
-                                right internship was long and hard just because of his age. Seeking to help make a change and
-                                make this process
-                                easier, he joined Interniac and hopes he can help students like himself find internships with
-                                companies in an
-                                efficient way!</p>
                         </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="pt-2 pb-2">
-                            <div class="thumb-lg"><img src="{% static 'assets/images/the_team/kashvi.png' %}"
-                                                       class="rounded-circle img-thumbnail" alt="profile-image"></div>
-                            <div class="mt-2">
-                                <h4 class="text-left mb-0">Kashvi Patel</h4>
-                                <p class="text-muted text-left">Team Member</p>
+                        <div class="col-lg-4">
+                            <div class="pt-2 pb-2">
+                                <div class="thumb-lg"><img width="100%" src="{% static 'assets/images/the_team/kashvi.png' %}"
+                                                           class="rounded-circle img-thumbnail" alt="profile-image"></div>
+                                <div class="mt-2">
+                                    <h4 class="text-left mb-0">Kashvi Patel</h4>
+                                    <p class="text-muted text-left">Team Member</p>
+                                </div>
+                                <!--<div class="circle-decoration" style="background-color: #f3b94e"></div>-->
+                                <p class="text-left text-muted lh-1">Kashvi Patel is a sophomore at Freedom High School. She
+                                    loves
+                                    to travel and
+                                    go outside in her free time. She is involved in DECA and likes to tutor. She also enjoys
+                                    volunteering at the
+                                    library. Kashvi joined Interniac because she wants to help high schoolers learn through
+                                    interning and she is
+                                    super excited to see where Interniac is headed!</p>
                             </div>
-                            <!--<div class="circle-decoration" style="background-color: #f3b94e"></div>-->
-                            <p class="text-left text-muted lh-1">Kashvi Patel is a sophomore at Freedom High School. She loves
-                                to travel and
-                                go outside in her free time. She is involved in DECA and likes to tutor. She also enjoys
-                                volunteering at the
-                                library. Kashvi joined Interniac because she wants to help high schoolers learn through
-                                interning and she is
-                                super excited to see where Interniac is headed!</p>
                         </div>
-                    </div>
-                    <div class="col-lg-4">
+                        <div class="col-lg-4">
 
-                        <div class="pt-2 pb-2">
-                            <div class="thumb-lg">
-                                <img src="{% static 'assets/images/the_team/megha.png' %}"
-                                     class="rounded-circle img-thumbnail" alt="profile-image">
+                            <div class="pt-2 pb-2">
+                                <div class="thumb-lg">
+                                    <img src="{% static 'assets/images/the_team/megha.png' %}"
+                                         width="100%" class="rounded-circle img-thumbnail" alt="profile-image">
+                                </div>
+                                <div class="mt-2">
+                                    <h4 class="text-left mb-0">Megha Thomas</h4>
+                                    <p class="text-muted text-left">Team Member</p>
+                                </div>
+                                <p class="text-left text-muted lh-1">Megha Thomas is an 11th grader from Annapolis, Maryland.
+                                    One of
+                                    her biggest
+                                    passions is teaching; She tutors a 5th grader, helps a Ukrainian student learn English, and
+                                    teaches Bollywood
+                                    dance from time to time. Megha joined Interniac because she wanted to help high schoolers
+                                    like
+                                    herself learn about
+                                    different fields through internships. She strongly believes that internships are some of the
+                                    most valuable ways a
+                                    student can spend their time to gain work experience and a deeper understanding of a career
+                                    that
+                                    interests them!</p>
                             </div>
-                            <div class="mt-2">
-                                <h4 class="text-left mb-0">Megha Thomas</h4>
-                                <p class="text-muted text-left">Team Member</p>
-                            </div>
-                            <p class="text-left text-muted lh-1">Megha Thomas is an 11th grader from Annapolis, Maryland. One of
-                                her biggest
-                                passions is teaching; She tutors a 5th grader, helps a Ukrainian student learn English, and
-                                teaches Bollywood
-                                dance from time to time. Megha joined Interniac because she wanted to help high schoolers like
-                                herself learn about
-                                different fields through internships. She strongly believes that internships are some of the
-                                most valuable ways a
-                                student can spend their time to gain work experience and a deeper understanding of a career that
-                                interests them!</p>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
 
         <section>
             <footer>
