@@ -167,48 +167,79 @@
                 </div>
             </section>
 
+            <div class="content-gap"></div>
+
+
+            <section id="events">
+                <h1 class="text-center font-weight-bold mb-4">Upcoming Events</h1>
+                <div class="row justify-content-start">
+                    {% for event in events %}
+                        <div class="col-md-3 m-auto">
+                            <div class="card" style="border-radius: 10px">
+                                <img width="100%" class="card-img-top" src="{{ event.img.url }}" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ event.name }}</h5>
+                                    <p class="card-text text-muted">{{ event.description }}</p>
+                                    <a href="{{ event.meet_url }}" class="btn btn-primary w-100">Register</a>
+                                    <div class="text-center mt-2">
+                                        <p class="mb-0">{{ event.datetime.date }}</p>
+                                        <p class="mb-0">{{ event.datetime.time }}</p>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        {% if forloop.counter|divisibleby:3 %}
+                            </div>
+                            <div class="row">
+                        {% endif %}
+                        {% empty %}
+                            <h4 class="m-auto text-muted">There are no upcoming events at this time :(</h4>
+                    {% endfor %}
+                    </div>
+            </section>
 
 
             <div class="content-gap"></div>
 
-            {% for stat in stats %}
-                <h1 class="text-center font-weight-bold">Statistics</h1>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="stati bg-turquoise ">
-                            <i class="icon-exclamation icons"></i>
-                              <div>
-                                <b>{{ stat.students }}</b>
-                                  <span>
-                                      Students
-                                  </span>
-                              </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="stati bg-turquoise ">
-                            <i class="icon-exclamation icons"></i>
-                            <div>
-                                <b>{{ stat.employers }}</b>
-                                <span>
-                                    Employers
-                                </span>
+            <section id="stats">
+                {% if stats %}
+                    <h1 class="text-center font-weight-bold">Statistics</h1>
+                    {% for stat in stats %}
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="stat bg-primary">
+                                    <i class="icon-exclamation icons"></i>
+                                    <div class="text-center">
+                                        <b>{{ stat.students }}</b>
+                                        <span>Students</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="stat bg-primary ">
+                                    <i class="icon-exclamation icons"></i>
+                                    <div class="text-center">
+                                        <b>{{ stat.employers }}</b>
+                                        <span>Employers</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="stat bg-primary ">
+                                    <i class="icon-exclamation icons"></i>
+                                    <div class="text-center">
+                                        <b>{{ stat.professionals }}</b>
+                                        <span>Professionals</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="stati bg-turquoise ">
-                            <i class="icon-exclamation icons"></i>
-                            <div>
-                                <b>{{ stat.professionals }}</b>
-                                <span>
-                                    Professionals
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
+                    {% endfor %}
+                {% endif %}
+            </section>
+
 
             <div class="content-gap"></div>
 

@@ -9,3 +9,4 @@ class StatsAdmin(admin.ModelAdmin):
 
 admin.site.register(EmailSignup)
 admin.site.register(Statistics, StatsAdmin)
+admin.site.register(Event)
