@@ -18,3 +18,10 @@ class Statistics(models.Model):
 
     def __str__(self):
         return "stats"
+
+
+class Event(models.Model):
+    datetime = models.DateTimeField()
+    name = models.CharField(max_length=50)
+    description = models.TextField()
+    meet_url = models.URLField()

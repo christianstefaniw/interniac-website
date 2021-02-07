@@ -478,7 +478,7 @@ END FOOTER
 
 #offers {
     margin-top: 7rem;
-    background-color: white !important;
+    border-radius: 0.3rem;
 }
 
 /* END ABOUT TABS */
