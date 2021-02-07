@@ -421,7 +421,15 @@ END FOOTER
 
 /* DECORATIONS */
 
-
+/*.circle-decoration {
+    z-index: -1;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+}
+ */
 
 /* END DECORATIONS */
 
