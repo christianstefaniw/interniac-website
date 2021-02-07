@@ -10,7 +10,7 @@ class ContactForm(forms.Form):
 
 
 class EmailForm(forms.ModelForm):
-    email_signup = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': 'Email Address'}))
+    email_signup = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'Email Address'}))
 
     class Meta:
         model = EmailSignup
