@@ -537,7 +537,7 @@ END FOOTER
     .stat:hover{
         cursor: pointer;
         margin: 1.5rem 0 ;
-        box-shadow: 0 0.4em 0.5em rgb(0, 0, 0.8);
+        box-shadow: 0 0.2em 0.4em rgb(0, 0, 0.8);
     }
 }
 
