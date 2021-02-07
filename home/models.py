@@ -26,14 +26,12 @@ class Statistics(models.Model):
 class Event(models.Model):
     datetime = models.DateTimeField()
     name = models.CharField(max_length=50)
-    description = models.TextField(max_length=400)
+    description = models.TextField()
     meet_url = models.URLField()
     img = models.ImageField(upload_to="events")
 
     def __str__(self):
         return self.name
-
-
 
 
 # These two auto-delete files from filesystem when they are unneeded:

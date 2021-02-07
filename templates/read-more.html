@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="shortcut icon" type="image/png" href="{% static 'assets/favicon.ico' %}"/>
+        <title>{{ event.name }}</title>
+        <link rel="stylesheet" href="{% static "css/style.css" %}"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container mt-5">
+            <div class="jumbotron">
+                <h1 class="display-4 mb-5">{{ event.name }}</h1>
+                <p>{{ event.description }}</p>
+                <a target="_blank" href="{{ event.meet_url }}" class="btn btn-primary w-100">Register</a>
+                <p class="mt-3 text-center">
+                    {{ event.datetime.date }}
+                    <br>
+                    {{ event.datetime.time }}
+                </p>
+            </div>
+        </div>
+    </body>
+</html>

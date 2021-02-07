@@ -179,14 +179,15 @@
                                 <img width="100%" class="card-img-top" src="{{ event.img.url }}" alt="Card image cap">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ event.name }}</h5>
-                                    <p class="card-text text-muted">{{ event.description }}</p>
-                                    <a href="{{ event.meet_url }}" class="btn btn-primary w-100">Register</a>
-                                    <div class="text-center mt-2">
-                                        <p class="mb-0">{{ event.datetime.date }}</p>
-                                        <p class="mb-0">{{ event.datetime.time }}</p>
-                                    </div>
-
-
+                                    <p class="card-text text-muted">{{ event.description | truncatechars:300 }}
+                                        <a target="_blank" href="{% url 'read_more' pk=event.id %}">read more</a>
+                                    </p>
+                                    <a target="_blank" href="{{ event.meet_url }}" class="btn btn-primary w-100">Register</a>
+                                    <p class="text-center mt-2">
+                                        {{ event.datetime.date }}
+                                        <br>
+                                        {{ event.datetime.time }}
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -194,8 +195,8 @@
                             </div>
                             <div class="row">
                         {% endif %}
-                        {% empty %}
-                            <h4 class="m-auto text-muted">There are no upcoming events at this time :(</h4>
+                    {% empty %}
+                        <h4 class="m-auto text-muted">There are no upcoming events at this time :(</h4>
                     {% endfor %}
                     </div>
             </section>

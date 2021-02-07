@@ -1,4 +1,5 @@
 from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from django.views.generic import TemplateView
 
 from .forms import ContactForm, EmailForm
@@ -24,3 +25,7 @@ class HomePage(TemplateView):
                 return HttpResponseRedirect('/success')
             else:
                 return HttpResponseRedirect('/error')
+
+
+def read_more(request, pk):
+    return render(request, 'read-more.html', {'event': Event.objects.get(id=pk)})

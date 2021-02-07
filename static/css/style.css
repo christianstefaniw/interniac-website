@@ -60,6 +60,7 @@ a {
 
 p {
     line-height: 2;
+    overflow-wrap: break-word;
 }
 
 .btn-primary {
