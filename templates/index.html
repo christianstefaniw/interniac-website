@@ -176,7 +176,7 @@
                     {% for event in events %}
                         <div class="col-md-3 {% if forloop.last %} event-card-container-last {% else %} event-card-container {% endif %}">
                             <div class="card" style="border-radius: 10px">
-                                <img class="card-img-top" src="{{ event.img.url }}" alt="Card image cap">
+                                <img class="card-img-top" src="{{ event.img.url }}" alt="{{ event.img.url }}">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ event.name }}</h5>
                                     <p class="card-text text-muted">{{ event.description | truncatechars:300 }}
