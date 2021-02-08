@@ -491,16 +491,15 @@ END FOOTER
 /* EVENTS */
 
 .card-img-top{
-    max-height: 25rem !important;
+    max-height: 25rem;
+    max-width: 25rem;
 }
 
 .event-card-container{
-    max-width: 25rem;
     margin: auto;
 }
 
 .event-card-container-last{
-    max-width: 25rem;
     margin: auto;
 }
 
