@@ -493,6 +493,8 @@ END FOOTER
 .card-img-top{
     max-height: 25rem;
     max-width: 25rem;
+    min-height: 100%;
+    min-width: 100%;
 }
 
 .event-card-container{
