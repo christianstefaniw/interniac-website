@@ -490,11 +490,17 @@ END FOOTER
 
 /* EVENTS */
 
-.event-card{
+.card-img-top{
+    max-height: 25rem !important;
+}
+
+.event-card-container{
+    max-width: 25rem;
     margin: auto;
 }
 
-.event-card-last{
+.event-card-container-last{
+    max-width: 25rem;
     margin: auto;
 }
 
@@ -530,7 +536,7 @@ END FOOTER
         margin-bottom: 1rem;
     }
 
-    .event-card{
+    .event-card-container{
         margin-bottom: 3rem;
     }
 
