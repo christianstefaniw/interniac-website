@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="{% static "css/bubbles.css" %}"/>
 
 
-        <link rel="shortcut icon" type="image/png" href="{% static 'assets/favicon.ico' %}"/>
+        <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logos/logo-small-transparent.png' %}"/>
 
 
         <script src="https://kit.fontawesome.com/a76f8913d2.js" crossorigin="anonymous"></script>
@@ -34,7 +34,7 @@
         <section id="nav">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="{% url 'home' %}">
-                    <img width="50" height="50" src="{% static "assets/images/logo-transparent.png" %}" alt="logo"/>
+                    <img width="50" height="50" src="{% static "assets/images/logos/logo-small-transparent.png" %}" alt="logo"/>
                     Interniac
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -59,13 +59,20 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'aboutus' %}">About Us</a>
                         </li>
+                        <li class="nav-item">
+                            {% if user.is_authenticated %}
+                                <a class="nav-link" href="{% url 'profile' %}">Account</a>
+                            {% else %}
+                                <a class="nav-link" href="{% url 'login' %}">Login</a>
+                            {% endif %}
+                        </li>
                     </ul>
                 </div>
             </nav>
         </section>
-        <div id="landing-bg">
+        <div class="gradient-bg">
             <div class="container-fluid">
-                <section id="landing">
+                <section id="landing" class="landing-padding">
                     <div class="row">
                         <div class="col-lg-5">
                             <div id="landing-text">
@@ -137,7 +144,7 @@
 
                         </div>
                         <div class="col-md-7" id="wave-landing-container">
-                            <img src="{% static "assets/images/wave-blue.svg" %}" alt="wave"/>
+                            <img width="80%" class="float-right" src="{% static "assets/images/logos/logo-transparent.png" %}" alt="logo"/>
                         </div>
 
                     </div>
@@ -166,6 +173,7 @@
                     </div>
                 </div>
             </section>
+
 
             <div class="content-gap"></div>
 
@@ -289,7 +297,7 @@
         <section>
             <footer>
                 <div>
-                    <div class="socials row justify-content-center">
+                    <div class="mb-2 row justify-content-center">
                         <a target="_blank" href="https://www.instagram.com/interniac/"><i class="icon fab fa-instagram fa-2x"></i></a>
                         <a target="_blank" href="https://www.tiktok.com/@_connectx?lang=en"><i class="icon fab fa-tiktok fa-2x"></i></a>
                         <a target="_blank" href="https://www.facebook.com/connectx.founders"><i class="icon fab fa-facebook fa-2x"></i></a>

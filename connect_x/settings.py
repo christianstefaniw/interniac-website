@@ -22,7 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'aboutus',
-    'account',
+    'accounts',
     'careers',
     'marketplace',
     'employers',
@@ -101,5 +101,7 @@ STATICFILES_DIRS = (
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/url/'
+
+AUTH_USER_MODEL = 'accounts.User'
 
 django_heroku.settings(locals())

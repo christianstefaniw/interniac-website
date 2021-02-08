@@ -3,7 +3,9 @@ GENERAL
  */
 :root {
     --primary-color: #040456;
-    --secondary-color: #FFFFFFFF;
+    --secondary-color: #3DADFF;
+    --pg-bg-color: #8beaff;
+    --secondary-bg: #58b895;
     --gradient-primary-one: #2c7ee4;
     --gradient-primary-two: #2db6ee;
     --gradient-secondary-one: #fd5288;
@@ -13,9 +15,12 @@ GENERAL
     --form-input-bg: #e8e8ec
 }
 
-.bg-primary {
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
     background-color: var(--primary-color) !important;
 }
+
+
 
 input, textarea {
     /*width: 100%;*/
@@ -57,15 +62,32 @@ a {
     text-decoration: none;
 }
 
+.gradient-bg {
+    background: linear-gradient(var(--pg-bg-color), white);
+}
 
 p {
     line-height: 2;
     overflow-wrap: break-word;
 }
 
+.btn-primary:active, .btn-primary:focus {
+    box-shadow: 0 0 0 0.2rem var(--secondary-color) !important;
+}
+
 .btn-primary {
     color: #fff;
     background-color: var(--primary-color) !important;
+    border-color: #007bff;
+}
+
+.btn-secondary:active, .btn-secondary:focus {
+    box-shadow: 0 0 0 0.2rem var(--primary-color) !important;
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: var(--secondary-color) !important;
     border-color: #007bff;
 }
 
@@ -79,11 +101,6 @@ p {
 
 .inner-shadow {
     box-shadow: var(--inner-shadow);
-}
-
-
-.outer-shadow {
-    box-shadow: var(--outer-shadow);
 }
 
 /*
@@ -160,8 +177,10 @@ LANDING PAGE
  */
 
 
-#landing-bg {
-    background-color: #ffffff;
+.landing-padding {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    margin-bottom: 7rem;
 }
 
 #id_email_signup {
@@ -183,12 +202,6 @@ LANDING PAGE
 
 .subtitle {
     color: #105ffa;
-}
-
-#landing-text {
-    margin-top: 9rem;
-    text-align: left;
-    margin-bottom: 2rem;
 }
 
 
@@ -234,7 +247,7 @@ END LANDING PAGE
 }
 
 .stat.bg-primary {
-    background: var(--primary-color) !important;
+    background: var(--secondary-color) !important;
     color: white;
 }
 
@@ -424,14 +437,10 @@ FOOTER
 
 footer {
     background-color: var(--primary-color);
-    color: var(--secondary-color);
+    color: white;
     text-align: center;
     padding-top: 2rem;
     padding-bottom: 2rem;
-}
-
-.socials {
-    margin-bottom: 1rem;
 }
 
 .icon {
@@ -490,15 +499,15 @@ END FOOTER
 
 /* EVENTS */
 
-.event-img{
+.event-img {
     object-fit: cover;
 }
 
-.event-card-container{
+.event-card-container {
     margin: 0 auto;
 }
 
-.event-card-container-last{
+.event-card-container-last {
     margin: 0 auto;
 }
 
@@ -508,9 +517,6 @@ END FOOTER
 /* BREAK POINTS */
 
 @media screen and (max-width: 991px) {
-    #landing-text {
-        margin-top: 5rem
-    }
 
     #wave-landing-container {
         display: none;
@@ -526,7 +532,7 @@ END FOOTER
         width: 100%;
     }
 
-    #about-section{
+    #about-section {
         margin-top: 10rem !important;
     }
 
@@ -538,13 +544,13 @@ END FOOTER
         margin-bottom: 1rem;
     }
 
-    .event-card-container{
+    .event-card-container {
         margin-bottom: 3rem;
     }
 
-    .stat:hover{
+    .stat:hover {
         cursor: pointer;
-        margin: 1.5rem 0 ;
+        margin: 1.5rem 0;
         box-shadow: 0 0.2em 0.4em rgb(0, 0, 0.8);
     }
 }
