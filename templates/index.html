@@ -179,7 +179,7 @@
                                 <img width="400" height="300" class="card-img-top event-img" src="{{ event.img.url }}" alt="{{ event.img.url }}">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ event.name }}</h5>
-                                    <p class="card-text text-muted">{{ event.description }}
+                                    <p class="card-text text-muted">{{ event.description|truncatechars:300}}
                                         {% if event.description|length > 300 %}
                                             <a target="_blank" href="{% url 'read_more' pk=event.id %}">read more</a>
                                         {% endif %}
