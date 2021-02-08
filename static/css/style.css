@@ -490,19 +490,16 @@ END FOOTER
 
 /* EVENTS */
 
-.card-img-top{
-    max-height: 25rem;
-    max-width: 25rem;
-    min-height: 100%;
-    min-width: 100%;
+.event-img{
+    object-fit: cover;
 }
 
 .event-card-container{
-    margin: auto;
+    margin: 0 auto;
 }
 
 .event-card-container-last{
-    margin: auto;
+    margin: 0 auto;
 }
 
 /* END EVENTS */
@@ -527,6 +524,10 @@ END FOOTER
 @media screen and (max-width: 767px) {
     input, textarea {
         width: 100%;
+    }
+
+    #about-section{
+        margin-top: 10rem !important;
     }
 
     #msg-img {

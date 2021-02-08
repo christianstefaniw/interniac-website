@@ -175,11 +175,11 @@
                 <div class="row justify-content-start">
                     {% for event in events %}
                         <div class="col-md-3 {% if forloop.last %} event-card-container-last {% else %} event-card-container {% endif %}">
-                            <div class="card" style="border-radius: 10px">
-                                <img class="card-img-top" src="{{ event.img.url }}" alt="{{ event.img.url }}">
+                            <div class="card" style="border-radius: calc(0.25rem - 1px);">
+                                <img width="400" height="300" class="card-img-top event-img" src="{{ event.img.url }}" alt="{{ event.img.url }}">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ event.name }}</h5>
-                                    <p class="card-text text-muted">{{ event.description | truncatechars:300 }}
+                                    <p class="card-text text-muted">{{ event.description }}
                                         {% if event.description|length > 300 %}
                                             <a target="_blank" href="{% url 'read_more' pk=event.id %}">read more</a>
                                         {% endif %}
@@ -193,10 +193,6 @@
                                 </div>
                             </div>
                         </div>
-                        {% if forloop.counter|divisibleby:3 %}
-                            </div>
-                            <div class="row">
-                        {% endif %}
                     {% empty %}
                         <h4 class="m-auto text-muted">There are no upcoming events at this time :(</h4>
                     {% endfor %}
