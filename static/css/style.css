@@ -103,6 +103,10 @@ p {
     box-shadow: var(--inner-shadow);
 }
 
+.outer-shadow{
+    box-shadow: var(--outer-shadow);
+}
+
 /*
 END GENERAL
  */
@@ -178,9 +182,8 @@ LANDING PAGE
 
 
 .landing-padding {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-    margin-bottom: 7rem;
+    margin-top: 6rem;
+    margin-bottom: 15rem;
 }
 
 #id_email_signup {
@@ -274,8 +277,6 @@ END IMAGES
 
 
 /*
-
-
 /*
 FONTS
  */
