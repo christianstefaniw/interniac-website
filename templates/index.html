@@ -34,8 +34,7 @@
         <section id="nav">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="{% url 'home' %}">
-                    <img width="50" height="50" src="{% static "assets/images/logos/logo-small-transparent.png" %}" alt="logo"/>
-                    Interniac
+                    <img width=200 height="50" src="{% static "assets/images/logos/logo-transparent.png" %}" alt="logo"/>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,7 +73,7 @@
             <div class="container-fluid landing-padding">
                 <section id="landing">
                     <div class="row">
-                        <div class="col-lg-5">
+                        <div class="col-md-5">
                             <div id="landing-text">
                                 <p class="subtitle">
                                     A Marketplace For Internships: For Students, By Students.
@@ -143,10 +142,11 @@
                             </div>
 
                         </div>
-                        <div class="col-md-7" id="wave-landing-container">
-                            <img width="80%" class="float-right" src="{% static "assets/images/logos/logo-transparent.png" %}" alt="logo"/>
+                        <div class="col-md-7" id="img-landing-container">
+                            <div class="text-center">
+                                <img width="65%" class="text-center" src="{% static "assets/images/landing-img.svg" %}" alt="logo"/>
+                            </div>
                         </div>
-
                     </div>
                 </section>
             </div>

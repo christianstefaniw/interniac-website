@@ -31,8 +31,7 @@
         <section id="nav">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="{% url 'home' %}">
-                    <img width="50" height="50" src="{% static "assets/images/logos/logo-small-transparent.png" %}" alt="logo"/>
-                    Interniac
+                    <img width=200 height="50" src="{% static "assets/images/logos/logo-transparent.png" %}" alt="logo"/>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,71 +68,83 @@
         </section>
 
         <div class="pb-5 pt-5">
-        <div class="container">
-            <section id="mission">
-                <div class="jumbotron inner-shadow bg-white">
-                    <div class="row">
-                        <div class="col-md-7">
-                            <h1 class="display-4">Our Mission</h1>
-                            <p style="font-size: 1.2rem">Interniac is a marketplace that supports high schoolers and empowers businesses in hiring bright
-                                students.</p>
+            <div class="container">
+                <section id="mission">
+                    <div class="jumbotron inner-shadow bg-white">
+                        <div class="row">
+                            <div class="circle-decoration" style="background-color: #7c3d7c; z-index: 0"></div>
+                            <div class="col-md-7">
+                                <h1 class="display-4">Our Mission</h1>
+                                <p style="font-size: 1.2rem">Interniac is a marketplace that supports high schoolers and
+                                    empowers businesses in hiring bright
+                                    students.</p>
+                            </div>
+                            <div class="col-md-5 ">
+                                <img class="float-right" width="100%" src="{% static 'assets/images/work-chat.svg' %}"
+                                     alt="work chat"/>
+                                <div class="circle-decoration" style="background-color: #4ee574; z-index: 1; position: absolute;"></div>
+                            </div>
                         </div>
-                        <div class="col-md-5 ">
-                            <img class="float-right" width="100%" src="{% static 'assets/images/work-chat.svg' %}"
-                                 alt="work chat"/>
+                        <div class="circle-decoration" style="background-color: #3e3ef6; z-index: 0"></div>
+                    </div>
+                </section>
+
+                <div class="content-gap"></div>
+
+                <section id="offers" class="inner-shadow p-4">
+                    <div class="circle-decoration" style="background-color: #e08b40;"></div>
+                    <div class="outer-shadow p-4">
+                        <ul class="nav nav-pills mb-3 nav-justified" id="pills-tab" role="tablist">
+                            <li class="nav-item m-auto">
+                                <a class="nav-link active" id="pills-home-tab" data-toggle="pill"
+                                   href="#pills-students" role="tab" aria-controls="pills-home"
+                                   aria-selected="true">
+                                    Student benefits
+                                </a>
+                            </li>
+                            <li class="nav-item m-auto">
+                                <a class="nav-link" id="pills-profile-tab" data-toggle="pill"
+                                   href="#pills-employers" role="tab" aria-controls="pills-profile"
+                                   aria-selected="false">
+                                    Employer benefits
+                                </a>
+                                <div class="circle-decoration" style="background-color: turquoise;"></div>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active"
+                                 id="pills-students" role="tabpanel"
+                                 aria-labelledby="pills-students-tab">
+                                <p>
+                                    Interniac serves as a marketplace for internships where students can shop for
+                                    internships that interest them.
+                                    Students are able to create their own profile that turns into a standardized resume
+                                    when applying for the job.
+                                    They also have access to a bi-weekly newsletter with career spotlights and
+                                    professional development resources.
+                                </p>
+
+                            </div>
+                            <div class="tab-pane fade"
+                                 id="pills-employers" role="tabpanel"
+                                 aria-labelledby="pills-employers-tab">
+                                <p>
+                                    Interniac is the one-stop-shop for employers looking to build successful and
+                                    hassle-free internship programs. Employers can create a job description, view
+                                    candidates’
+                                    profiles, and hire the perfect intern directly on our platform. Companies should
+                                    focus solely
+                                    on mentoring and extracting value from their interns both before and after the
+                                    internship, and let
+                                    us handle all the logistics.
+                                </p>
+
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
 
-            <div class="content-gap"></div>
-
-            <section id="offers" class="inner-shadow p-4">
-                <div class="outer-shadow p-4">
-                    <ul class="nav nav-pills mb-3 nav-justified" id="pills-tab" role="tablist">
-                        <li class="nav-item m-auto">
-                            <a class="nav-link active" id="pills-home-tab" data-toggle="pill"
-                               href="#pills-students" role="tab" aria-controls="pills-home"
-                               aria-selected="true">
-                                Student benefits
-                            </a>
-                        </li>
-                        <li class="nav-item m-auto">
-                            <a class="nav-link" id="pills-profile-tab" data-toggle="pill"
-                               href="#pills-employers" role="tab" aria-controls="pills-profile"
-                               aria-selected="false">
-                                Employer benefits
-                            </a>
-                        </li>
-                    </ul>
-                <div class="tab-content" id="pills-tabContent">
-                  <div class="tab-pane fade show active"
-                       id="pills-students" role="tabpanel"
-                       aria-labelledby="pills-students-tab">
-                      <p>
-                          Interniac serves as a marketplace for internships where students can shop for internships that interest them.
-                          Students are able to create their own profile that turns into a standardized resume when applying for the job.
-                          They also have access to a bi-weekly newsletter with career spotlights and professional development resources.
-                      </p>
-
-                  </div>
-                  <div class="tab-pane fade"
-                       id="pills-employers" role="tabpanel"
-                       aria-labelledby="pills-employers-tab">
-                      <p>
-                          Interniac is the one-stop-shop for employers looking to build successful and
-                          hassle-free internship programs. Employers can create a job description, view candidates’
-                          profiles, and hire the perfect intern directly on our platform. Companies should focus solely
-                          on mentoring and extracting value from their interns both before and after the internship, and let
-                          us handle all the logistics.
-                      </p>
-
-                  </div>
-                </div>
-                </div>
-
-            </section>
-        </div>
+                </section>
+            </div>
         </div>
         <div class="container">
 
@@ -144,7 +155,7 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="pt-2 pb-2">
-                                <!--<div class="circle-decoration" style="background-color: #c986e5"></div>-->
+                                <div class="circle-decoration" style="background-color: #c986e5"></div>
                                 <div class="thumb-lg"><img width="100%" src="{% static 'assets/images/the_team/aria.png' %}"
                                                            class="rounded-circle img-thumbnail" alt="profile-image"></div>
                                 <div class="mt-2">
@@ -156,7 +167,7 @@
                                     activity including swimming, kayaking, and jet skiing. She is a part of Future Business
                                     Leaders of America. She is also the 10th-grade treasurer, runs cross country, and tutors
                                     two elementary kids.</p>
-                                <!--<div class="circle-decoration" style="background-color: turquoise"></div>-->
+                                <div class="circle-decoration" style="background-color: turquoise"></div>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -167,7 +178,7 @@
                                     <h4 class="text-left mb-0">Purva Shah</h4>
                                     <p class="text-muted text-left">Founder</p>
                                 </div>
-                                <!--<div class="circle-decoration" style="background-color: #9ade6d"></div>-->
+                                <div class="circle-decoration" style="background-color: #9ade6d"></div>
                                 <p class="text-left text-muted lh-1">Purva Shah is a high school senior from Tampa, Florida.
                                     Some fun facts--
                                     She loves ice cream, dogs, and this fire team. Purva also plays the flute, participates in
@@ -212,7 +223,7 @@
                                 <div class="thumb-lg"><img width="100%" src="{% static 'assets/images/the_team/rahi.png' %}"
                                                            class="rounded-circle img-thumbnail" alt="profile-image"></div>
                                 <div class="mt-2">
-                                    <!--<div class="circle-decoration" style="background-color: #4075e0"></div>-->
+                                    <div class="circle-decoration" style="background-color: #4075e0"></div>
                                     <h4 class="text-left mb-0">Rahi Shah</h4>
                                     <p class="text-muted text-left">Founder</p>
                                 </div>
@@ -230,7 +241,7 @@
                             </div>
                         </div>
                     </div>
-                    <!--<div class="circle-decoration" style="background-color: turquoise"></div>-->
+                    <div class="circle-decoration" style="background-color: turquoise"></div>
                     <h1 class="mt-5">Team Members</h1>
                     <div class="row">
                         <div class="col-lg-4">
@@ -259,7 +270,7 @@
                                     <h4 class="text-left mb-0">Kashvi Patel</h4>
                                     <p class="text-muted text-left">Team Member</p>
                                 </div>
-                                <!--<div class="circle-decoration" style="background-color: #f3b94e"></div>-->
+                                <div class="circle-decoration" style="background-color: #f3b94e"></div>
                                 <p class="text-left text-muted lh-1">Kashvi Patel is a sophomore at Freedom High School. She
                                     loves
                                     to travel and
@@ -272,7 +283,7 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="card-box">
-                                <!--<div class="circle-decoration" style="background-color: #4eeef3"></div>-->
+                                <div class="circle-decoration" style="background-color: #4eeef3"></div>
                                 <div class="pt-2 pb-2">
                                     <div class="thumb-lg"><img width="100%"
                                                                src="{% static 'assets/images/the_team/dhruv.png' %}"
@@ -302,7 +313,7 @@
                                     <h4 class="text-left mb-0">Tvisha Bakshi</h4>
                                     <p class="text-muted text-left">Team Member</p>
                                 </div>
-                                <!--<div class="circle-decoration" style="background-color: #9a9ae0"></div>-->
+                                <div class="circle-decoration" style="background-color: #9a9ae0"></div>
                                 <p class="text-left text-muted lh-1">Tvisha Bakshi is a sophomore at Lightridge High School.
                                     She believes that gaining experience and expanding one’s skill set is just as, if not, more
                                     important than simply learning in a classroom. From her experience, it is extremely hard to
@@ -317,7 +328,7 @@
                             </div>
                         </div>
                         <div class="col-lg-4">
-                            <!--<div class="circle-decoration" style="background-color: #4eeef3"></div>-->
+                            <div class="circle-decoration" style="background-color: #4eeef3"></div>
                             <div class="pt-2 pb-2">
                                 <div class="thumb-lg"><img width="100%" src="{% static 'assets/images/the_team/manav.png' %}"
                                                            class="rounded-circle img-thumbnail" alt="profile-image"></div>

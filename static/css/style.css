@@ -183,7 +183,7 @@ LANDING PAGE
 
 .landing-padding {
     margin-top: 6rem;
-    margin-bottom: 15rem;
+    margin-bottom: 4rem;
 }
 
 #id_email_signup {
@@ -485,7 +485,7 @@ END FOOTER
 
 /* DECORATIONS */
 
-/*.circle-decoration {
+.circle-decoration {
     z-index: -1;
     height: 25px;
     width: 25px;
@@ -493,7 +493,7 @@ END FOOTER
     display: inline-block;
     position: absolute;
 }
- */
+
 
 /* END DECORATIONS */
 
@@ -518,10 +518,6 @@ END FOOTER
 /* BREAK POINTS */
 
 @media screen and (max-width: 991px) {
-
-    #wave-landing-container {
-        display: none;
-    }
 
     #about-section {
         margin-top: 8rem;

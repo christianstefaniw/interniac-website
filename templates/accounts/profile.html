@@ -6,7 +6,9 @@
 </head>
 <body>
     {% if user.is_authenticated %}
-        <p>Welcome, {{ user.username }}!</p>
+        <p>Welcome, {{ user.first_name }}!</p>
+        {{ user.is_student }}
+        {{ user.is_employer }}
         <a href="{% url "logout" %}?next=/">Log out</a>
     {% endif %}
 </body>
