@@ -9,6 +9,7 @@
 
 
         <link rel="stylesheet" href="{% static "css/style.css" %}"/>
+        <link rel="stylesheet" href="{% static "css/home.css" %}"/>
         <link rel="stylesheet" href="{% static "css/bubbles.css" %}"/>
 
 
@@ -32,7 +33,7 @@
 
     <body>
         <section id="nav">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
                 <a class="navbar-brand" href="{% url 'home' %}">
                     <img width=200 height="50" src="{% static "assets/images/logos/logo-transparent.png" %}" alt="logo"/>
                 </a>
@@ -48,12 +49,6 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'careers' %}">Careers</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'students' %}">Students</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'employers' %}">Employers</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'aboutus' %}">About Us</a>
@@ -75,7 +70,7 @@
                     <div class="row">
                         <div class="col-md-5">
                             <div id="landing-text">
-                                <p class="subtitle">
+                                <p class="secondary">
                                     A Marketplace For Internships: For Students, By Students.
                                 </p>
                                 <h1 class="title">
@@ -107,8 +102,6 @@
                                 <a class="cta-btn-1">Student Resources</a>
                                 <a class="cta-btn-2" style="margin-right: 2.5rem">Internships</a>
                             </div>
-                            -->
-
 
                             <div class="grid-container">
                                 <div class="dot-container">
@@ -140,6 +133,7 @@
                                 </div>
 
                             </div>
+                            -->
 
                         </div>
                         <div class="col-md-7" id="img-landing-container">

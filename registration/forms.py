@@ -50,3 +50,8 @@ class UserCreateForm(UserCreationForm):
         )
 
         return user
+
+    def __init__(self, *args, **kwargs):
+        super(UserCreateForm, self).__init__(*args, **kwargs)
+        for field_name in ("email", 'first_name', 'last_name', "password1", "password2", 'is_student', 'is_employer'):
+            self.fields[field_name].help_text = ''

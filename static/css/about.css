@@ -1,0 +1,17 @@
+#offers {
+    margin-top: 7rem;
+    border-radius: 0.3rem;
+}
+
+.thumb-lg {
+    height: 200px;
+    width: 200px;
+}
+
+.lh-1 {
+    line-height: 1.5 !important;
+}
+
+.more {
+    display: none;
+}
