@@ -1,6 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
-from django.forms.utils import ErrorList
 
 from accounts.models import StudentProfile, User
 
@@ -54,4 +53,12 @@ class UserCreateForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super(UserCreateForm, self).__init__(*args, **kwargs)
         for field_name in ("email", 'first_name', 'last_name', "password1", "password2", 'is_student', 'is_employer'):
+
+            if field_name == "is_student":
+                self.fields["is_student"].label = "Student"
+
+            if field_name == "is_employer":
+                self.fields["is_employer"].label = "Employer"
+
             self.fields[field_name].help_text = ''
+            self.fields[field_name].widget.attrs['class'] = 'register-input'

@@ -1,3 +1,8 @@
+.container-fluid {
+    max-width: 1600px;
+}
+
+
 /* EVENTS */
 
 .event-img {
@@ -15,6 +20,22 @@
 }
 
 /* END EVENTS */
+
+
+/* NEWSLETTER */
+
+#signup-newsletter{
+    background-color: var(--form-input-bg);
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    padding: 7px 8px;
+}
+
+/* END NEWSLETTER */
+
+
+
 
 /*
 CONTACT FORM
@@ -172,7 +193,7 @@ LANDING PAGE
 
 
 .landing-padding {
-    margin-top: 6rem;
+    margin-top: 5rem;
     margin-bottom: 4rem;
 }
 

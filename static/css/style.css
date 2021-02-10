@@ -4,8 +4,8 @@ GENERAL
 :root {
     --primary-color: #040456;
     --secondary-color: #3DADFF;
-    --bg-color-primary: #8beaff;
-    --bg-color-secondary: #58b895;
+    --bg-color-primary: #58b895;
+    --bg-color-secondary: #8beaff;
     --gradient-primary-one: #2c7ee4;
     --gradient-primary-two: #2db6ee;
     --gradient-secondary-one: #fd5288;
@@ -20,6 +20,10 @@ GENERAL
     background-color: var(--primary-color) !important;
 }
 
+nav{
+    margin-bottom: 3rem;
+}
+
 textarea, input{
     display: block;
 }
@@ -31,6 +35,8 @@ html {
 }
 
 html > body {
+    height: 100%;
+    min-height: 100%;
     margin: 0;
     padding: 0;
     font-family: 'font', sans-serif;
@@ -88,10 +94,6 @@ p {
     border-color: #007bff;
 }
 
-.container-fluid {
-    max-width: 1600px;
-}
-
 .content-gap {
     margin-top: 10rem;
 }
@@ -119,6 +121,10 @@ nav > div > ul > li > a{
     border: 1px solid black;
     padding-left: 5px;
     padding-right: 5px;
+}
+
+.bg-p{
+    background-color: var(--bg-color-primary);
 }
 
 
@@ -163,9 +169,6 @@ CTA BUTTONS
 /*
 END CTA BUTTONS
  */
-
-
-
 
 
 /*
