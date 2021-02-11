@@ -7,3 +7,4 @@ class Register(CreateView):
     template_name = 'registration/register.html'
     form_class = UserCreateForm
     success_url = '/'
+

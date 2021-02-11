@@ -1,15 +1,76 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    {% if user.is_authenticated %}
-        <p>Welcome, {{ user.first_name }}!</p>
-        {{ user.is_student }}
-        {{ user.is_employer }}
-        <a href="{% url "logout" %}?next=/">Log out</a>
-    {% endif %}
-</body>
+    <head>
+
+        <meta charset="UTF-8">
+        <title>Interniac</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static "css/style.css" %}"/>
+        <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logos/logo-small-transparent.png' %}"/>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    </head>
+    <body>
+        <section id="nav">
+            <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <img width=200 height="50" src="{% static "assets/images/logos/logo-transparent.png" %}" alt="logo"/>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'careers' %}">Careers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'aboutus' %}">About Us</a>
+                        </li>
+                        <li class="nav-item nav-item-active">
+                            {% if user.is_authenticated %}
+                                <a class="nav-link active" href="{% url 'profile' %}">Account</a>
+                            {% else %}
+                                <a class="nav-link active" href="{% url 'login' %}">Login</a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </section>
+        {% if user.is_authenticated %}
+            {% if user.is_student %}
+                {% block student-profile %}
+                    {% include 'accounts/student-profile.html' %}
+                {% endblock %}
+            {% elif user.is_employer %}
+                {% block employer-profile %}
+                    {% include 'accounts/employer-profile.html' %}
+                {% endblock %}
+            {% elif user.is_staff %}
+                {% block staff-profile %}
+                    {% include 'accounts/staff-profile.html' %}
+                {% endblock %}
+            {% else %}
+                <h1>Error</h1>
+            {% endif %}
+            <a href="{% url "logout" %}?next=/">Log out</a>
+            {% else %}
+                <h1 class="alert-danger text-center">Please Login</h1>
+        {% endif %}
+    </body>
 </html>

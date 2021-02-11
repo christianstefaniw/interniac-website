@@ -2,8 +2,9 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import TemplateView
 
+from accounts.models import User
 from .forms import ContactForm, EmailForm
-from .models import Statistics, Event
+from .models import Event
 
 
 class HomePage(TemplateView):
@@ -13,8 +14,10 @@ class HomePage(TemplateView):
         context = super().get_context_data()
         context['contact_form'] = ContactForm()
         context['email_form'] = EmailForm()
-        context['stats'] = Statistics.objects.all()
         context['events'] = Event.objects.all()[:3]
+        context['students'] = User.objects.filter(is_student=True).count()
+        context['employers'] = User.objects.filter(is_employer=True).count()
+        context['professionals'] = 0
         return context
 
     def post(self, request, *args, **kwargs):

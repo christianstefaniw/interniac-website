@@ -1,0 +1,8 @@
+{% block student-profile %}
+    <form method="post">
+        {% csrf_token %}
+        {{ student_profile_form.as_p }}
+        <button class="btn btn-primary">Save</button>
+    </form>
+
+{% endblock %}

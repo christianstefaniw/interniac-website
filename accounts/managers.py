@@ -9,8 +9,6 @@ class UserManager(BaseUserManager):
             raise ValueError("User must have an email")
         if not password:
             raise ValueError("User must have a password")
-        if is_student is False and is_employer is False:
-            raise ValueError("Must be a student or employer")
 
         user = self.model(email=self.normalize_email(email))
 
@@ -33,6 +31,8 @@ class UserManager(BaseUserManager):
             first_name=first_name,
             last_name=last_name,
             password=password,
+            is_employer=False,
+            is_student=False
         )
         user.is_superuser = True
         user.is_staff = True

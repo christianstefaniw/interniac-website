@@ -205,40 +205,36 @@
             <div class="content-gap"></div>
 
             <section id="stats">
-                {% if stats %}
-                    <h1 class="text-center font-weight-bold">Statistics</h1>
-                    {% for stat in stats %}
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="stat bg-primary">
-                                    <i class="icon-exclamation icons"></i>
-                                    <div class="text-center">
-                                        <b>{{ stat.students }}</b>
-                                        <span>Students</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="stat bg-primary ">
-                                    <i class="icon-exclamation icons"></i>
-                                    <div class="text-center">
-                                        <b>{{ stat.employers }}</b>
-                                        <span>Employers</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="stat bg-primary ">
-                                    <i class="icon-exclamation icons"></i>
-                                    <div class="text-center">
-                                        <b>{{ stat.professionals }}</b>
-                                        <span>Professionals</span>
-                                    </div>
-                                </div>
+                <h1 class="text-center font-weight-bold">Statistics</h1>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="stat bg-primary">
+                            <i class="icon-exclamation icons"></i>
+                            <div class="text-center">
+                                <b>{{ students }}</b>
+                                <span>Students</span>
                             </div>
                         </div>
-                    {% endfor %}
-                {% endif %}
+                    </div>
+                    <div class="col-md-4">
+                        <div class="stat bg-primary ">
+                            <i class="icon-exclamation icons"></i>
+                            <div class="text-center">
+                                <b>{{ employers }}</b>
+                                <span>Employers</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="stat bg-primary ">
+                            <i class="icon-exclamation icons"></i>
+                            <div class="text-center">
+                                <b>{{ professionals }}</b>
+                                <span>Professionals</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
 
 
