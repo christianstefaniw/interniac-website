@@ -1,8 +1,8 @@
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 
-from accounts.views import Profile
+from accounts.views import profile
 
 urlpatterns = [
-    path('profile/', Profile.as_view(), name='profile')
+    path('profile/', profile, name='profile')
 ]

@@ -1,10 +1,11 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 
 from accounts.models import User
+from .email import subscribe, send_email
 from .forms import ContactForm, EmailForm
-from .models import Event
+from .models import Event, EmailSignup
 
 
 class HomePage(TemplateView):
@@ -21,14 +22,40 @@ class HomePage(TemplateView):
         return context
 
     def post(self, request, *args, **kwargs):
+
+        print(self.request.POST)
+
         if 'email_signup' in self.request.POST:
             form = EmailForm(request.POST)
+
             if form.is_valid():
+                if EmailSignup.objects.filter(email_signup=form.cleaned_data['email_signup']).count() > 0:
+                    return HttpResponseRedirect('/error')
                 form.save()
+                subscribe(form)
                 return HttpResponseRedirect('/success')
             else:
                 return HttpResponseRedirect('/error')
 
+        if 'message' in self.request.POST:
+            form = ContactForm(request.POST)
+
+            if form.is_valid():
+                send_email(form)
+                return redirect('/success')
+            else:
+                return redirect('/error')
+
 
 def read_more(request, pk):
     return render(request, 'read-more.html', {'event': Event.objects.get(id=pk)})
+
+
+def unsubscribe(request, email):
+    try:
+        EmailSignup.objects.get(email_signup=email).delete()
+        return redirect('success')
+    except:
+        return redirect('error')
+
+

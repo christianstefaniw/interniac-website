@@ -19,7 +19,7 @@ class User(AbstractUser):
 
 
 class StudentProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.PROTECT, primary_key=True)
     phone = models.IntegerField(null=True, blank=True)
     dob = models.DateField(null=True, blank=True)
     hs = models.CharField(max_length=20, null=True, blank=True)

@@ -11,7 +11,6 @@ class EmailSignup(models.Model):
         return self.email_signup
 
 
-
 class Event(models.Model):
     datetime = models.DateTimeField()
     name = models.CharField(max_length=50)
