@@ -29,8 +29,8 @@ class HomePage(TemplateView):
             form = EmailForm(request.POST)
 
             if form.is_valid():
-                if EmailSignup.objects.filter(email_signup=form.cleaned_data['email_signup']).count() > 0:
-                    return HttpResponseRedirect('/error')
+                if EmailSignup.objects.filter(email_signup=form.cleaned_data['email_signup']).exists():
+                    return HttpResponseRedirect('/success')
                 form.save()
                 subscribe(form)
                 return HttpResponseRedirect('/success')

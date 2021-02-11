@@ -3,12 +3,17 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-
         <meta charset="UTF-8">
-        <title>Interniac</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
         <link rel="stylesheet" href="{% static "css/style.css" %}"/>
+
+
         <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logos/logo-small-transparent.png' %}"/>
+
+
+        <script src="https://kit.fontawesome.com/a76f8913d2.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
                 integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
                 crossorigin="anonymous"></script>
@@ -18,6 +23,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
               integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+
+        <title>Interniac</title>
     </head>
     <body>
         <section id="nav">
@@ -42,11 +49,11 @@
                             <a class="nav-link" href="{% url 'aboutus' %}">About Us</a>
                         </li>
                         {% if user.is_authenticated %}
-                            <li class="nav-item">
+                            <li class="nav-item nav-item-active">
                                 <a class="nav-link" href="{% url 'marketplace' %}">Marketplace</a>
                             </li>
                         {% endif %}
-                        <li class="nav-item nav-item-active">
+                        <li class="nav-item">
                             {% if user.is_authenticated %}
                                 <a class="nav-link" href="{% url 'profile' %}">Account</a>
                             {% else %}
@@ -58,22 +65,9 @@
             </nav>
         </section>
         {% if user.is_authenticated %}
-            {% if user.is_student %}
-                {% block student-profile %}
-                    {% include 'accounts/student-profile.html' %}
-                {% endblock %}
-            {% elif user.is_employer %}
-                {% block employer-profile %}
-                    {% include 'accounts/employer-profile.html' %}
-                {% endblock %}
-            {% elif user.is_staff %}
-                {% block staff-profile %}
-                    {% include 'accounts/staff-profile.html' %}
-                {% endblock %}
-            {% else %}
-                <h1>Error</h1>
-            {% endif %}
-            <a href="{% url "logout" %}?next=/">Log out</a>
+            <h1>Welcome to the marketplace</h1>
+        {% else %}
+            <h1 class="alert-danger text-center">Please login!</h1>
         {% endif %}
     </body>
 </html>

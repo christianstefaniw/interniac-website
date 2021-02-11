@@ -1,27 +1,35 @@
-from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import TemplateView
 
 from .forms import StudentProfileForm
 from .models import StudentProfile
 
 
-def profile(request):
-    if request.user.is_student:
-        return Student.student_profile(request)
-    return render(request, template_name='accounts/profile.html')
+class Profile(LoginRequiredMixin, TemplateView):
+    template_name = 'accounts/profile.html'
+    login_url = 'login'
+    redirect_field_name = 'login'
+
+    def post(self, request, *args, **kwargs):
+        pass
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        if self.request.user.is_student:
+            context['student_profile_form'] = Student.student_profile(self.request)
+        return context
 
 
 class Student:
 
     @staticmethod
     def student_profile(request):
-        context = {}
         student_form = Student.create_student_form(request)
         if request.method == 'POST':
             if student_form.is_valid():
                 student_form.save()
 
-        context.update({'student_profile_form': student_form})
-        return render(request, template_name='accounts/profile.html', context=context)
+        return student_form
 
     @staticmethod
     def create_student_form(request):
