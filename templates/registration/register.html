@@ -103,6 +103,19 @@
                                     {{ form.password2 }}
                                 </div>
                             </div>
+
+                            <div class="row">
+                                <div class="col-md-5 mr-1">
+                                    {{ form.org_name.label_tag }}
+                                    {{ form.org_name }}
+                                </div>
+
+                                <div class="col-md-5 ml-1">
+                                    {{ form.org_website.label_tag }}
+                                    {{ form.org_website }}
+                                </div>
+                            </div>
+
                             <div class="row">
                                 <div class="col-md-5 mr-1">
                                     <div class="row">
@@ -127,6 +140,7 @@
 
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="col-md-10">
                                     {% if form.errors %}
@@ -145,6 +159,6 @@
                 </div>
             </div>
         </section>
-
+        <script src="{% static 'js/register.js' %}"></script>
     </body>
 </html>

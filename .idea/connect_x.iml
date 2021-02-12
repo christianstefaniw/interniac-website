@@ -13,8 +13,10 @@
     </facet>
   </component>
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$" />
-    <orderEntry type="inheritedJdk" />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/env" />
+    </content>
+    <orderEntry type="jdk" jdkName="Python 3.6 (connect_x)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="animejs" level="application" />
     <orderEntry type="library" name="bootstrap" level="application" />

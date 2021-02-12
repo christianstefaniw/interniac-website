@@ -3,7 +3,7 @@ import os
 from django.core.mail import EmailMessage
 
 
-def subscribe(form):
+def subscribed_email(form):
     email = form.cleaned_data['email_signup']
     EmailMessage(subject="Thank you!", body="Thank you for subscribing to Interniac's Mailing list!",
                  from_email=os.environ.get("EMAIL"), to=[email]).send()

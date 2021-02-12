@@ -11,6 +11,8 @@ class User(AbstractUser):
 
     username = models.CharField(max_length=256, unique=False, blank=True)
     email = models.EmailField(max_length=256, unique=True, blank=False)
+    org_name = models.CharField(max_length=30, unique=False, blank=True)
+    org_website = models.URLField(blank=True)
     is_student = models.BooleanField(default=False)
     is_employer = models.BooleanField(default=False)
 

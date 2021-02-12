@@ -8,7 +8,6 @@ from .models import StudentProfile
 class Profile(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/profile.html'
     login_url = 'login'
-    redirect_field_name = 'login'
 
     def post(self, request, *args, **kwargs):
         pass
@@ -17,6 +16,8 @@ class Profile(LoginRequiredMixin, TemplateView):
         context = super().get_context_data()
         if self.request.user.is_student:
             context['student_profile_form'] = Student.student_profile(self.request)
+        if self.request.user.is_employer:
+            context['marketplace_listing_form'] = None
         return context
 
 
@@ -36,15 +37,7 @@ class Student:
         if request.method == 'POST':
             instance = StudentProfile.objects.get(user=request.user)
             form = StudentProfileForm(request.POST, instance=instance)
-            current_data = StudentProfile.objects.get(user=request.user)
         else:
-            form = StudentProfileForm()
             current_data = StudentProfile.objects.get(user=request.user)
-
-        for i, field in enumerate(current_data.__dict__):
-            if field == '_state' or field == 'user_id':
-                continue
-            else:
-                form[field].initial = current_data.__dict__[field]
-
+            form = StudentProfileForm(initial=current_data.__dict__)
         return form

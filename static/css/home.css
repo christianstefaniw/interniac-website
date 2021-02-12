@@ -96,16 +96,6 @@ CONTACT FORM
     }
 }
 
-#lnch.launched {
-    background-color: #27ae60;
-    box-shadow: 0 20px 30px -6px #27ae60;
-}
-
-#lnch_btn.launched {
-    transform: rotateZ(-90deg);
-    animation: moveUp 1s ease 0s forwards;
-}
-
 @keyframes moveUp {
     0% {
         margin-top: 0;

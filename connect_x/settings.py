@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'aboutus',
     'careers',
     'marketplace',
+    'registration',
     'home'
 ]
 

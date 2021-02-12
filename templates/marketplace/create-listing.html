@@ -64,27 +64,27 @@
                 </div>
             </nav>
         </section>
-
-        <section>
-            <div class="row">
-                <div class="col-md-10">
-                    <h1>Welcome to the marketplace</h1>
-                </div>
-                {% if user.is_employer or user.is_superuser %}
-                    <div class="col-md-2">
-                        <a href="{% url 'createlisting' %}">Create a listing</a>
+        {% if user.is_employer or user.is_superuser %}
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="row">
+                    <div class="col-md-10">
+                        {% if form.errors %}
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <p class="alert-danger"> {{ error }} </p>
+                                {% endfor %}
+                            {% endfor %}
+                        {% endif %}
                     </div>
-                {% endif %}
-            </div>
-        <div>
-            {% for listing in all_listings %}
-                <div>
-                    <p>{{ listing.title }}</p>
-                    <p>{{ listing.org.org_name }}</p>
                 </div>
-            {% endfor %}
-        </div>
-        </section>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        {% else %}
+            <h1 class="alert-danger text-center">You must be an employer to access this page</h1>
+        {% endif %}
 
+        <script src="{% static 'js/create-intern-listing.js' %}"></script>
     </body>
 </html>

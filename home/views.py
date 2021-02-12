@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 
 from accounts.models import User
-from .email import subscribe, send_email
+from .email import subscribed_email, send_email
 from .forms import ContactForm, EmailForm
 from .models import Event, EmailSignup
 
@@ -23,8 +23,6 @@ class HomePage(TemplateView):
 
     def post(self, request, *args, **kwargs):
 
-        print(self.request.POST)
-
         if 'email_signup' in self.request.POST:
             form = EmailForm(request.POST)
 
@@ -32,7 +30,7 @@ class HomePage(TemplateView):
                 if EmailSignup.objects.filter(email_signup=form.cleaned_data['email_signup']).exists():
                     return HttpResponseRedirect('/success')
                 form.save()
-                subscribe(form)
+                subscribed_email(form)
                 return HttpResponseRedirect('/success')
             else:
                 return HttpResponseRedirect('/error')
