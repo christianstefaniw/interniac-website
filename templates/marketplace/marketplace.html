@@ -11,12 +11,9 @@
 
 
         <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logos/logo-small-transparent.png' %}"/>
-
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
         <script src="https://kit.fontawesome.com/a76f8913d2.js" crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-                crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
                 integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
                 crossorigin="anonymous"></script>
@@ -76,15 +73,15 @@
                     </div>
                 {% endif %}
             </div>
-        <div>
-            {% for listing in all_listings %}
-                <div>
-                    <p>{{ listing.title }}</p>
-                    <p>{{ listing.org.org_name }}</p>
-                </div>
-            {% endfor %}
-        </div>
         </section>
+        <section>
+            {{ filters }}
+            <button onclick="filter()" class="btn btn-primary">Search</button>
+        </section>
+        <div id="listings">
+            {% include 'marketplace/listings.html' %}
+        </div>
 
+        <script src="{% static 'js/filter.js' %}"></script>
     </body>
 </html>

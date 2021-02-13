@@ -29,6 +29,7 @@ class Listing(models.Model):
     def __str__(self):
         return self.title
 
+
 class Career(models.Model):
     career = models.CharField(max_length=30)
 

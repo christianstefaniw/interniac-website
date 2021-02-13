@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/connect_x.iml" filepath="$PROJECT_DIR$/.idea/connect_x.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/interniac.iml" filepath="$PROJECT_DIR$/.idea/interniac.iml" />
     </modules>
   </component>
 </project>

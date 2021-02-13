@@ -1,0 +1,9 @@
+<section>
+    {% for listing in object_list %}
+        <div>
+            <p>{{ listing.title }}</p>
+            <p>{{ listing.org.org_name }}</p>
+            {{ listing.type }}
+        </div>
+    {% endfor %}
+</section>
