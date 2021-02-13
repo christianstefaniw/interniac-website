@@ -9,6 +9,7 @@
 
 
         <link rel="stylesheet" href="{% static "css/style.css" %}"/>
+        <link rel="stylesheet" href="{% static "css/home.css" %}"/>
         <link rel="stylesheet" href="{% static "css/bubbles.css" %}"/>
 
 
@@ -32,7 +33,7 @@
 
     <body>
         <section id="nav">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
                 <a class="navbar-brand" href="{% url 'home' %}">
                     <img width=200 height="50" src="{% static "assets/images/logos/logo-transparent.png" %}" alt="logo"/>
                 </a>
@@ -44,20 +45,19 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item nav-item-active">
-                            <a class="nav-link active" href="{% url 'home' %}">Home</a>
+                            <a class="nav-link" href="{% url 'home' %}">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'careers' %}">Careers</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'students' %}">Students</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'employers' %}">Employers</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="{% url 'aboutus' %}">About Us</a>
                         </li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'marketplace' %}">Marketplace</a>
+                            </li>
+                        {% endif %}
                         <li class="nav-item">
                             {% if user.is_authenticated %}
                                 <a class="nav-link" href="{% url 'profile' %}">Account</a>
@@ -75,7 +75,7 @@
                     <div class="row">
                         <div class="col-md-5">
                             <div id="landing-text">
-                                <p class="subtitle">
+                                <p class="secondary">
                                     A Marketplace For Internships: For Students, By Students.
                                 </p>
                                 <h1 class="title">
@@ -107,8 +107,6 @@
                                 <a class="cta-btn-1">Student Resources</a>
                                 <a class="cta-btn-2" style="margin-right: 2.5rem">Internships</a>
                             </div>
-                            -->
-
 
                             <div class="grid-container">
                                 <div class="dot-container">
@@ -140,6 +138,7 @@
                                 </div>
 
                             </div>
+                            -->
 
                         </div>
                         <div class="col-md-7" id="img-landing-container">
@@ -211,40 +210,36 @@
             <div class="content-gap"></div>
 
             <section id="stats">
-                {% if stats %}
-                    <h1 class="text-center font-weight-bold">Statistics</h1>
-                    {% for stat in stats %}
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="stat bg-primary">
-                                    <i class="icon-exclamation icons"></i>
-                                    <div class="text-center">
-                                        <b>{{ stat.students }}</b>
-                                        <span>Students</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="stat bg-primary ">
-                                    <i class="icon-exclamation icons"></i>
-                                    <div class="text-center">
-                                        <b>{{ stat.employers }}</b>
-                                        <span>Employers</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="stat bg-primary ">
-                                    <i class="icon-exclamation icons"></i>
-                                    <div class="text-center">
-                                        <b>{{ stat.professionals }}</b>
-                                        <span>Professionals</span>
-                                    </div>
-                                </div>
+                <h1 class="text-center font-weight-bold">Statistics</h1>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="stat bg-primary">
+                            <i class="icon-exclamation icons"></i>
+                            <div class="text-center">
+                                <b>{{ students }}</b>
+                                <span>Students</span>
                             </div>
                         </div>
-                    {% endfor %}
-                {% endif %}
+                    </div>
+                    <div class="col-md-4">
+                        <div class="stat bg-primary ">
+                            <i class="icon-exclamation icons"></i>
+                            <div class="text-center">
+                                <b>{{ employers }}</b>
+                                <span>Employers</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="stat bg-primary ">
+                            <i class="icon-exclamation icons"></i>
+                            <div class="text-center">
+                                <b>{{ professionals }}</b>
+                                <span>Professionals</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
 
 
@@ -258,13 +253,13 @@
 
                 <div class="row">
                     <div class="col-md-6">
-                        <form>
+                        <form method="post">
                             {% csrf_token %}
                                 {{ contact_form.as_p }}
 
                             <div id="send-container">
                               <div id="lnch">Send Message</div>
-                              <div id="lnch_btn"><i class="fas fa-space-shuttle"></i></div>
+                              <div onClick="document.forms[1].submit();" id="lnch_btn"><i class="fas fa-space-shuttle"></i></div>
                             </div>
                         </form>
                     </div>

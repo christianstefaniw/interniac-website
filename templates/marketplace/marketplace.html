@@ -5,7 +5,11 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
         <link rel="stylesheet" href="{% static "css/style.css" %}"/>
+
+
         <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logos/logo-small-transparent.png' %}"/>
 
 
@@ -18,14 +22,15 @@
                 crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
               integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
         <title>Interniac</title>
     </head>
     <body>
         <section id="nav">
             <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
                 <a class="navbar-brand" href="{% url 'home' %}">
-                    <img width="50" height="50" src="{% static "assets/images/logos/logo-small-transparent.png" %}" alt="logo"/>
-                    Interniac
+                    <img width=200 height="50" src="{% static "assets/images/logos/logo-transparent.png" %}" alt="logo"/>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,11 +49,11 @@
                             <a class="nav-link" href="{% url 'aboutus' %}">About Us</a>
                         </li>
                         {% if user.is_authenticated %}
-                            <li class="nav-item">
+                            <li class="nav-item nav-item-active">
                                 <a class="nav-link" href="{% url 'marketplace' %}">Marketplace</a>
                             </li>
                         {% endif %}
-                        <li class="nav-item nav-item-active">
+                        <li class="nav-item">
                             {% if user.is_authenticated %}
                                 <a class="nav-link" href="{% url 'profile' %}">Account</a>
                             {% else %}
@@ -60,13 +65,26 @@
             </nav>
         </section>
 
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Login</button>
-        </form>
-
-        <a href="{% url 'register' %}">Register</a>
+        <section>
+            <div class="row">
+                <div class="col-md-10">
+                    <h1>Welcome to the marketplace</h1>
+                </div>
+                {% if user.is_employer or user.is_superuser %}
+                    <div class="col-md-2">
+                        <a href="{% url 'createlisting' %}">Create a listing</a>
+                    </div>
+                {% endif %}
+            </div>
+        <div>
+            {% for listing in all_listings %}
+                <div>
+                    <p>{{ listing.title }}</p>
+                    <p>{{ listing.org.org_name }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        </section>
 
     </body>
 </html>

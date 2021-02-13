@@ -1,0 +1,216 @@
+.container-fluid {
+    max-width: 1600px;
+}
+
+
+/* EVENTS */
+
+.event-img {
+    object-fit: cover;
+}
+
+.event-card-container {
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.event-card-container-last {
+    margin: 0 auto;
+}
+
+/* END EVENTS */
+
+
+/* NEWSLETTER */
+
+#signup-newsletter{
+    background-color: var(--form-input-bg);
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    padding: 7px 8px;
+}
+
+/* END NEWSLETTER */
+
+
+
+
+/*
+CONTACT FORM
+ */
+
+/* send button */
+
+#lnch {
+    font-size: 18px;
+    color: #fff;
+    line-height: 1;
+    padding: 20px 25px;
+    text-align: center;
+    border-radius: 50px;
+    transition: 0.5s ease background-color, 0.5s ease box-shadow;
+    background: var(--primary-color);
+}
+
+#lnch_btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 20px;
+    line-height: 1;
+    color: #fff;
+    padding: 18px 12px;
+    cursor: pointer;
+    transition: 0.3s ease transform;
+}
+
+#lnch.launching {
+    background-color: #f39c12;
+    box-shadow: 0 20px 30px -6px #f39c12;
+}
+
+#lnch_btn.launching {
+    transform: rotateZ(-90deg);
+    animation: shake 0.3s ease 0.5s infinite;
+}
+
+@keyframes shake {
+    10%,
+    90% {
+        transform: translate3d(-1px, 0, 0) rotateZ(-90deg);
+    }
+    20%,
+    80% {
+        transform: translate3d(1px, 0, 0) rotateZ(-90deg);
+    }
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-1px, 0, 0) rotateZ(-90deg);
+    }
+    40%,
+    60% {
+        transform: translate3d(1px, 0, 0) rotateZ(-90deg);
+    }
+}
+
+@keyframes moveUp {
+    0% {
+        margin-top: 0;
+        transform: scale(1) rotateZ(-90deg);
+    }
+    100% {
+        color: #ff1f5a;
+        margin-top: -100px;
+        transform: scale(0) rotateZ(-90deg);
+    }
+}
+
+#send-container {
+    margin-top: 2rem;
+    position: relative;
+    width: 250px;
+}
+
+/* end send button */
+
+
+#contact-header {
+    margin-bottom: 2rem;
+}
+
+#contact-title {
+    color: var(--primary-color);
+    font-weight: bolder;
+}
+
+.msg-input, .msg-text-area {
+    /*width: 100%;*/
+    border-radius: 30px;
+    background-color: var(--form-input-bg);
+    border: none;
+    padding: 5px 10px;
+}
+
+/*
+END CONTACT FORM
+ */
+
+
+/* STATISTICS */
+
+.stat {
+    background: #fff;
+    height: 6em;
+    padding: 1em;
+    margin: 1.5rem 0;
+    transition: margin 0.5s ease, box-shadow 0.5s ease;
+    box-shadow: 0 0.2em 0.4em rgb(0, 0, 0.8);
+}
+
+.stat:hover {
+    cursor: pointer;
+    margin-top: 0.5rem;
+    box-shadow: 0 0.4em 0.5em rgb(0, 0, 0.8);
+}
+
+.stat i {
+    font-size: 3.5em;
+}
+
+
+.stat div b {
+    font-size: 2.2em;
+    padding-top: 0;
+    margin-top: -0.2em;
+    margin-bottom: -0.2em;
+    display: block;
+}
+
+.stat.bg-primary {
+    background: var(--secondary-color) !important;
+    color: white;
+}
+
+/* END STATISTICS */
+
+
+/*
+LANDING PAGE
+ */
+
+
+.landing-padding {
+    margin-top: 5rem;
+    margin-bottom: 4rem;
+}
+
+#id_email_signup {
+    width: 100%;
+    border-radius: 5px;
+    padding: 7px;
+}
+
+#wave-landing-container {
+    display: inline-block;
+}
+
+.title {
+    line-height: 1.5 !important;
+    color: black;
+    font-size: 3rem;
+    font-weight: bolder;
+}
+
+
+#working {
+    position: absolute;
+    margin-left: 500px;
+    margin-top: 100px;
+}
+
+/*
+END LANDING PAGE
+ */
