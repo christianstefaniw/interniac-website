@@ -1,9 +1,28 @@
 <section>
-    {% for listing in object_list %}
-        <div>
-            <p>{{ listing.title }}</p>
-            <p>{{ listing.org.org_name }}</p>
-            {{ listing.type }}
-        </div>
-    {% endfor %}
+    <div class="row justify-content-center mt-5">
+        {% for listing in object_list %}
+
+            <div class="col-md-2">
+                <div class="property-card">
+                    <a href="#">
+                        <div class="property-image"
+                             style="background-image: url({{ listing.org.profile_picture.url }})">
+                        </div>
+                    </a>
+                    <div class="property-description">
+                        <h5> {{ listing.title }} </h5>
+                        <p class="text-muted">{{ listing.description|truncatechars:50 }}</p>
+                        <p>
+                            <span>Application Deadline:</span>
+                            <br>
+                            <span class="text-muted">{{ listing.application_deadline }}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        {% empty %}
+            <h1 class="alert-danger text-center mt-3">No results</h1>
+        {% endfor %}
+    </div>
 </section>

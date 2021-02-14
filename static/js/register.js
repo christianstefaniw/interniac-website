@@ -1,6 +1,4 @@
 ids={
-    name: 'id_org_name',
-    website: 'id_org_website',
     studentRadio: 'id_is_student',
     employerRadio: 'id_is_employer',
 }

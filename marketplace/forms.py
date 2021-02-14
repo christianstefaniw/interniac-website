@@ -1,4 +1,5 @@
 from django import forms
+
 from .models import Listing, Career
 
 FILTERS_TYPE = [
@@ -6,21 +7,20 @@ FILTERS_TYPE = [
     ('unpaid', 'unpaid')
 ]
 
-TYPES_AND_EMPTY = [('', '---------')] + FILTERS_TYPE
-
+TYPES_AND_EMPTY = [('', 'all')] + FILTERS_TYPE
 
 FILTERS_WHERE = [
     ('virtual', 'virtual'),
     ('in-person', 'in-person')
 ]
 
-FILTERS_AND_EMPTY = [('', '---------')] + FILTERS_WHERE
+WHERE_AND_EMPTY = [('', 'all')] + FILTERS_WHERE
 
 
 class Filter(forms.Form):
     type = forms.ChoiceField(choices=TYPES_AND_EMPTY)
-    where = forms.ChoiceField(choices=FILTERS_AND_EMPTY)
-    career = forms.ModelChoiceField(queryset=Career.objects.all())
+    where = forms.ChoiceField(choices=WHERE_AND_EMPTY)
+    career = forms.ModelChoiceField(queryset=Career.objects.all(), empty_label='all')
 
 
 class CreateListingForm(forms.ModelForm):

@@ -25,9 +25,12 @@ class CreateListing(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         if form.is_valid():
-            obj = form.save(commit=False)
-            obj.org = self.request.user
-            obj.save()
+            new_listing = form.save(commit=False)
+            new_listing.org = self.request.user
+            if new_listing.career_id is None:
+                new_career, _ = Career.objects.get_or_create(career=new_listing.new_career)
+                new_listing.career = new_career
+            new_listing.save()
             return HttpResponseRedirect('/success')
         else:
             return HttpResponseRedirect('/error')
@@ -43,11 +46,11 @@ class FilterListings(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         queryset = Listing.objects.all()
-        if self.request.GET.get('type') is not '' and self.request.GET.get('type') is not None:
+        if self.request.GET.get('type') is not '':
             queryset = queryset.filter(type__istartswith=self.request.GET.get('type'))
-        if self.request.GET.get('where') is not '' and self.request.GET.get('where') is not None:
+        if self.request.GET.get('where') is not '':
             queryset = queryset.filter(where__istartswith=self.request.GET.get('where'))
-        if self.request.GET.get('career') is not '' and self.request.GET.get('career') is not None:
+        if self.request.GET.get('career') is not '':
             queryset = queryset.filter(career=int(self.request.GET.get('career')))
 
         return queryset

@@ -18,7 +18,7 @@ class Listing(models.Model):
     title = models.CharField(max_length=50)
     type = models.CharField(choices=intern_types, max_length=20)
     where = models.CharField(choices=intern_where, max_length=20)
-    career = models.ForeignKey('Career', related_name='listings', on_delete=models.CASCADE)
+    career = models.ForeignKey('Career', related_name='listings', blank=True, on_delete=models.CASCADE)
     new_career = models.CharField(blank=True, max_length=30)
     pay = models.CharField(blank=True, max_length=20)
     time_commitment = models.CharField(max_length=20)
@@ -35,10 +35,3 @@ class Career(models.Model):
 
     def __str__(self):
         return self.career
-
-
-class Paid(models.Model):
-    type = models.CharField(max_length=20)
-
-    def __str__(self):
-        return self.type
