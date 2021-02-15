@@ -1,0 +1,18 @@
+<section>
+    <div class="row justify-content-center mt-5" id="listings">
+
+        {% for listing in object_list %}
+            <div class="listing-card">
+                {% if listing in user.applications.all %}
+                    <a href="{% url 'unapply' listing_id=listing.id %}">Unapply</a>
+                {% else %}
+                    <a href="{% url 'apply' listing_id=listing.id %}">Apply</a>
+                {% endif %}
+                <p>{{ listing.title }}</p>
+            </div>
+
+        {% empty %}
+            <h1 class="alert-danger text-center mt-3">No results</h1>
+        {% endfor %}
+    </div>
+</section>
