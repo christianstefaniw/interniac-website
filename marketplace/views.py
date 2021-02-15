@@ -45,18 +45,25 @@ class FilterListings(LoginRequiredMixin, ListView):
         context = super().get_context_data()
         return context
 
+    def get(self, request, *args, **kwargs):
+        print(super().get_queryset())
+        return super().get(request)
+
     def get_queryset(self):
-        queryset = Listing.objects.all()
+        queryset = super().get_queryset()
         query = Q()
-        if self.request.GET.getlist('type') is not None:
-            for i in range(len(self.request.GET.getlist('type'))):
-                query = query | Q(type__startswith=self.request.GET.getlist('type')[i])
-        if self.request.GET.getlist('where') is not None:
+        params = self.request.GET
+        if params.getlist('type'):
+            for i in range(len(params.getlist('type'))):
+                query = query & Q(type__startswith=params.getlist('type')[i])
+        if params.getlist('where'):
             for i in range(len(self.request.GET.getlist('where'))):
-                query = query | Q(where__startswith=self.request.GET.getlist('where')[i])
-        if self.request.GET.getlist('career') is not None:
+                query = query & Q(where__startswith=params.getlist('where')[i])
+        if params.getlist('career'):
             for i in range(len(self.request.GET.getlist('career'))):
-                query = query | Q(career_id=int(self.request.GET.getlist('career')[i]))
+                query = query & Q(career_id=int(params.getlist('career')[i]))
+        if params.get('search'):
+            query = query & Q(title__contains=params.get('search'))
 
         queryset = queryset.filter(query)
 

@@ -1,22 +1,29 @@
 <form method="get" id="filters" action="{% url 'filter' %}">
     {{ filters.as_p }}
-    <button type="submit" class="btn btn-primary">Search</button>
 </form>
 
 <script type="text/javascript">
-    let frm = $('#filters');
-    frm.submit(function () {
+
+    let filtersForm = '';
+
+    $('form ul li input').change(function () {
+        filter()
+    })
+
+    function filter() {
+        filtersForm = $('#filters');
         $.ajax({
-            type: frm.attr('method'),
-            url: frm.attr('action'),
-            data: frm.serialize(),
+            type: filtersForm.attr('method'),
+            url: filtersForm.attr('action'),
+            data: filtersForm.serialize() + "&" + search,
             success: function (data) {
                 $("#listings").html(data);
             },
-            error: function (data) {
+            error: function (_) {
                 $("#listings").html("Something went wrong!");
             }
         });
         return false;
-    });
+    }
+
 </script>

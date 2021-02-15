@@ -63,31 +63,32 @@
             </nav>
         </section>
 
-        <section>
-            <div class="row">
-                <div class="col-md-10">
-                    <h1>Welcome to the marketplace</h1>
-                </div>
-                {% if user.is_employer or user.is_superuser %}
-                    <div class="col-md-2">
-                        <a href="{% url 'createlisting' %}">Create a listing</a>
+        <section class="container-fluid">
+            <section>
+                <div class="row">
+                    <div class="col-md-10">
+                        <h1>Welcome to the marketplace</h1>
                     </div>
-                {% endif %}
-            </div>
-        </section>
-        <section>
-            <div class="row">
-                <div class="col-md-2">
-                    {% include 'marketplace/filters.html' %}
+                    {% if user.is_employer or user.is_superuser %}
+                        <div class="col-md-2">
+                            <a href="{% url 'createlisting' %}">Create a listing</a>
+                        </div>
+                    {% endif %}
                 </div>
-                <div class="col-md-10">
-                    {% include 'marketplace/listings.html' %}
+            </section>
+            <section>
+                <div class="row">
+                    <div class="col-md-4">
+                        {% include 'marketplace/filters.html' %}
+                    </div>
+                    <div class="col-md-7">
+                        {% include 'marketplace/search-bar.html' %}
+                        {% include 'marketplace/listings.html' %}
+                    </div>
+
                 </div>
 
-            </div>
-
+            </section>
         </section>
-
-        <script src="{% static 'js/filter.js' %}"></script>
     </body>
 </html>
