@@ -20,11 +20,11 @@ GENERAL
     background-color: var(--primary-color) !important;
 }
 
-nav{
+nav {
     margin-bottom: 3rem;
 }
 
-textarea, input{
+textarea, input {
     display: block;
 }
 
@@ -61,11 +61,11 @@ a {
     text-decoration: none;
 }
 
-.primary{
+.primary {
     color: var(--primary-color)
 }
 
-.secondary{
+.secondary {
     color: var(--secondary-color)
 }
 
@@ -102,7 +102,7 @@ p {
     box-shadow: var(--inner-shadow);
 }
 
-.outer-shadow{
+.outer-shadow {
     box-shadow: var(--outer-shadow);
 }
 
@@ -111,7 +111,7 @@ p {
     margin-left: 1.5rem !important;
 }
 
-nav > div > ul > li > a{
+nav > div > ul > li > a {
     color: var(--primary-color) !important;
 }
 
@@ -123,7 +123,7 @@ nav > div > ul > li > a{
     padding-right: 5px;
 }
 
-.bg-p{
+.bg-p {
     background-color: var(--bg-color-primary);
 }
 
@@ -205,7 +205,6 @@ END FONTS
  */
 
 
-
 /*
 FOOTER
  */
@@ -227,7 +226,6 @@ footer {
 /*
 END FOOTER
  */
-
 
 
 /* BREAK POINTS */
@@ -262,9 +260,11 @@ END FOOTER
 
     .stat:hover {
         cursor: pointer;
-        margin: 1.5rem 0;
-        box-shadow: 0 0.2em 0.4em rgb(0, 0, 0.8);
+        margin: 1.5rem 0 !important;
+        box-shadow: 0 0.4em 0.5em rgb(0, 0, 0.8);
     }
+
+
 }
 
 @media screen and (max-width: 266px) {

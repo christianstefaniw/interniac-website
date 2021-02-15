@@ -1,9 +1,22 @@
 {% block student-profile %}
-    <form method="post">
-        {% csrf_token %}
-        {{ student_profile_form.as_p }}
-        <button class="btn btn-primary">Save</button>
-    </form>
+    <img src="{{ user.profile_picture.url }}" alt="profile-picture"/>
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post">
+                {% csrf_token %}
+                {{ student_profile_form.as_p }}
+                <button class="btn btn-primary">Save</button>
+            </form>
+        </div>
+        <div class="col-md-6">
+            {% for application in user.applications.all %}
+                {{ application }}
+                <a href="{% url 'unapply' listing_id=application.id %}">Unapply</a>
+            {% endfor %}
+        </div>
+
+    </div>
+
     {% if form.errors %}
         {% for field in form %}
             {% for error in field.errors %}

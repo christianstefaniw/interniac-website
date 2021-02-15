@@ -1,24 +1,39 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect
 from django.views.generic import TemplateView
 
+from marketplace.models import Listing
 from .forms import StudentProfileForm
-from .models import StudentProfile
+from .models import StudentProfile, User
 
 
 class Profile(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/profile.html'
     login_url = 'login'
 
-    def post(self, request, *args, **kwargs):
-        pass
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
         if self.request.user.is_student:
             context['student_profile_form'] = Student.student_profile(self.request)
         if self.request.user.is_employer:
-            context['marketplace_listing_form'] = None
+            employer = Employer(self.request.user)
+            context['marketplace_listings'] = employer.marketplace_listings()
         return context
+
+
+def unapply(request, listing_id):
+    listing = Listing.objects.get(id=listing_id)
+    listing.applications.remove(request.user)
+    return redirect('success')
+
+
+class Employer:
+
+    def __init__(self, user):
+        self.user = user
+
+    def marketplace_listings(self):
+        return Listing.objects.filter(org=self.user)
 
 
 class Student:

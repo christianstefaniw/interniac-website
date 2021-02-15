@@ -14,7 +14,8 @@ class User(AbstractUser):
 
     username = models.CharField(max_length=256, unique=False, blank=True)
     email = models.EmailField(max_length=256, unique=True, blank=False)
-    profile_picture = models.ImageField(upload_to='profile_pictures', null=True, blank=True)
+    profile_picture = models.ImageField(upload_to='profile_pictures', default='profile_pictures/default.png',
+                                        null=True, blank=True)
     is_student = models.BooleanField(default=False)
     is_employer = models.BooleanField(default=False)
 

@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import StudentProfile
+from .models import StudentProfile, User
 
 
 class StudentProfileForm(forms.ModelForm):

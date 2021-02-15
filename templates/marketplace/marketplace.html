@@ -76,12 +76,17 @@
             </div>
         </section>
         <section>
-            {{ filters }}
-            <button onclick="filter()" class="btn btn-primary">Search</button>
+            <div class="row">
+                <div class="col-md-2">
+                    {% include 'marketplace/filters.html' %}
+                </div>
+                <div class="col-md-10">
+                    {% include 'marketplace/listings.html' %}
+                </div>
+
+            </div>
+
         </section>
-        <div id="listings">
-            {% include 'marketplace/listings.html' %}
-        </div>
 
         <script src="{% static 'js/filter.js' %}"></script>
     </body>

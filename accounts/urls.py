@@ -1,8 +1,8 @@
-from django.urls import path, include
-from django.contrib.auth import views as auth_views
+from django.urls import path
 
-from accounts.views import Profile
+from accounts.views import Profile, unapply
 
 urlpatterns = [
-    path('profile/', Profile.as_view(), name='profile')
+    path('profile/', Profile.as_view(), name='profile'),
+    path('unapply/<int:listing_id>', unapply, name='unapply')
 ]

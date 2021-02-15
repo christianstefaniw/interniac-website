@@ -1,0 +1,22 @@
+<form method="get" id="filters" action="{% url 'filter' %}">
+    {{ filters.as_p }}
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+<script type="text/javascript">
+    let frm = $('#filters');
+    frm.submit(function () {
+        $.ajax({
+            type: frm.attr('method'),
+            url: frm.attr('action'),
+            data: frm.serialize(),
+            success: function (data) {
+                $("#listings").html(data);
+            },
+            error: function (data) {
+                $("#listings").html("Something went wrong!");
+            }
+        });
+        return false;
+    });
+</script>

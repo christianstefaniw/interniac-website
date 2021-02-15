@@ -2,25 +2,22 @@ from django import forms
 
 from .models import Listing, Career
 
-FILTERS_TYPE = [
-    ('paid', 'paid'),
-    ('unpaid', 'unpaid')
-]
-
-TYPES_AND_EMPTY = [('', 'all')] + FILTERS_TYPE
-
-FILTERS_WHERE = [
-    ('virtual', 'virtual'),
-    ('in-person', 'in-person')
-]
-
-WHERE_AND_EMPTY = [('', 'all')] + FILTERS_WHERE
-
 
 class Filter(forms.Form):
-    type = forms.ChoiceField(choices=TYPES_AND_EMPTY)
-    where = forms.ChoiceField(choices=WHERE_AND_EMPTY)
-    career = forms.ModelChoiceField(queryset=Career.objects.all(), empty_label='all')
+    FILTERS_TYPE = [
+        ('paid', 'paid'),
+        ('unpaid', 'unpaid')
+    ]
+    FILTERS_WHERE = [
+        ('virtual', 'virtual'),
+        ('in-person', 'in-person')
+    ]
+    WHERE_AND_EMPTY = [('', 'all')] + FILTERS_WHERE
+    TYPES_AND_EMPTY = [('', 'all')] + FILTERS_TYPE
+
+    type = forms.ChoiceField(choices=TYPES_AND_EMPTY, widget=forms.CheckboxSelectMultiple)
+    where = forms.ChoiceField(choices=WHERE_AND_EMPTY, widget=forms.CheckboxSelectMultiple)
+    career = forms.ModelChoiceField(queryset=Career.objects.all(), widget=forms.CheckboxSelectMultiple)
 
 
 class CreateListingForm(forms.ModelForm):
@@ -28,4 +25,4 @@ class CreateListingForm(forms.ModelForm):
 
     class Meta:
         model = Listing
-        exclude = ['org']
+        exclude = ['org', 'applications']

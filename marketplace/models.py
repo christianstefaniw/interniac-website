@@ -25,6 +25,7 @@ class Listing(models.Model):
     location = models.TextField(blank=True)
     application_deadline = models.DateTimeField()
     description = models.TextField()
+    applications = models.ManyToManyField('accounts.User', related_name='applications', blank=True)
 
     def __str__(self):
         return self.title
