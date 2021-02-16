@@ -2,9 +2,19 @@
 #id_where li:first-child {display:none}
 #id_career li:first-child {display:none}
 
+ul{
+    list-style-type: none;
+}
+
+
 .listing-card{
+    width: 100%;
     display: inline-block;
     background-color: white;
     border-radius: 20px;
     box-shadow: 5px 5px 15px -4px #000000;
+}
+
+.container-fluid{
+    max-width: 1750px;
 }

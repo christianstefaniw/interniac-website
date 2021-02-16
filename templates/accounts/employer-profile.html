@@ -1,21 +1,19 @@
-{% block employer-profile %}
-    <img src="{{ user.profile_picture.url }}" alt="profile-picture"/>
-    <h2>
-        Welcome, {{ user.first_name }}
-    </h2>
+<img src="{{ user.profile_picture.url }}" alt="profile-picture"/>
+<h2>
+    Welcome, {{ user.first_name }}
+</h2>
 
-    <section>
-        <div class="row">
-            <div class="col-md-6">
-                <h4>Listings</h4>
-                {% for posted in marketplace_listings %}
-                    <p>{{ posted }}</p>
-                    {% for application in posted.applications.all %}
-                        <p>{{ application.first_name }} {{ application.last_name }}</p>
-                    {% endfor %}
+<section>
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Listings</h4>
+            {% for posted in marketplace_listings %}
+                <p>{{ posted }}</p>
+                {% for application in posted.applications.all %}
+                    <p>{{ application.first_name }} {{ application.last_name }}</p>
                 {% endfor %}
-            </div>
+            {% endfor %}
         </div>
-    </section>
+    </div>
+</section>
 
-{% endblock %}

@@ -1,10 +1,10 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.views.generic import TemplateView
 
 from marketplace.models import Listing
 from .forms import StudentProfileForm
-from .models import StudentProfile, User
+from .models import StudentProfile, User, EmployerProfile
 
 
 class Profile(LoginRequiredMixin, TemplateView):
@@ -21,10 +21,35 @@ class Profile(LoginRequiredMixin, TemplateView):
         return context
 
 
+def apply(request, listing_id):
+    listing = Listing.objects.get(id=listing_id)
+    listing.applications.add(request.user)
+    return render(request, 'success-error/success-applied.html', context={'which': listing})
+
+
 def unapply(request, listing_id):
     listing = Listing.objects.get(id=listing_id)
     listing.applications.remove(request.user)
-    return redirect('success')
+    return render(request, 'success-error/success-unapplied.html', context={'which': listing})
+
+
+def delete(request, id):
+    try:
+        user = User.objects.get(id=id)
+
+        if user.is_superuser:
+            user.delete()
+            return redirect('login')
+
+        if user.is_employer:
+            user_profile = EmployerProfile.objects.get(user=user)
+        else:
+            user_profile = StudentProfile.objects.get(user=user)
+        user_profile.delete()
+        user.delete()
+        return redirect('login')
+    except:
+        return redirect('error')
 
 
 class Employer:

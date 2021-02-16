@@ -2,20 +2,23 @@
     {{ filters.as_p }}
 </form>
 
+
 <script type="text/javascript">
 
-    let filtersForm = '';
+    let filtersForm = $('#filters');
+    let filters;
 
     $('form ul li input').change(function () {
         filter()
     })
 
     function filter() {
-        filtersForm = $('#filters');
+        // save the current filters
+        filters = filtersForm.serialize()
         $.ajax({
             type: filtersForm.attr('method'),
             url: filtersForm.attr('action'),
-            data: filtersForm.serialize() + "&" + search,
+            data: filters + "&" + search,
             success: function (data) {
                 $("#listings").html(data);
             },

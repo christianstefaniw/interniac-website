@@ -16,6 +16,7 @@ urlpatterns = [
     path('careers/', CareersPage.as_view(), name='careers'),
     path('aboutus/', AboutUsPage.as_view(), name='aboutus'),
     path('success/', success, name='success'),
+    path('applied/', success, name='success'),
     path('error/', error, name='error'),
     path('admin/', admin.site.urls),
     path('accounts/', include(accounts_urls)),

@@ -3,11 +3,11 @@ from django.shortcuts import render
 
 
 def success(request):
-    return render(request, 'success.html')
+    return render(request, 'success-error/success-home.html')
 
 
 def error(request):
-    return render(request, 'error.html')
+    return render(request, 'success-error/error-home.html')
 
 
 def Error404Handler(request):

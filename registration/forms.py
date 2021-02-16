@@ -1,4 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm
+from django.core.exceptions import ValidationError
 
 from accounts.models import StudentProfile, User, EmployerProfile
 
@@ -17,6 +18,12 @@ class UserCreateForm(UserCreationForm):
             EmployerProfile.objects.create(user=user, )
 
         return user
+
+    def clean(self):
+        cleaned_data = super(UserCreateForm, self).clean()
+        if self.cleaned_data.get('is_employer') == 'off' and self.cleaned_data.get('is_student') == 'off':
+            self.add_error('is_student', 'Must be a student or employer')
+        return cleaned_data
 
     def __init__(self, *args, **kwargs):
         super(UserCreateForm, self).__init__(*args, **kwargs)

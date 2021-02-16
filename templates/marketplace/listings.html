@@ -1,14 +1,40 @@
-<section>
+<section id="listings">
     <div class="row justify-content-center mt-5" id="listings">
 
         {% for listing in object_list %}
             <div class="listing-card">
-                {% if listing in user.applications.all %}
-                    <a href="{% url 'unapply' listing_id=listing.id %}">Unapply</a>
-                {% else %}
-                    <a href="{% url 'apply' listing_id=listing.id %}">Apply</a>
-                {% endif %}
-                <p>{{ listing.title }}</p>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-11">
+                            <p>{{ listing.title }}</p>
+                        </div>
+                        <div class="col-md-1">
+                            {% if listing in user.applications.all %}
+                                <button onclick="unapply({{ listing.id }}, this)">Unapply</button>
+                            {% else %}
+                                <button onclick="apply({{ listing.id }}, this)">Apply</button>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% if listing.type == "paid" %}
+                        <p>paid -
+                            {% if listing.where == 'in-person' %}
+                                in person
+                            {% else %}
+                                virtual
+                                </p>
+                            {% endif %}
+                    {% else %}
+                        <p>unpaid -
+                            {% if listing.where == 'in-person' %}
+                                in person
+                            {% else %}
+                                virtual
+                                </p>
+                            {% endif %}
+                    {% endif %}
+                    <p class="text-muted">{{ listing.description|truncatechars:500 }}</p>
+                </div>
             </div>
 
         {% empty %}
@@ -16,3 +42,31 @@
         {% endfor %}
     </div>
 </section>
+
+<script type="text/javascript">
+    function apply(id, el){
+        $.ajax({
+            type: 'get',
+            url: `apply/${id}`,
+            success: function (data) {
+                $(el).replaceWith(data);
+            },
+            error: function (_) {
+                $(el).html("Something went wrong!");
+            }
+        })
+    }
+
+    function unapply(id, el){
+        $.ajax({
+            type: 'get',
+            url: `unapply/${id}`,
+            success: function (data) {
+                $(el).replaceWith(data);
+            },
+            error: function (_) {
+                $(el).html("Something went wrong!");
+            }
+        })
+    }
+</script>

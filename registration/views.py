@@ -15,4 +15,3 @@ class Register(CreateView):
         new_user = authenticate(username=email, password=password)
         login(self.request, new_user)
         return valid
-

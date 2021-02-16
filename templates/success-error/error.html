@@ -17,13 +17,14 @@
        <div class="row">
           <div class="col-md-6 mx-auto mt-5">
              <div class="success">
-                <div class="success_header" style="background-color: #67c47f">
-                   <div class="check"><i class="fa fa-check" aria-hidden="true"></i></div>
+                <div class="success_header" style="background-color: #f65c68">
+                   <div class="check"><i class="fa fa-times" aria-hidden="true"></i></div>
                 </div>
                 <div class="content">
-                   <h1>Success !</h1>
-                   <p>Your request has been processed!<br>Thank you.</p>
-                   <a href="{% url 'home' %}">Go to Home</a>
+                   <h1>Error !</h1>
+                   <p>We have NOT received your request. We are sorry for the inconvenience.<br>Please try again or send us a message.</p>
+                   {% block return %}
+                   {% endblock %}
                 </div>
 
              </div>

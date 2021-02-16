@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.db.models import Q
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.views.generic import CreateView, ListView
 
 from .forms import CreateListingForm, Filter
@@ -41,14 +41,6 @@ class FilterListings(LoginRequiredMixin, ListView):
     template_name = 'marketplace/listings.html'
     model = Listing
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data()
-        return context
-
-    def get(self, request, *args, **kwargs):
-        print(super().get_queryset())
-        return super().get(request)
-
     def get_queryset(self):
         queryset = super().get_queryset()
         query = Q()
@@ -73,4 +65,10 @@ class FilterListings(LoginRequiredMixin, ListView):
 def apply(request, listing_id):
     listing = Listing.objects.get(id=listing_id)
     listing.applications.add(request.user)
-    return redirect('/success')
+    return HttpResponse(f'<button onclick="unapply({listing_id}, this)">Unapply</button>')
+
+
+def unapply(request, listing_id):
+    listing = Listing.objects.get(id=listing_id)
+    listing.applications.remove(request.user)
+    return HttpResponse(f'<button onclick="apply({listing_id}, this)">Apply</button>')
