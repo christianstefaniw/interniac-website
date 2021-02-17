@@ -1,50 +1,48 @@
-<section id="listings">
-    <div class="row justify-content-center mt-5" id="listings">
+<div class="mt-5" id="listings">
 
-        {% for listing in object_list %}
-            <div class="listing-card">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-11">
-                            <p>{{ listing.title }}</p>
-                        </div>
-                        <div class="col-md-1">
-                            {% if listing in user.applications.all %}
-                                <button onclick="unapply({{ listing.id }}, this)">Unapply</button>
-                            {% else %}
-                                <button onclick="apply({{ listing.id }}, this)">Apply</button>
-                            {% endif %}
-                        </div>
+    {% for listing in object_list %}
+        <div class="listing-card">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-11">
+                        <p>{{ listing.title }}</p>
                     </div>
-                    {% if listing.type == "paid" %}
-                        <p>paid -
-                            {% if listing.where == 'in-person' %}
-                                in person
-                            {% else %}
-                                virtual
-                                </p>
-                            {% endif %}
-                    {% else %}
-                        <p>unpaid -
-                            {% if listing.where == 'in-person' %}
-                                in person
-                            {% else %}
-                                virtual
-                                </p>
-                            {% endif %}
-                    {% endif %}
-                    <p class="text-muted">{{ listing.description|truncatechars:500 }}</p>
+                    <div class="col-md-1">
+                        {% if listing in user.applications.all %}
+                            <button onclick="unapply({{ listing.id }}, this)">Unapply</button>
+                        {% else %}
+                            <button onclick="apply({{ listing.id }}, this)">Apply</button>
+                        {% endif %}
+                    </div>
                 </div>
+                {% if listing.type == "paid" %}
+                    <p>paid -
+                        {% if listing.where == 'in-person' %}
+                            in person
+                        {% else %}
+                            virtual
+                            </p>
+                        {% endif %}
+                {% else %}
+                    <p>unpaid -
+                        {% if listing.where == 'in-person' %}
+                            in person
+                        {% else %}
+                            virtual
+                            </p>
+                        {% endif %}
+                {% endif %}
+                <p class="text-muted">{{ listing.description|truncatechars:500 }}</p>
             </div>
+        </div>
 
-        {% empty %}
-            <h1 class="alert-danger text-center mt-3">No results</h1>
-        {% endfor %}
-    </div>
-</section>
+    {% empty %}
+        <h1 class="alert-danger text-center mt-3">No results</h1>
+    {% endfor %}
+</div>
 
 <script type="text/javascript">
-    function apply(id, el){
+    function apply(id, el) {
         $.ajax({
             type: 'get',
             url: `apply/${id}`,
@@ -57,7 +55,7 @@
         })
     }
 
-    function unapply(id, el){
+    function unapply(id, el) {
         $.ajax({
             type: 'get',
             url: `unapply/${id}`,

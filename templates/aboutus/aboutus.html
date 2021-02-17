@@ -10,22 +10,13 @@
         <link rel="stylesheet" href="{% static "css/style.css" %}"/>
         <link rel="stylesheet" href="{% static "css/about.css" %}"/>
         <link rel="stylesheet" href="{% static "css/decorations.css" %}"/>
-        <link rel="stylesheet" href="{% static "css/bubbles.css" %}"/>
 
 
         <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logos/logo-small-transparent.png' %}"/>
 
 
         <script src="https://kit.fontawesome.com/a76f8913d2.js" crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-                crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-                crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+        {% include 'boilerplate/bootstrap.html' %}
 
         <title>Interniac</title>
     </head>
@@ -381,16 +372,7 @@
         </div>
 
         <section>
-            <footer>
-                <div class="socials row justify-content-center">
-                    <a target="_blank" href="https://www.instagram.com/interniac/"><i
-                            class="icon fab fa-instagram fa-2x"></i></a>
-                    <a target="_blank" href="https://www.tiktok.com/@_connectx?lang=en"><i class="icon fab fa-tiktok fa-2x"></i></a>
-                    <a target="_blank" href="https://www.facebook.com/connectx.founders"><i
-                            class="icon fab fa-facebook fa-2x"></i></a>
-                </div>
-                <p>© 2021 Interniac. All rights reserved</p>
-            </footer>
+            {% include 'boilerplate/footer.html' %}
         </section>
 
     </body>

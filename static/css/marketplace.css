@@ -7,6 +7,18 @@ ul{
 }
 
 
+form p {
+    margin: 0;
+}
+
+#searchbar{
+    background-color: white;
+    border-color: black;
+    border-width: 0.1rem;
+    border-radius: 10px;
+    padding: 0.4rem;
+}
+
 .listing-card{
     width: 100%;
     display: inline-block;
@@ -17,4 +29,13 @@ ul{
 
 .container-fluid{
     max-width: 1750px;
+}
+
+.btn-secondary{
+    height: 100%;
+    border-radius: 10px !important;
+}
+
+.btn-secondary:focus{
+    box-shadow: 0 0 0 0.1rem var(--primary-color) !important;
 }

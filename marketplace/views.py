@@ -47,13 +47,13 @@ class FilterListings(LoginRequiredMixin, ListView):
         params = self.request.GET
         if params.getlist('type'):
             for i in range(len(params.getlist('type'))):
-                query = query & Q(type__startswith=params.getlist('type')[i])
+                query = query | Q(type__startswith=params.getlist('type')[i])
         if params.getlist('where'):
-            for i in range(len(self.request.GET.getlist('where'))):
-                query = query & Q(where__startswith=params.getlist('where')[i])
+            for i in range(len(params.getlist('where'))):
+                query = query | Q(where__startswith=params.getlist('where')[i])
         if params.getlist('career'):
-            for i in range(len(self.request.GET.getlist('career'))):
-                query = query & Q(career_id=int(params.getlist('career')[i]))
+            for i in range(len(params.getlist('career'))):
+                query = query | Q(career_id=int(params.getlist('career')[i]))
         if params.get('search'):
             query = query & Q(title__contains=params.get('search'))
 

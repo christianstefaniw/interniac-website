@@ -63,9 +63,31 @@ p {
     overflow-wrap: break-word;
 }
 
-.btn-primary:active, .btn-primary:focus {
-    box-shadow: 0 0 0 0.2rem var(--secondary-color) !important;
+.btn-outline-primary {
+    color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
 }
+
+.btn-outline-primary:hover {
+    color: white !important;
+    background-color: var(--primary-color) !important;
+}
+
+.btn-outline-primary:focus, .btn-outline-primary.focus {
+    box-shadow: 0 0 0 0.2rem #4f4f67 !important;
+}
+
+.btn-outline-primary.disabled, .btn-outline-primary:disabled {
+  color: var(--primary-color) !important;
+}
+
+.btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active,
+.show > .btn-outline-primary.dropdown-toggle {
+  color: #fff !important;
+  background-color: var(--primary-color) !important;;
+}
+
+
 
 .btn-primary {
     color: #fff;

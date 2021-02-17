@@ -65,12 +65,9 @@
 
         <div class="container-fluid">
             <section>
-                <div class="row">
-                    <div class="col-md-10">
-                        <h1>Welcome to the marketplace</h1>
-                    </div>
+                <div class="row justify-content-start">
                     {% if user.is_employer or user.is_superuser %}
-                        <div class="col-md-2">
+                        <div class="col-sm-2">
                             <a href="{% url 'createlisting' %}">Create a listing</a>
                         </div>
                     {% endif %}
@@ -78,10 +75,13 @@
             </section>
             <section>
                 <div class="row">
-                    <div class="col-md-4">
-                        {% include 'marketplace/filters.html' %}
+                    <div class="col-sm-4">
+                        <button class="btn btn-outline-primary mb-4" style="padding: 5px" id="show-hide-btn" onclick="showFilters()">Hide Filters</button>
+                        <div id="filters-container" style="display: block;">
+                            {% include 'marketplace/filters.html' %}
+                        </div>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-8">
                         {% include 'marketplace/search-bar.html' %}
                         {% include 'marketplace/listings.html' %}
                     </div>
@@ -90,5 +90,6 @@
 
             </section>
         </div>
+        <script src="{% static 'js/marketplace.js' %}"></script>
     </body>
 </html>

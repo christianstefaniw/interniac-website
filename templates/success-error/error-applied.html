@@ -1,0 +1,10 @@
+{% extends 'success-error/error.html' %}
+
+
+{% block which %}
+    <p>Error for {{ which.title }}</p>
+{% endblock %}
+
+{% block return %}
+    <a href="{% url 'profile' %}">Go to profile</a>
+{% endblock return %}

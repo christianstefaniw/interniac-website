@@ -1,3 +1,4 @@
+import requests
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
@@ -37,7 +38,6 @@ class HomePage(TemplateView):
 
         if 'message' in self.request.POST:
             form = ContactForm(request.POST)
-
             if form.is_valid():
                 send_email(form)
                 return redirect('/success')
@@ -55,5 +55,3 @@ def unsubscribe(request, email):
         return redirect('success')
     except:
         return redirect('error')
-
-

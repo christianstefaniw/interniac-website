@@ -34,22 +34,19 @@ def unapply(request, listing_id):
 
 
 def delete(request, id):
-    try:
-        user = User.objects.get(id=id)
+    user = User.objects.get(id=id)
 
-        if user.is_superuser:
-            user.delete()
-            return redirect('login')
-
-        if user.is_employer:
-            user_profile = EmployerProfile.objects.get(user=user)
-        else:
-            user_profile = StudentProfile.objects.get(user=user)
-        user_profile.delete()
+    if user.is_superuser:
         user.delete()
         return redirect('login')
-    except:
-        return redirect('error')
+
+    if user.is_employer:
+        user_profile = EmployerProfile.objects.get(user=user)
+    else:
+        user_profile = StudentProfile.objects.get(user=user)
+    user_profile.delete()
+    user.delete()
+    return redirect('login')
 
 
 class Employer:
