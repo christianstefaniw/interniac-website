@@ -17,7 +17,8 @@ class UserManager(BaseUserManager):
 
         user.set_password(password)  # change password to hash
 
-        user.profile_picture = profile_picture
+        if profile_picture:
+            user.profile_picture = profile_picture
 
         user.is_student = is_student
         user.is_employer = is_employer
