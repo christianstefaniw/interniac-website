@@ -278,6 +278,17 @@ END FOOTER
 
 }
 
+@media screen and (max-width: 1800px) {
+    .container-fluid{
+        max-width:  1500px !important;
+    }
+}
+@media screen and (max-width: 1600px) {
+    .container-fluid{
+        max-width:  1300px !important;
+    }
+}
+
 @media screen and (max-width: 266px) {
     #send-container {
         width: 100%
