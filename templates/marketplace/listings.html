@@ -7,13 +7,15 @@
                     <div class="col-md-11">
                         <p>{{ listing.title }}</p>
                     </div>
-                    <div class="col-md-1">
-                        {% if listing in user.applications.all %}
-                            <button onclick="unapply({{ listing.id }}, this)">Unapply</button>
-                        {% else %}
-                            <button onclick="apply({{ listing.id }}, this)">Apply</button>
-                        {% endif %}
-                    </div>
+                    {% if user.is_student %}
+                        <div class="col-md-1">
+                            {% if listing in user.applications.all %}
+                                <button onclick="unapply({{ listing.id }}, this)">Unapply</button>
+                            {% else %}
+                                <button onclick="apply({{ listing.id }}, this)">Apply</button>
+                            {% endif %}
+                        </div>
+                    {% endif %}
                 </div>
                 {% if listing.type == "paid" %}
                     <p>paid -

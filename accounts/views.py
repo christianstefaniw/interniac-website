@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, render
+from django.urls import reverse
 from django.views.generic import TemplateView
 
 from marketplace.models import Listing
@@ -14,31 +15,20 @@ class Profile(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
         if self.request.user.is_student:
-            context['student_profile_form'] = Student.student_profile(self.request)
+            student = _Student()
+            context['student_profile_form'] = student.student_profile(self.request)
         if self.request.user.is_employer:
-            employer = Employer(self.request.user)
+            employer = _Employer(self.request.user)
             context['marketplace_listings'] = employer.marketplace_listings()
         return context
 
 
-def apply(request, listing_id):
-    listing = Listing.objects.get(id=listing_id)
-    listing.applications.add(request.user)
-    return render(request, 'success-error/success-applied.html', context={'which': listing})
-
-
-def unapply(request, listing_id):
-    listing = Listing.objects.get(id=listing_id)
-    listing.applications.remove(request.user)
-    return render(request, 'success-error/success-unapplied.html', context={'which': listing})
-
-
-def delete(request, id):
+def delete_user(request, id):
     user = User.objects.get(id=id)
 
     if user.is_superuser:
         user.delete()
-        return redirect('login')
+        return redirect(reverse('login'))
 
     if user.is_employer:
         user_profile = EmployerProfile.objects.get(user=user)
@@ -46,10 +36,10 @@ def delete(request, id):
         user_profile = StudentProfile.objects.get(user=user)
     user_profile.delete()
     user.delete()
-    return redirect('login')
+    return redirect(reverse('login'))
 
 
-class Employer:
+class _Employer:
 
     def __init__(self, user):
         self.user = user
@@ -58,11 +48,10 @@ class Employer:
         return Listing.objects.filter(org=self.user)
 
 
-class Student:
+class _Student:
 
-    @staticmethod
-    def student_profile(request):
-        student_form = Student.create_student_form(request)
+    def student_profile(self, request):
+        student_form = self.create_student_form(request)
         if request.method == 'POST':
             if student_form.is_valid():
                 student_form.save()

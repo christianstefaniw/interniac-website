@@ -1,7 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect, HttpResponse
 from django.db.models import Q
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
+from django.urls import reverse
 from django.views.generic import CreateView, ListView
 
 from .forms import CreateListingForm, Filter
@@ -32,9 +33,9 @@ class CreateListing(LoginRequiredMixin, CreateView):
                 new_career, _ = Career.objects.get_or_create(career=new_listing.new_career)
                 new_listing.career = new_career
             new_listing.save()
-            return HttpResponseRedirect('/success')
+            return redirect(reverse('success'))
         else:
-            return HttpResponseRedirect('/error')
+            return redirect(reverse('error'))
 
 
 class FilterListings(LoginRequiredMixin, ListView):
@@ -65,10 +66,22 @@ class FilterListings(LoginRequiredMixin, ListView):
 def apply(request, listing_id):
     listing = Listing.objects.get(id=listing_id)
     listing.applications.add(request.user)
-    return HttpResponse(f'<button onclick="unapply({listing_id}, this)">Unapply</button>')
+    redirect_profile = request.GET.get('profile')
+    if redirect_profile:
+        return redirect(request.user)
+    else:
+        return HttpResponse(f'<button onclick="unapply({listing_id}, this)">Unapply</button>')
 
 
 def unapply(request, listing_id):
-    listing = Listing.objects.get(id=listing_id)
-    listing.applications.remove(request.user)
-    return HttpResponse(f'<button onclick="apply({listing_id}, this)">Apply</button>')
+    try:
+        listing = Listing.objects.get(id=listing_id)
+        listing.applications.remove(request.user)
+        redirect_profile = request.GET.get('profile')
+        if redirect_profile:
+            return redirect(request.user)
+        else:
+            return HttpResponse(f'<button onclick="apply({listing_id}, this)">Apply</button>')
+
+    except:
+        return redirect(reverse('error'))

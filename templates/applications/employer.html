@@ -1,0 +1,10 @@
+{% for listing in listings %}
+    {% for student in listing.applications.all %}
+        {% if student not in listing.acceptances %}
+            <div class="mb-5">
+                <p>{{ student.first_name }}</p>
+                <a href="{% url 'accept' %}?listing_id={{ listing.id }}&student_id={{ student.id }} ">Accept</a>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endfor %}

@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate, login
-from django.views.generic import CreateView, FormView
+from django.views.generic import CreateView
 
 from .forms import UserCreateForm
 

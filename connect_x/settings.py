@@ -26,7 +26,8 @@ INSTALLED_APPS = [
     'careers',
     'marketplace',
     'registration',
-    'home'
+    'home',
+    'applications'
 ]
 
 MIDDLEWARE = [

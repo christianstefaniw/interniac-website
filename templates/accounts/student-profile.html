@@ -11,13 +11,13 @@
     <div class="col-md-3">
         {% for application in user.applications.all %}
             {{ application }}
-            <a href="{% url 'unapply-profile' listing_id=application.id %}">Unapply</a>
+            <a href="{% url 'unapply' listing_id=application.id %}?profile=True">Unapply</a>
         {% endfor %}
     </div>
     <div class="col-md-3">
         {% for listing in user.saves.all %}
             {{ listing }}
-            <a href="{% url 'unsave-profile' listing_id=application.id %}">Unsave</a>
+            <a href="{% url 'unsave' listing_id=application.id %}">Unsave</a>
         {% endfor %}
     </div>
 

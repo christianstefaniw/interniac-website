@@ -1,6 +1,7 @@
 import requests
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.views.generic import TemplateView
 
 from accounts.models import User
@@ -29,20 +30,20 @@ class HomePage(TemplateView):
 
             if form.is_valid():
                 if EmailSignup.objects.filter(email_signup=form.cleaned_data['email_signup']).exists():
-                    return HttpResponseRedirect('/success')
+                    return redirect(reverse('success'))
                 form.save()
                 subscribed_email(form)
-                return HttpResponseRedirect('/success')
+                return redirect(reverse('success'))
             else:
-                return HttpResponseRedirect('/error')
+                return redirect(reverse('error'))
 
         if 'message' in self.request.POST:
             form = ContactForm(request.POST)
             if form.is_valid():
                 send_email(form)
-                return redirect('/success')
+                return redirect(reverse('success'))
             else:
-                return redirect('/error')
+                return redirect(reverse('error'))
 
 
 def read_more(request, pk):
@@ -52,6 +53,6 @@ def read_more(request, pk):
 def unsubscribe(request, email):
     try:
         EmailSignup.objects.get(email_signup=email).delete()
-        return redirect('success')
+        return redirect(reverse('success'))
     except:
-        return redirect('error')
+        return redirect(reverse('error'))

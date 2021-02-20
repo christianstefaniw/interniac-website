@@ -3,6 +3,7 @@ import os
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.dispatch import receiver
+from django.urls import reverse
 
 from accounts.managers import UserManager
 
@@ -18,6 +19,9 @@ class User(AbstractUser):
                                         null=True, blank=True)
     is_student = models.BooleanField(default=False)
     is_employer = models.BooleanField(default=False)
+
+    def get_absolute_url(self):
+        return reverse('profile')
 
     def __str__(self):
         return self.email

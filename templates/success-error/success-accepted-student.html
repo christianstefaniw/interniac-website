@@ -1,0 +1,10 @@
+{% extends 'success-error/success.html' %}
+
+
+{% block message %}
+    <p>An acceptance email has been sent to {{ first }} {{ last }}!</p>
+{% endblock %}
+
+{% block return %}
+    <a href="{% url 'applications' %}">Go to applications</a>
+{% endblock return %}

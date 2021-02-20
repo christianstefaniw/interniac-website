@@ -1,6 +1,5 @@
 from django.db import models
 
-from connect_x import settings
 
 intern_types = (
     ('Paid', 'Paid'),
@@ -14,7 +13,7 @@ intern_where = (
 
 
 class Listing(models.Model):
-    org = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True)
+    org = models.ForeignKey('accounts.User', on_delete=models.CASCADE, related_name='listing')
     title = models.CharField(max_length=50)
     type = models.CharField(choices=intern_types, max_length=20)
     where = models.CharField(choices=intern_where, max_length=20)
@@ -26,6 +25,8 @@ class Listing(models.Model):
     application_deadline = models.DateTimeField()
     description = models.TextField()
     applications = models.ManyToManyField('accounts.User', related_name='applications', blank=True)
+    acceptances = models.ManyToManyField('accounts.User', related_name='acceptances', blank=True)
+    rejections = models.ManyToManyField('accounts.User', related_name='rejections', blank=True)
     saves = models.ManyToManyField('accounts.User', related_name='saves', blank=True)
 
     def __str__(self):
