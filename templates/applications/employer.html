@@ -1,9 +1,13 @@
+
 {% for listing in listings %}
+    <h1>{{ listing.title }}</h1>
     {% for student in listing.applications.all %}
-        {% if student not in listing.acceptances %}
+        {% if student not in listing.acceptances.all %}
             <div class="mb-5">
-                <p>{{ student.first_name }}</p>
-                <a href="{% url 'accept' %}?listing_id={{ listing.id }}&student_id={{ student.id }} ">Accept</a>
+                <p>{{ student.first_name }} {{ student.last_name }}</p>
+                <a class="text-success" href="{% url 'accept' %}?listing_id={{ listing.id }}&student_id={{ student.id }} ">Accept</a>
+                <a class="text-danger" href="{% url 'reject' %}?listing_id={{ listing.id }}&student_id={{ student.id }} ">Reject</a>
+                <a href="{% url 'single_application' slug=student.slug %}">View Application</a>
             </div>
         {% endif %}
     {% endfor %}

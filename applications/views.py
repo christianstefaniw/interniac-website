@@ -12,12 +12,12 @@ class Applications(TemplateView):
         context = super().get_context_data()
         if self.request.user.is_student:
             pass
-        if self.request.user.is_employer:
+        elif self.request.user.is_employer:
             context['listings'] = self.get_listings()
         return context
 
     def get_listings(self):
-        return Listing.objects.filter(org__email=self.request.user.email)
+        return Listing.objects.filter(company=self.request.user)
 
 
 class SingleApplication(TemplateView):
@@ -29,7 +29,7 @@ class SingleApplication(TemplateView):
         return context
 
     def get_user(self):
-        return User.objects.get(id=self.kwargs['id'])
+        return User.objects.get(slug=self.kwargs['slug'])
 
 
 def accept(request):

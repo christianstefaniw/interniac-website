@@ -1,7 +1,7 @@
 <div class="mt-5" id="listings">
 
     {% for listing in object_list %}
-        <div class="listing-card">
+        <div class="listing-card mb-5">
             <div class="container">
                 <div class="row">
                     <div class="col-md-11">
@@ -35,6 +35,9 @@
                         {% endif %}
                 {% endif %}
                 <p class="text-muted">{{ listing.description|truncatechars:500 }}</p>
+                <div class="row justify-content-end">
+                    <a href="{{ listing.get_absolute_url }}">View</a>
+                </div>
             </div>
         </div>
 

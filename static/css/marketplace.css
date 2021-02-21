@@ -1,6 +1,7 @@
 #id_type li:first-child {display:none}
 #id_where li:first-child {display:none}
 #id_career li:first-child {display:none}
+#id_company li:first-child {display:none}
 
 ul{
     list-style-type: none;

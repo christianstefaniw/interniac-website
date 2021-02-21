@@ -61,6 +61,6 @@
         {% endif %}
         <a style="color: red" href="{% url "delete" id=user.id %}">Delete account</a>
         <br>
-        <a href="{% url "logout" %}?next=/">Log out</a>
+        <a href="{% url 'logout' %}?next=/">Log out</a>
     </body>
 </html>

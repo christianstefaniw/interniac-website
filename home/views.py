@@ -1,11 +1,8 @@
-import requests
-from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import TemplateView
 
 from accounts.models import User
-from .email import subscribed_email, send_email
 from .forms import ContactForm, EmailForm
 from .models import Event, EmailSignup
 
@@ -23,7 +20,7 @@ class HomePage(TemplateView):
         context['professionals'] = 0
         return context
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request, **kwargs):
 
         if 'email_signup' in self.request.POST:
             form = EmailForm(request.POST)
@@ -32,7 +29,7 @@ class HomePage(TemplateView):
                 if EmailSignup.objects.filter(email_signup=form.cleaned_data['email_signup']).exists():
                     return redirect(reverse('success'))
                 form.save()
-                subscribed_email(form)
+                form.subscribed_email()
                 return redirect(reverse('success'))
             else:
                 return redirect(reverse('error'))
@@ -40,7 +37,7 @@ class HomePage(TemplateView):
         if 'message' in self.request.POST:
             form = ContactForm(request.POST)
             if form.is_valid():
-                send_email(form)
+                form.send_email()
                 return redirect(reverse('success'))
             else:
                 return redirect(reverse('error'))
@@ -51,8 +48,5 @@ def read_more(request, pk):
 
 
 def unsubscribe(request, email):
-    try:
-        EmailSignup.objects.get(email_signup=email).delete()
-        return redirect(reverse('success'))
-    except:
-        return redirect(reverse('error'))
+    EmailSignup.objects.get(email_signup=email).delete()
+    return redirect(reverse('success'))

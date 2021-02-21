@@ -28,6 +28,11 @@ textarea, input {
     display: block;
 }
 
+input:focus:invalid{
+    border-color: transparent;
+    box-shadow: 0 0 0 2px red;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -137,6 +142,16 @@ nav > div > ul > li > a {
 .bg-p {
     background-color: var(--bg-color-primary);
 }
+
+/* ERRORS */
+.errorlist > li {
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    color: #a94442;
+    text-align: left;
+    padding: 5px;
+}
+/* END ERRORS */
 
 
 /*

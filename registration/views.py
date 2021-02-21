@@ -1,17 +1,16 @@
-from django.contrib.auth import authenticate, login
-from django.views.generic import CreateView
+from django.contrib.auth import login
+from django.views.generic import FormView
 
 from .forms import UserCreateForm
 
 
-class Register(CreateView):
+class Register(FormView):
     template_name = 'registration/register.html'
     form_class = UserCreateForm
     success_url = '/accounts/profile/'
 
     def form_valid(self, form):
         valid = super(Register, self).form_valid(form)
-        email, password = form.cleaned_data.get('email'), form.cleaned_data.get('password1')
-        new_user = authenticate(username=email, password=password)
+        new_user = form.save()
         login(self.request, new_user)
         return valid

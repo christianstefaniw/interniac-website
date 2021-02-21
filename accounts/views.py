@@ -12,10 +12,13 @@ class Profile(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/profile.html'
     login_url = 'login'
 
+    def post(self, request, **kwargs):
+        return super(Profile, self).render_to_response(self.get_context_data())
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
         if self.request.user.is_student:
-            student = _Student()
+            student = _Student(self.request)
             context['student_profile_form'] = student.student_profile(self.request)
         if self.request.user.is_employer:
             employer = _Employer(self.request.user)
@@ -45,25 +48,27 @@ class _Employer:
         self.user = user
 
     def marketplace_listings(self):
-        return Listing.objects.filter(org=self.user)
+        return Listing.objects.filter(company=self.user)
 
 
 class _Student:
 
+    def __init__(self, request):
+        self.request = request
+
     def student_profile(self, request):
-        student_form = self.create_student_form(request)
+        student_form = self.create_student_form()
         if request.method == 'POST':
             if student_form.is_valid():
                 student_form.save()
 
         return student_form
 
-    @staticmethod
-    def create_student_form(request):
-        if request.method == 'POST':
-            instance = StudentProfile.objects.get(user=request.user)
-            form = StudentProfileForm(request.POST, instance=instance)
+    def create_student_form(self):
+        if self.request.method == 'POST':
+            instance = StudentProfile.objects.get(user=self.request.user)
+            form = StudentProfileForm(self.request.POST, instance=instance)
         else:
-            current_data = StudentProfile.objects.get(user=request.user)
+            current_data = StudentProfile.objects.get(user=self.request.user)
             form = StudentProfileForm(initial=current_data.__dict__)
         return form

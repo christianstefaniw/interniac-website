@@ -1,0 +1,13 @@
+{% extends 'success-error/success.html' %}
+
+
+{% block message %}
+    <div>
+        <p>Your listing has been posted!</p>
+        <a href="{{ listing.get_absolute_url }}">View</a>
+    </div>
+{% endblock %}
+
+{% block return %}
+    <a class="back" href="{% url 'marketplace' %}">Go to marketplace</a>
+{% endblock return %}

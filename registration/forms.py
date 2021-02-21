@@ -7,7 +7,7 @@ class UserCreateForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('email', 'first_name', 'last_name', 'password1', 'password2', 'profile_picture',
-                  'is_student', 'is_employer')
+                  'is_student', 'is_employer', 'company_name')
 
     def save(self, commit=True):
         user = super(UserCreateForm, self).save(commit=True)
@@ -28,7 +28,7 @@ class UserCreateForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super(UserCreateForm, self).__init__(*args, **kwargs)
         for field_name in ('email', 'first_name', 'last_name', 'password1', 'password2',
-                           'profile_picture', 'is_student', 'is_employer'):
+                           'profile_picture', 'is_student', 'is_employer', 'company_name'):
 
             if field_name == 'is_student':
                 self.fields['is_student'].label = 'Student'

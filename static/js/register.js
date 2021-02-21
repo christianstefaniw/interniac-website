@@ -6,11 +6,12 @@ ids={
 
 $(`#${ids.employerRadio}`).change(function (){
     let bool = $(`#${ids.employerRadio}:checked`).val()
-    console.log(bool)
     if (bool === 'on'){
         disable(ids.studentRadio)
+        unhide('company-name')
     } else {
         undisable(ids.studentRadio)
+        hide('company-name')
     }
 })
 
@@ -30,4 +31,13 @@ function disable(elId){
 
 function undisable(elId){
     $(`#${elId}`).attr('disabled', false)
+}
+
+
+function hide(elId){
+    $(`#${elId}`).hide()
+}
+
+function unhide(elId){
+    $(`#${elId}`).show()
 }

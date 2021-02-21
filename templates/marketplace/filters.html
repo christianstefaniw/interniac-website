@@ -1,5 +1,15 @@
 <form name="filters" method="get" id="filters" action="{% url 'filter' %}">
-    {{ filters.as_p }}
+    {{ filters.type.label_tag }}
+    {{ filters.type }}
+
+    {{ filters.where.label_tag }}
+    {{ filters.where }}
+
+    {{ filters.career.label_tag }}
+    {{ filters.career }}
+
+    {{ filters.company.label_tag }}
+    {{ filters.company }}
 </form>
 
 

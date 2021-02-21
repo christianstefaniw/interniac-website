@@ -1,12 +1,16 @@
 from django import forms
+from django.forms import DateInput
 
-from .models import StudentProfile, User
+from .models import StudentProfile
 
 
 class StudentProfileForm(forms.ModelForm):
     class Meta:
         model = StudentProfile
         exclude = ['user']
+        widgets = {
+            'dob': DateInput(attrs={'type': 'date'})
+        }
         labels = {
             'phone': 'Phone Number',
             'dob': 'Date of Birth',

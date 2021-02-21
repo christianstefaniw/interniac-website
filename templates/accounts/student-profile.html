@@ -1,17 +1,20 @@
 <h1>Welcome, {{ user.first_name }}</h1>
 <img src="{{ user.profile_picture.url }}" alt="profile-picture"/>
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-2">
         <form method="post">
             {% csrf_token %}
             {{ student_profile_form.as_p }}
             <button class="btn btn-primary">Save</button>
         </form>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-10">
         {% for application in user.applications.all %}
-            {{ application }}
-            <a href="{% url 'unapply' listing_id=application.id %}?profile=True">Unapply</a>
+            <div class="text-center">
+                {{ application }}
+                <a href="{% url 'unapply' listing_id=application.id %}?profile=True">Unapply</a>
+            </div cl>
+
         {% endfor %}
     </div>
     <div class="col-md-3">
@@ -22,12 +25,3 @@
     </div>
 
 </div>
-
-{% if form.errors %}
-    {% for field in form %}
-        {% for error in field.errors %}
-            <p class="alert-danger"> {{ error }} </p>
-        {% endfor %}
-    {% endfor %}
-{% endif %}
-

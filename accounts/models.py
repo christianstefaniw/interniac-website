@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.dispatch import receiver
 from django.urls import reverse
+from django_unique_slugify import unique_slugify
 
 from accounts.managers import UserManager
 
@@ -19,25 +20,37 @@ class User(AbstractUser):
                                         null=True, blank=True)
     is_student = models.BooleanField(default=False)
     is_employer = models.BooleanField(default=False)
+    slug = models.SlugField(max_length=256, unique=True, blank=True)
+    company_name = models.CharField(max_length=30, unique=False, blank=True)
 
     def get_absolute_url(self):
         return reverse('profile')
 
+    def save(self, *args, **kwargs):
+        if self.is_employer:
+            self.slug = f"{self.company_name}"
+        else:
+            self.slug = f"{self.first_name} {self.last_name}"
+        unique_slugify(self, self.slug)
+        super(User, self).save(*args, **kwargs)
+
     def __str__(self):
-        return self.email
+        if self.is_employer:
+            return self.company_name
+        else:
+            return self.email
 
 
 class EmployerProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.PROTECT, primary_key=True)
-    org_name = models.CharField(max_length=30, unique=False, blank=True)
-    org_website = models.URLField(blank=True)
+    company_website = models.URLField(blank=True)
 
     def __str__(self):
-        return "%s's profile" % self.user
+        return self.user.company_name
 
 
 class StudentProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.PROTECT, primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.PROTECT, primary_key=True, related_name='profile')
     phone = models.IntegerField(null=True, blank=True)
     dob = models.DateField(null=True, blank=True)
     hs = models.CharField(max_length=20, null=True, blank=True)
@@ -56,7 +69,7 @@ class StudentProfile(models.Model):
     link4 = models.URLField(null=True, blank=True)
 
     def __str__(self):
-        return "%s's profile" % self.user
+        return f"{self.user.first_name}'s profile"
 
 
 # These two auto-delete files from filesystem when they are unneeded:

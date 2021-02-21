@@ -1,5 +1,6 @@
 from django import forms
 
+from accounts.models import User, EmployerProfile
 from .models import Listing, Career
 
 
@@ -18,6 +19,7 @@ class Filter(forms.Form):
     type = forms.ChoiceField(choices=TYPES_AND_EMPTY, widget=forms.CheckboxSelectMultiple)
     where = forms.ChoiceField(choices=WHERE_AND_EMPTY, widget=forms.CheckboxSelectMultiple)
     career = forms.ModelChoiceField(queryset=Career.objects.all(), widget=forms.CheckboxSelectMultiple)
+    company = forms.ModelChoiceField(queryset=EmployerProfile.objects.all(), widget=forms.CheckboxSelectMultiple)
 
 
 class CreateListingForm(forms.ModelForm):
@@ -25,4 +27,4 @@ class CreateListingForm(forms.ModelForm):
 
     class Meta:
         model = Listing
-        exclude = ['org', 'applications']
+        exclude = ['company', 'applications']

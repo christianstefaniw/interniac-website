@@ -12,3 +12,6 @@ def error(request):
 def Error404Handler(request):
     return render(request, '404.html')
 
+
+def Error500Handler(request):
+    return render(request, 'success-error/error-general.html')
