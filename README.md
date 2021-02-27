@@ -1,4 +1,4 @@
 # Interniac's Official Website
 
-Made by Christian Stefaniw  
-https://www.github.com/christianstefaniw
+A https://codingforcharityorg.com/ website  
+Work in progress - https://connect-x-web.herokuapp.com/  
