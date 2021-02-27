@@ -1,10 +1,12 @@
+from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from django.urls import reverse
 from django.views.generic import TemplateView
+from django.forms.models import model_to_dict
 
 from marketplace.models import Listing
-from .forms import StudentProfileForm
+from .forms import StudentProfileForm, StudentEmailPicture
 from .models import StudentProfile, User, EmployerProfile
 
 
@@ -19,7 +21,10 @@ class Profile(LoginRequiredMixin, TemplateView):
         context = super().get_context_data()
         if self.request.user.is_student:
             student = _Student(self.request)
-            context['student_profile_form'] = student.student_profile(self.request)
+            if self.request.method == 'POST':
+                student.save_both()
+            context['student_profile_form'] = student.student_profile()
+            context['student_email_picture_form'] = student.student_email_picture_form()
         if self.request.user.is_employer:
             employer = _Employer(self.request.user)
             context['marketplace_listings'] = employer.marketplace_listings()
@@ -56,19 +61,25 @@ class _Student:
     def __init__(self, request):
         self.request = request
 
-    def student_profile(self, request):
-        student_form = self.create_student_form()
-        if request.method == 'POST':
-            if student_form.is_valid():
-                student_form.save()
+    def student_profile(self):
+        current_data = StudentProfile.objects.get(user=self.request.user)
+        profile = StudentProfileForm(initial=model_to_dict(current_data))
+        return profile
 
-        return student_form
+    def student_email_picture_form(self):
+        current_data = User.objects.get(email=self.request.user)
+        email_picture = StudentEmailPicture(initial=model_to_dict(current_data))
+        return email_picture
 
-    def create_student_form(self):
-        if self.request.method == 'POST':
-            instance = StudentProfile.objects.get(user=self.request.user)
-            form = StudentProfileForm(self.request.POST, instance=instance)
-        else:
-            current_data = StudentProfile.objects.get(user=self.request.user)
-            form = StudentProfileForm(initial=current_data.__dict__)
-        return form
+    def save_both(self):
+        profile = StudentProfile.objects.get(user=self.request.user)
+        profile_form = StudentProfileForm(self.request.POST, instance=profile)
+        user = User.objects.get(email=self.request.user)
+        email_picture_form = StudentEmailPicture(self.request.POST, self.request.FILES, instance=user)
+        if all((profile_form.is_valid(), email_picture_form.is_valid())):
+            if user.email != self.request.user:
+                login(self.request, user)
+            email_picture_form.save()
+            profile.save()
+
+

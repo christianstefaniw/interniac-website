@@ -1,0 +1,170 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static "css/register.css" %}"/>
+        <link rel="stylesheet" href="{% static "css/style.css" %}"/>
+        <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logos/logo-small-transparent.png' %}"/>
+
+
+        <script src="https://kit.fontawesome.com/a76f8913d2.js" crossorigin="anonymous"></script>
+        {% include 'boilerplate/bootstrap.html' %}
+        <title>Interniac</title>
+    </head>
+    <body>
+
+        <section id="nav">
+            <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <img width="50" height="50" src="{% static "assets/images/logos/logo-small-transparent.png" %}"
+                         alt="logo"/>
+                    Interniac
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'careers' %}">Careers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'aboutus' %}">About Us</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'marketplace' %}">Marketplace</a>
+                            </li>
+                        {% endif %}
+                        <li class="nav-item nav-item-active">
+                            {% if user.is_authenticated %}
+                                <a class="nav-link" href="{{ user.get_absolute_url }}">Account</a>
+                            {% else %}
+                                <a class="nav-link" href="{% url 'login' %}">Login</a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </section>
+
+        <section>
+            <div class="container-fluid">
+                <div class="row justify-content-between">
+                    <div class="col-md-5">
+                        <div class="text-center">
+                            <img width="100%" src="{% static 'assets/images/login.svg' %}" alt="welcome"/>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h3 class="mb-3 primary">Register</h3>
+                        <form id="registration-form" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-5 mr-1">
+                                    {% for error in form.first_name.errors %}
+                                        <p class="alert-danger"> {{ error }} </p>
+                                    {% endfor %}
+                                    {{ form.first_name.label_tag }}
+                                    {{ form.first_name }}
+                                </div>
+
+                                <div class="col-md-5 ml-1">
+                                    {% for error in form.last_name.errors %}
+                                        <p class="alert-danger"> {{ error }} </p>
+                                    {% endfor %}
+                                    {{ form.last_name.label_tag }}
+                                    {{ form.last_name }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5 mr-1">
+                                    {% for error in form.email.errors %}
+                                        <p class="alert-danger"> {{ error }} </p>
+                                    {% endfor %}
+                                    {{ form.email.label_tag }}
+                                    {{ form.email }}
+                                </div>
+                                <div class="col-md-5 col-md-1">
+                                    {% for error in form.profile_picture.errors %}
+                                        <p class="alert-danger"> {{ error }} </p>
+                                    {% endfor %}
+                                    {{ form.profile_picture.label_tag }}
+                                    {{ form.profile_picture }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5 mr-1">
+                                    {% for error in form.password1.errors %}
+                                        <p class="alert-danger"> {{ error }} </p>
+                                    {% endfor %}
+                                    {{ form.password1.label_tag }}
+                                    {{ form.password1 }}
+                                </div>
+
+                                <div class="col-md-5 ml-1">
+                                    {% for error in form.password2.errors %}
+                                        <p class="alert-danger"> {{ error }} </p>
+                                    {% endfor %}
+                                    {{ form.password2.label_tag }}
+                                    {{ form.password2 }}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-5 mr-1">
+                                    <div class="row">
+                                        <div class="col">
+                                            {% for error in form.is_student.errors %}
+                                                <p class="alert-danger"> {{ error }} </p>
+                                            {% endfor %}
+                                            {{ form.is_student.label_tag }}
+                                        </div>
+                                        <div class="col">
+                                            {{ form.is_student }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-5 ml-1">
+                                    <div class="row">
+                                        <div class="col">
+                                            {% for error in form.is_employer.errors %}
+                                                <p class="alert-danger"> {{ error }} </p>
+                                            {% endfor %}
+                                            {{ form.is_employer.label_tag }}
+                                        </div>
+                                        <div class="col">
+                                            {{ form.is_employer }}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row mt-3" id="company-name">
+                                <div class="col-md-5">
+                                    {% for error in form.company_name.errors %}
+                                        <p class="alert-danger"> {{ error }} </p>
+                                    {% endfor %}
+                                    {{ form.company_name.label_tag }}
+                                    {{ form.company_name }}
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-2 mb-2">Create Account</button>
+                        </form>
+                        <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script src="{% static 'js/register.js' %}"></script>
+    </body>
+</html>

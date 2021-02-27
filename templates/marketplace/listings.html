@@ -2,13 +2,16 @@
 
     {% for listing in object_list %}
         <div class="listing-card mb-5">
-            <div class="container">
+            <div class="container-fluid mt-3 mb-3">
                 <div class="row">
-                    <div class="col-md-11">
+                    <div class="col-lg-8">
                         <p>{{ listing.title }}</p>
                     </div>
+                    <div class="col-lg-1">
+                        <img class="img-fluid" src="{{ listing.company.profile_picture.url }}" alt="company logo"/>
+                    </div>
                     {% if user.is_student %}
-                        <div class="col-md-1">
+                        <div class="col-lg-3 text-right">
                             {% if listing in user.applications.all %}
                                 <button onclick="unapply({{ listing.id }}, this)">Unapply</button>
                             {% else %}
@@ -16,7 +19,9 @@
                             {% endif %}
                         </div>
                     {% endif %}
+
                 </div>
+                <p style="line-height: 0">{{ listing.company.company_name }}</p>
                 {% if listing.type == "paid" %}
                     <p>paid -
                         {% if listing.where == 'in-person' %}

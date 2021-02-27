@@ -1,7 +1,7 @@
 from django import forms
-from django.forms import DateInput
+from django.forms import DateInput, FileInput
 
-from .models import StudentProfile
+from .models import StudentProfile, User
 
 
 class StudentProfileForm(forms.ModelForm):
@@ -20,9 +20,17 @@ class StudentProfileForm(forms.ModelForm):
             'teacher_or_counselor_name': 'Teacher of Counselor Name',
             'awards_achievements': 'Awards and Achievements',
             'work_exp': 'Word Experience',
-            'volunteering_experience': 'Volunteering Experience',
+            'volunteering_exp': 'Volunteering Experience',
             'extracurriculars': 'Extracurricular Activities',
             'skills': 'Skills',
             'leadership_roles': 'Leadership Roles',
-
         }
+
+
+class StudentEmailPicture(forms.ModelForm):
+    class Meta:
+        model = User
+        widgets = {
+            'profile_picture': FileInput()
+        }
+        fields = ['email', 'profile_picture']

@@ -44,23 +44,36 @@
                 </div>
             </nav>
         </section>
-        {% if user.is_student %}
-            {% block student-profile %}
-                {% include 'accounts/student-profile.html' %}
-            {% endblock %}
-        {% elif user.is_employer %}
-            {% block employer-profile %}
-                {% include 'accounts/employer-profile.html' %}
-            {% endblock %}
-        {% elif user.is_staff %}
-            {% block staff-profile %}
-                {% include 'accounts/staff-profile.html' %}
-            {% endblock %}
-        {% else %}
-            <h1>Error</h1>
-        {% endif %}
-        <a style="color: red" href="{% url "delete" id=user.id %}">Delete account</a>
-        <br>
-        <a href="{% url 'logout' %}?next=/">Log out</a>
+        <div class="container-fluid">
+            {% if user.is_student %}
+                {% block student-profile %}
+                    {% include 'accounts/student-profile.html' %}
+                {% endblock %}
+            {% elif user.is_employer %}
+                {% block employer-profile %}
+                    {% include 'accounts/employer-profile.html' %}
+                {% endblock %}
+            {% elif user.is_staff %}
+                {% block staff-profile %}
+                    {% include 'accounts/staff-profile.html' %}
+                {% endblock %}
+            {% else %}
+                <h1>Error</h1>
+            {% endif %}
+            <div class="row mt-5 mb-3 justify-content-start">
+                <div class="col-md-2">
+                    <a class="danger-btn"
+                       href="{% url "delete" id=user.id %}">Delete account</a>
+                </div>
+                <div class="col-md-2">
+                    <a class="neutral-btn"
+                       href="{% url 'logout' %}?next=/">Logout</a>
+                </div>
+
+            </div>
+
+        </div>
+
+
     </body>
 </html>

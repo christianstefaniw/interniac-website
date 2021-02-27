@@ -140,7 +140,6 @@ END CONTACT FORM
 
 .stat:hover {
     cursor: pointer;
-    margin-top: 0.5rem;
     box-shadow: 0 0.4em 0.5em rgb(0, 0, 0.8);
 }
 

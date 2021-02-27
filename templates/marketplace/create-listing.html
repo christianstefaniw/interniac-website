@@ -68,17 +68,6 @@
             <form method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <div class="row">
-                    <div class="col-md-10">
-                        {% if form.errors %}
-                            {% for field in form %}
-                                {% for error in field.errors %}
-                                    <p class="alert-danger"> {{ error }} </p>
-                                {% endfor %}
-                            {% endfor %}
-                        {% endif %}
-                    </div>
-                </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         {% else %}
@@ -86,5 +75,6 @@
         {% endif %}
 
         <script src="{% static 'js/create-intern-listing.js' %}"></script>
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     </body>
 </html>

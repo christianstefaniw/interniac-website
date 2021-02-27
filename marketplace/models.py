@@ -1,6 +1,11 @@
+import os
+
+from django.core.mail import EmailMessage
 from django.db import models
 from django.urls import reverse
 from django_unique_slugify import unique_slugify
+
+from accounts.models import User
 
 intern_types = (
     ('Paid', 'Paid'),
@@ -38,6 +43,36 @@ class Listing(models.Model):
 
     def get_absolute_url(self):
         return reverse('listing', kwargs={'slug': self.slug})
+
+    def accept_email(self, student):
+        email = student.email
+
+        message = f'''
+Congratulations! You have been accepted to the {self.title} internship from {self.company}! 
+If you have any questions for {self.company}, email them at {self.company.email} or reply to this message.
+Good luck! 
+                
+From, the Interniac Team
+                '''
+
+        EmailMessage(body=message, from_email=os.environ.get("EMAIL"),
+                     to=[email], subject=f"Congratulations! ({self.title})",
+                     reply_to=[self.company.email]).send()
+
+    def reject_email(self, student):
+        email = student.email
+
+        message = f'''
+We are sorry to inform you that you have not been selected for the {self.title} internship from {self.company}.
+If you have any questions for {self.company}, email them at {self.company.email} or reply to this message.
+Better luck next time.
+
+From, the Interniac Team
+                    '''
+
+        EmailMessage(body=message, from_email=os.environ.get("EMAIL"),
+                     to=[email], subject=f"Response for {self.title}",
+                     reply_to=[self.company.email]).send()
 
     def __str__(self):
         return self.title

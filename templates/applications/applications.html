@@ -8,10 +8,11 @@
 
 
         <link rel="stylesheet" href="{% static "css/style.css" %}"/>
-
+        <link rel="stylesheet" href="{% static "css/applications.css" %}"/>
 
         <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logos/logo-small-transparent.png' %}"/>
 
+        <script src="https://kit.fontawesome.com/a76f8913d2.js" crossorigin="anonymous"></script>
 
         {% include 'boilerplate/bootstrap.html' %}
 
@@ -53,6 +54,12 @@
         </section>
 
         <div class="container-fluid">
+            <div class="mb-3">
+                <a href="{% url 'profile' %}">
+                    <i class="fas fa-arrow-circle-left fa-2x"></i>
+                </a>
+            </div>
+
             {% if user.is_employer %}
                 {% include 'applications/employer.html' %}
             {% elif user.is_student %}

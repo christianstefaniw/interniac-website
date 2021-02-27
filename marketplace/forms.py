@@ -1,4 +1,6 @@
 from django import forms
+from django.forms import DateInput
+from nocaptcha_recaptcha import NoReCaptchaField
 
 from accounts.models import User, EmployerProfile
 from .models import Listing, Career
@@ -24,7 +26,11 @@ class Filter(forms.Form):
 
 class CreateListingForm(forms.ModelForm):
     new_career = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Create a new career'}), required=False)
+    captcha = NoReCaptchaField(label='')
 
     class Meta:
         model = Listing
+        widgets = {
+            'application_deadline': DateInput(attrs={'type': 'date'})
+        }
         exclude = ['company', 'applications']

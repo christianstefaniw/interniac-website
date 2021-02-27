@@ -143,6 +143,53 @@ nav > div > ul > li > a {
     background-color: var(--bg-color-primary);
 }
 
+.danger-btn{
+    transition: background-color 0.5s ease;
+    user-select: none;
+    padding: 10px;
+    background-color: #cbcaca;
+    border-radius: 10px;
+    color: #dc3545;
+}
+
+.danger-btn:hover{
+    transition: background-color 0.5s ease;
+    text-decoration: none;
+    background-color: #e2dcdc;
+    color: #dc3545;
+}
+
+.neutral-btn{
+    transition: background-color 0.5s ease;
+    user-select: none;
+    padding: 10px;
+    background-color: #cbcaca;
+    border-radius: 10px;
+}
+
+.neutral-btn:hover{
+    transition: background-color 0.5s ease;
+    text-decoration: none;
+    background-color: #e2dcdc;
+    color: #2c7ee4;
+}
+
+.success-btn{
+    transition: background-color 0.5s ease;
+    user-select: none;
+    padding: 10px;
+    background-color: #cbcaca;
+    border-radius: 10px;
+    color: #28a745;
+}
+
+.success-btn:hover{
+    transition: background-color 0.5s ease;
+    text-decoration: none;
+    background-color: #e2dcdc;
+    color: #28a745;
+}
+
 /* ERRORS */
 .errorlist > li {
     background-color: #f2dede;

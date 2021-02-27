@@ -25,26 +25,32 @@ class SingleApplication(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
-        context['user'] = self.get_user()
+        context['student'] = self.get_student()
+        context['listing'] = self.get_listing()
         return context
 
-    def get_user(self):
-        return User.objects.get(slug=self.kwargs['slug'])
+    def get_student(self):
+        return User.objects.get(slug=self.kwargs['user_slug'])
+
+    def get_listing(self):
+        return Listing.objects.get(slug=self.kwargs['listing_slug'])
 
 
-def accept(request):
-    listing = Listing.objects.get(id=request.GET.get('listing_id'))
-    student = User.objects.get(id=request.GET.get('student_id'))
+def accept(request, listing_id, student_id):
+    listing = Listing.objects.get(id=listing_id)
+    student = User.objects.get(id=student_id)
     listing.acceptances.add(student)
     listing.applications.remove(student)
+    listing.accept_email(student)
     return render(request, 'success-error/success-accepted-student.html',
-                  context={'first': student.first_name, 'last': student.last_name})
+                  context={'first': student.first_name, 'last': student.last_name, 'listing_title': listing.title})
 
 
-def reject(request):
-    listing = Listing.objects.get(id=request.GET.get('listing_id'))
-    student = User.objects.get(id=request.GET.get('student_id'))
+def reject(request, listing_id, student_id):
+    listing = Listing.objects.get(id=listing_id)
+    student = User.objects.get(id=student_id)
     listing.rejections.add(student)
     listing.applications.remove(student)
+    listing.reject_email(student)
     return render(request, 'success-error/success-rejected-student.html',
-                  context={'first': student.first_name, 'last': student.last_name})
+                  context={'first': student.first_name, 'last': student.last_name, 'listing_title': listing.title})

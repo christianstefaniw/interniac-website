@@ -1,0 +1,9 @@
+.fas{
+    transition: color 0.5s ease;
+}
+
+.fas:hover{
+    transition: color 0.5s ease;
+}
+
+

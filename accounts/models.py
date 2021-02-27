@@ -59,7 +59,7 @@ class StudentProfile(models.Model):
     teacher_or_counselor_name = models.CharField(max_length=30, null=True, blank=True)
     awards_achievements = models.TextField(null=True, blank=True)
     work_exp = models.TextField(null=True, blank=True)
-    volunteering_experience = models.TextField(null=True, blank=True)
+    volunteering_exp = models.TextField(null=True, blank=True)
     extracurriculars = models.TextField(null=True, blank=True)
     skills = models.TextField(null=True, blank=True)
     leadership_roles = models.TextField(null=True, blank=True)
