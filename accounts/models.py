@@ -81,6 +81,8 @@ def auto_delete_file_on_delete(sender, instance, **kwargs):
     when corresponding `MediaFile` object is deleted.
     """
     if instance.profile_picture:
+        if instance.profile_picture.name == 'profile_pictures/default.png':
+            return
         if os.path.isfile(instance.profile_picture.path):
             os.remove(instance.profile_picture.path)
 

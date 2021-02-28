@@ -1,15 +1,26 @@
-{% for listing in listings %}
-    {% if listing.applications.all %}
-        <h1>{{ listing.title }}</h1>
-    {% endif %}
-    {% for student in listing.applications.all %}
-        {% if student not in listing.acceptances.all %}
-            <div class="mb-5">
-                <p>{{ student.first_name }} {{ student.last_name }}</p>
-                <a class="success-btn" href="{% url 'accept' listing_id=listing.id student_id=student.id %}">Accept</a>
-                <a class="danger-btn mr-3 ml-3" href="{% url 'reject' listing_id=listing.id student_id=student.id %} ">Reject</a>
-                <a class="neutral-btn" href="{% url 'single_application' listing_slug=listing.slug user_slug=student.slug %}">View Application</a>
+<div class="row">
+    {% for listing in listings %}
+        {% if listing.applications.all %}
+            <div class="col-lg-4" style="margin-bottom: 10rem">
+                <h1>{{ listing.title }}</h1>
+
+                {% for student in listing.applications.all %}
+                    {% if student not in listing.acceptances.all %}
+                        <div class="mb-5">
+                            <p>{{ student.first_name }} {{ student.last_name }}</p>
+                            <a class="success-btn"
+                               href="{% url 'accept' listing_id=listing.id student_id=student.id %}">Accept</a>
+                            <a class="danger-btn mr-3 ml-3"
+                               href="{% url 'reject' listing_id=listing.id student_id=student.id %} ">Reject</a>
+                            <a class="neutral-btn bottom-application-btn"
+                               href="{% url 'single_application' listing_slug=listing.slug user_slug=student.slug %}">View
+                                Application</a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
             </div>
+
         {% endif %}
     {% endfor %}
-{% endfor %}
+</div>
+

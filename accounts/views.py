@@ -31,8 +31,8 @@ class Profile(LoginRequiredMixin, TemplateView):
         return context
 
 
-def delete_user(request, id):
-    user = User.objects.get(id=id)
+def delete_user(request):
+    user = User.objects.get(email=request.user)
 
     if user.is_superuser:
         user.delete()

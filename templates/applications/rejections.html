@@ -1,0 +1,77 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <meta charset="UTF-8">
+        <title>Interniac</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static "css/style.css" %}"/>
+        <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logos/logo-small-transparent.png' %}"/>
+        <script src="https://kit.fontawesome.com/a76f8913d2.js" crossorigin="anonymous"></script>
+        {% include 'boilerplate/bootstrap.html' %}
+
+    </head>
+    <body>
+        <section id="nav">
+            <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <img width=200 height="50" src="{% static "assets/images/logos/logo-transparent.png" %}" alt="logo"/>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'careers' %}">Careers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'aboutus' %}">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'marketplace' %}">Marketplace</a>
+                        </li>
+                        <li class="nav-item nav-item-active">
+                            <a class="nav-link" href="{{ user.get_absolute_url }}">Account</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </section>
+        <div class="container-fluid">
+            <div class="mb-4">
+                <a href="{% url 'profile' %}">
+                    <i class="fas fa-arrow-circle-left fa-2x"></i>
+                </a>
+            </div>
+            <div class="row">
+                {% for listing in user.listing.all %}
+                    {% if listing.rejections.all %}
+                        <div class="col-lg-4">
+                            <h2>{{ listing.title }}</h2>
+                            {% for student in listing.rejections.all %}
+                                <div class="mb-4">
+                                    <a style="display: block; color: black" class="mb-2 mt-1"
+                                       href="{% url 'single_application' listing_slug=listing.slug user_slug=student.slug %}">{{ student.first_name }} {{ student.last_name }}</a>
+                                    <a class="neutral-btn" href="mailto:{{ student.email }}">{{ student.email }}</a>
+                                    <a class="danger-btn"
+                                       href="{% url 'archive_rejected' listing_id=listing.id student_id=student.id %}">Archive</a>
+                                </div>
+
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+        </div>
+    </body>
+</html>
+

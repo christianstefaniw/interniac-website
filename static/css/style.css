@@ -53,6 +53,7 @@ html > body {
 
 a {
     text-decoration: none;
+    display: inline-block;
 }
 
 .primary {
@@ -160,6 +161,7 @@ nav > div > ul > li > a {
 }
 
 .neutral-btn{
+    white-space: nowrap;
     transition: background-color 0.5s ease;
     user-select: none;
     padding: 10px;
@@ -303,10 +305,20 @@ END FOOTER
 
 /* BREAK POINTS */
 
+@media screen and (max-width: 1104px) {
+    .bottom-application-btn{
+        margin-top: 1rem;
+    }
+}
+
 @media screen and (max-width: 991px) {
 
     #about-section {
         margin-top: 8rem;
+    }
+
+    .bottom-application-btn{
+        margin-top: 0;
     }
 }
 
@@ -338,17 +350,6 @@ END FOOTER
     }
 
 
-}
-
-@media screen and (max-width: 1800px) {
-    .container-fluid{
-        max-width:  1500px !important;
-    }
-}
-@media screen and (max-width: 1600px) {
-    .container-fluid{
-        max-width:  1300px !important;
-    }
 }
 
 @media screen and (max-width: 266px) {
