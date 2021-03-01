@@ -36,7 +36,7 @@ class CreateListing(LoginRequiredMixin, CreateView):
             new_listing.save()
             return render(self.request, 'success-error/success-created-listing.html', context={'listing': new_listing})
         else:
-            return redirect(reverse('error'))
+            return redirect('error')
 
 
 class FilterListings(LoginRequiredMixin, ListView):
@@ -105,7 +105,7 @@ def delete_listing(request, listing_id):
 
     listing.delete()
 
-    return redirect(reverse('listings'))
+    return redirect('listings')
 
 
 class EditListing(LoginRequiredMixin, UpdateView):

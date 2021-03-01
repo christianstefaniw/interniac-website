@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.mail import EmailMessage
 from django.shortcuts import redirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views.generic import TemplateView
 from django.forms.models import model_to_dict
 
@@ -17,7 +17,7 @@ from .models import StudentProfile, User, EmployerProfile
 
 class Profile(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/profile.html'
-    login_url = 'login'
+    login_url = reverse_lazy('login')
 
     def post(self, request, **kwargs):
         if 'subject' in request.POST and 'body' in request.POST:
@@ -56,9 +56,9 @@ def email_all(request):
         EmailMessage(body=form.cleaned_data.get('body'), from_email=os.environ.get('EMAIL'),
                      to=receiver_list, subject=form.cleaned_data.get('subject'),
                      ).send()
-        return redirect(reverse('success'))
+        return redirect('success')
     else:
-        return redirect(reverse('error'))
+        return redirect('error')
 
 
 @login_required
@@ -67,7 +67,7 @@ def delete_user(request):
 
     if user.is_superuser:
         user.delete()
-        return redirect(reverse('login'))
+        return redirect('login')
 
     if user.is_employer:
         user_profile = EmployerProfile.objects.get(user=user)
@@ -75,7 +75,7 @@ def delete_user(request):
         user_profile = StudentProfile.objects.get(user=user)
     user_profile.delete()
     user.delete()
-    return redirect(reverse('login'))
+    return redirect('login')
 
 
 class _Employer:

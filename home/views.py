@@ -27,20 +27,20 @@ class HomePage(TemplateView):
 
             if form.is_valid():
                 if EmailSignup.objects.filter(email_signup=form.cleaned_data['email_signup']).exists():
-                    return redirect(reverse('success'))
+                    return redirect('success')
                 form.save()
                 form.subscribed_email()
-                return redirect(reverse('success'))
+                return redirect('success')
             else:
-                return redirect(reverse('error'))
+                return redirect('error')
 
         if 'message' in self.request.POST:
             form = ContactForm(request.POST)
             if form.is_valid():
                 form.send_email()
-                return redirect(reverse('success'))
+                return redirect('success')
             else:
-                return redirect(reverse('error'))
+                return redirect('error')
 
 
 def read_more(request, pk):
@@ -49,4 +49,4 @@ def read_more(request, pk):
 
 def unsubscribe(request, email):
     EmailSignup.objects.get(email_signup=email).delete()
-    return redirect(reverse('success'))
+    return redirect('success')
