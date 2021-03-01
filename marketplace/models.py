@@ -1,5 +1,6 @@
 import os
 
+import django
 from django.core.mail import EmailMessage
 from django.db import models
 from django.urls import reverse
@@ -33,7 +34,9 @@ class Listing(models.Model):
     applications = models.ManyToManyField('accounts.User', related_name='applications', blank=True)
     acceptances = models.ManyToManyField('accounts.User', related_name='acceptances', blank=True)
     rejections = models.ManyToManyField('accounts.User', related_name='rejections', blank=True)
-    saves = models.ManyToManyField('accounts.User', related_name='saves', blank=True)
+    interview_requests = models.ManyToManyField('accounts.User', related_name='interviews', blank=True)
+    application_url = models.URLField(blank=True, null=True)
+    posted = models.DateField(default=django.utils.timezone.now, blank=True)
     slug = models.SlugField(max_length=50, unique=False, blank=True)
 
     def save(self, *args, **kwargs):
@@ -72,6 +75,21 @@ From, the Interniac Team
 
         EmailMessage(body=message, from_email=os.environ.get("EMAIL"),
                      to=[email], subject=f"Response for {self.title}",
+                     reply_to=[self.company.email]).send()
+
+    def request_interview_email(self, student):
+        email = student.email
+
+        message = f'''
+Congratulations, you have moved onto the next stage of the recruitment process for {self.company.company_name}.
+{self.company.company_name} will schedule an interview with you shortly, if you have any questions please email
+{self.company.email} or reply to this email.
+
+From, the Interniac Team
+                            '''
+
+        EmailMessage(body=message, from_email=os.environ.get("EMAIL"),
+                     to=[email], subject=f"Next steps for {self.title}",
                      reply_to=[self.company.email]).send()
 
     def __str__(self):

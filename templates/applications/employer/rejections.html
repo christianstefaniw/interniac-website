@@ -1,0 +1,19 @@
+<div class="row">
+    {% for listing in user.listing.all %}
+        {% if listing.rejections.all %}
+            <div class="col-lg-4">
+                <h2>{{ listing.title }}</h2>
+                {% for student in listing.rejections.all %}
+                    <div class="mb-4">
+                        <a style="display: block; color: black" class="mb-2 mt-1"
+                           href="{% url 'single_application' listing_slug=listing.slug user_slug=student.slug %}">{{ student.first_name }} {{ student.last_name }}</a>
+                        <a class="neutral-btn" href="mailto:{{ student.email }}">{{ student.email }}</a>
+                        <a class="danger-btn"
+                           href="{% url 'archive_rejected' listing_id=listing.id student_id=student.id %}">Archive</a>
+                    </div>
+
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>

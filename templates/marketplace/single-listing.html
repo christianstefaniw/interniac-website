@@ -1,1 +1,123 @@
-<h1>listing</h1>
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+        <link rel="stylesheet" href="{% static "css/style.css" %}"/>
+        <link rel="stylesheet" href="{% static "css/marketplace.css" %}"/>
+
+
+        <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logos/logo-small-transparent.png' %}"/>
+
+        <script src="https://kit.fontawesome.com/a76f8913d2.js" crossorigin="anonymous"></script>
+
+        {% include 'boilerplate/bootstrap.html' %}
+
+
+        <title>Interniac</title>
+    </head>
+    <body>
+        <section id="nav">
+            <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <img width=200 height="50" src="{% static "assets/images/logos/logo-transparent.png" %}" alt="logo"/>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'careers' %}">Careers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'aboutus' %}">About Us</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item nav-item-active">
+                                <a class="nav-link" href="{% url 'marketplace' %}">Marketplace</a>
+                            </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            {% if user.is_authenticated %}
+                                <a class="nav-link" href="{{ user.get_absolute_url }}">Account</a>
+                            {% else %}
+                                <a class="nav-link" href="{% url 'login' %}">Login</a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </section>
+
+        <div class="mb-2 ml-2">
+            <a href="{{ request.META.HTTP_REFERER }}">
+                <i class="fas fa-arrow-circle-left fa-2x"></i>
+            </a>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9">
+                    <h1>{{ object.title }}</h1>
+
+                    <h4 class="mt-5">Type</h4>
+                    <p>{{ object.type }}</p>
+
+                    <h4 class="mt-5">Where</h4>
+                    <p>{{ object.where }}</p>
+
+                    {% if object.where == 'in-person' %}
+                        <h4 class="mt-5">Location</h4>
+                        <p>{{ object.location }}</p>
+                    {% endif %}
+
+                    <h4 class="mt-5">Career</h4>
+                    <p>{{ object.career }}</p>
+
+                    <h4 class="mt-5">Time commitment</h4>
+                    <p>{{ object.time_commitment }}</p>
+
+                    <h4 class="mt-5">Application deadline</h4>
+                    <p>{{ object.application_deadline }}</p>
+
+                    <h4 class="mt-5">Description</h4>
+                    <p>{{ object.description }}</p>
+
+                    {% if object.application_url %}
+                        <h4 class="mt-5">Application URL</h4>
+                        <a href="{{ object.application_url }}">{{ object.application_url }}</a>
+                    {% endif %}
+
+                    {% if user.is_student %}
+                        {% if listing in user.applications.all %}
+                            <a class="danger-btn mt-3 mb-5"
+                               href="{% url 'unapply' listing_id=listing.id %}?redirect=success">Unapply</a>
+                        {% else %}
+                            <a class="success-btn mt-3 mb-5"
+                               href="{% url 'apply' listing_id=listing.id %}?redirect=success">Apply</a>
+                        {% endif %}
+                    {% endif %}
+
+                </div>
+                <div class="col-lg-3">
+                    <div class="inner-shadow img-box">
+                        <img class="outer-shadow img-fluid" src="{{ listing.company.profile_picture.url }}"
+                             alt="profile picture"/>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <script src="{% static 'js/marketplace.js' %}"></script>
+    </body>
+</html>

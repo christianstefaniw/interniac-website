@@ -203,48 +203,6 @@ nav > div > ul > li > a {
 /* END ERRORS */
 
 
-/*
-CTA BUTTONS
- */
-
-.cta-btn-1 {
-    transition: all 1s ease;
-    padding: 10px 25px;
-    border-radius: 30px;
-    margin-top: 1rem;
-    color: white !important;
-    font-size: 1.4rem;
-    background: linear-gradient(90deg, var(--gradient-secondary-one), var(--gradient-secondary-two));
-}
-
-.cta-btn-1:hover {
-    cursor: pointer;
-    box-shadow: 0 0 0 3px #000000;
-    transition: all 1s ease;
-}
-
-
-.cta-btn-2 {
-    transition: all 1s ease;
-    padding: 10px 25px;
-    text-decoration: none;
-    border-radius: 30px;
-    color: white !important;
-    font-size: 1.4rem;
-    margin-top: 1rem;
-    background: linear-gradient(90deg, var(--gradient-primary-one), var(--gradient-primary-two));
-}
-
-.cta-btn-2:hover {
-    cursor: pointer;
-    box-shadow: 0 0 0 3px #000000;
-    transition: all 1s ease;
-}
-
-/*
-END CTA BUTTONS
- */
-
 
 /*
 IMAGES
@@ -320,6 +278,7 @@ END FOOTER
     .bottom-application-btn{
         margin-top: 0;
     }
+
 }
 
 @media screen and (max-width: 767px) {

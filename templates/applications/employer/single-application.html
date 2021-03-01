@@ -68,40 +68,43 @@
                             <p>{{ student.first_name }} {{ student.last_name }}</p>
 
                             <h3 class="mt-5">Phone Number</h3>
-                            {{ student.profile.phone }}
+                            <p>{{ student.profile.phone }}</p>
+
+                            <h3 class="mt-5">Email</h3>
+                            <a href="mailto:{{ student.email }}">{{ student.email }}</a>
 
                             <h3 class="mt-5">Date of Birth</h3>
-                            {{ student.profile.dob }}
+                            <p>{{ student.profile.dob }}</p>
 
                             <h3 class="mt-5">High School</h3>
-                            {{ student.profile.hs }}
+                            <p>{{ student.profile.hs }}</p>
 
                             <h3 class="mt-5">High School Address</h3>
-                            {{ student.profile.hs_addy }}
+                            <p>{{ student.profile.hs_addy }}</p>
 
                             <h3 class="mt-5">Teacher or Counselor Name</h3>
-                            {{ student.profile.teacher_or_counselor_name }}
+                            <p>{{ student.profile.teacher_or_counselor_name }}</p>
 
                             <h3 class="mt-5">Teacher or Counselor Email</h3>
-                            {{ student.profile.teacher_or_counselor_email }}
+                            <p>{{ student.profile.teacher_or_counselor_email }}</p>
 
                             <h3 class="mt-5">Awards and Achievements</h3>
-                            {{ student.profile.awards_achievements }}
+                            <p>{{ student.profile.awards_achievements }}</p>
 
                             <h3 class="mt-5">Work Experience</h3>
-                            {{ student.profile.work_exp }}
+                            <p>{{ student.profile.work_exp }}</p>
 
                             <h3 class="mt-5">Volunteering Experience</h3>
-                            {{ student.profile.volunteering_exp }}
+                            <p>{{ student.profile.volunteering_exp }}</p>
 
                             <h3 class="mt-5">Extracurriculars</h3>
-                            {{ student.profile.extracurriculars }}
+                            <p>{{ student.profile.extracurriculars }}</p>
 
                             <h3 class="mt-5">Skills</h3>
-                            {{ student.profile.skills }}
+                            <p>{{ student.profile.skills }}</p>
 
                             <h3 class="mt-5">Leadership Roles</h3>
-                            {{ student.profile.leadership_roles }}
+                            <p>{{ student.profile.leadership_roles }}</p>
 
                             <div class="container-fluid mt-5">
                                 <div class="row">
@@ -141,6 +144,10 @@
 
                         <a class="danger-btn ml-3"
                            href="{% url 'reject' listing_id=listing.id student_id=student.id %}">Reject</a>
+
+                        <a class="neutral-btn ml-3"
+                           href="{% url 'request_interview' listing_id=listing.id student_id=student.id %}">Request
+                            Interview</a>
                     </div>
                 </div>
             </div>

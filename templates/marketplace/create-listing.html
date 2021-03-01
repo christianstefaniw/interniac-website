@@ -64,6 +64,9 @@
                 </div>
             </nav>
         </section>
+        <a href="{{ request.META.HTTP_REFERER }}">
+            <i class="fas fa-arrow-circle-left fa-2x"></i>
+        </a>
         {% if user.is_employer or user.is_superuser %}
             <form method="post">
                 {% csrf_token %}

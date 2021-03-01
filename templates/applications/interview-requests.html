@@ -3,24 +3,17 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+
         <meta charset="UTF-8">
+        <title>Interniac</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
         <link rel="stylesheet" href="{% static "css/style.css" %}"/>
-        <link rel="stylesheet" href="{% static "css/applications.css" %}"/>
-
         <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logos/logo-small-transparent.png' %}"/>
-
         <script src="https://kit.fontawesome.com/a76f8913d2.js" crossorigin="anonymous"></script>
-
         {% include 'boilerplate/bootstrap.html' %}
 
-
-        <title>Interniac</title>
     </head>
     <body>
-
         <section id="nav">
             <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
                 <a class="navbar-brand" href="{% url 'home' %}">
@@ -52,7 +45,6 @@
                 </div>
             </nav>
         </section>
-
         <div class="container-fluid">
             <div class="mb-4">
                 <a href="{% url 'profile' %}">
@@ -61,12 +53,12 @@
             </div>
 
             {% if user.is_employer %}
-                {% include 'applications/employer/applications.html' %}
+                {% include 'applications/employer/interview-requests.html' %}
             {% elif user.is_student %}
-                {% include 'applications/student/student.html' %}
+                {% include 'applications/student/interview-requests.html' %}
             {% endif %}
+
         </div>
-
-
     </body>
 </html>
+

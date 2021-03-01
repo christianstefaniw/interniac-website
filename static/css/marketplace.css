@@ -41,3 +41,29 @@ form p {
     box-shadow: 0 0 0 0.1rem var(--primary-color) !important;
 }
 
+.view:hover{
+    text-decoration: none;
+}
+
+.apply-unapply-btn{
+    transition: background-color 0.5s ease;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 10px;
+    border: 1px solid black;
+    outline: none;
+    background-color: #efefef;
+}
+
+.apply-unapply-btn:active{
+    outline: none;
+}
+
+.apply-unapply-btn:focus{
+    outline: none;
+}
+
+.apply-unapply-btn:hover{
+    transition: background-color 0.5s ease;
+    background-color: #e2dcdc;
+}

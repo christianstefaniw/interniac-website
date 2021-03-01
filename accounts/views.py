@@ -31,6 +31,10 @@ class Profile(LoginRequiredMixin, TemplateView):
         return context
 
 
+class Listings(LoginRequiredMixin, TemplateView):
+    template_name = 'accounts/employer/listings.html'
+
+
 def delete_user(request):
     user = User.objects.get(email=request.user)
 

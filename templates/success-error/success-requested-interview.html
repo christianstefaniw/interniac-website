@@ -1,0 +1,11 @@
+{% extends 'success-error/success.html' %}
+
+
+{% block message %}
+    <p>An email has been sent to {{ first }} {{ last }} for<br>{{ listing_title }}</p>
+    <p>It is up to you to follow up with {{ first }} {{ last }} about an interview date</p>
+{% endblock %}
+
+{% block return %}
+    <a class="back" href="{% url 'applications' %}">Go to applications</a>
+{% endblock return %}

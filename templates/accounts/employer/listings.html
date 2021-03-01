@@ -60,11 +60,9 @@
                 </a>
             </div>
 
-            {% if user.is_employer %}
-                {% include 'applications/employer/applications.html' %}
-            {% elif user.is_student %}
-                {% include 'applications/student/student.html' %}
-            {% endif %}
+            {% for listing in user.listing.all %}
+                <p>{{ listing.title }}</p>
+            {% endfor %}
         </div>
 
 

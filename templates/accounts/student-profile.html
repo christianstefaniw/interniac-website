@@ -23,11 +23,4 @@
 
         {% endfor %}
     </div>
-    <div class="col-md-3">
-        {% for listing in user.saves.all %}
-            {{ listing }}
-            <a href="{% url 'unsave' listing_id=application.id %}">Unsave</a>
-        {% endfor %}
-    </div>
-
 </div>

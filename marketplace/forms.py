@@ -1,4 +1,5 @@
 from django import forms
+from django.core.exceptions import ValidationError
 from django.forms import DateInput
 from nocaptcha_recaptcha import NoReCaptchaField
 
@@ -26,6 +27,7 @@ class Filter(forms.Form):
 
 class CreateListingForm(forms.ModelForm):
     new_career = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Create a new career'}), required=False)
+    application_url = forms.URLField(widget=forms.URLInput(attrs={'placeholder': 'optional'}), required=False)
     captcha = NoReCaptchaField(label='')
 
     class Meta:
@@ -33,4 +35,20 @@ class CreateListingForm(forms.ModelForm):
         widgets = {
             'application_deadline': DateInput(attrs={'type': 'date'})
         }
-        exclude = ['company', 'applications']
+        exclude = ['company']
+
+    def clean(self):
+        cleaned_data = super(CreateListingForm, self).clean()
+        if cleaned_data['where'] == 'Virtual':
+            if cleaned_data['location'] != '':
+                self.add_error('where', 'Virtual internship can\'t have a location')
+
+        if cleaned_data['type'] == 'Unpaid':
+            if cleaned_data['pay'] != '':
+                self.add_error('type', 'Unpaid internship can\'t have a salary')
+
+        if cleaned_data['career'] != '':
+            if cleaned_data['new_career'] != '':
+                self.add_error('career', 'Can\'t make a new career if there is a selected career')
+
+        return cleaned_data

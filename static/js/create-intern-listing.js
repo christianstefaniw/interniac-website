@@ -8,7 +8,8 @@ ids={
     timeCommitment: 'id_time_commitment',
     appDeadline: 'id_application_deadline',
     description: 'id_description',
-    title: 'id_title'
+    title: 'id_title',
+    applicationUrl: 'id_application_url'
 }
 
 
@@ -53,15 +54,18 @@ $(`#${ids.internType}`).change(function (){
 $(document).ready(function () {
     let hide = $('form p').children()
     for (let i = 0; i in hide; i++){
-        if (myGetElem($(hide[i]), ids.internType)){continue}
-        if (myGetElem($(hide[i]), ids.internWhere)){continue}
+        if (myGetElem($(hide[i]), ids.internType)){continue;}
+        if (myGetElem($(hide[i]), ids.internWhere)){continue;}
         if (myGetElem($(hide[i]), ids.careerType)){continue}
         if (myGetElem($(hide[i]), ids.newCareer)){continue}
         if (myGetElem($(hide[i]), ids.appDeadline)){continue}
         if (myGetElem($(hide[i]), ids.timeCommitment)){continue}
         if (myGetElem($(hide[i]), ids.description)){continue}
         if (myGetElem($(hide[i]), ids.title)){continue}
-        $(hide[i]).hide()
+        if (myGetElem($(hide[i]), ids.applicationUrl)){continue}
+        if (myGetElem($(hide[i]), ids.pay)){$(hide[i]).hide(); continue;}
+        if (myGetElem($(hide[i]), ids.location)){$(hide[i]).hide(); continue;}
+        $(hide[i]).remove()
     }
 })
 
