@@ -2,3 +2,20 @@
     Staff
 </h1>
 
+<div class="col-md-6">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+</div>
+
+
+<div class="mt-5">
+    <a class="danger-btn"
+       href="{% url "delete" %}">Delete account</a>
+    <a class="neutral-btn"
+       href="{% url 'logout' %}?next=/">Logout</a>
+</div>
+
+

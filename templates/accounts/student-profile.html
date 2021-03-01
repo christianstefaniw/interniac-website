@@ -1,26 +1,115 @@
 <h1>Welcome, {{ user.first_name }}</h1>
 <div class="row">
-    <div class="col-lg-2">
-        <img class="img-fluid" src="{{ user.profile_picture.url }}" alt="profile-picture"/>
-    </div>
+
 </div>
 
-<div class="row">
-    <div class="col-md-2">
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ student_profile_form.as_p }}
-            {{ student_email_picture_form.as_p }}
-            <button class="btn btn-primary">Save</button>
-        </form>
-    </div>
-    <div class="col-md-7">
-        {% for application in user.applications.all %}
-            <div class="text-center">
-                {{ application }}
-                <a href="{% url 'unapply' listing_id=application.id %}?profile=True">Unapply</a>
+
+<form class="mt-5" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-2">
+            <img class="img-fluid mb-2" src="{{ user.profile_picture.url }}" alt="profile-picture"/>
+            <p>{{ student_email_picture_form.profile_picture.label }}</p>
+            {{ student_email_picture_form.profile_picture }}
+            <div class="mt-4">
+                <a class="danger-btn"
+                   href="{% url "delete" %}">Delete account</a>
+                <a class="neutral-btn float-right"
+                   href="{% url 'logout' %}?next=/">Logout</a>
             </div>
 
-        {% endfor %}
+        </div>
+        <div class="col-md-10">
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <p>{{ student_profile_form.phone.label }}</p>
+                    {{ student_profile_form.phone }}
+                </div>
+
+                <div class="form-group col-md-3">
+                    <p>{{ student_profile_form.dob.label }}</p>
+                    {{ student_profile_form.dob }}
+                </div>
+
+                <div class="form-group col-md-3">
+                    <p>{{ student_profile_form.hs.label }}</p>
+                    {{ student_profile_form.hs }}
+                </div>
+
+                <div class="form-group col-md-3">
+                    <p>{{ student_profile_form.hs_addy.label }}</p>
+                    {{ student_profile_form.hs_addy }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <p>{{ student_email_picture_form.email.label }}</p>
+                    {{ student_email_picture_form.email }}
+                </div>
+                <div class="form-group col-md-4">
+                    <p>{{ student_profile_form.teacher_or_counselor_email.label }}</p>
+                    {{ student_profile_form.teacher_or_counselor_email }}
+                </div>
+
+                <div class="form-group col-md-4">
+                    <p>{{ student_profile_form.teacher_or_counselor_name.label }}</p>
+                    {{ student_profile_form.teacher_or_counselor_name }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <p>{{ student_profile_form.extracurriculars.label }}</p>
+                    {{ student_profile_form.extracurriculars }}
+                </div>
+
+                <div class="form-group col-md-3">
+                    <p>{{ student_profile_form.volunteering_exp.label }}</p>
+                    {{ student_profile_form.volunteering_exp }}
+                </div>
+
+                <div class="form-group col-md-3">
+                    <p>{{ student_profile_form.awards_achievements.label }}</p>
+                    {{ student_profile_form.awards_achievements }}
+                </div>
+
+                <div class="form-group col-md-3">
+                    <p>{{ student_profile_form.work_exp.label }}</p>
+                    {{ student_profile_form.work_exp }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <p>{{ student_profile_form.skills.label }}</p>
+                    {{ student_profile_form.skills }}
+                </div>
+
+                <div class="form-group col-md-6">
+                    <p>{{ student_profile_form.leadership_roles.label }}</p>
+                    {{ student_profile_form.leadership_roles }}
+                </div>
+            </div>
+
+            <button class="btn btn-primary w-100">Save</button>
+
+            <div style="margin-bottom: 5rem"></div>
+
+            <div class="row text-center">
+                <div class="col-md-3">
+                    <a href="{% url 'applications' %}" class="neutral-btn w-100">View applications</a>
+                </div>
+                <div class="col-md-3">
+                    <a href="{% url 'acceptances' %}" class="success-btn w-100">View acceptances</a>
+                </div>
+                <div class="col-md-3">
+                    <a href="{% url 'rejections' %}" class="danger-btn w-100">View rejections</a>
+                </div>
+                <div class="col-md-3">
+                    <a href="{% url 'interview_requests' %}" class="neutral-btn w-100">View interview requests</a>
+                </div>
+            </div>
+
+        </div>
     </div>
-</div>
+</form>
+
+<div style="margin-bottom: 2rem"></div>

@@ -21,5 +21,12 @@
             <a href="{% url 'interview_requests' %}">View interview requests</a>
         </div>
     </div>
+    <div class="mt-5">
+        <a class="danger-btn"
+           href="{% url "delete" %}">Delete account</a>
+        <a class="neutral-btn"
+           href="{% url 'logout' %}?next=/">Logout</a>
+    </div>
+
 </section>
 

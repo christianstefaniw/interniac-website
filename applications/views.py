@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -29,9 +30,10 @@ class ArchiveAcceptance(LoginRequiredMixin, RedirectView):
 
     def get_redirect_url(self, *args, **kwargs):
         listing = Listing.objects.get(id=self.kwargs.get('listing_id'))
-        if listing.company != self.request.user:
+        user = User.objects.get(id=self.kwargs.get('student_id'))
+        if listing.company != self.request.user and self.request.user != user:
             raise PermissionError
-        listing.acceptances.remove(User.objects.get(id=self.kwargs.get('student_id')))
+        listing.acceptances.remove(user)
         return super().get_redirect_url(*args, **kwargs)
 
 
@@ -41,9 +43,10 @@ class ArchiveInterviewRequest(LoginRequiredMixin, RedirectView):
 
     def get_redirect_url(self, *args, **kwargs):
         listing = Listing.objects.get(id=self.kwargs.get('listing_id'))
-        if listing.company != self.request.user:
+        user = User.objects.get(id=self.kwargs.get('student_id'))
+        if listing.company != self.request.user and self.request.user != user:
             raise PermissionError
-        listing.interview_requests.remove(User.objects.get(id=self.kwargs.get('student_id')))
+        listing.interview_requests.remove(user)
         return super().get_redirect_url(*args, **kwargs)
 
 
@@ -62,9 +65,10 @@ class ArchiveRejection(LoginRequiredMixin, RedirectView):
 
     def get_redirect_url(self, *args, **kwargs):
         listing = Listing.objects.get(id=self.kwargs.get('listing_id'))
-        if listing.company != self.request.user:
+        user = User.objects.get(id=self.kwargs.get('student_id'))
+        if listing.company != self.request.user and self.request.user != user:
             raise PermissionError
-        listing.rejections.remove(User.objects.get(id=self.kwargs.get('student_id')))
+        listing.rejections.remove(user)
         return super().get_redirect_url(*args, **kwargs)
 
 
@@ -101,6 +105,7 @@ class SingleApplication(LoginRequiredMixin, TemplateView):
         return Listing.objects.get(slug=self.kwargs['listing_slug'])
 
 
+@login_required
 def accept(request, listing_id, student_id):
     listing = Listing.objects.get(id=listing_id)
 
@@ -115,6 +120,7 @@ def accept(request, listing_id, student_id):
                   context={'first': student.first_name, 'last': student.last_name, 'listing_title': listing.title})
 
 
+@login_required
 def reject(request, listing_id, student_id):
     listing = Listing.objects.get(id=listing_id)
 
@@ -129,6 +135,7 @@ def reject(request, listing_id, student_id):
                   context={'first': student.first_name, 'last': student.last_name, 'listing_title': listing.title})
 
 
+@login_required
 def request_interview(request, listing_id, student_id):
     listing = Listing.objects.get(id=listing_id)
 

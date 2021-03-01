@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div class="row">
+    {% for listing in user.rejections.all %}
+        <div class="col-lg-3 mb-5">
+            <h1>{{ listing.title }}</h1>
+            <a class="neutral-btn" href="{% url 'listing' slug=listing.slug %}">View Listing</a>
+            <a class="success-btn ml-3 mr-3" href="mailto:{{ listing.company.email }}">Email {{ listing.company.company_name }}</a>
+            <a class="danger-btn" href="{% url 'archive_rejected' listing_id=listing.id student_id=user.id %}">Archive</a>
+        </div>
+    {% endfor %}
+</div>

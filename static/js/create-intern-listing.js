@@ -52,6 +52,7 @@ $(`#${ids.internType}`).change(function (){
 
 
 $(document).ready(function () {
+    console.log('ok')
     let hide = $('form p').children()
     for (let i = 0; i in hide; i++){
         if (myGetElem($(hide[i]), ids.internType)){continue;}

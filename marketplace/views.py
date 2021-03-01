@@ -3,7 +3,8 @@ from django.http import HttpResponse
 from django.db.models import Q
 from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView, ListView, DetailView
+from django.views.generic import CreateView, ListView, DetailView, UpdateView
+from django.contrib.auth.decorators import login_required
 
 from .forms import CreateListingForm, Filter
 from .models import Listing, Career
@@ -65,11 +66,12 @@ class FilterListings(LoginRequiredMixin, ListView):
         return queryset
 
 
-class ViewListing(DetailView):
+class ViewListing(LoginRequiredMixin, DetailView):
     model = Listing
     template_name = 'marketplace/single-listing.html'
 
 
+@login_required
 def apply(request, listing_id):
     listing = Listing.objects.get(id=listing_id)
     listing.applications.add(request.user)
@@ -82,13 +84,33 @@ def apply(request, listing_id):
         return HttpResponse(f'<button class="apply-unapply-btn" onclick="unapply({listing_id}, this)">Unapply</button>')
 
 
+@login_required
 def unapply(request, listing_id):
     listing = Listing.objects.get(id=listing_id)
     listing.applications.remove(request.user)
     redirect_where = request.GET.get('redirect')
     if redirect_where == 'profile':
-        return redirect(request.user)
+        return redirect('applications')
     elif redirect_where == 'success':
         return render(request, 'success-error/success-unapplied.html', context={'which': listing})
     else:
         return HttpResponse(f'<button class="apply-unapply-btn" onclick="apply({listing_id}, this)">Apply</button>')
+
+
+@login_required
+def delete_listing(request, listing_id):
+    listing = Listing.objects.get(id=listing_id)
+    if request.user != listing.company:
+        raise PermissionError
+
+    listing.delete()
+
+    return redirect(reverse('listings'))
+
+
+class EditListing(LoginRequiredMixin, UpdateView):
+    model = Listing
+    template_name = 'marketplace/edit-listing.html'
+    success_url = reverse_lazy('listings')
+    fields = ['title', 'type', 'where', 'career', 'new_career', 'time_commitment', 'application_deadline',
+              'description', 'application_url']

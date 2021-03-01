@@ -60,9 +60,18 @@
                 </a>
             </div>
 
-            {% for listing in user.listing.all %}
-                <p>{{ listing.title }}</p>
-            {% endfor %}
+            <div class="row">
+                {% for listing in user.listing.all %}
+                    <div class="col-md-4 mb-5 text-center">
+                        <p style="line-height: 0">{{ listing.title }}</p>
+                        <a class="success-btn" href="{{ listing.get_absolute_url }}">View</a>
+                        <a class="neutral-btn" href="{% url 'edit_listing' pk=listing.id %}">Edit</a>
+                        <a href="{% url 'delete_listing' listing_id=listing.id %}" class="danger-btn">Delete</a>
+                    </div>
+                {% endfor %}
+            </div>
+
+
         </div>
 
 

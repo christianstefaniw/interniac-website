@@ -64,7 +64,7 @@
                 </div>
             </nav>
         </section>
-        <a href="{{ request.META.HTTP_REFERER }}">
+        <a class="mb-4" href="{{ request.META.HTTP_REFERER }}">
             <i class="fas fa-arrow-circle-left fa-2x"></i>
         </a>
         {% if user.is_employer or user.is_superuser %}

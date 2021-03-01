@@ -8,6 +8,7 @@
         <title>Interniac</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{% static "css/style.css" %}"/>
+        <link rel="stylesheet" href="{% static "css/profile.css" %}"/>
         <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logos/logo-small-transparent.png' %}"/>
         {% include 'boilerplate/bootstrap.html' %}
 
@@ -60,20 +61,6 @@
             {% else %}
                 <h1>Error</h1>
             {% endif %}
-            <div class="row mt-5 mb-3 justify-content-start">
-                <div class="col-md-2">
-                    <a class="danger-btn"
-                       href="{% url "delete" %}">Delete account</a>
-                </div>
-                <div class="col-md-2">
-                    <a class="neutral-btn"
-                       href="{% url 'logout' %}?next=/">Logout</a>
-                </div>
-
-            </div>
-
         </div>
-
-
     </body>
 </html>
