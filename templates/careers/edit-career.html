@@ -3,24 +3,16 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-        <link rel="stylesheet" href="{% static "css/style.css" %}"/>
-        <link rel="stylesheet" href="{% static "css/applications.css" %}"/>
-
-        <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logos/logo-small-transparent.png' %}"/>
-
-        <script src="https://kit.fontawesome.com/a76f8913d2.js" crossorigin="anonymous"></script>
-
-        {% include 'boilerplate/bootstrap.html' %}
-
-
         <title>Interniac</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static "css/style.css" %}"/>
+        <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logos/logo-small-transparent.png' %}"/>
+        {% include 'boilerplate/bootstrap.html' %}
+        <script src="https://kit.fontawesome.com/a76f8913d2.js" crossorigin="anonymous"></script>
     </head>
     <body>
-
         <section id="nav">
             <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
                 <a class="navbar-brand" href="{% url 'home' %}">
@@ -52,26 +44,15 @@
                 </div>
             </nav>
         </section>
-
         <div class="container-fluid">
-            <div class="mb-4">
-                <a href="{% url 'profile' %}">
-                    <i class="fas fa-arrow-circle-left fa-2x"></i>
-                </a>
-            </div>
-
-            <div class="row">
-                {% for listing in user.listing.all %}
-                    <div class="col-md-4 mb-5 text-center">
-                        <h4>{{ listing.title }}</h4>
-                        <div>
-                            <a class="success-btn" href="{{ listing.get_absolute_url }}">View</a>
-                            <a class="neutral-btn" href="{% url 'edit_listing' pk=listing.id %}">Edit</a>
-                            <a href="{% url 'delete_listing' listing_id=listing.id %}" class="danger-btn">Delete</a>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
+            <a class="mb-4" href="{{ request.META.HTTP_REFERER }}">
+                <i class="fas fa-arrow-circle-left fa-2x"></i>
+            </a>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Save">
+            </form>
         </div>
     </body>
 </html>

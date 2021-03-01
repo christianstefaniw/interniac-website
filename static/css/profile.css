@@ -16,3 +16,7 @@ textarea{
 p{
     line-height: initial;
 }
+
+ul{
+    list-style-type: none !important;
+}

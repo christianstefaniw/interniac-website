@@ -1,9 +1,7 @@
 from django import forms
-from django.core.exceptions import ValidationError
-from django.forms import DateInput
 from nocaptcha_recaptcha import NoReCaptchaField
 
-from accounts.models import User, EmployerProfile
+from accounts.models import EmployerProfile
 from .models import Listing, Career
 
 
@@ -33,22 +31,22 @@ class CreateListingForm(forms.ModelForm):
     class Meta:
         model = Listing
         widgets = {
-            'application_deadline': DateInput(attrs={'type': 'date'})
+            'application_deadline': forms.DateTimeInput(attrs={'type': 'datetime-local'}, format="%d %b %Y %H:%M %Z")
         }
         exclude = ['company']
 
     def clean(self):
         cleaned_data = super(CreateListingForm, self).clean()
         if cleaned_data['where'] == 'Virtual':
-            if cleaned_data['location'] != '':
+            if cleaned_data['location'] is not '' and cleaned_data['location'] is not None:
                 self.add_error('where', 'Virtual internship can\'t have a location')
 
         if cleaned_data['type'] == 'Unpaid':
-            if cleaned_data['pay'] != '':
+            if cleaned_data['pay'] is not '' and cleaned_data['pay'] is not None:
                 self.add_error('type', 'Unpaid internship can\'t have a salary')
 
-        if cleaned_data['career'] != '':
-            if cleaned_data['new_career'] != '':
+        if cleaned_data['career'] is not None and cleaned_data['career'] is not '':
+            if cleaned_data['new_career'] is not '' and cleaned_data['new_career'] is not None:
                 self.add_error('career', 'Can\'t make a new career if there is a selected career')
 
         return cleaned_data

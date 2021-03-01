@@ -8,7 +8,6 @@
 
 
         <link rel="stylesheet" href="{% static "css/style.css" %}"/>
-        <link rel="stylesheet" href="{% static "css/bubbles.css" %}"/>
 
 
         <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logos/logo-small-transparent.png' %}"/>
@@ -57,6 +56,22 @@
                     </ul>
                 </div>
             </nav>
+        </section>
+
+        <section class="mt-5">
+            {% for career in object_list %}
+                <div class="mb-5">
+                    {% autoescape off %}
+                        {{ career.content }}
+                    {% endautoescape %}
+                    <div>
+                        <a class="danger-btn" href="{% url 'delete_career' career_id=career.id %}">Delete</a>
+                        <a class="neutral-btn" href="{% url 'edit_career' pk=career.id %}">Edit</a>
+                    </div>
+
+                </div>
+
+            {% endfor %}
         </section>
 
         <section>

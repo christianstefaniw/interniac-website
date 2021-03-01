@@ -5,7 +5,7 @@
                 <div class="row mb-4">
                     <div class="col-lg-9">
                         <h5 class="mb-4">{{ listing.title }}</h5>
-                        <p class="mb-4" style="line-height: 0">{{ listing.company.company_name }}</p>
+                        <p class="mb-4" style="line-height: 0">{{ listing.company.employer_profile.company_name }}</p>
                             {% if listing.type == "paid" %}
                                 <p>paid -
                                     {% if listing.where == 'in-person' %}

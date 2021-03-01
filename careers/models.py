@@ -1,8 +1,12 @@
 from django.db import models
+from django.urls import reverse
+
 
 class Career(models.Model):
-    name = models.CharField(max_length=20)
-    description = models.TextField()
+    content = models.TextField()
+
+    def get_absolute_url(self):
+        return reverse('careers')
 
     def __str__(self):
-        return self.name
+        return self.id

@@ -1,3 +1,4 @@
+from django import forms
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.db.models import Q
@@ -7,6 +8,7 @@ from django.views.generic import CreateView, ListView, DetailView, UpdateView
 from django.contrib.auth.decorators import login_required
 
 from .forms import CreateListingForm, Filter
+from .mixins import ModelFormWidgetMixin
 from .models import Listing, Career
 
 
@@ -108,9 +110,12 @@ def delete_listing(request, listing_id):
     return redirect('listings')
 
 
-class EditListing(LoginRequiredMixin, UpdateView):
+class EditListing(LoginRequiredMixin, ModelFormWidgetMixin, UpdateView):
     model = Listing
     template_name = 'marketplace/edit-listing.html'
     success_url = reverse_lazy('listings')
+    widgets = {
+        'application_deadline': forms.DateTimeInput(attrs={'type': 'datetime-local'}, format="%d %b %Y %H:%M %Z")
+    }
     fields = ['title', 'type', 'where', 'career', 'new_career', 'time_commitment', 'application_deadline',
               'description', 'application_url']

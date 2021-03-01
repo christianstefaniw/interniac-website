@@ -5,6 +5,7 @@ from django.db import models
 from django.dispatch import receiver
 from django.urls import reverse
 from django_unique_slugify import unique_slugify
+from phonenumber_field.modelfields import PhoneNumberField
 
 from accounts.managers import UserManager
 
@@ -20,38 +21,40 @@ class User(AbstractUser):
                                         null=True, blank=True)
     is_student = models.BooleanField(default=False)
     is_employer = models.BooleanField(default=False)
-    slug = models.SlugField(max_length=256, unique=True, blank=True)
-    company_name = models.CharField(max_length=30, unique=False, blank=True)
+    slug = models.SlugField(max_length=256, unique=False, blank=True)
 
     def get_absolute_url(self):
         return reverse('profile')
 
-    def save(self, *args, **kwargs):
-        if self.is_employer:
-            self.slug = f"{self.company_name}"
-        else:
-            self.slug = f"{self.first_name} {self.last_name}"
+    def slug_employer(self):
+        self.slug = f"{self.employer_profile.company_name}"
         unique_slugify(self, self.slug)
-        super(User, self).save(*args, **kwargs)
+        self.save()
+
+    def slug_student(self):
+        self.slug = f"{self.first_name} {self.last_name}"
+        unique_slugify(self, self.slug)
+        self.save()
 
     def __str__(self):
         if self.is_employer:
-            return self.company_name
+            return self.employer_profile.company_name
         else:
             return self.email
 
 
 class EmployerProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.PROTECT, primary_key=True, related_name='employer_profile')
+    company_name = models.CharField(max_length=30, unique=False, blank=True)
     company_website = models.URLField(blank=True)
 
     def __str__(self):
-        return self.user.company_name
+        return self.company_name
 
 
 class StudentProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.PROTECT, primary_key=True, related_name='profile')
-    phone = models.IntegerField(null=True, blank=True)
+    phone = PhoneNumberField(blank=True, null=True, unique=True)
     dob = models.DateField(null=True, blank=True)
     hs = models.CharField(max_length=20, null=True, blank=True)
     hs_addy = models.CharField(max_length=20, null=True, blank=True)
@@ -83,7 +86,7 @@ def auto_delete_file_on_delete(sender, instance, **kwargs):
     if instance.profile_picture:
         if instance.profile_picture.name == 'profile_pictures/default.png':
             return
-        if os.path.isfile(instance.profile_picture.path):
+        elif os.path.isfile(instance.profile_picture.path):
             os.remove(instance.profile_picture.path)
 
 

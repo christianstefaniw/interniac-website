@@ -7,6 +7,7 @@ from django.shortcuts import redirect
 
 from accounts.forms import *
 from accounts.models import EmployerProfile, User, StudentProfile
+from careers.forms import CareerForm
 from home.models import EmailSignup
 
 
@@ -24,7 +25,17 @@ def email_all(request):
         return redirect('error')
 
 
-class _Employer:
+def save_career(request):
+    form = CareerForm(request.POST)
+
+    if form.is_valid():
+        form.save()
+        return redirect('success')
+    else:
+        return redirect('error')
+
+
+class Employer:
 
     def __init__(self, request):
         self.request = request
@@ -49,9 +60,12 @@ class _Employer:
                 login(request, user)
             user_form.save()
             profile.save()
+            return None, None
+        else:
+            return profile_form, user_form
 
 
-class _Student:
+class Student:
 
     def __init__(self, request):
         self.request = request
@@ -76,3 +90,6 @@ class _Student:
                 login(request, user)
             user_form.save()
             profile.save()
+            return None, None
+        else:
+            return profile_form, user_form

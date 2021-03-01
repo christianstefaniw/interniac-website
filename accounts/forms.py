@@ -1,5 +1,4 @@
 from django import forms
-from django.forms import DateInput
 
 from .models import StudentProfile, User, EmployerProfile
 
@@ -9,7 +8,7 @@ class StudentProfileForm(forms.ModelForm):
         model = StudentProfile
         exclude = ['user']
         widgets = {
-            'dob': DateInput(attrs={'type': 'date'})
+            'dob': forms.DateInput(attrs={'type': 'date'})
         }
         labels = {
             'phone': 'Phone Number',
@@ -48,7 +47,7 @@ class EmployerUserForm(forms.ModelForm):
         widgets = {
             'profile_picture': forms.FileInput
         }
-        fields = ['email', 'profile_picture', 'company_name', 'first_name', 'last_name']
+        fields = ['email', 'profile_picture', 'first_name', 'last_name']
 
 
 class EmailAll(forms.Form):
