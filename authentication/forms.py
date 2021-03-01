@@ -14,7 +14,7 @@ class UserCreateForm(UserCreationForm):
                   'is_student', 'is_employer')
 
     def save(self, commit=True):
-        user = super(UserCreateForm, self).save(commit=commit)
+        user = super(UserCreateForm, self).save(commit=True)
         if user.is_student:
             StudentProfile.objects.create(user=user, )
             user.slug_student()

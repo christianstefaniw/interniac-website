@@ -44,16 +44,20 @@ class User(AbstractUser):
 
 
 class EmployerProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.PROTECT, primary_key=True, related_name='employer_profile')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, related_name='employer_profile')
     company_name = models.CharField(max_length=30, unique=False, blank=True)
     company_website = models.URLField(blank=True)
+
+    def delete(self, using=None, keep_parents=False):
+        self.user.delete()
+        return super(EmployerProfile, self).delete(using=None, keep_parents=False)
 
     def __str__(self):
         return self.company_name
 
 
 class StudentProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.PROTECT, primary_key=True, related_name='profile')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, related_name='profile')
     phone = PhoneNumberField(blank=True, null=True, unique=True)
     dob = models.DateField(null=True, blank=True)
     hs = models.CharField(max_length=20, null=True, blank=True)

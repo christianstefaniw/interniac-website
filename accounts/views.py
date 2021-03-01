@@ -37,6 +37,7 @@ class Profile(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
+
         if self.request.user.is_student:
             student = Student(self.request)
             if kwargs.get('profile_form') and kwargs.get('user_form'):
@@ -74,10 +75,5 @@ def delete_user(request):
         user.delete()
         return redirect('login')
 
-    if user.is_employer:
-        user_profile = EmployerProfile.objects.get(user=user)
-    else:
-        user_profile = StudentProfile.objects.get(user=user)
-    user_profile.delete()
     user.delete()
     return redirect('login')
