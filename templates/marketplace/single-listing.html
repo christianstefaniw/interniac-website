@@ -99,6 +99,11 @@
                     </div>
 
 
+                    {% if object.company.employer_profile.company_website %}
+                        <h4 class="mt-5">{{ object.company.company_name }}'s Website</h4>
+                        <a href="{{ object.company.employer_profile.company_website }}">{{ object.company.employer_profile.company_website }}</a>
+                    {% endif %}
+
                     {% if object.application_url %}
                         <h4 class="mt-5">Application URL</h4>
                         <a href="{{ object.application_url }}">{{ object.application_url }}</a>

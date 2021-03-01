@@ -1,7 +1,7 @@
 from django import forms
-from django.forms import DateInput, FileInput
+from django.forms import DateInput
 
-from .models import StudentProfile, User
+from .models import StudentProfile, User, EmployerProfile
 
 
 class StudentProfileForm(forms.ModelForm):
@@ -27,13 +27,28 @@ class StudentProfileForm(forms.ModelForm):
         }
 
 
-class StudentEmailPicture(forms.ModelForm):
+class StudentUserForm(forms.ModelForm):
     class Meta:
         model = User
         widgets = {
-            'profile_picture': FileInput()
+            'profile_picture': forms.FileInput
         }
-        fields = ['email', 'profile_picture']
+        fields = ['email', 'profile_picture', 'first_name', 'last_name']
+
+
+class EmployerProfileForm(forms.ModelForm):
+    class Meta:
+        model = EmployerProfile
+        exclude = ['user']
+
+
+class EmployerUserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        widgets = {
+            'profile_picture': forms.FileInput
+        }
+        fields = ['email', 'profile_picture', 'company_name', 'first_name', 'last_name']
 
 
 class EmailAll(forms.Form):

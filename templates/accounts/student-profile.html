@@ -1,16 +1,12 @@
 <h1>Welcome, {{ user.first_name }}</h1>
-<div class="row">
-
-</div>
-
 
 <form class="mt-5" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="row">
         <div class="col-md-2">
             <img class="img-fluid mb-2" src="{{ user.profile_picture.url }}" alt="profile-picture"/>
-            <p>{{ student_email_picture_form.profile_picture.label }}</p>
-            {{ student_email_picture_form.profile_picture }}
+            <label>{{ student_user_form.profile_picture.label }}</label>
+            {{ student_user_form.profile_picture }}
             <div class="mt-4">
                 <a class="danger-btn"
                    href="{% url "delete" %}">Delete account</a>
@@ -22,69 +18,79 @@
         <div class="col-md-10">
             <div class="row">
                 <div class="form-group col-md-3">
-                    <p>{{ student_profile_form.phone.label }}</p>
+                    <label>{{ student_profile_form.phone.label }}</label>
                     {{ student_profile_form.phone }}
                 </div>
 
                 <div class="form-group col-md-3">
-                    <p>{{ student_profile_form.dob.label }}</p>
+                    <label>{{ student_profile_form.dob.label }}</label>
                     {{ student_profile_form.dob }}
                 </div>
 
                 <div class="form-group col-md-3">
-                    <p>{{ student_profile_form.hs.label }}</p>
+                    <label>{{ student_profile_form.hs.label }}</label>
                     {{ student_profile_form.hs }}
                 </div>
 
                 <div class="form-group col-md-3">
-                    <p>{{ student_profile_form.hs_addy.label }}</p>
+                    <label>{{ student_profile_form.hs_addy.label }}</label>
                     {{ student_profile_form.hs_addy }}
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-4">
-                    <p>{{ student_email_picture_form.email.label }}</p>
-                    {{ student_email_picture_form.email }}
+                    <label>{{ student_user_form.email.label }}</label>
+                    {{ student_user_form.email }}
                 </div>
                 <div class="form-group col-md-4">
-                    <p>{{ student_profile_form.teacher_or_counselor_email.label }}</p>
+                    <label>{{ student_profile_form.teacher_or_counselor_email.label }}</label>
                     {{ student_profile_form.teacher_or_counselor_email }}
                 </div>
 
                 <div class="form-group col-md-4">
-                    <p>{{ student_profile_form.teacher_or_counselor_name.label }}</p>
+                    <label>{{ student_profile_form.teacher_or_counselor_name.label }}</label>
                     {{ student_profile_form.teacher_or_counselor_name }}
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-3">
-                    <p>{{ student_profile_form.extracurriculars.label }}</p>
+                    <label>{{ student_profile_form.extracurriculars.label }}</label>
                     {{ student_profile_form.extracurriculars }}
                 </div>
 
                 <div class="form-group col-md-3">
-                    <p>{{ student_profile_form.volunteering_exp.label }}</p>
+                    <label>{{ student_profile_form.volunteering_exp.label }}</label>
                     {{ student_profile_form.volunteering_exp }}
                 </div>
 
                 <div class="form-group col-md-3">
-                    <p>{{ student_profile_form.awards_achievements.label }}</p>
+                    <label>{{ student_profile_form.awards_achievements.label }}</label>
                     {{ student_profile_form.awards_achievements }}
                 </div>
 
                 <div class="form-group col-md-3">
-                    <p>{{ student_profile_form.work_exp.label }}</p>
+                    <label>{{ student_profile_form.work_exp.label }}</label>
                     {{ student_profile_form.work_exp }}
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-6">
-                    <p>{{ student_profile_form.skills.label }}</p>
+                    <label>{{ student_user_form.first_name.label }}</label>
+                    {{ student_user_form.first_name }}
+                </div>
+                <div class="form-group col-md-6">
+                    <label>{{ student_user_form.last_name.label }}</label>
+                    {{ student_user_form.last_name }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label>{{ student_profile_form.skills.label }}</label>
                     {{ student_profile_form.skills }}
                 </div>
 
                 <div class="form-group col-md-6">
-                    <p>{{ student_profile_form.leadership_roles.label }}</p>
+                    <label>{{ student_profile_form.leadership_roles.label }}</label>
                     {{ student_profile_form.leadership_roles }}
                 </div>
             </div>
@@ -94,16 +100,16 @@
             <div style="margin-bottom: 5rem"></div>
 
             <div class="row text-center">
-                <div class="col-md-3">
+                <div class="col-md-3 mb-4">
                     <a href="{% url 'applications' %}" class="neutral-btn w-100">View applications</a>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 mb-4">
                     <a href="{% url 'acceptances' %}" class="success-btn w-100">View acceptances</a>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 mb-4">
                     <a href="{% url 'rejections' %}" class="danger-btn w-100">View rejections</a>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 mb-4">
                     <a href="{% url 'interview_requests' %}" class="neutral-btn w-100">View interview requests</a>
                 </div>
             </div>
@@ -111,5 +117,3 @@
         </div>
     </div>
 </form>
-
-<div style="margin-bottom: 2rem"></div>

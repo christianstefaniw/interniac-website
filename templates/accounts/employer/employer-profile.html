@@ -1,32 +1,73 @@
-<img src="{{ user.profile_picture.url }}" alt="profile-picture"/>
 <h2>
     Welcome, {{ user.first_name }}
 </h2>
 
 <section>
-    <div class="row justify-content-end">
-        <div class="col-md-2">
-            <a href="{% url 'applications' %}">View applications</a>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-2">
+                <img width="100%" style="object-fit: scale-down" class="mb-2" src="{{ user.profile_picture.url }}"
+                     alt="profile-picture"/>
+                <label>{{ employer_user_form.profile_picture.label }}</label>
+                {{ employer_user_form.profile_picture }}
+            </div>
+            <div class="col-md-10">
+                <div class="form-group">
+                    <label>{{ employer_user_form.company_name.label }}</label>
+                    {{ employer_user_form.company_name }}
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label>{{ employer_user_form.first_name.label }}</label>
+                        {{ employer_user_form.first_name }}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>{{ employer_user_form.last_name.label }}</label>
+                        {{ employer_user_form.last_name }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>{{ employer_user_form.email.label }}</label>
+                    {{ employer_user_form.email }}
+                </div>
+                <div class="form-group">
+                    <label>{{ employer_profile_form.company_website.label }}</label>
+                    {{ employer_profile_form.company_website }}
+                </div>
+                <button class="btn btn-primary w-100" type="submit">Save</button>
+
+                <div class="row text-center mt-5 mb-5">
+                    <div class="col-lg-2 mb-4">
+                        <a class="neutral-btn w-100" href="{% url 'applications' %}">View applications</a>
+                    </div>
+                    <div class="col-lg-2 mb-4">
+                        <a class="success-btn w-100" href="{% url 'acceptances' %}">View acceptances</a>
+                    </div>
+                    <div class="col-lg-2 mb-4">
+                        <a class="danger-btn w-100" href="{% url 'rejections' %}">View rejections</a>
+                    </div>
+                    <div class="col-lg-4 mb-4">
+                        <a class="neutral-btn w-100" href="{% url 'interview_requests' %}">View interview requests</a>
+                    </div>
+                    <div class="col-lg-2 mb-4">
+                        <a class="success-btn w-100" href="{% url 'listings' %}">View Listings</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-2">
-            <a href="{% url 'listings' %}">View Listings</a>
-        </div>
-        <div class="col-md-2">
-            <a href="{% url 'acceptances' %}">View acceptances</a>
-        </div>
-        <div class="col-md-2">
-            <a href="{% url 'rejections' %}">View rejections</a>
-        </div>
-        <div class="col-md-4">
-            <a href="{% url 'interview_requests' %}">View interview requests</a>
-        </div>
-    </div>
-    <div class="mt-5">
+
+    </form>
+</section>
+
+
+<div class="mt-5 ml-2 mb-5">
+    <div class="row">
+        <a class="neutral-btn mr-4"
+           href="{% url 'logout' %}?next=/">Logout</a>
         <a class="danger-btn"
            href="{% url "delete" %}">Delete account</a>
-        <a class="neutral-btn"
-           href="{% url 'logout' %}?next=/">Logout</a>
     </div>
+</div>
 
-</section>
 

@@ -42,7 +42,7 @@ class User(AbstractUser):
 
 
 class EmployerProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.PROTECT, primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.PROTECT, primary_key=True, related_name='employer_profile')
     company_website = models.URLField(blank=True)
 
     def __str__(self):
