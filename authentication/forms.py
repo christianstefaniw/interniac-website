@@ -21,7 +21,6 @@ class UserCreateForm(UserCreationForm):
         elif user.is_employer:
             profile = EmployerProfile.objects.create(user=user, )
             profile.company_name = self.cleaned_data['company_name']
-            profile.save()
             user.slug_employer()
         return user
 
