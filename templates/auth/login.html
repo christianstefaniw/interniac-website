@@ -52,12 +52,18 @@
                 </div>
             </nav>
         </section>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Login</button>
-        </form>
-        <a href="{% url 'register' %}">Register</a>
-        <a href="{% url 'password_reset' %}">Forgot password?</a>
+        <div class="container-fluid">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+            <a class="text-success" href="{% url 'register' %}">Register</a>
+
+
+            <a class="text-danger text-right" href="{% url 'password_reset' %}">Forgot password?</a>
+        </div>
+        </div>
+
     </body>
 </html>

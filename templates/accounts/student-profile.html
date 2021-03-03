@@ -44,11 +44,21 @@
                     {{ student_user_form.email }}
                 </div>
                 <div class="form-group col-md-4">
-                    <{{ student_profile_form.teacher_or_counselor_email.label }}
+                    {{ student_user_form.first_name.label }}
+                    {{ student_user_form.first_name }}
+                </div>
+                <div class="form-group col-md-4">
+                    {{ student_user_form.last_name.label }}
+                    {{ student_user_form.last_name }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    {{ student_profile_form.teacher_or_counselor_email.label }}
                     {{ student_profile_form.teacher_or_counselor_email }}
                 </div>
 
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     {{ student_profile_form.teacher_or_counselor_name.label }}
                     {{ student_profile_form.teacher_or_counselor_name }}
                 </div>
@@ -72,16 +82,6 @@
                 <div class="form-group col-md-3">
                     {{ student_profile_form.work_exp.label }}
                     {{ student_profile_form.work_exp }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-6">
-                    {{ student_user_form.first_name.label }}
-                    {{ student_user_form.first_name }}
-                </div>
-                <div class="form-group col-md-6">
-                    {{ student_user_form.last_name.label }}
-                    {{ student_user_form.last_name }}
                 </div>
             </div>
             <div class="row">

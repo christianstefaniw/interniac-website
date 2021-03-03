@@ -8,9 +8,9 @@ from .models import EmailSignup
 
 
 class ContactForm(forms.Form):
-    name = forms.CharField(max_length=120, widget=forms.TextInput(attrs={'class': 'msg-input'}))
-    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'msg-input'}))
-    message = forms.CharField(widget=forms.Textarea(attrs={'class': 'msg-text-area'}))
+    name = forms.CharField(max_length=120, widget=forms.TextInput())
+    email = forms.EmailField(widget=forms.EmailInput())
+    message = forms.CharField(widget=forms.Textarea())
     captcha = NoReCaptchaField(label='')
 
     def send_email(self):
@@ -22,7 +22,7 @@ class ContactForm(forms.Form):
 
 
 class EmailForm(forms.ModelForm):
-    email_signup = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'Email Address', 'id': 'signup-newsletter'}))
+    email_signup = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'Email Address'}))
 
     class Meta:
         model = EmailSignup

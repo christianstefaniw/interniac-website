@@ -1,0 +1,20 @@
+input{
+    padding: 4px;
+    border-radius: 10px;
+    border: 1px solid lightgrey;
+    margin-bottom: 1.5rem !important;
+}
+
+select{
+    padding: 4px;
+    border-radius: 10px;
+    border: 1px solid lightgrey;
+    margin-bottom: 1.5rem;
+}
+
+textarea{
+    padding: 4px;
+    border-radius: 10px;
+    border: 1px solid lightgrey;
+    margin-bottom: 1.5rem;
+}

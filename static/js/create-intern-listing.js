@@ -52,13 +52,19 @@ $(`#${ids.internType}`).change(function (){
 
 
 $(document).ready(function () {
-    console.log('ok')
     let hide = $('form p').children()
     for (let i = 0; i in hide; i++){
         if (myGetElem($(hide[i]), ids.internType)){continue;}
         if (myGetElem($(hide[i]), ids.internWhere)){continue;}
         if (myGetElem($(hide[i]), ids.careerType)){continue}
-        if (myGetElem($(hide[i]), ids.newCareer)){continue}
+        if (myGetElem($(hide[i]), ids.newCareer)){
+            if ($(`#${ids.careerType}`).val() != null ){
+                console.log("ok")
+                $(`#${ids.newCareer}`).hide()
+                $(`label[for=${ids.newCareer}]`).hide()
+            }
+            continue
+        }
         if (myGetElem($(hide[i]), ids.appDeadline)){continue}
         if (myGetElem($(hide[i]), ids.timeCommitment)){continue}
         if (myGetElem($(hide[i]), ids.description)){continue}

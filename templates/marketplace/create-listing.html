@@ -8,7 +8,7 @@
 
 
         <link rel="stylesheet" href="{% static "css/style.css" %}"/>
-
+        <link rel="stylesheet" href="{% static "css/create-listing.css" %}"/>
 
         <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logos/logo-small-transparent.png' %}"/>
 
@@ -68,11 +68,14 @@
             <i class="fas fa-arrow-circle-left fa-2x"></i>
         </a>
         {% if user.is_employer or user.is_superuser %}
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+            <div class="container">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primary mt-3 mb-5">Submit</button>
+                    </form>
+            </div>
+
         {% else %}
             <h1 class="alert-danger text-center">You must be an employer to access this page</h1>
         {% endif %}

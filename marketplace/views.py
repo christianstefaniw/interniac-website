@@ -1,14 +1,12 @@
-from django import forms
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.db.models import Q
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView, UpdateView
 from django.contrib.auth.decorators import login_required
 
 from .forms import CreateListingForm, Filter
-from .mixins import ModelFormWidgetMixin
 from .models import Listing, Career
 
 
@@ -110,12 +108,31 @@ def delete_listing(request, listing_id):
     return redirect('listings')
 
 
-class EditListing(LoginRequiredMixin, ModelFormWidgetMixin, UpdateView):
+class EditListing(LoginRequiredMixin, UpdateView):
     model = Listing
     template_name = 'marketplace/edit-listing.html'
     success_url = reverse_lazy('listings')
-    widgets = {
-        'application_deadline': forms.DateTimeInput(attrs={'type': 'datetime-local'}, format="%d %b %Y %H:%M %Z")
-    }
-    fields = ['title', 'type', 'where', 'career', 'new_career', 'time_commitment', 'application_deadline',
-              'description', 'application_url']
+
+    fields = ['title', 'type', 'where', 'career', 'new_career', 'pay', 'time_commitment', 'location',
+              'application_deadline', 'application_url']
+
+    def form_valid(self, form):
+        if form.cleaned_data['where'] == 'Virtual':
+            if form.cleaned_data['location'] is not '' and form.cleaned_data['location'] is not None:
+                form.add_error('where', 'Virtual internship can\'t have a location')
+        if form.cleaned_data['type'] == 'Unpaid':
+            if form.cleaned_data['pay'] is not '' and form.cleaned_data['pay'] is not None:
+                form.add_error('type', 'Unpaid internship can\'t have a salary')
+
+        if form.cleaned_data['career'] is not None and form.cleaned_data['career'] is not '':
+            pass
+        elif form.cleaned_data['new_career'] is not None and form.cleaned_data['new_career'] is not '':
+            new_career, _ = Career.objects.get_or_create(career=form.cleaned_data['new_career'])
+            listing = form.save(commit=False)
+            listing.career = new_career
+            listing.save()
+
+        if form.is_valid():
+            return super(EditListing, self).form_valid(form)
+        else:
+            return super(EditListing, self).form_invalid(form)

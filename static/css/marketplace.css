@@ -3,11 +3,6 @@
 #id_career li:first-child {display:none}
 #id_company li:first-child {display:none}
 
-ul{
-    list-style-type: none;
-}
-
-
 form p {
     margin: 0;
 }

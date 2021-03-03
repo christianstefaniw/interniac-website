@@ -19,13 +19,14 @@ class UserCreateForm(UserCreationForm):
             StudentProfile.objects.create(user=user, )
             user.slug_student()
         elif user.is_employer:
+            print(self.cleaned_data['company_name'])
             profile = EmployerProfile.objects.create(user=user, )
             profile.company_name = self.cleaned_data['company_name']
             user.slug_employer()
+            profile.save()
         return user
 
     def clean(self):
-        print('ok')
         cleaned_data = super(UserCreateForm, self).clean()
         if not self.cleaned_data.get('is_employer') and not self.cleaned_data.get('is_student'):
             self.add_error('is_student', 'Must be a student or employer')
@@ -47,4 +48,3 @@ class UserCreateForm(UserCreationForm):
                 self.fields['is_employer'].label = 'Employer'
 
             self.fields[field_name].help_text = ''
-            self.fields[field_name].widget.attrs['class'] = 'register-input'

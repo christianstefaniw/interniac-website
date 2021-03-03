@@ -54,7 +54,7 @@ class Listing(models.Model):
 Congratulations! You have been accepted to the {self.title} internship from {self.company}! 
 If you have any questions for {self.company}, email them at {self.company.email} or reply to this message.
 Good luck! 
-                
+
 From, the Interniac Team
                 '''
 
@@ -79,10 +79,9 @@ From, the Interniac Team
 
     def request_interview_email(self, student):
         email = student.email
-
         message = f'''
-Congratulations, you have moved onto the next stage of the recruitment process for {self.company.company_name}.
-{self.company.company_name} will schedule an interview with you shortly, if you have any questions please email
+Congratulations, you have moved onto the next stage of the recruitment process for {self.company.employer_profile.company_name}.
+{self.company.employer_profile.company_name} will schedule an interview with you shortly, if you have any questions please email 
 {self.company.email} or reply to this email.
 
 From, the Interniac Team

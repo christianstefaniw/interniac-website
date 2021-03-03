@@ -8,6 +8,7 @@
         <title>Interniac</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{% static "css/style.css" %}"/>
+        <link rel="stylesheet" href="{% static "css/create-listing.css" %}"/>
         <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logos/logo-small-transparent.png' %}"/>
         {% include 'boilerplate/bootstrap.html' %}
         <script src="https://kit.fontawesome.com/a76f8913d2.js" crossorigin="anonymous"></script>
@@ -44,16 +45,17 @@
                 </div>
             </nav>
         </section>
-        <div class="container-fluid">
-            <a class="mb-4" href="{{ request.META.HTTP_REFERER }}">
+            <a class="mb-4 ml-3" href="{{ request.META.HTTP_REFERER }}">
                 <i class="fas fa-arrow-circle-left fa-2x"></i>
             </a>
+        <div class="container">
             <form method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <input type="submit" value="Save">
+                <button class="btn btn-primary mb-4" type="submit">Save</button>
             </form>
         </div>
+
         <script src="{% static 'js/create-intern-listing.js' %}"></script>
     </body>
 </html>

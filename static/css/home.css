@@ -23,7 +23,7 @@
 
 /* NEWSLETTER */
 
-#signup-newsletter{
+#id_email_signup{
     background-color: var(--form-input-bg);
     width: 100%;
     border-radius: 5px;
@@ -114,7 +114,7 @@ CONTACT FORM
     font-weight: bolder;
 }
 
-.msg-input, .msg-text-area {
+#id_name, #id_email, #id_message {
     /*width: 100%;*/
     border-radius: 30px;
     background-color: var(--form-input-bg);
