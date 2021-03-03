@@ -6,6 +6,8 @@ GENERAL
     --secondary-color: #3DADFF;
     --bg-color-primary: #58b895;
     --bg-color-secondary: #8beaff;
+    --bg-color-primary-dark: #196449;
+    --highlight-color: #ffde59;
     --gradient-primary-one: #2c7ee4;
     --gradient-primary-two: #2db6ee;
     --gradient-secondary-one: #fd5288;
@@ -13,6 +15,10 @@ GENERAL
     --inner-shadow: inset 3px 3px 3px #d0d0d0, inset -3px -3px 3px #f8f8f8;
     --outer-shadow: 3px 3px 3px #d0d0d0, -3px -3px 3px #f8f8f8;
     --form-input-bg: #eeeef3
+}
+
+.send-back{
+    z-index: -1;
 }
 
 ul{
@@ -38,7 +44,7 @@ nav {
     margin-bottom: 3rem;
 }
 
-textarea, input {
+textarea, input, select {
     display: block;
 }
 
@@ -64,9 +70,8 @@ html > body {
     outline: none;
 }
 
-
 a {
-    text-decoration: none;
+    text-decoration: none !important;
     display: inline-block;
 }
 
@@ -163,7 +168,7 @@ nav > div > ul > li > a {
     padding-right: 5px;
 }
 
-.bg-p {
+.bg-primary {
     background-color: var(--bg-color-primary);
 }
 

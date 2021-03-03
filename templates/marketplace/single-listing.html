@@ -113,7 +113,7 @@
                     {% endif %}
 
                     <div class="mt-5 mb-5">
-                        {% if user.is_student %}
+                        {% if user.is_student and not object.application_url %}
                             {% if listing in user.applications.all %}
                                 <a class="danger-btn"
                                    href="{% url 'unapply' listing_id=listing.id %}?redirect=success">Unapply</a>

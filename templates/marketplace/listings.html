@@ -26,23 +26,24 @@
                         <p>Date posted: {{ listing.posted }}</p>
                     </div>
                     {% if user.is_student %}
-                    <div class="col-lg-3 text-right">
-                        {% if user in listing.rejections.all %}
-                            <p class="text-danger">Rejected</p>
-                        {% elif user in listing.interview_requests.all %}
-                            <p class="text-success">Interview requested</p>
-                        {% elif listing.application_url %}
-                            <p></p>
-                        {% else %}
-                            {% if listing in user.applications.all %}
-                                <button class="apply-unapply-btn" onclick="unapply({{ listing.id }}, this)">Unapply
-                                </button>
+                        <div class="col-lg-3 text-right">
+                            {% if user in listing.rejections.all %}
+                                <p class="text-danger">Rejected</p>
+                            {% elif user in listing.interview_requests.all %}
+                                <p class="text-success">Interview requested</p>
+                            {% elif listing.application_url %}
+                                <p></p>
                             {% else %}
-                                <button class="apply-unapply-btn" onclick="apply({{ listing.id }}, this)">Apply</button>
+                                {% if listing in user.applications.all %}
+                                    <button class="apply-unapply-btn" onclick="unapply({{ listing.id }}, this)">Unapply
+                                    </button>
+                                {% else %}
+                                    <button class="apply-unapply-btn" onclick="apply({{ listing.id }}, this)">Apply
+                                    </button>
+                                {% endif %}
                             {% endif %}
-                        {% endif %}
-                    </div>
-                {% endif %}
+                        </div>
+                    {% endif %}
 
                 </div>
                 <p class="text-muted">{{ listing.description|truncatechars:500 }}</p>

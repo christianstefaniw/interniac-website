@@ -1,16 +1,16 @@
 input{
     width: 100%;
-    background-color: rgba(238, 238, 238, 0.4);
     border: 1px solid #5f5f5f;
+    background-color: var(--form-input-bg);
     border-radius: 5px;
     padding: 6px;
 }
 
 textarea{
+    background-color: var(--form-input-bg);
     padding: 6px;
     width: 100%;
     border-radius: 5px;
-    background-color: rgba(238, 238, 238, 0.4);
 }
 
 p{

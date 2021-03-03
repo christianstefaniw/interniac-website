@@ -53,16 +53,25 @@
             </nav>
         </section>
         <div class="container-fluid">
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="btn btn-primary">Login</button>
-            </form>
-            <a class="text-success" href="{% url 'register' %}">Register</a>
+            <div class="row justify-content-around">
+                <div class="col-md-3">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primary" id="login-btn">Login</button>
+                    </form>
+                    <div class="mt-3 mb-5">
+                        <a class="float-left text-success" href="{% url 'register' %}">Register</a>
+                        <a class="float-right text-danger" href="{% url 'password_reset' %}">Forgot password?</a>
+                    </div>
 
-
-            <a class="text-danger text-right" href="{% url 'password_reset' %}">Forgot password?</a>
-        </div>
+                </div>
+                <div class="col-md-7">
+                    <div>
+                        <img width="100%" class="img-fluid" src="{% static 'assets/images/login.svg' %}" alt="login image"/>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </body>

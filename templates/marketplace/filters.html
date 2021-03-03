@@ -1,6 +1,9 @@
 <form name="filters" method="get" id="filters" action="{% url 'filter' %}">
-    {{ filters.type.label_tag }}
-    {{ filters.type }}
+    <div class="form-group">
+        {{ filters.type.label_tag }}
+        {{ filters.type }}
+    </div>
+
 
     {{ filters.where.label_tag }}
     {{ filters.where }}

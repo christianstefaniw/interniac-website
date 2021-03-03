@@ -45,11 +45,3 @@ function hide(elId) {
 function unhide(elId) {
     $(`#${elId}`).show()
 }
-
-
-$(document).ready(function() {
-    $('form').submit(function() {
-        checkStudent()
-        checkEmployer()
-    });
-});

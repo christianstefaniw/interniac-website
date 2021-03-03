@@ -1,5 +1,13 @@
 #id_username, #id_password {
-    padding: 4px;
-    border-radius: 10px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 7px;
     border: 1px solid lightgrey;
+    box-shadow: 1px 2px 4px lightgrey;
+}
+
+#login-btn{
+    width: 100%;
+    padding: 1rem;
+    border-radius: 0.8rem;
 }
