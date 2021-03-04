@@ -38,7 +38,10 @@ class User(AbstractUser):
 
     def __str__(self):
         if self.is_employer:
-            return self.employer_profile.company_name
+            if self.employer_profile.company_name is not None:
+                return self.employer_profile.company_name
+            else:
+                return self.email
         else:
             return self.email
 

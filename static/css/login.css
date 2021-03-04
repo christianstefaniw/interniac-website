@@ -1,6 +1,6 @@
 #id_username, #id_password {
     width: 100%;
-    padding: 10px;
+    padding: 0.6rem;
     border-radius: 7px;
     border: 1px solid lightgrey;
     box-shadow: 1px 2px 4px lightgrey;

@@ -8,6 +8,7 @@
         <title>Interniac</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{% static "css/style.css" %}"/>
+        <link rel="stylesheet" href="{% static "css/general-input-style.css" %}"/>
         <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logos/logo-small-transparent.png' %}"/>
         {% include 'boilerplate/bootstrap.html' %}
         <script src="https://kit.fontawesome.com/a76f8913d2.js" crossorigin="anonymous"></script>
@@ -51,7 +52,7 @@
             <form method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <input type="submit" value="Save">
+                <button class="btn btn-primary w-100" type="submit">Save</button>
             </form>
         </div>
     </body>

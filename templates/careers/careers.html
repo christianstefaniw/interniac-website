@@ -59,19 +59,24 @@
         </section>
 
         <section class="mt-5">
-            {% for career in object_list %}
-                <div class="mb-5">
-                    {% autoescape off %}
-                        {{ career.content }}
-                    {% endautoescape %}
-                    <div>
-                        <a class="danger-btn" href="{% url 'delete_career' career_id=career.id %}">Delete</a>
-                        <a class="neutral-btn" href="{% url 'edit_career' pk=career.id %}">Edit</a>
+            <div class="container">
+                {% for career in object_list %}
+                    <div class="mb-5">
+                        {% autoescape off %}
+                            {{ career.content }}
+                        {% endautoescape %}
+                        {% if user.is_superuser or user.is_staff %}
+                            <div>
+                                <a class="danger-btn" href="{% url 'delete_career' career_id=career.id %}">Delete</a>
+                                <a class="neutral-btn" href="{% url 'edit_career' pk=career.id %}">Edit</a>
+                            </div>
+                        {% endif %}
+
                     </div>
 
-                </div>
+                {% endfor %}
+            </div>
 
-            {% endfor %}
         </section>
 
         <section>

@@ -63,89 +63,55 @@
                 </div>
             </nav>
         </section>
-        <div id="INSERT-BG">
-            <div class="container-fluid landing-padding">
-                <section id="landing">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <div id="landing-text">
-                                <p class="secondary">
-                                    A Marketplace For Internships: For Students, By Students.
-                                </p>
-                                <h1 class="title">
-                                    Jumpstart your career with Interniac
-                                </h1>
 
-                            </div>
-
-
-                            <div>
-                                <form method="post" id="email_signup">
-                                    {% csrf_token %}
-                                    <div class="row">
-                                        <div class="col-sm-7">
-                                            {{ email_form.email_signup }}
-                                        </div>
-                                        <div class="col-md-5">
-                                            <button type="submit" class="btn btn-primary">Sign up!</button>
-                                        </div>
-                                    </div>
-                                </form>
-
-                                <p class="text-muted">Sign up for our newsletter</p>
-                            </div>
-
-
-                            <!--
-                            <div id="landing-buttons" class="row justify-content-between">
-                                <a class="cta-btn-1">Student Resources</a>
-                                <a class="cta-btn-2" style="margin-right: 2.5rem">Internships</a>
-                            </div>
-
-                            <div class="grid-container">
-                                <div class="dot-container">
-                                    <div class="dot" style="background-color: red"></div>
-                                </div>
-                                <div class="dot-container">
-                                    <div class="dot" style="background-color: blue"></div>
-                                </div>
-                                <div class="dot-container">
-                                    <div class="dot" style="background-color: green"></div>
-                                </div>
-                                <div class="dot-container">
-                                    <div class="dot" style="background-color: orange"></div>
-                                </div>
-                                <div class="dot-container">
-                                    <div class="dot" style="background-color: purple"></div>
-                                </div>
-                                <div class="dot-container">
-                                    <div class="dot" style="background-color: turquoise"></div>
-                                </div>
-                                <div class="dot-container">
-                                    <div class="dot" style="background-color: green"></div>
-                                </div>
-                                <div class="dot-container">
-                                    <div class="dot" style="background-color: black"></div>
-                                </div>
-                                <div class="dot-container">
-                                    <div class="dot" style="background-color: pink"></div>
-                                </div>
-
-                            </div>
-                            -->
+        <div class="container-fluid landing-padding">
+            <section id="landing">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div id="landing-text">
+                            <p class="secondary mb-2">
+                                A Marketplace For Internships: For Students, By Students.
+                            </p>
+                            <h1 class="title">
+                                Jumpstart your career with Interniac
+                            </h1>
 
                         </div>
-                        <div class="col-md-7" id="img-landing-container">
-                            <div class="text-center">
-                                <img width="65%" class="text-center" src="{% static "assets/images/landing-img.svg" %}" alt="logo"/>
-                            </div>
+                        <div>
+                            <form method="post" id="email_signup">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-sm-7">
+                                        {{ email_form.email_signup }}
+                                    </div>
+                                    <div class="col-md-5">
+                                        <button type="submit" class="btn btn-primary">Sign up!</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <p class="text-muted">Sign up for our newsletter</p>
+                            <img width="25%" class="position-absolute send-back spin mt-5"
+                                 src="{% static 'assets/decorations/blob-bg-primary.svg' %}"
+                                 alt=""/>
                         </div>
                     </div>
-                </section>
-            </div>
-       </div>
+                    <div class="col-md-7" id="img-landing-container">
+                        <div class="text-center">
+                            <img width="10%" class="position-absolute send-back spin"
+                                 src="{% static 'assets/decorations/blob-bg-secondary.svg' %}" alt=""/>
+                            <img width="65%" class="text-center" src="{% static "assets/images/landing-img.svg" %}"
+                                 alt="logo"/>
+                            <img width="10%" class="position-absolute send-back spin"
+                                 src="{% static 'assets/decorations/blob-primary.svg' %}" alt=""/>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
 
         <div class="container-fluid">
+
             <section class="mt-0" id="about-section">
                 <div class="row">
                     <div class="col-md-4">
@@ -166,10 +132,16 @@
                     </div>
                 </div>
             </section>
-
+            <img width="10%" class="position-absolute send-back spin" src="{% static 'assets/decorations/blob-bg-secondary.svg' %}" alt=""/>
 
             <div class="content-gap"></div>
 
+            <div class="w-100">
+                <div class="text-right">
+                    <img width="5%" class="position-absolute send-back spin" src="{% static 'assets/decorations/blob-primary.svg' %}"
+             alt=""/>
+                </div>
+            </div>
 
             <section id="events">
                 <h1 class="text-center font-weight-bold mb-4">Upcoming Events</h1>
@@ -200,6 +172,12 @@
                     </div>
             </section>
 
+            <div class="w-100">
+                <div class="text-center">
+                    <img width="5%" class="position-absolute send-back spin" src="{% static 'assets/decorations/blob-highlight.svg' %}" alt=""/>
+                </div>
+            </div>
+
 
             <div class="content-gap"></div>
 
@@ -227,10 +205,12 @@
                 </div>
             </section>
 
-
+            <img width="7%" class="position-absolute send-back spin-counter"
+                 src="{% static 'assets/decorations/blob-bg-primary.svg' %}" alt=""/>
             <div class="content-gap"></div>
 
             <section id="contact">
+
                 <div id="contact-header">
                     <h1 id="contact-title">Let's Talk</h1>
                     <p class="text-muted">Want to get in touch? We'd love to hear from you, please fill out <br> the form and we'll get back to you promptly.</p>
@@ -247,10 +227,18 @@
                               <div onClick="document.forms[1].submit();" id="lnch_btn"><i class="fas fa-space-shuttle"></i></div>
                             </div>
                         </form>
+                        <div class="text-center">
+                            <img width="15%" class="position-absolute send-back spin" src="{% static 'assets/decorations/blob-secondary.svg' %}" alt=""/>
+                        </div>
+
                     </div>
 
                     <div id="msg-img" class="col-md-6">
                         <img width="100%" src="{% static 'assets/images/message.svg' %}" alt="message"/>
+                        <div class="text-center">
+                            <img width="15%" class="send-back spin" src="{% static 'assets/decorations/blob-bg-secondary.svg' %}" alt=""/>
+                        </div>
+
                     </div>
                 </div>
             </section>

@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.test import TestCase
 from datetime import date
 
@@ -17,6 +18,7 @@ class UserTestCase(TestCase):
 
         cls.init_student_profile(student.id)
         cls.init_employer_profile(employer.id)
+        cls.student = User.objects.get(email='test@gmail.com')
 
     @staticmethod
     def init_employer_profile(employer_id) -> None:
@@ -28,7 +30,7 @@ class UserTestCase(TestCase):
     def init_student_profile(student_id) -> None:
         student = User.objects.get(id=student_id)
         student_profile = StudentProfile.objects.create(user=student)
-        student_profile.phone = '+10123456789'
+        student_profile.phone = '+12125552368'
         student_profile.dob = date.today()
         student_profile.hs = 'humberside'
         student_profile.hs_addy = '123 random st'
@@ -37,42 +39,99 @@ class UserTestCase(TestCase):
         student_profile.awards_achievements = 'some awards'
         student_profile.work_exp = 'some work experience'
         student_profile.volunteering_exp = 'some volunteer experience'
-        student_profile.extracurriculars = 'some extra curriculars'
+        student_profile.extracurriculars = 'some extracurriculars'
         student_profile.skills = 'lots of super cool skills'
         student_profile.leadership_roles = 'leadership stuff'
         student_profile.link1 = 'http://www.google.com'
         student_profile.link2 = 'http://www.yahoo.com'
         student_profile.link3 = 'http://www.duckduckgo.com'
         student_profile.link4 = None
+        student_profile.full_clean()
+        student_profile.save()
+
+    def test_student_link_4(self):
+        self.assertEqual(self.student.profile.link4, None)
+        self.student.profile.link4 = 'broken link'
+        self.assertRaises(ValidationError, self.student.profile.full_clean)
+
+    def test_student_link_3(self):
+        self.assertEqual(self.student.profile.link3, 'http://www.duckduckgo.com')
+        self.student.profile.link3 = 'broken link'
+        self.assertRaises(ValidationError, self.student.profile.full_clean)
+
+    def test_student_link_2(self):
+        self.assertEqual(self.student.profile.link2, 'http://www.yahoo.com')
+        self.student.profile.link2 = 'broken link'
+        self.assertRaises(ValidationError, self.student.profile.full_clean)
+
+    def test_student_link_1(self):
+        self.assertEqual(self.student.profile.link1, 'http://www.google.com')
+        self.student.profile.link1 = 'broken link'
+        self.assertRaises(ValidationError, self.student.profile.full_clean)
+
+    def test_student_leadership_roles(self):
+        self.assertEqual(self.student.profile.leadership_roles, 'leadership stuff')
+
+    def test_student_skills(self):
+        self.assertEqual(self.student.profile.skills, 'lots of super cool skills')
+
+    def test_student_extracurriculars(self):
+        self.assertEqual(self.student.profile.extracurriculars, 'some extracurriculars')
+
+    def test_student_volunteer_exp(self):
+        self.assertEqual(self.student.profile.volunteering_exp, 'some volunteer experience')
+
+    def test_student_work_exp(self):
+        self.assertEqual(self.student.profile.work_exp, 'some work experience')
+
+    def test_student_awards_achievements(self):
+        self.assertEqual(self.student.profile.awards_achievements, 'some awards')
+
+    def test_student_teacher_or_counselor_name(self):
+        self.assertEqual(self.student.profile.teacher_or_counselor_name, 'teacher teacher')
+
+    def test_student_teacher_or_counselor_email(self):
+        self.assertEqual(self.student.profile.teacher_or_counselor_email, 'teacher@gmail.com')
+        self.student.profile.teacher_or_counselor_email = 'not an email'
+        self.assertRaises(ValidationError, self.student.profile.full_clean)
+
+    def test_hs_addy(self):
+        self.assertEqual(self.student.profile.hs_addy, '123 random st')
+
+    def test_student_hs(self):
+        self.assertEqual(self.student.profile.hs, 'humberside')
+
+    def test_student_dob(self):
+        self.assertEqual(self.student.profile.dob, date.today())
+        self.student.profile.dob = 'invalid date'
+        self.assertRaises(ValidationError, self.student.profile.full_clean)
 
     def test_student_first_name(self):
-        student = User.objects.get(email='test@gmail.com')
-        self.assertEqual(student.first_name, 'first')
+        self.assertEqual(self.student.first_name, 'first')
 
     def test_student_last_name(self):
-        student = User.objects.get(email='test@gmail.com')
-        self.assertEqual(student.first_name, 'first')
+        self.assertEqual(self.student.first_name, 'first')
 
     def test_student_is_student(self):
-        student = User.objects.get(email='test@gmail.com')
-        self.assertEqual(student.is_student, True)
+        self.assertEqual(self.student.is_student, True)
 
     def test_student_is_employer(self):
-        student = User.objects.get(email='test@gmail.com')
-        self.assertEqual(student.is_employer, False)
+        self.assertEqual(self.student.is_employer, False)
 
     def test_student_profile_picture(self):
-        employer = User.objects.get(email='test@gmail.com')
-        self.assertEqual(employer.profile_picture.name, 'profile_pictures/default.png')
+        self.assertEqual(self.student.profile_picture.name, 'profile_pictures/default.png')
 
     def test_expected_student_str(self):
-        student = User.objects.get(email='test@gmail.com')
-        expected = student.email
-        self.assertEqual(str(student), expected)
+        expected = self.student.email
+        self.assertEqual(str(self.student), expected)
 
     def test_student_profile_attached(self):
-        student = User.objects.get(email='test@gmail.com')
-        self.assertTrue(student.profile)
+        self.assertTrue(self.student.profile)
+
+    def test_student_phone(self):
+        self.assertEqual(self.student.profile.phone, '++12125552368')
+        self.student.profile.phone = 'not a phone number'
+        self.assertRaises(ValidationError, self.student.profile.full_clean)
 
     def test_employer_first_name(self):
         employer = User.objects.get(email='test2@gmail.com')

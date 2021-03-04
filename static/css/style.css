@@ -21,8 +21,9 @@ GENERAL
     z-index: -1;
 }
 
-ul{
-    list-style-type: none !important;
+.errorlist{
+    padding: 0;
+    list-style-type: none;
 }
 
 .secondary-color{
@@ -45,6 +46,7 @@ nav {
 }
 
 textarea, input, select {
+    outline: none;
     display: block;
 }
 
@@ -65,10 +67,8 @@ html > body {
 
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    outline: none;
 }
+
 
 a {
     text-decoration: none !important;
@@ -287,6 +287,21 @@ footer {
 /*
 END FOOTER
  */
+
+/* ANIMATIONS */
+
+.spin{
+    animation: spin 10s linear infinite;
+}
+
+.spin-counter{
+    animation: spin-counter 10s linear infinite;
+}
+
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+@keyframes spin-counter { 100% { -webkit-transform: rotate(-360deg); transform:rotate(-360deg); } }
+
+/* END ANIMATIONS */
 
 
 /* BREAK POINTS */

@@ -5,7 +5,7 @@
 /* EVENTS */
 
 .event-img {
-    object-fit: cover;
+    object-fit: scale-down;
 }
 
 .event-card-container {

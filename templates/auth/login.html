@@ -64,12 +64,15 @@
                         <a class="float-left text-success" href="{% url 'register' %}">Register</a>
                         <a class="float-right text-danger" href="{% url 'password_reset' %}">Forgot password?</a>
                     </div>
+                    <img width="70%" class="position-absolute send-back spin" src="{% static 'assets/decorations/blob-bg-primary.svg' %}" alt=""/>
 
                 </div>
-                <div class="col-md-7">
+                <div class="col-md-6">
                     <div>
                         <img width="100%" class="img-fluid" src="{% static 'assets/images/login.svg' %}" alt="login image"/>
+                        <img width="10%" class="position-absolute send-back spin-counter" src="{% static 'assets/decorations/blob-primary.svg' %}" alt=""/>
                     </div>
+                    <img width="15%" class="position-absolute send-back spin" src="{% static 'assets/decorations/blob-secondary.svg' %}" alt=""/>
                 </div>
             </div>
         </div>
