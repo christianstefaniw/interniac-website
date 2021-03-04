@@ -18,13 +18,17 @@ class UserTestCase(TestCase):
 
         cls.init_student_profile(student.id)
         cls.init_employer_profile(employer.id)
-        cls.student = User.objects.get(email='test@gmail.com')
+        cls.student = student
+        cls.employer = employer
 
     @staticmethod
     def init_employer_profile(employer_id) -> None:
         employer = User.objects.get(id=employer_id)
         employer_profile = EmployerProfile.objects.create(user=employer)
         employer_profile.company_name = 'some company'
+        employer_profile.company_website = 'http://www.google.com'
+        employer_profile.full_clean()
+        employer_profile.save()
 
     @staticmethod
     def init_student_profile(student_id) -> None:
@@ -48,6 +52,36 @@ class UserTestCase(TestCase):
         student_profile.link4 = None
         student_profile.full_clean()
         student_profile.save()
+
+    def test_employer_company_website(self):
+        self.assertEqual(self.employer.employer_profile.company_website, 'http://www.google.com')
+        self.employer.employer_profile.company_website = 'not a website'
+        self.assertRaises(ValidationError, self.employer.employer_profile.full_clean)
+
+    def test_employer_company_name(self):
+        self.assertEqual(self.employer.employer_profile.company_name, 'some company')
+
+    def test_employer_profile_attached(self):
+        self.assertTrue(self.employer.employer_profile)
+
+    def test_employer_first_name(self):
+        self.assertEqual(self.employer.first_name, 'first')
+
+    def test_employer_last_name(self):
+        self.assertEqual(self.employer.first_name, 'first')
+
+    def test_employer_is_student(self):
+        self.assertEqual(self.employer.is_student, False)
+
+    def test_employer_is_employer(self):
+        self.assertEqual(self.employer.is_employer, True)
+
+    def test_employer_profile_picture(self):
+        self.assertEqual(self.employer.profile_picture.name, 'profile_pictures/default.png')
+
+    def test_expected_employer_str(self):
+        expected = self.employer.employer_profile.company_name
+        self.assertEqual(str(self.employer), expected)
 
     def test_student_link_4(self):
         self.assertEqual(self.student.profile.link4, None)
@@ -132,35 +166,6 @@ class UserTestCase(TestCase):
         self.assertEqual(self.student.profile.phone, '++12125552368')
         self.student.profile.phone = 'not a phone number'
         self.assertRaises(ValidationError, self.student.profile.full_clean)
-
-    def test_employer_first_name(self):
-        employer = User.objects.get(email='test2@gmail.com')
-        self.assertEqual(employer.first_name, 'first')
-
-    def test_employer_last_name(self):
-        employer = User.objects.get(email='test2@gmail.com')
-        self.assertEqual(employer.first_name, 'first')
-
-    def test_employer_is_student(self):
-        employer = User.objects.get(email='test2@gmail.com')
-        self.assertEqual(employer.is_student, False)
-
-    def test_employer_is_employer(self):
-        employer = User.objects.get(email='test2@gmail.com')
-        self.assertEqual(employer.is_employer, True)
-
-    def test_employer_profile_picture(self):
-        employer = User.objects.get(email='test2@gmail.com')
-        self.assertEqual(employer.profile_picture.name, 'profile_pictures/default.png')
-
-    def test_expected_employer_str(self):
-        employer = User.objects.get(email='test2@gmail.com')
-        expected = employer.employer_profile.company_name
-        self.assertEqual(str(employer), expected)
-
-    def test_employer_profile_attached(self):
-        employer = User.objects.get(email='test2@gmail.com')
-        self.assertTrue(employer.employer_profile)
 
     def test_urls(self):
         pass
