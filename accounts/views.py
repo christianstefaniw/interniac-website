@@ -7,7 +7,7 @@ from django.views.generic import TemplateView
 from careers.forms import CareerForm
 from .forms import EmailAll
 from .helpers import email_all, Student, Employer, save_career
-from .models import StudentProfile, User, EmployerProfile
+from .models import User
 
 
 class Profile(LoginRequiredMixin, TemplateView):

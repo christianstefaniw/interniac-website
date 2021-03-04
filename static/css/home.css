@@ -129,7 +129,7 @@ END CONTACT FORM
 /* STATISTICS */
 
 .stat {
-    background: #fff;
+    color: #ffffff;
     height: 6em;
     padding: 1em;
     margin: 1.5rem 0;
@@ -153,11 +153,6 @@ END CONTACT FORM
     margin-top: -0.2em;
     margin-bottom: -0.2em;
     display: block;
-}
-
-.stat.bg-primary {
-    background: var(--secondary-color) !important;
-    color: white;
 }
 
 /* END STATISTICS */
@@ -184,7 +179,7 @@ LANDING PAGE
 }
 
 .title {
-    line-height: 1.5 !important;
+    line-height: 1.5;
     color: black;
     font-size: 3rem;
     font-weight: bolder;
@@ -204,11 +199,11 @@ END LANDING PAGE
 
 @media screen and (max-width: 1800px) {
     .container-fluid{
-        max-width:  1500px !important;
+        max-width:  1500px;
     }
 }
 @media screen and (max-width: 1600px) {
     .container-fluid{
-        max-width:  1300px !important;
+        max-width:  1300px;
     }
 }

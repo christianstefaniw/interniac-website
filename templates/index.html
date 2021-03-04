@@ -6,7 +6,7 @@
 
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+        {% include 'boilerplate/bootstrap.html' %}
 
         <link rel="stylesheet" href="{% static "css/style.css" %}"/>
         <link rel="stylesheet" href="{% static "css/home.css" %}"/>
@@ -18,7 +18,7 @@
 
 
         <script src="https://kit.fontawesome.com/a76f8913d2.js" crossorigin="anonymous"></script>
-        {% include 'boilerplate/bootstrap.html' %}
+
 
 
         <title>Interniac</title>
@@ -185,7 +185,7 @@
                 <h1 class="text-center font-weight-bold">Statistics</h1>
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="stat bg-primary">
+                        <div class="stat bootstrap-bg">
                             <i class="icon-exclamation icons"></i>
                             <div class="text-center">
                                 <b>{{ students }}</b>
@@ -194,7 +194,7 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="stat bg-primary ">
+                        <div class="stat bootstrap-bg">
                             <i class="icon-exclamation icons"></i>
                             <div class="text-center">
                                 <b>{{ employers }}</b>

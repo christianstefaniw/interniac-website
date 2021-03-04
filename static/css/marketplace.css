@@ -9,7 +9,7 @@ form p {
 
 #searchbar{
     background-color: white;
-    border-color: black;
+    border-color: grey;
     border-width: 0.1rem;
     border-radius: 10px;
     padding: 0.4rem;
@@ -26,7 +26,7 @@ ul{
     background-color: white;
     border-radius: 10px;
     border: 1px solid lightgrey;
-    box-shadow: 1px 2px 4px lightgrey;
+    box-shadow: var(--light-outer-shadow);
 }
 
 .container-fluid{
@@ -35,11 +35,11 @@ ul{
 
 .btn-secondary{
     height: 100%;
-    border-radius: 10px !important;
+    border-radius: 10px;
 }
 
 .btn-secondary:focus{
-    box-shadow: 0 0 0 0.1rem var(--primary-color) !important;
+    box-shadow: 0 0 0 0.1rem var(--primary-color);
 }
 
 .view:hover{

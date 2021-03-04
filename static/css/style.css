@@ -12,9 +12,15 @@ GENERAL
     --gradient-primary-two: #2db6ee;
     --gradient-secondary-one: #fd5288;
     --gradient-secondary-two: #ee886c;
+    --bootstrap-bg: #0d6efd;
     --inner-shadow: inset 3px 3px 3px #d0d0d0, inset -3px -3px 3px #f8f8f8;
     --outer-shadow: 3px 3px 3px #d0d0d0, -3px -3px 3px #f8f8f8;
-    --form-input-bg: #eeeef3
+    --form-input-bg: #eeeef3;
+    --light-outer-shadow: 1px 2px 4px lightgrey;
+}
+
+.bootstrap-bg{
+    background-color: var(--bootstrap-bg);
 }
 
 .send-back{
@@ -34,11 +40,6 @@ GENERAL
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.nav-pills .nav-link.active,
-.nav-pills .show > .nav-link {
-    background-color: var(--primary-color) !important;
 }
 
 nav {
@@ -71,7 +72,7 @@ html > body {
 
 
 a {
-    text-decoration: none !important;
+    text-decoration: none;
     display: inline-block;
 }
 
@@ -89,44 +90,33 @@ p {
 }
 
 .btn-outline-primary {
-    color: var(--primary-color) !important;
-    border-color: var(--primary-color) !important;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
 }
 
 .btn-outline-primary:hover {
-    color: white !important;
-    background-color: var(--primary-color) !important;
+    color: white;
+    background-color: var(--primary-color);
 }
 
-.btn-outline-primary:focus, .btn-outline-primary.focus {
-    box-shadow: 0 0 0 0.2rem #4f4f67 !important;
-}
-
-.btn-outline-primary.disabled, .btn-outline-primary:disabled {
-  color: var(--primary-color) !important;
-}
 
 .btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active,
 .show > .btn-outline-primary.dropdown-toggle {
-  color: #fff !important;
-  background-color: var(--primary-color) !important;;
+  color: #fff;
+  background-color: var(--primary-color);
 }
 
 
 
 .btn-primary {
     color: #fff;
-    background-color: var(--primary-color) !important;
+    background-color: var(--primary-color);
     border-color: #007bff;
-}
-
-.btn-secondary:active, .btn-secondary:focus {
-    box-shadow: 0 0 0 0.2rem var(--primary-color) !important;
 }
 
 .btn-secondary {
     color: #fff;
-    background-color: var(--secondary-color) !important;
+    background-color: var(--secondary-color);
     border-color: #007bff;
 }
 
@@ -153,7 +143,7 @@ p {
 
 
 .nav-item {
-    margin-left: 1.5rem !important;
+    margin-left: 1.5rem;
 }
 
 nav > div > ul > li > a {
@@ -298,9 +288,13 @@ END FOOTER
     animation: spin-counter 10s linear infinite;
 }
 
-@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+@keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform:rotate(360deg);
+    }
+}
 @keyframes spin-counter { 100% { -webkit-transform: rotate(-360deg); transform:rotate(-360deg); } }
-
 /* END ANIMATIONS */
 
 
@@ -330,7 +324,7 @@ END FOOTER
     }
 
     #about-section {
-        margin-top: 10rem !important;
+        margin-top: 10rem;
     }
 
     #msg-img {
@@ -347,7 +341,7 @@ END FOOTER
 
     .stat:hover {
         cursor: pointer;
-        margin: 1.5rem 0 !important;
+        margin: 1.5rem 0;
         box-shadow: 0 0.4em 0.5em rgb(0, 0, 0.8);
     }
 

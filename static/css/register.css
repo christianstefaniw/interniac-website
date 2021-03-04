@@ -1,9 +1,9 @@
 input{
-    width: 100%;
-    padding: 8px;
-    border-radius: 10px;
-    border: 1px solid lightgrey;
-    margin-bottom: 1.5rem !important;
+    margin-bottom: 1.5rem;
+}
+
+input[type=checkbox]{
+    box-shadow: none;
 }
 
 #company-name{

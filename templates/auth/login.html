@@ -5,13 +5,11 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% include 'boilerplate/bootstrap.html' %}
         <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
         <link rel="stylesheet" href="{% static 'css/login.css' %}">
         <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logos/logo-small-transparent.png' %}"/>
-
-
         <script src="https://kit.fontawesome.com/a76f8913d2.js" crossorigin="anonymous"></script>
-        {% include 'boilerplate/bootstrap.html' %}
         <title>Interniac</title>
     </head>
     <body>
@@ -64,7 +62,7 @@
                         <a class="float-left text-success" href="{% url 'register' %}">Register</a>
                         <a class="float-right text-danger" href="{% url 'password_reset' %}">Forgot password?</a>
                     </div>
-                    <img width="70%" class="position-absolute send-back spin" src="{% static 'assets/decorations/blob-bg-primary.svg' %}" alt=""/>
+                    <img width="40%" class="position-absolute send-back spin mt-5" src="{% static 'assets/decorations/blob-bg-primary.svg' %}" alt=""/>
 
                 </div>
                 <div class="col-md-6">
