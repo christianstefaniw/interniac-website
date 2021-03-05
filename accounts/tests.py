@@ -3,11 +3,11 @@ from django.test import TestCase, RequestFactory
 from datetime import date
 from django.core.exceptions import ObjectDoesNotExist
 
-from test_mixins.init_accounts_for_tests import InitAccounts
+from test_mixins.init_accounts_for_tests import InitAccountsMixin
 from .models import *
 
 
-class UserTestCase(TestCase, InitAccounts):
+class UserTestCase(TestCase, InitAccountsMixin):
 
     @classmethod
     def setUpTestData(cls):

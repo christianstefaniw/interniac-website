@@ -3,10 +3,10 @@ from django.test import TestCase, RequestFactory
 from django.urls import reverse
 
 from marketplace.models import Listing, Career
-from test_mixins.init_accounts_for_tests import InitAccounts
+from test_mixins.init_accounts_for_tests import InitAccountsMixin
 
 
-class ApplicationsTestCase(TestCase, InitAccounts):
+class ApplicationsTestCase(TestCase, InitAccountsMixin):
 
     @classmethod
     def setUpTestData(cls):

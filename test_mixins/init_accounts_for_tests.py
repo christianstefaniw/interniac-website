@@ -1,11 +1,9 @@
 from datetime import date
 
-from django.urls import reverse
-
 from accounts.models import User, EmployerProfile, StudentProfile
 
 
-class InitAccounts(object):
+class InitAccountsMixin(object):
     @classmethod
     def set_up(cls):
         student = User.objects.create_user(email='test@gmail.com', first_name='first', last_name='last',
