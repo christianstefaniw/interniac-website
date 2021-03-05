@@ -5,18 +5,17 @@ from django.conf import settings
 
 from .views import *
 from home import urls as home_urls
-from aboutus.views import AboutUsPage
 from authentication import urls as auth_urls
 from accounts import urls as accounts_urls
 from marketplace import urls as marketplace_urls
 from applications import urls as application_urls
 from careers import urls as careers_urls
-
+from aboutus import urls as aboutus_urls
 
 urlpatterns = [
     path('', include(home_urls)),
     path('careers/', include(careers_urls)),
-    path('aboutus/', AboutUsPage.as_view(), name='aboutus'),
+    path('aboutus/', include(aboutus_urls)),
     path('success/', success, name='success'),
     path('error/', error, name='error'),
     path('admin/', admin.site.urls),
