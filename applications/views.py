@@ -105,7 +105,7 @@ class SingleApplication(LoginRequiredMixin, TemplateView):
         return Listing.objects.get(slug=self.kwargs['listing_slug'])
 
 
-@login_required
+@login_required(login_url='login')
 def accept(request, listing_id, student_id):
     listing = Listing.objects.get(id=listing_id)
 
@@ -120,7 +120,7 @@ def accept(request, listing_id, student_id):
                   context={'first': student.first_name, 'last': student.last_name, 'listing_title': listing.title})
 
 
-@login_required
+@login_required(login_url='login')
 def reject(request, listing_id, student_id):
     listing = Listing.objects.get(id=listing_id)
 
@@ -135,7 +135,7 @@ def reject(request, listing_id, student_id):
                   context={'first': student.first_name, 'last': student.last_name, 'listing_title': listing.title})
 
 
-@login_required
+@login_required(login_url='login')
 def request_interview(request, listing_id, student_id):
     listing = Listing.objects.get(id=listing_id)
 

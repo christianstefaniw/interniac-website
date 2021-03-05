@@ -71,7 +71,7 @@ class ViewListing(LoginRequiredMixin, DetailView):
     template_name = 'marketplace/single-listing.html'
 
 
-@login_required
+@login_required(login_url='login')
 def apply(request, listing_id):
     listing = Listing.objects.get(id=listing_id)
     listing.applications.add(request.user)
@@ -84,7 +84,7 @@ def apply(request, listing_id):
         return HttpResponse(f'<button class="apply-unapply-btn" onclick="unapply({listing_id}, this)">Unapply</button>')
 
 
-@login_required
+@login_required(login_url='login')
 def unapply(request, listing_id):
     listing = Listing.objects.get(id=listing_id)
     listing.applications.remove(request.user)
@@ -97,7 +97,7 @@ def unapply(request, listing_id):
         return HttpResponse(f'<button class="apply-unapply-btn" onclick="apply({listing_id}, this)">Apply</button>')
 
 
-@login_required
+@login_required(login_url='login')
 def delete_listing(request, listing_id):
     listing = Listing.objects.get(id=listing_id)
     if request.user != listing.company:

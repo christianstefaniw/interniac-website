@@ -7,7 +7,6 @@ from django.views.generic import TemplateView
 from careers.forms import CareerForm
 from .forms import EmailAll
 from .helpers import email_all, Student, Employer, save_career
-from .models import User
 
 
 class Profile(LoginRequiredMixin, TemplateView):
@@ -65,15 +64,15 @@ class Profile(LoginRequiredMixin, TemplateView):
 
 class Listings(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/employer/listings.html'
+    login_url = 'login'
+
+    def get(self, request, *args, **kwargs):
+        if not request.user.is_employer:
+            raise PermissionError
+        return super(Listings, self).get(request, args, kwargs)
 
 
-@login_required
+@login_required(login_url='login')
 def delete_user(request):
-    user = User.objects.get(email=request.user.email)
-
-    if user.is_superuser:
-        user.delete()
-        return redirect('login')
-
-    user.delete()
+    request.user.delete()
     return redirect('login')

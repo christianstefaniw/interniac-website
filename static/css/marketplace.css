@@ -8,11 +8,7 @@ form p {
 }
 
 #searchbar{
-    background-color: white;
-    border-color: grey;
-    border-width: 0.1rem;
-    border-radius: 10px;
-    padding: 0.4rem;
+    background-color: var(--form-input-bg);
 }
 
 ul{

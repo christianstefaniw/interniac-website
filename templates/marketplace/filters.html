@@ -8,8 +8,11 @@
     {{ filters.where.label_tag }}
     {{ filters.where }}
 
-    {{ filters.career.label_tag }}
-    {{ filters.career }}
+    {% if filters.career.all %}
+        {{ filters.career.label_tag }}
+        {{ filters.career }}
+    {% endif %}
+
 
     {{ filters.company.label_tag }}
     {{ filters.company }}

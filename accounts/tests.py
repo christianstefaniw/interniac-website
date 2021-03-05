@@ -1,6 +1,7 @@
 from django.core.exceptions import ValidationError
-from django.test import TestCase
+from django.test import TestCase, RequestFactory
 from datetime import date
+from django.core.exceptions import ObjectDoesNotExist
 
 from .models import *
 
@@ -20,6 +21,12 @@ class UserTestCase(TestCase):
         cls.init_employer_profile(employer.id)
         cls.student = student
         cls.employer = employer
+        cls.password = 'password'
+        cls.student_email = 'test@gmail.com'
+        cls.employer_email = 'test2@gmail.com'
+
+    def setUp(self) -> None:
+        self.factory = RequestFactory()
 
     @staticmethod
     def init_employer_profile(employer_id) -> None:
@@ -52,6 +59,62 @@ class UserTestCase(TestCase):
         student_profile.link4 = None
         student_profile.full_clean()
         student_profile.save()
+
+    def login(self, profile):
+        self.client.login(username=profile.email, password=self.password)
+
+    def check_login_redirected(self, path):
+        response = self.client.get(path, follow=True)
+        self.assertEqual(response.request['PATH_INFO'], reverse('login'))
+
+    def test_delete_employer_url(self):
+        user_instance = User.objects.get(email=self.employer_email)
+        self.assertTrue(user_instance)
+
+        self.check_login_redirected(reverse('delete'))
+        self.login(user_instance)
+
+        response = self.client.get(reverse('delete'), follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertRaises(ObjectDoesNotExist, User.objects.get, email=self.employer_email)
+
+    def test_delete_student_url(self):
+        user_instance = User.objects.get(email=self.student_email)
+
+        self.check_login_redirected(reverse('delete'))
+        self.login(user_instance)
+        self.assertTrue(user_instance)
+        response = self.client.get(reverse('delete'), follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertRaises(ObjectDoesNotExist, User.objects.get, email=self.student_email)
+
+    def test_listings_employer_url(self):
+        self.check_login_redirected(reverse('listings'))
+        self.login(self.employer)
+        response = self.client.get(reverse('listings'), follow=True)
+        self.assertEqual(response.request['PATH_INFO'], reverse('listings'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_listings_student_url(self):
+        self.check_login_redirected(reverse('listings'))
+        self.login(self.student)
+        self.assertRaises(PermissionError, self.client.get, reverse('listings'))
+
+    def test_profile_employer_url(self):
+        self.check_login_redirected(reverse('profile'))
+        self.login(self.employer)
+        response = self.client.get(reverse('profile'), follow=True)
+        self.assertEqual(response.request['PATH_INFO'], reverse('profile'))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context['user'].email, self.employer.email)
+
+    def test_profile_student_url(self):
+        self.check_login_redirected(reverse('profile'))
+        self.login(self.student)
+        response = self.client.get(reverse('profile'), follow=True)
+        self.assertEqual(response.request['PATH_INFO'], reverse('profile'))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context['user'].email, self.student.email)
 
     def test_employer_company_website(self):
         self.assertEqual(self.employer.employer_profile.company_website, 'http://www.google.com')
@@ -166,6 +229,3 @@ class UserTestCase(TestCase):
         self.assertEqual(self.student.profile.phone, '++12125552368')
         self.student.profile.phone = 'not a phone number'
         self.assertRaises(ValidationError, self.student.profile.full_clean)
-
-    def test_urls(self):
-        pass

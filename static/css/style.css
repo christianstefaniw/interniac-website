@@ -19,8 +19,17 @@ GENERAL
     --light-outer-shadow: 1px 2px 4px lightgrey;
 }
 
+.light-outer-shadow{
+    box-shadow: var(--light-outer-shadow);
+}
+
 .bootstrap-bg{
     background-color: var(--bootstrap-bg);
+}
+
+input[type=checkbox]{
+    width: auto;
+    box-shadow: none;
 }
 
 .send-back{
@@ -70,9 +79,13 @@ html > body {
     box-sizing: border-box;
 }
 
+.save-btn{
+    padding: 0.6rem;
+    border-radius: 15px;
+}
 
 a {
-    text-decoration: none;
+    text-decoration: none !important;
     display: inline-block;
 }
 
@@ -121,7 +134,7 @@ p {
 }
 
 .content-gap {
-    margin-top: 10rem;
+    margin-top: 10.5rem;
 }
 
 .fas{

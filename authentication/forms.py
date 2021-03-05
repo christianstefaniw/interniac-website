@@ -19,11 +19,10 @@ class UserCreateForm(UserCreationForm):
             StudentProfile.objects.create(user=user, )
             user.slug_student()
         elif user.is_employer:
-            print(self.cleaned_data['company_name'])
             profile = EmployerProfile.objects.create(user=user, )
             profile.company_name = self.cleaned_data['company_name']
-            user.slug_employer()
             profile.save()
+            user.slug_employer()
         return user
 
     def clean(self):

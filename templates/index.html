@@ -10,7 +10,6 @@
 
         <link rel="stylesheet" href="{% static "css/style.css" %}"/>
         <link rel="stylesheet" href="{% static "css/home.css" %}"/>
-        <link rel="stylesheet" href="{% static "css/bubbles.css" %}"/>
 
 
         <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logos/logo-small-transparent.png' %}"/>
@@ -148,7 +147,7 @@
                 <div class="row justify-content-start">
                     {% for event in events %}
                         <div class="col-md-3 {% if forloop.last %} event-card-container-last {% else %} event-card-container {% endif %}">
-                            <div class="card" style="border-radius: calc(0.25rem - 1px);">
+                            <div class="card light-outer-shadow" style="border-radius: calc(0.25rem - 1px);">
                                 <img width="400" height="300" class="card-img-top event-img" src="{{ event.img.url }}" alt="{{ event.img.url }}">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ event.name }}</h5>

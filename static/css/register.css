@@ -2,10 +2,6 @@ input{
     margin-bottom: 1.5rem;
 }
 
-input[type=checkbox]{
-    box-shadow: none;
-}
-
 #company-name{
     display: none;
 }
