@@ -5,8 +5,12 @@
     <div class="row">
         <div class="col-md-2">
             <img class="img-fluid mb-2" src="{{ user.profile_picture.url }}" alt="profile-picture"/>
-            {{ student_user_form.profile_picture.label_tag }}
-            {{ student_user_form.profile_picture }}
+            <p>
+                {{ student_user_form.profile_picture.label_tag }}
+                {{ student_user_form.profile_picture }}
+            </p>
+
+
             <div class="mt-4">
                 <a class="danger-btn"
                    href="{% url "delete" %}">Delete account</a>
@@ -16,83 +20,130 @@
 
         </div>
         <div class="col-md-10">
+            <!--{{ student_profile_form.as_p }}
+            {{ student_user_form.as_p }}-->
             <div class="row">
-                <div class="form-group col-md-3">
-                    {{ student_profile_form.phone.errors }}
-                    {{ student_profile_form.phone.label_tag }}
-                    {{ student_profile_form.phone }}
+                <div class="col-md-3">
+                    <p>
+                        {{ student_profile_form.phone.errors }}
+                        {{ student_profile_form.phone.label_tag }}
+                        {{ student_profile_form.phone }}
+                    </p>
+
                 </div>
 
-                <div class="form-group col-md-3">
-                    {{ student_profile_form.dob.label_tag }}
-                    {{ student_profile_form.dob }}
+                <div class="col-md-3">
+                    <p>
+                        {{ student_profile_form.dob.label_tag }}
+                        {{ student_profile_form.dob }}
+                    </p>
+
                 </div>
 
-                <div class="form-group col-md-3">
-                    {{ student_profile_form.hs.label_tag }}
-                    {{ student_profile_form.hs }}
+                <div class="col-md-3">
+                    <p>
+                        {{ student_profile_form.hs.label_tag }}
+                        {{ student_profile_form.hs }}
+                    </p>
+
                 </div>
 
-                <div class="form-group col-md-3">
-                    {{ student_profile_form.hs_addy.label_tag }}
-                    {{ student_profile_form.hs_addy }}
+                <div class="col-md-3">
+                    <p>
+                        {{ student_profile_form.hs_addy.label_tag }}
+                        {{ student_profile_form.hs_addy }}
+                    </p>
+
                 </div>
             </div>
             <div class="row">
-                <div class="form-group col-md-4">
-                    {{ student_user_form.email.label_tag }}
-                    {{ student_user_form.email }}
+                <div class="col-md-4">
+                    <p>
+                        {{ student_user_form.email.label_tag }}
+                        {{ student_user_form.email }}
+                    </p>
+
                 </div>
-                <div class="form-group col-md-4">
-                    {{ student_user_form.first_name.label_tag }}
-                    {{ student_user_form.first_name }}
+                <div class="col-md-4">
+                    <p>
+                        {{ student_user_form.first_name.label_tag }}
+                        {{ student_user_form.first_name }}
+                    </p>
+
                 </div>
-                <div class="form-group col-md-4">
-                    {{ student_user_form.last_name.label_tag }}
-                    {{ student_user_form.last_name }}
+                <div class="col-md-4">
+                    <p>
+                        {{ student_user_form.last_name.label_tag }}
+                        {{ student_user_form.last_name }}
+                    </p>
+
                 </div>
             </div>
             <div class="row">
-                <div class="form-group col-md-6">
-                    {{ student_profile_form.teacher_or_counselor_email.label_tag }}
-                    {{ student_profile_form.teacher_or_counselor_email }}
+                <div class="col-md-6">
+                    <p>
+                        {{ student_profile_form.teacher_or_counselor_email.label_tag }}
+                        {{ student_profile_form.teacher_or_counselor_email }}
+                    </p>
+
                 </div>
 
-                <div class="form-group col-md-6">
-                    {{ student_profile_form.teacher_or_counselor_name.label_tag }}
-                    {{ student_profile_form.teacher_or_counselor_name }}
+                <div class="col-md-6">
+                    <p>
+                        {{ student_profile_form.teacher_or_counselor_name.label_tag }}
+                        {{ student_profile_form.teacher_or_counselor_name }}
+                    </p>
+
                 </div>
             </div>
             <div class="row">
-                <div class="form-group col-md-3">
-                    {{ student_profile_form.extracurriculars.label_tag }}
-                    {{ student_profile_form.extracurriculars }}
+                <div class="col-md-3">
+                    <p>
+                        {{ student_profile_form.extracurriculars.label_tag }}
+                        {{ student_profile_form.extracurriculars }}
+                    </p>
+
                 </div>
 
-                <div class="form-group col-md-3">
-                    {{ student_profile_form.volunteering_exp.label_tag }}
-                    {{ student_profile_form.volunteering_exp }}
+                <div class="col-md-3">
+                    <p>
+                        {{ student_profile_form.volunteering_exp.label_tag }}
+                        {{ student_profile_form.volunteering_exp }}
+                    </p>
+
                 </div>
 
-                <div class="form-group col-md-3">
-                    {{ student_profile_form.awards_achievements.label_tag }}
-                    {{ student_profile_form.awards_achievements }}
+                <div class="col-md-3">
+                    <p>
+                        {{ student_profile_form.awards_achievements.label_tag }}
+                        {{ student_profile_form.awards_achievements }}
+                    </p>
+
                 </div>
 
-                <div class="form-group col-md-3">
-                    {{ student_profile_form.work_exp.label_tag }}
-                    {{ student_profile_form.work_exp }}
+                <div class="col-md-3">
+                    <p>
+                        {{ student_profile_form.work_exp.label_tag }}
+                        {{ student_profile_form.work_exp }}
+                    </p>
+
                 </div>
             </div>
             <div class="row">
-                <div class="form-group col-md-6">
-                    {{ student_profile_form.skills.label_tag }}
-                    {{ student_profile_form.skills }}
+                <div class="col-md-6">
+                    <p>
+                        {{ student_profile_form.skills.label_tag }}
+                        {{ student_profile_form.skills }}
+                    </p>
+
                 </div>
 
-                <div class="form-group col-md-6">
-                    {{ student_profile_form.leadership_roles.label }}
-                    {{ student_profile_form.leadership_roles }}
+                <div class="col-md-6">
+                    <p>
+                        {{ student_profile_form.leadership_roles.label_tag }}
+                        {{ student_profile_form.leadership_roles }}
+                    </p>
+
                 </div>
             </div>
 

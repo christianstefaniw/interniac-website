@@ -16,7 +16,7 @@ class StudentProfileForm(forms.ModelForm):
             'hs': 'High School Name',
             'hs_addy': 'High School Address',
             'teacher_or_counselor_email': 'Teacher or Counselor Email',
-            'teacher_or_counselor_name': 'Teacher of Counselor Name',
+            'teacher_or_counselor_name': 'Teacher or Counselor Name',
             'awards_achievements': 'Awards and Achievements',
             'work_exp': 'Word Experience',
             'volunteering_exp': 'Volunteering Experience',

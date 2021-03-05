@@ -176,13 +176,6 @@ nav > div > ul > li > a {
     padding-right: 5px;
 }
 
-/*form > p {
-    line-height: 1.5;
-}
-
-form > div > div > p {
-    line-height: 2;
-}*/
 
 .bg-primary {
     background-color: var(--bg-color-primary);
@@ -506,10 +499,6 @@ END FOOTER
 
 #id_company li:first-child {
     display: none
-}
-
-form p {
-    margin: 0;
 }
 
 #searchbar {
