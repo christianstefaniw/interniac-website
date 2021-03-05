@@ -9,7 +9,6 @@
         {% include 'boilerplate/bootstrap.html' %}
 
         <link rel="stylesheet" href="{% static "css/style.css" %}"/>
-        <link rel="stylesheet" href="{% static "css/home.css" %}"/>
 
 
         <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logos/logo-small-transparent.png' %}"/>
@@ -63,7 +62,7 @@
             </nav>
         </section>
 
-        <div class="container-fluid landing-padding">
+        <div class="landing-padding home-container">
             <section id="landing">
                 <div class="row">
                     <div class="col-md-5">
@@ -109,7 +108,7 @@
             </section>
         </div>
 
-        <div class="container-fluid">
+        <div class="home-container">
 
             <section class="mt-0" id="about-section">
                 <div class="row">
@@ -214,9 +213,9 @@
                  src="{% static 'assets/decorations/blob-bg-primary.svg' %}" alt=""/>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <form method="post">
+                <div class="row justify-content-between">
+                    <div class="col-md-4">
+                        <form method="post" id="contact">
                             {% csrf_token %}
                             {{ contact_form.as_p }}
 

@@ -58,8 +58,7 @@ $(document).ready(function () {
         if (myGetElem($(hide[i]), ids.internWhere)){continue;}
         if (myGetElem($(hide[i]), ids.careerType)){continue}
         if (myGetElem($(hide[i]), ids.newCareer)){
-            if ($(`#${ids.careerType}`).val() != null ){
-                console.log("ok")
+            if ($(`#${ids.careerType}`).val() != ''){
                 $(`#${ids.newCareer}`).hide()
                 $(`label[for=${ids.newCareer}]`).hide()
             }

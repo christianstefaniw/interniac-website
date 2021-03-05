@@ -45,3 +45,8 @@ function hide(elId) {
 function unhide(elId) {
     $(`#${elId}`).show()
 }
+
+$(document).ready(function () {
+        hide('company-name');
+    }
+)

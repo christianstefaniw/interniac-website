@@ -9,7 +9,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% include 'boilerplate/bootstrap.html' %}
         <link rel="stylesheet" href="{% static "css/style.css" %}"/>
-        <link rel="stylesheet" href="{% static "css/create-listing.css" %}"/>
         <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logos/logo-small-transparent.png' %}"/>
         <script src="https://kit.fontawesome.com/a76f8913d2.js" crossorigin="anonymous"></script>
     </head>
@@ -52,7 +51,7 @@
             <form method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button class="btn btn-primary mb-4" type="submit">Save</button>
+                <button class="btn btn-primary mb-4 mt-4" type="submit">Save</button>
             </form>
         </div>
 

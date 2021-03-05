@@ -8,7 +8,6 @@
 
 
         <link rel="stylesheet" href="{% static "css/style.css" %}"/>
-        <link rel="stylesheet" href="{% static "css/create-listing.css" %}"/>
 
         <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logos/logo-small-transparent.png' %}"/>
 
@@ -64,12 +63,12 @@
                 </div>
             </nav>
         </section>
-        <a class="mb-4" href="{{ request.META.HTTP_REFERER }}">
+        <a class="mb-4 ml-3" href="{{ request.META.HTTP_REFERER }}">
             <i class="fas fa-arrow-circle-left fa-2x"></i>
         </a>
         {% if user.is_employer or user.is_superuser %}
             <div class="container">
-                    <form method="post">
+                    <form method="post" id="create-listing">
                         {% csrf_token %}
                         {{ form.as_p }}
                         <button type="submit" class="btn btn-primary mt-3 mb-5">Submit</button>

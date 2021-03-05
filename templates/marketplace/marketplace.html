@@ -13,8 +13,6 @@
               integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
         <link rel="stylesheet" href="{% static "css/style.css" %}"/>
-        <link rel="stylesheet" href="{% static "css/general-input-style.css" %}"/>
-        <link rel="stylesheet" href="{% static "css/marketplace.css" %}"/>
 
 
         <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logos/logo-small-transparent.png' %}"/>
@@ -64,7 +62,7 @@
             </nav>
         </section>
 
-        <div class="container-fluid">
+        <div id="market-container">
             <section>
                 <div class="row justify-content-start mb-2">
                     {% if user.is_employer or user.is_superuser %}

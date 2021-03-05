@@ -3,13 +3,13 @@
 </h1>
 
 <section class="mt-5">
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" id="employer-profile" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="row justify-content-around">
             <div class="col-md-2">
                 <img width="100%" style="object-fit: scale-down" class="mb-2" src="{{ user.profile_picture.url }}"
                      alt="profile-picture"/>
-                {{ employer_user_form.profile_picture.label }}
+                {{ employer_user_form.profile_picture.label_tag }}
                 {{ employer_user_form.profile_picture }}
                 <div class="mt-5 ml-2 mb-5">
                     <div class="row">
@@ -22,25 +22,25 @@
             </div>
             <div class="col-md-8">
                 <div class="form-group">
-                    {{ employer_user_form.company_name.label }}
-                    {{ employer_user_form.company_name }}
+                    {{ employer_user_form.employer_profile.company_name.label_tag }}
+                    {{ employer_user_form.employer_profile.company_name }}
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
-                        {{ employer_user_form.first_name.label }}
+                        {{ employer_user_form.first_name.label_tag }}
                         {{ employer_user_form.first_name }}
                     </div>
                     <div class="form-group col-md-6">
-                        {{ employer_user_form.last_name.label }}
+                        {{ employer_user_form.last_name.label_tag }}
                         {{ employer_user_form.last_name }}
                     </div>
                 </div>
                 <div class="form-group">
-                    {{ employer_user_form.email.label }}
+                    {{ employer_user_form.email.label_tag }}
                     {{ employer_user_form.email }}
                 </div>
                 <div class="form-group">
-                    {{ employer_profile_form.company_website.label }}
+                    {{ employer_profile_form.company_website.label_tag }}
                     {{ employer_profile_form.company_website }}
                 </div>
                 <button class="btn btn-primary w-100 save-btn" type="submit">Save</button>

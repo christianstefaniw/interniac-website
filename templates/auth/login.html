@@ -7,8 +7,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% include 'boilerplate/bootstrap.html' %}
         <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
-        <link rel="stylesheet" href="{% static 'css/general-input-style.css' %}">
-        <link rel="stylesheet" href="{% static 'css/login.css' %}">
         <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logos/logo-small-transparent.png' %}"/>
         <script src="https://kit.fontawesome.com/a76f8913d2.js" crossorigin="anonymous"></script>
         <title>Interniac</title>
@@ -54,10 +52,10 @@
         <div class="container-fluid">
             <div class="row justify-content-around">
                 <div class="col-lg-3">
-                    <form method="post">
+                    <form method="post" id="login">
                         {% csrf_token %}
                         {{ form.as_p }}
-                        <button type="submit" class="btn btn-primary" id="login-btn">Login</button>
+                        <button type="submit" class="btn btn-primary mt-3" id="login-btn">Login</button>
                     </form>
                     <div class="mt-3 mb-5">
                         <a class="float-left text-success" href="{% url 'register' %}">Register</a>
