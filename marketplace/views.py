@@ -72,32 +72,6 @@ class ViewListing(LoginRequiredMixin, DetailView):
 
 
 @login_required(login_url='login')
-def apply(request, listing_id):
-    listing = Listing.objects.get(id=listing_id)
-    listing.applications.add(request.user)
-    redirect_where = request.GET.get('redirect')
-    if redirect_where == 'profile':
-        return redirect(request.user)
-    elif redirect_where == 'success':
-        return render(request, 'success-error/success-applied.html', context={'which': listing})
-    else:
-        return HttpResponse(f'<button class="apply-unapply-btn" onclick="unapply({listing_id}, this)">Unapply</button>')
-
-
-@login_required(login_url='login')
-def unapply(request, listing_id):
-    listing = Listing.objects.get(id=listing_id)
-    listing.applications.remove(request.user)
-    redirect_where = request.GET.get('redirect')
-    if redirect_where == 'profile':
-        return redirect('applications')
-    elif redirect_where == 'success':
-        return render(request, 'success-error/success-unapplied.html', context={'which': listing})
-    else:
-        return HttpResponse(f'<button class="apply-unapply-btn" onclick="apply({listing_id}, this)">Apply</button>')
-
-
-@login_required(login_url='login')
 def delete_listing(request, listing_id):
     listing = Listing.objects.get(id=listing_id)
     if request.user != listing.company:

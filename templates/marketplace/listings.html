@@ -64,7 +64,7 @@
             headers: {
                 'SameSite': 'Lax'
             },
-            url: `apply/${id}`,
+            url: `/applications/apply/${id}`,
             success: function (data) {
                 $(el).replaceWith(data);
             },
@@ -77,7 +77,7 @@
     function unapply(id, el) {
         $.ajax({
             type: 'get',
-            url: `unapply/${id}`,
+            url: `/applications/unapply/${id}`,
             headers: {
                 'SameSite': 'Lax'
             },
