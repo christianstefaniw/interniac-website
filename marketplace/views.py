@@ -1,7 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponse
 from django.db.models import Q
-from django.shortcuts import redirect, render, get_object_or_404
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView, UpdateView
 from django.contrib.auth.decorators import login_required
@@ -42,6 +41,7 @@ class CreateListing(LoginRequiredMixin, CreateView):
 class FilterListings(LoginRequiredMixin, ListView):
     template_name = 'marketplace/listings.html'
     model = Listing
+    queryset = Listing.objects.all().order_by('-posted')
 
     def get_queryset(self):
         queryset = super().get_queryset()

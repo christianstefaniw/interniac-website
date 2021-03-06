@@ -112,7 +112,7 @@
 
             <section class="mt-0" id="about-section">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-lg-4">
                         <div class="inner-shadow img-box">
                             <img class="outer-shadow" src="{% static "assets/images/working.svg" %}" alt="intern photo"/>
                         </div>
@@ -127,6 +127,10 @@
                             or their school). Interniac fills the gap in our education system by simplifying the process for employers to start internship
                             programs and source candidates who are eager to gain valuable out-of-the-classroom work experience.
                         </p>
+                        <div class="text-right" style="width: 85%">
+                            <img width="10%" class="position-absolute send-back spin-counter" src="{% static 'assets/decorations/blob-bg-primary-dark.svg' %}"
+             alt=""/>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -134,16 +138,9 @@
 
             <div class="content-gap"></div>
 
-            <div class="w-100">
-                <div class="text-right">
-                    <img width="5%" class="position-absolute send-back spin" src="{% static 'assets/decorations/blob-primary.svg' %}"
-             alt=""/>
-                </div>
-            </div>
-
             <section id="events">
                 <h1 class="text-center font-weight-bold mb-4">Upcoming Events</h1>
-                <div class="row justify-content-start">
+                <div class="row">
                     {% for event in events %}
                         <div class="col-md-3 {% if forloop.last %} event-card-container-last {% else %} event-card-container {% endif %}">
                             <div class="card light-outer-shadow" style="border-radius: calc(0.25rem - 1px);">

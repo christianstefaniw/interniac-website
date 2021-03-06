@@ -13,7 +13,7 @@ class InitAccountsMixin(object):
                                             password='password',
                                             is_student=False, is_employer=True)
 
-        cls.student_profile(student.id)
+        cls.student_profile(student.id, '+12125552368')
         cls.employer_profile(employer.id)
         cls.student = student
         cls.employer = employer
@@ -29,12 +29,13 @@ class InitAccountsMixin(object):
         employer_profile.company_website = 'http://www.google.com'
         employer_profile.full_clean()
         employer_profile.save()
+        employer.slug_employer()
 
     @staticmethod
-    def student_profile(student_id) -> None:
+    def student_profile(student_id, phone) -> None:
         student = User.objects.get(id=student_id)
         student_profile = StudentProfile.objects.create(user=student)
-        student_profile.phone = '+12125552368'
+        student_profile.phone = phone
         student_profile.dob = date.today()
         student_profile.hs = 'humberside'
         student_profile.hs_addy = '123 random st'
@@ -52,3 +53,4 @@ class InitAccountsMixin(object):
         student_profile.link4 = None
         student_profile.full_clean()
         student_profile.save()
+        student.slug_student()

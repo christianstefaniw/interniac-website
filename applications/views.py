@@ -13,16 +13,10 @@ class Acceptances(LoginRequiredMixin, TemplateView):
     template_name = 'applications/acceptances.html'
     login_url = 'login'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
 
 class Rejections(LoginRequiredMixin, TemplateView):
     template_name = 'applications/rejections.html'
     login_url = 'login'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
 
 
 class ArchiveAcceptance(LoginRequiredMixin, RedirectView):
@@ -110,7 +104,7 @@ class SingleApplication(LoginRequiredMixin, TemplateView):
 def accept(request, listing_id, student_id):
     listing = Listing.objects.get(id=listing_id)
 
-    if request.user != listing.company:
+    if request.user != listing.company or request.user.is_student:
         raise PermissionError
 
     student = User.objects.get(id=student_id)

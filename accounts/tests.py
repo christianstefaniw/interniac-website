@@ -1,4 +1,5 @@
 from django.core.exceptions import ValidationError
+from django.db import IntegrityError
 from django.test import TestCase, RequestFactory
 from datetime import date
 from django.core.exceptions import ObjectDoesNotExist
@@ -22,6 +23,34 @@ class UserTestCase(TestCase, InitAccountsMixin):
     def check_login_redirected(self, path):
         response = self.client.get(path, follow=True)
         self.assertEqual(response.request['PATH_INFO'], reverse('login'))
+
+    def test_unique_student_phone(self):
+        new_student = User.objects.create_user(email='email@gmail.com', first_name='first',
+                                               last_name='last',
+                                               password='password',
+                                               is_student=True, is_employer=False)
+
+        self.assertRaises(ValidationError, super(UserTestCase, self).student_profile, new_student.id, self.student.profile.phone)
+
+    def test_unique_email(self):
+        self.assertRaises(IntegrityError, User.objects.create_user, email=self.student.email, first_name='first',
+                          last_name='last',
+                          password='password',
+                          is_student=True, is_employer=False)
+
+    def test_unique_slug(self):
+        new_student = User.objects.create_user(email='email@gmail.com', first_name='first', last_name='last',
+                                               password='password',
+                                               is_student=True, is_employer=False)
+        super(UserTestCase, self).student_profile(new_student.id, '+12125552369')
+        new_student.slug_student()
+        self.assertNotEqual(self.student.slug, new_student.slug)
+
+    def test_existing_email(self):
+        self.assertRaises(IntegrityError, User.objects.create_user, email='test@gmail.com', first_name='first',
+                          last_name='last',
+                          password='password',
+                          is_student=True, is_employer=False)
 
     def test_delete_employer_url(self):
         user_instance = User.objects.get(email=self.employer_email)
@@ -73,9 +102,11 @@ class UserTestCase(TestCase, InitAccountsMixin):
         self.assertEqual(response.context['user'].email, self.student.email)
 
     def test_employer_company_website(self):
+        old_site = self.employer.employer_profile.company_website
         self.assertEqual(self.employer.employer_profile.company_website, 'http://www.google.com')
         self.employer.employer_profile.company_website = 'not a website'
         self.assertRaises(ValidationError, self.employer.employer_profile.full_clean)
+        self.employer.employer_profile.company_website = old_site
 
     def test_employer_company_name(self):
         self.assertEqual(self.employer.employer_profile.company_name, 'some company')
@@ -103,24 +134,32 @@ class UserTestCase(TestCase, InitAccountsMixin):
         self.assertEqual(str(self.employer), expected)
 
     def test_student_link_4(self):
+        old_link = self.student.profile.link4
         self.assertEqual(self.student.profile.link4, None)
         self.student.profile.link4 = 'broken link'
         self.assertRaises(ValidationError, self.student.profile.full_clean)
+        self.student.profile.link4 = old_link
 
     def test_student_link_3(self):
+        old_link = self.student.profile.link3
         self.assertEqual(self.student.profile.link3, 'http://www.duckduckgo.com')
         self.student.profile.link3 = 'broken link'
         self.assertRaises(ValidationError, self.student.profile.full_clean)
+        self.student.profile.link3 = old_link
 
     def test_student_link_2(self):
+        old_link = self.student.profile.link2
         self.assertEqual(self.student.profile.link2, 'http://www.yahoo.com')
         self.student.profile.link2 = 'broken link'
         self.assertRaises(ValidationError, self.student.profile.full_clean)
+        self.student.profile.link2 = old_link
 
     def test_student_link_1(self):
+        old_link = self.student.profile.link1
         self.assertEqual(self.student.profile.link1, 'http://www.google.com')
         self.student.profile.link1 = 'broken link'
         self.assertRaises(ValidationError, self.student.profile.full_clean)
+        self.student.profile.link1 = old_link
 
     def test_student_leadership_roles(self):
         self.assertEqual(self.student.profile.leadership_roles, 'leadership stuff')
@@ -144,9 +183,11 @@ class UserTestCase(TestCase, InitAccountsMixin):
         self.assertEqual(self.student.profile.teacher_or_counselor_name, 'teacher teacher')
 
     def test_student_teacher_or_counselor_email(self):
+        old_email = self.student.profile.teacher_or_counselor_email
         self.assertEqual(self.student.profile.teacher_or_counselor_email, 'teacher@gmail.com')
         self.student.profile.teacher_or_counselor_email = 'not an email'
         self.assertRaises(ValidationError, self.student.profile.full_clean)
+        self.student.profile.teacher_or_counselor_email = old_email
 
     def test_hs_addy(self):
         self.assertEqual(self.student.profile.hs_addy, '123 random st')
@@ -155,9 +196,11 @@ class UserTestCase(TestCase, InitAccountsMixin):
         self.assertEqual(self.student.profile.hs, 'humberside')
 
     def test_student_dob(self):
+        prev_dob = self.student.profile.dob
         self.assertEqual(self.student.profile.dob, date.today())
         self.student.profile.dob = 'invalid date'
         self.assertRaises(ValidationError, self.student.profile.full_clean)
+        self.student.profile.dob = prev_dob
 
     def test_student_first_name(self):
         self.assertEqual(self.student.first_name, 'first')
@@ -182,6 +225,8 @@ class UserTestCase(TestCase, InitAccountsMixin):
         self.assertTrue(self.student.profile)
 
     def test_student_phone(self):
-        self.assertEqual(self.student.profile.phone, '++12125552368')
+        old_phone = self.student.profile.phone
+        self.assertEqual(self.student.profile.phone, '+12125552368')
         self.student.profile.phone = 'not a phone number'
         self.assertRaises(ValidationError, self.student.profile.full_clean)
+        self.student.profile.phone = old_phone

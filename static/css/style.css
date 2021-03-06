@@ -1,5 +1,6 @@
 /* TODO refactor all of this */
 
+
 /*
 GENERAL
  */
@@ -65,12 +66,10 @@ input:focus:invalid {
 html {
     scroll-behavior: smooth;
 }
-
-html > body {
+body {
     font-family: 'font', sans-serif;
     overflow-x: hidden;
 }
-
 
 * {
     box-sizing: border-box;
