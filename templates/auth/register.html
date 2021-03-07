@@ -65,52 +65,68 @@
                             {% csrf_token %}
                             <div class="row">
                                 <div class="col-md-5 mr-1">
-                                    {% for error in form.first_name.errors %}
-                                        <p class="alert-danger"> {{ error }} </p>
-                                    {% endfor %}
+                                    <p>
+                                        {% for error in form.first_name.errors %}
+                                            <p class="alert-danger"> {{ error }} </p>
+                                        {% endfor %}
                                     {{ form.first_name.label_tag }}
                                     {{ form.first_name }}
+                                    </p>
+
                                 </div>
 
                                 <div class="col-md-5 ml-1">
-                                    {% for error in form.last_name.errors %}
-                                        <p class="alert-danger"> {{ error }} </p>
-                                    {% endfor %}
+                                    <p>
+                                        {% for error in form.last_name.errors %}
+                                            <p class="alert-danger"> {{ error }} </p>
+                                        {% endfor %}
                                     {{ form.last_name.label_tag }}
                                     {{ form.last_name }}
+                                    </p>
+
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-5 mr-1">
-                                    {% for error in form.email.errors %}
-                                        <p class="alert-danger"> {{ error }} </p>
-                                    {% endfor %}
+                                    <p>
+                                        {% for error in form.email.errors %}
+                                            <p class="alert-danger"> {{ error }} </p>
+                                        {% endfor %}
                                     {{ form.email.label_tag }}
                                     {{ form.email }}
+                                    </p>
+
                                 </div>
                                 <div class="col-md-5 col-md-1">
-                                    {% for error in form.profile_picture.errors %}
-                                        <p class="alert-danger"> {{ error }} </p>
-                                    {% endfor %}
+                                    <p>
+                                        {% for error in form.profile_picture.errors %}
+                                            <p class="alert-danger"> {{ error }} </p>
+                                        {% endfor %}
                                     {{ form.profile_picture.label_tag }}
                                     {{ form.profile_picture }}
+
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-5 mr-1">
-                                    {% for error in form.password1.errors %}
-                                        <p class="alert-danger"> {{ error }} </p>
-                                    {% endfor %}
+                                    <p>
+                                        {% for error in form.password1.errors %}
+                                            <p class="alert-danger"> {{ error }} </p>
+                                        {% endfor %}
                                     {{ form.password1.label_tag }}
                                     {{ form.password1 }}
+                                    </p>
                                 </div>
 
                                 <div class="col-md-5 ml-1">
-                                    {% for error in form.password2.errors %}
-                                        <p class="alert-danger"> {{ error }} </p>
-                                    {% endfor %}
+                                    <p>
+                                        {% for error in form.password2.errors %}
+                                            <p class="alert-danger"> {{ error }} </p>
+                                        {% endfor %}
                                     {{ form.password2.label_tag }}
                                     {{ form.password2 }}
+                                    </p>
+
                                 </div>
                             </div>
 
@@ -118,13 +134,18 @@
                                 <div class="col-md-5 mr-1">
                                     <div class="row">
                                         <div class="col">
-                                            {% for error in form.is_student.errors %}
-                                                <p class="alert-danger"> {{ error }} </p>
-                                            {% endfor %}
+                                            <p>
+                                                {% for error in form.is_student.errors %}
+                                                    <p class="alert-danger"> {{ error }} </p>
+                                                {% endfor %}
                                             {{ form.is_student.label_tag }}
+                                            </p>
                                         </div>
                                         <div class="col">
-                                            {{ form.is_student }}
+                                            <p>
+                                                {{ form.is_student }}
+                                            </p>
+
                                         </div>
                                     </div>
                                 </div>
@@ -132,13 +153,19 @@
                                 <div class="col-md-5 ml-1">
                                     <div class="row">
                                         <div class="col">
-                                            {% for error in form.is_employer.errors %}
-                                                <p class="alert-danger"> {{ error }} </p>
-                                            {% endfor %}
+                                            <p>
+                                                {% for error in form.is_employer.errors %}
+                                                    <p class="alert-danger"> {{ error }} </p>
+                                                {% endfor %}
                                             {{ form.is_employer.label_tag }}
+                                            </p>
+
                                         </div>
                                         <div class="col">
-                                            {{ form.is_employer }}
+                                            <p>
+                                                {{ form.is_employer }}
+                                            </p>
+
                                         </div>
                                     </div>
 

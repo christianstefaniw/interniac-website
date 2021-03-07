@@ -1,5 +1,5 @@
 <div class="row">
-    {% for listing in user.acceptances.all %}
+    {% for listing in user.student_acceptances.all %}
         <div class="col-lg-3 mb-5">
             <h1>{{ listing.title }}</h1>
             <a class="neutral-btn" href="{% url 'listing' slug=listing.slug %}">View Listing</a>

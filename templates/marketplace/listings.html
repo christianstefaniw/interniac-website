@@ -29,6 +29,8 @@
                         <div class="col-lg-3 text-right">
                             {% if user in listing.rejections.all %}
                                 <p class="text-danger">Rejected</p>
+                            {% elif user in listing.acceptances.all %}
+                                <p class="text-success">Accepted</p>
                             {% elif user in listing.interview_requests.all %}
                                 <p class="text-success">Interview requested</p>
                             {% elif listing.application_url %}

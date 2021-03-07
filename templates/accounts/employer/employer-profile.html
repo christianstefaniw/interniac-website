@@ -14,13 +14,11 @@
                     {{ employer_user_form.profile_picture }}
                 </p>
 
-                <div class="mt-3 ml-2">
-                    <div class="row">
-                        <a class="neutral-btn mr-4 mt-2"
-                           href="{% url 'logout' %}?next=/">Logout</a>
-                        <a class="danger-btn mt-2"
-                           href="{% url "delete" %}">Delete account</a>
-                    </div>
+                <div class="mt-4">
+                    <a class="danger-btn"
+                       href="{% url "delete" %}">Delete account</a>
+                    <a class="neutral-btn float-right"
+                       href="{% url 'logout' %}?next=/">Logout</a>
                 </div>
             </div>
             <div class="col-md-8">

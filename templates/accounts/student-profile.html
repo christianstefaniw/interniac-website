@@ -4,7 +4,7 @@
     {% csrf_token %}
     <div class="row">
         <div class="col-md-2">
-            <img class="img-fluid mb-2" src="{{ user.profile_picture.url }}" alt="profile-picture"/>
+            <img class="img-fluid mb-2" src="{{ user.get_profile_pic_url }}" alt="profile-picture"/>
             <p>
                 {{ student_user_form.profile_picture.label_tag }}
                 {{ student_user_form.profile_picture }}

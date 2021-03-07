@@ -13,6 +13,9 @@ class Acceptances(LoginRequiredMixin, TemplateView):
     template_name = 'applications/acceptances.html'
     login_url = 'login'
 
+    def get(self, request, *args, **kwargs):
+        return super(Acceptances, self).get(request)
+
 
 class Rejections(LoginRequiredMixin, TemplateView):
     template_name = 'applications/rejections.html'
@@ -33,7 +36,10 @@ class ArchiveAcceptance(LoginRequiredMixin, RedirectView):
         user = User.objects.get(id=self.kwargs.get('student_id'))
         if listing.company != self.request.user and self.request.user != user:
             raise PermissionError
-        listing.acceptances.remove(user)
+        if self.request.user.is_employer:
+            self.request.user.employer_profile.archive_acceptance(listing.id, user.id)
+        else:
+            user.profile.archive_acceptance(listing.id)
         return super().get_redirect_url(*args, **kwargs)
 
 
@@ -46,7 +52,10 @@ class ArchiveInterviewRequest(LoginRequiredMixin, RedirectView):
         user = User.objects.get(id=self.kwargs.get('student_id'))
         if listing.company != self.request.user and self.request.user != user:
             raise PermissionError
-        listing.interview_requests.remove(user)
+        if self.request.user.is_employer:
+            self.request.user.employer_profile.archive_interview_request(listing.id)
+        else:
+            user.profile.archive_interview_request(listing.id)
         return super().get_redirect_url(*args, **kwargs)
 
 
@@ -59,7 +68,10 @@ class ArchiveRejection(LoginRequiredMixin, RedirectView):
         user = User.objects.get(id=self.kwargs.get('student_id'))
         if listing.company != self.request.user and self.request.user != user:
             raise PermissionError
-        listing.rejections.remove(user)
+        if self.request.user.is_employer:
+            self.request.user.employer_profile.archive_rejection(listing.id)
+        else:
+            user.profile.archive_rejection(listing.id)
         return super().get_redirect_url(*args, **kwargs)
 
 
@@ -98,9 +110,7 @@ def accept(request, listing_id, student_id):
         raise PermissionError
 
     student = User.objects.get(id=student_id)
-    listing.acceptances.add(student)
-    listing.applications.remove(student)
-    listing.accept_email(student)
+    listing.accept(student_id)
     return render(request, 'success-error/success-accepted-student.html',
                   context={'first': student.first_name, 'last': student.last_name, 'listing_title': listing.title})
 
@@ -113,9 +123,7 @@ def reject(request, listing_id, student_id):
         raise PermissionError
 
     student = User.objects.get(id=student_id)
-    listing.rejections.add(student)
-    listing.applications.remove(student)
-    listing.reject_email(student)
+    student.profile.reject(listing_id)
     return render(request, 'success-error/success-rejected-student.html',
                   context={'first': student.first_name, 'last': student.last_name, 'listing_title': listing.title})
 
@@ -128,8 +136,7 @@ def request_interview(request, listing_id, student_id):
         raise PermissionError
 
     student = User.objects.get(id=student_id)
-    listing.interview_requests.add(student)
-    listing.request_interview_email(student)
+    student.profile.request_interview(listing_id)
     return render(request, 'success-error/success-requested-interview.html',
                   context={'first': student.first_name, 'last': student.last_name, 'listing_title': listing.title})
 
@@ -138,13 +145,12 @@ def request_interview(request, listing_id, student_id):
 def apply(request, listing_id):
     if request.user.is_employer:
         raise PermissionError
-    listing = Listing.objects.get(id=listing_id)
-    listing.applications.add(request.user)
+    request.user.profile.apply(listing_id)
     redirect_where = request.GET.get('redirect')
     if redirect_where == 'profile':
         return redirect(request.user)
     elif redirect_where == 'success':
-        return render(request, 'success-error/success-applied.html', context={'which': listing})
+        return render(request, 'success-error/success-applied.html', context={'which': Listing.objects.get(id=listing_id)})
     else:
         return HttpResponse(f'<button class="apply-unapply-btn" onclick="unapply({listing_id}, this)">Unapply</button>')
 
@@ -153,12 +159,11 @@ def apply(request, listing_id):
 def unapply(request, listing_id):
     if request.user.is_employer:
         raise PermissionError
-    listing = Listing.objects.get(id=listing_id)
-    listing.applications.remove(request.user)
+    request.user.profile.reject(listing_id)
     redirect_where = request.GET.get('redirect')
     if redirect_where == 'profile':
         return redirect('applications')
     elif redirect_where == 'success':
-        return render(request, 'success-error/success-unapplied.html', context={'which': listing})
+        return render(request, 'success-error/success-unapplied.html', context={'which': Listing.objects.get(id=listing_id)})
     else:
         return HttpResponse(f'<button class="apply-unapply-btn" onclick="apply({listing_id}, this)">Apply</button>')

@@ -188,8 +188,7 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
         self.login(self.student)
         response = self.client.get(path, follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertFalse(self.student in self.listing.applications.all())
-        self.assertFalse(self.student in self.listing.acceptances.all())
+        self.assertFalse(self.student in self.listing.student_acceptances.all())
 
     def test_rand_employer_archive_accepted(self):
         path = reverse('archive_accepted', kwargs={

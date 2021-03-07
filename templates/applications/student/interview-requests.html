@@ -1,10 +1,11 @@
 <div class="row">
-{{ user.interview_requests.all }}
-    {% for listing in user.interviews.all %}
+    {% for listing in user.profile.interview_requests.all %}
         <div class="col-lg-3 mb-5">
             <h1>{{ listing.title }}</h1>
-            <a class="neutral-btn mr-3" href="{% url 'listing' slug=listing.slug %}">View Listing</a>
-            <a class="success-btn" href="mailto:{{ listing.company.email }}">Email {{ listing.company.company_name }}</a>
+            <a class="neutral-btn" href="{% url 'listing' slug=listing.slug %}">View Listing</a>
+            <a class="success-btn mr-3 ml-3"
+               href="mailto:{{ listing.company.email }}">Email {{ listing.company.company_name }}</a>
+            <a class="danger-btn" href="{% url 'archive_interview_request' listing_id=listing.id student_id=user.id %}">Archive</a>
         </div>
     {% endfor %}
 </div>
