@@ -1,12 +1,14 @@
 <div class="row">
-    {% for listing in user.profile.interview_requests.all %}
-        <div class="col-lg-3 mb-5">
-            <h1>{{ listing.title }}</h1>
-            <a class="neutral-btn" href="{% url 'listing' slug=listing.slug %}">View Listing</a>
-            <a class="success-btn mr-3 ml-3"
-               href="mailto:{{ listing.company.email }}">Email {{ listing.company.company_name }}</a>
-            <a class="danger-btn" href="{% url 'archive_interview_request' listing_id=listing.id student_id=user.id %}">Archive</a>
+    {% for listing in user.student_interview_requests.all %}
+        <div class="col-lg-4">
+            <h2>{{ listing.title }}</h2>
+            <div class="mb-4">
+                <a style="display: block; color: black" class="mb-2 mt-1"
+                   href="{% url 'single_application' listing_slug=listing.slug user_slug=user.slug %}">{{ user.first_name }} {{ user.last_name }}</a>
+                <a class="neutral-btn" href="mailto:{{ user.email }}">{{ user.email }}</a>
+                <a class="danger-btn"
+                   href="{% url 'archive_rejected' listing_id=listing.id student_id=user.id %}">Archive</a>
+            </div>
         </div>
     {% endfor %}
 </div>
-

@@ -38,7 +38,7 @@ class ArchiveAcceptance(LoginRequiredMixin, RedirectView):
             raise PermissionError
         if self.request.user.is_employer:
             self.request.user.employer_profile.archive_acceptance(listing.id, user.id)
-        else:
+        elif self.request.user.is_student:
             user.profile.archive_acceptance(listing.id)
         return super().get_redirect_url(*args, **kwargs)
 
@@ -54,7 +54,7 @@ class ArchiveInterviewRequest(LoginRequiredMixin, RedirectView):
             raise PermissionError
         if self.request.user.is_employer:
             self.request.user.employer_profile.archive_interview_request(listing.id)
-        else:
+        elif self.request.user.is_student:
             user.profile.archive_interview_request(listing.id)
         return super().get_redirect_url(*args, **kwargs)
 
@@ -70,7 +70,7 @@ class ArchiveRejection(LoginRequiredMixin, RedirectView):
             raise PermissionError
         if self.request.user.is_employer:
             self.request.user.employer_profile.archive_rejection(listing.id)
-        else:
+        elif self.request.user.is_student:
             user.profile.archive_rejection(listing.id)
         return super().get_redirect_url(*args, **kwargs)
 
@@ -123,7 +123,7 @@ def reject(request, listing_id, student_id):
         raise PermissionError
 
     student = User.objects.get(id=student_id)
-    student.profile.reject(listing_id)
+    listing.reject(student_id)
     return render(request, 'success-error/success-rejected-student.html',
                   context={'first': student.first_name, 'last': student.last_name, 'listing_title': listing.title})
 
@@ -136,7 +136,7 @@ def request_interview(request, listing_id, student_id):
         raise PermissionError
 
     student = User.objects.get(id=student_id)
-    student.profile.request_interview(listing_id)
+    listing.request_interview(student_id)
     return render(request, 'success-error/success-requested-interview.html',
                   context={'first': student.first_name, 'last': student.last_name, 'listing_title': listing.title})
 
@@ -159,7 +159,7 @@ def apply(request, listing_id):
 def unapply(request, listing_id):
     if request.user.is_employer:
         raise PermissionError
-    request.user.profile.reject(listing_id)
+    request.user.profile.unapply(listing_id)
     redirect_where = request.GET.get('redirect')
     if redirect_where == 'profile':
         return redirect('applications')

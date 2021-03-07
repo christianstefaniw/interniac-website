@@ -124,23 +124,6 @@ class StudentProfile(models.Model):
     link3 = models.URLField(null=True, blank=True)
     link4 = models.URLField(null=True, blank=True)
 
-    def reject(self, listing_id):
-        listing = Listing.objects.get(id=listing_id)
-        listing.applications.remove(self.user)
-        listing.rejections.add(self.user)
-        listing.company.employer_rejections.add(listing)
-        listing.reject_email(self.user)
-        self.user.student_rejections.add(listing)
-        if self.user in listing.interview_requests.all():
-            listing.interview_requests.remove(self.user)
-
-    def request_interview(self, listing_id):
-        listing = Listing.objects.get(id=listing_id)
-        listing.interview_requests.add(self.user)
-        listing.company.employer_interview_requests.add(self.user)
-        self.user.student_interview_requests.add(listing)
-        listing.request_interview_email(self.user)
-
     def archive_interview_request(self, listing_id):
         listing = Listing.objects.get(id=listing_id)
         self.user.student_interview_requests.remove(listing)

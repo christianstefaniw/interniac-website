@@ -32,7 +32,7 @@
                             {% elif user in listing.acceptances.all %}
                                 <p class="text-success">Accepted</p>
                             {% elif user in listing.interview_requests.all %}
-                                <p class="text-success">Interview requested</p>
+                                <p class="text-info">Interview requested</p>
                             {% elif listing.application_url %}
                                 <p></p>
                             {% else %}

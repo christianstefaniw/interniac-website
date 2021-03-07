@@ -98,8 +98,7 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
         self.login(self.student)
         response = self.client.get(path, follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertFalse(self.student in self.listing.applications.all())
-        self.assertFalse(self.student in self.listing.interview_requests.all())
+        self.assertFalse(self.student in self.listing.student_interview_requests.all())
 
     def test_rand_employer_archive_interview_request(self):
         path = reverse('archive_interview_request', kwargs={
@@ -122,8 +121,7 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
         self.accept_student()
         response = self.client.get(path, follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertFalse(self.student in self.listing.applications.all())
-        self.assertFalse(self.student in self.listing.interview_requests.all())
+        self.assertFalse(self.student in self.listing.employer_interview_requests.all())
 
     def test_archive_rejected_login_redirect(self):
         self.check_login_redirected(reverse('archive_rejected', kwargs={
@@ -143,8 +141,7 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
         self.login(self.student)
         response = self.client.get(path, follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertFalse(self.student in self.listing.applications.all())
-        self.assertFalse(self.student in self.listing.rejections.all())
+        self.assertFalse(self.student in self.listing.student_rejections.all())
 
     def test_rand_employer_archive_rejected(self):
         path = reverse('archive_rejected', kwargs={
@@ -167,8 +164,7 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
         self.accept_student()
         response = self.client.get(path, follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertFalse(self.student in self.listing.applications.all())
-        self.assertFalse(self.student in self.listing.rejections.all())
+        self.assertFalse(self.student in self.listing.employer_rejections.all())
 
     def test_archive_accepted_login_redirect(self):
         self.check_login_redirected(reverse('archive_accepted', kwargs={
@@ -211,8 +207,7 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
         self.accept_student()
         response = self.client.get(path, follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertFalse(self.student in self.listing.applications.all())
-        self.assertFalse(self.student in self.listing.acceptances.all())
+        self.assertFalse(self.student in self.listing.employer_acceptances.all())
 
     def test_view_interview_requests_login_redirect(self):
         self.check_login_redirected(reverse('rejections'))
@@ -334,8 +329,10 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
         self.login(self.employer)
         response = self.reject_student()
         self.assertEqual(response.status_code, 200)
-        self.assertFalse(self.student in self.listing.applications.all())
+        self.assertTrue(self.student in self.listing.student_rejections.all())
+        self.assertTrue(self.student in self.listing.employer_rejections.all())
         self.assertTrue(self.student in self.listing.rejections.all())
+        self.assertFalse(self.student in self.listing.applications.all())
 
     # try to reject a student as a student
     def test_student_reject(self):
@@ -354,6 +351,8 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
         self.login(self.employer)
         response = self.accept_student()
         self.assertEqual(response.status_code, 200)
+        self.assertTrue(self.student in self.listing.student_acceptances.all())
+        self.assertTrue(self.student in self.listing.employer_acceptances.all())
         self.assertTrue(self.student in self.listing.acceptances.all())
         self.assertFalse(self.student in self.listing.applications.all())
 

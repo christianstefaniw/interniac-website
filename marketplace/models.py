@@ -33,13 +33,13 @@ class Listing(models.Model):
     application_deadline = models.DateTimeField()
     description = models.TextField()
 
-    employer_acceptances = models.ManyToManyField('accounts.User', related_name='employer_acceptances')
-    employer_rejections = models.ManyToManyField('accounts.User', related_name='employer_rejections')
-    employer_interview_requests = models.ManyToManyField('accounts.User', related_name='employer_interview_requests')
+    employer_acceptances = models.ManyToManyField('accounts.User', related_name='employer_acceptances', blank=True)
+    employer_rejections = models.ManyToManyField('accounts.User', related_name='employer_rejections', blank=True)
+    employer_interview_requests = models.ManyToManyField('accounts.User', related_name='employer_interview_requests', blank=True)
 
-    student_acceptances = models.ManyToManyField('accounts.User', related_name='student_acceptances')
-    student_rejections = models.ManyToManyField('accounts.User', related_name='student_rejections')
-    student_interview_requests = models.ManyToManyField('accounts.User', related_name='student_interview_requests')
+    student_acceptances = models.ManyToManyField('accounts.User', related_name='student_acceptances', blank=True)
+    student_rejections = models.ManyToManyField('accounts.User', related_name='student_rejections', blank=True)
+    student_interview_requests = models.ManyToManyField('accounts.User', related_name='student_interview_requests', blank=True)
 
     applications = models.ManyToManyField('accounts.User', related_name='applications', blank=True)
     acceptances = models.ManyToManyField('accounts.User', related_name='listing_acceptances', blank=True)
@@ -121,8 +121,17 @@ From, the Interniac Team
                      to=[email], subject=f"Next steps for {self.title}",
                      reply_to=[self.company.email]).send()
 
-    def accept(self, user_id):
-        user = get_user_model().objects.get(id=user_id)
+    def remove_from_interview(self, student_id):
+        user = get_user_model().objects.get(id=student_id)
+        if user in self.interview_requests.all():
+            self.interview_requests.remove(user)
+        if user in self.student_interview_requests.all():
+            self.student_interview_requests.remove(user)
+        if user in self.employer_interview_requests.all():
+            self.employer_interview_requests.remove(user)
+
+    def accept(self, student_id):
+        user = get_user_model().objects.get(id=student_id)
 
         self.applications.remove(user)
         self.acceptances.add(user)
@@ -131,8 +140,28 @@ From, the Interniac Team
 
         self.accept_email(user)
 
-        if user in self.interview_requests.all():
-            self.interview_requests.remove(user)
+        self.remove_from_interview(user.id)
+
+    def reject(self, student_id):
+        user = get_user_model().objects.get(id=student_id)
+
+        self.applications.remove(user)
+        self.rejections.add(user)
+        self.employer_rejections.add(user)
+        self.student_rejections.add(user)
+
+        self.reject_email(user)
+
+        self.remove_from_interview(user.id)
+
+    def request_interview(self, student_id):
+        user = get_user_model().objects.get(id=student_id)
+
+        self.interview_requests.add(user)
+        self.employer_interview_requests.add(user)
+        self.student_interview_requests.add(user)
+
+        self.request_interview_email(user)
 
     def __str__(self):
         return self.title
