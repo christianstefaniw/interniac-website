@@ -19,6 +19,11 @@ class Rejections(LoginRequiredMixin, TemplateView):
     login_url = 'login'
 
 
+class InterviewRequests(LoginRequiredMixin, TemplateView):
+    template_name = 'applications/interview-requests.html'
+    login_url = 'login'
+
+
 class ArchiveAcceptance(LoginRequiredMixin, RedirectView):
     url = reverse_lazy('acceptances')
     login_url = 'login'
@@ -45,15 +50,6 @@ class ArchiveInterviewRequest(LoginRequiredMixin, RedirectView):
         return super().get_redirect_url(*args, **kwargs)
 
 
-class InterviewRequests(LoginRequiredMixin, TemplateView):
-    template_name = 'applications/interview-requests.html'
-    login_url = 'login'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
-
-
 class ArchiveRejection(LoginRequiredMixin, RedirectView):
     url = reverse_lazy('rejections')
     login_url = 'login'
@@ -70,12 +66,6 @@ class ArchiveRejection(LoginRequiredMixin, RedirectView):
 class Applications(LoginRequiredMixin, TemplateView):
     template_name = 'applications/applications.html'
     login_url = 'login'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        if self.request.user.is_student:
-            pass
-        return context
 
 
 class SingleApplication(LoginRequiredMixin, TemplateView):

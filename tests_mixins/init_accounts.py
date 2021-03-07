@@ -14,7 +14,9 @@ class InitAccountsMixin(object):
                                             is_student=False, is_employer=True)
 
         cls.student_profile(student.id, '+12125552368')
+        student = User.objects.get(id=student.id)
         cls.employer_profile(employer.id)
+        employer = User.objects.get(id=employer.id)
         cls.student = student
         cls.employer = employer
         cls.password = 'password'
