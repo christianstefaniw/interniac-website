@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.utils import timezone
-from django.test import TestCase, RequestFactory
+from django.test import TestCase
 from django.urls import reverse
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -16,9 +16,6 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
         super().set_up()
         cls.rand_employer = cls.create_new_employer()
         cls.listing = cls.create_listing(cls)
-
-    def setUp(self) -> None:
-        self.factory = RequestFactory()
 
     def login(self, profile) -> None:
         self.client.login(username=profile.email, password=self.password)
