@@ -108,6 +108,9 @@ ENV/
 *.db
 *.pid
 
+# misc
+client_secret.json
+
 # Ignore Django Migrations in Development if you are working on team
 
 # Only for Development only

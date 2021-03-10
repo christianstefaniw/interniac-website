@@ -27,8 +27,3 @@ class EmailForm(forms.ModelForm):
     class Meta:
         model = EmailSignup
         fields = ['email_signup']
-
-    def subscribed_email(self):
-        email = self.cleaned_data['email_signup']
-        EmailMessage(subject="Thank you!", body="Thank you for subscribing to Interniac's Mailing list!",
-                     from_email=os.environ.get("EMAIL"), to=[email]).send()

@@ -23,12 +23,10 @@ class HomePage(TemplateView):
 
         if 'email_signup' in self.request.POST:
             form = EmailForm(request.POST)
-
             if form.is_valid():
                 if EmailSignup.objects.filter(email_signup=form.cleaned_data['email_signup']).exists():
                     return redirect('success')
                 form.save()
-                form.subscribed_email()
                 return redirect('success')
             else:
                 return redirect('error')
@@ -44,8 +42,3 @@ class HomePage(TemplateView):
 
 def read_more(request, pk):
     return render(request, 'read-more.html', {'event': Event.objects.get(id=pk)})
-
-
-def unsubscribe(request, email):
-    EmailSignup.objects.get(email_signup=email).delete()
-    return redirect('success')

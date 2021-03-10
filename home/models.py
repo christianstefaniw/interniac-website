@@ -3,9 +3,17 @@ import os
 from django.db import models
 from django.dispatch import receiver
 
+from .helpers import insert_into_spreadsheet
+
 
 class EmailSignup(models.Model):
     email_signup = models.EmailField()
+
+    def save(self, *args, **kwargs):
+        # Interniac is using a spreadsheet for emails so we can generate statistics and stuff
+        # I'm going to still keep this model for backup purposes
+        insert_into_spreadsheet(self.email_signup)
+        super(EmailSignup, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.email_signup
