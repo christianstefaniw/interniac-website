@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView, RedirectView
 
 from accounts.models import User
+from decorators.student_required import student_required
 from marketplace.models import Listing
 
 
@@ -106,7 +107,7 @@ class SingleApplication(LoginRequiredMixin, TemplateView):
 def accept(request, listing_id, student_id):
     listing = Listing.objects.get(id=listing_id)
 
-    if request.user != listing.company or request.user.is_student:
+    if request.user != listing.company:
         raise PermissionError
 
     student = User.objects.get(id=student_id)
@@ -142,28 +143,28 @@ def request_interview(request, listing_id, student_id):
 
 
 @login_required(login_url='login')
+@student_required
 def apply(request, listing_id):
-    if request.user.is_employer:
-        raise PermissionError
     request.user.profile.apply(listing_id)
     redirect_where = request.GET.get('redirect')
     if redirect_where == 'profile':
         return redirect(request.user)
     elif redirect_where == 'success':
-        return render(request, 'success-error/success-applied.html', context={'which': Listing.objects.get(id=listing_id)})
+        return render(request, 'success-error/success-applied.html',
+                      context={'which': Listing.objects.get(id=listing_id)})
     else:
         return HttpResponse(f'<button class="apply-unapply-btn" onclick="unapply({listing_id}, this)">Unapply</button>')
 
 
 @login_required(login_url='login')
+@student_required
 def unapply(request, listing_id):
-    if request.user.is_employer:
-        raise PermissionError
     request.user.profile.unapply(listing_id)
     redirect_where = request.GET.get('redirect')
     if redirect_where == 'profile':
         return redirect('applications')
     elif redirect_where == 'success':
-        return render(request, 'success-error/success-unapplied.html', context={'which': Listing.objects.get(id=listing_id)})
+        return render(request, 'success-error/success-unapplied.html',
+                      context={'which': Listing.objects.get(id=listing_id)})
     else:
         return HttpResponse(f'<button class="apply-unapply-btn" onclick="apply({listing_id}, this)">Apply</button>')
