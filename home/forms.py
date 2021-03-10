@@ -4,7 +4,7 @@ from django import forms
 from django.core.mail import EmailMessage
 from nocaptcha_recaptcha import NoReCaptchaField
 
-from .models import EmailSignup
+from .helpers import insert_into_spreadsheet
 
 
 class ContactForm(forms.Form):
@@ -21,9 +21,9 @@ class ContactForm(forms.Form):
                      reply_to=[email]).send()
 
 
-class EmailForm(forms.ModelForm):
+class EmailForm(forms.Form):
     email_signup = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'Email Address'}))
 
-    class Meta:
-        model = EmailSignup
-        fields = ['email_signup']
+    def is_valid(self):
+        insert_into_spreadsheet(self.data['email_signup'])
+        return super(EmailForm, self).is_valid()

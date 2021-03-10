@@ -48,8 +48,3 @@ class EmployerUserForm(forms.ModelForm):
             'profile_picture': forms.FileInput
         }
         fields = ['email', 'profile_picture', 'first_name', 'last_name']
-
-
-class EmailAll(forms.Form):
-    subject = forms.CharField(max_length=20)
-    body = forms.CharField(widget=forms.Textarea)
