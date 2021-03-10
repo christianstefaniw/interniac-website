@@ -850,10 +850,6 @@ END LANDING PAGE
 
 @media screen and (max-width: 991px) {
 
-    #about-section {
-        margin-top: 8rem;
-    }
-
     .bottom-application-btn {
         margin-top: 0;
     }
@@ -866,7 +862,7 @@ END LANDING PAGE
     }
 
     #about-section {
-        margin-top: 10rem;
+        margin-top: 10rem !important;
     }
 
     #msg-img {
