@@ -1,7 +1,6 @@
 /* TODO cta buttons mobile reformat for applications */
 
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
 /*
 GENERAL
  */
@@ -197,7 +196,7 @@ nav > div > ul > li > a {
     user-select: none;
     padding: 10px;
     background-color: #cbcaca;
-    border-radius: 10px;
+    border-radius: 4px;
     color: #dc3545;
 }
 
@@ -214,7 +213,7 @@ nav > div > ul > li > a {
     user-select: none;
     padding: 10px;
     background-color: #cbcaca;
-    border-radius: 10px;
+    border-radius: 4px;
 }
 
 .neutral-btn:hover {
@@ -230,7 +229,7 @@ nav > div > ul > li > a {
     user-select: none;
     padding: 10px;
     background-color: #cbcaca;
-    border-radius: 10px;
+    border-radius: 4px;
     color: #28a745;
 }
 
