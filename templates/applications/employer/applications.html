@@ -1,16 +1,15 @@
-<div class="row">
+<div class="row justify-content-around">
     {% for listing in user.listing.all %}
         {% if listing.applications.all %}
-            <div class="col-lg-4" style="margin-bottom: 10rem">
-                <h1>{{ listing.title }}</h1>
-
-                {% for student in listing.applications.all %}
+            <div class="col-lg-3 mr-2 ml-2 bg-white light-outer-shadow p-5 br-10" style="margin-bottom: 10rem;">
+                <h2>{{ listing.title }}</h2>
+                {% for student in listing.applications.all|slice:":3" %}
                     {% if student not in listing.acceptances.all %}
                         <div class="mb-5">
                             <p>{{ student.first_name }} {{ student.last_name }}</p>
-                            <a class="success-btn"
+                            <a class="success-btn" onclick="return confirm('Are you sure?');"
                                href="{% url 'accept' listing_id=listing.id student_id=student.id %}">Accept</a>
-                            <a class="danger-btn mr-3 ml-3"
+                            <a class="danger-btn mr-3 ml-3" onclick="return confirm('Are you sure?');"
                                href="{% url 'reject' listing_id=listing.id student_id=student.id %} ">Reject</a>
                             <a class="neutral-btn bottom-application-btn"
                                href="{% url 'single_application' listing_slug=listing.slug user_slug=student.slug %}">View
@@ -18,6 +17,9 @@
                         </div>
                     {% endif %}
                 {% endfor %}
+                {% if listing.applications.all|length > 3 %}
+                    <a class="secondary" href="{% url 'all_applications' slug=listing.slug %}">View more</a>
+                {% endif %}
             </div>
 
         {% endif %}

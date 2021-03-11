@@ -20,7 +20,7 @@
     <body>
 
         <section id="nav">
-            <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+            <nav class="navbar navbar-expand-lg navbar-light">
                 <a class="navbar-brand" href="{% url 'home' %}">
                     <img width=200 height="50" src="{% static "assets/images/logos/logo-transparent.png" %}" alt="logo"/>
                 </a>
@@ -173,13 +173,13 @@
                     </div>
 
                     <div class="mt-5 mb-5">
-                        <a class="success-btn"
+                        <a class="success-btn" onclick="return confirm('Are you sure?');"
                            href="{% url 'accept' listing_id=listing.id student_id=student.id %}">Accept</a>
 
-                        <a class="danger-btn ml-3"
+                        <a class="danger-btn ml-3" onclick="return confirm('Are you sure?');"
                            href="{% url 'reject' listing_id=listing.id student_id=student.id %}">Reject</a>
 
-                        <a class="neutral-btn ml-3"
+                        <a class="neutral-btn ml-3" onclick="return confirm('Are you sure?');"
                            href="{% url 'request_interview' listing_id=listing.id student_id=student.id %}">Request
                             Interview</a>
                     </div>

@@ -85,17 +85,17 @@ class EmployerProfile(models.Model):
     company_name = models.CharField(max_length=30, unique=False, blank=True)
     company_website = models.URLField(blank=True)
 
-    def archive_interview_request(self, listing_id):
+    def archive_interview_request(self, listing_id, user_id):
         listing = Listing.objects.get(id=listing_id)
-        self.user.employer_interview_requests.remove(listing)
+        listing.employer_interview_requests.remove(User.objects.get(id=user_id))
 
     def archive_acceptance(self, listing_id, user_id):
         listing = Listing.objects.get(id=listing_id)
         listing.employer_acceptances.remove(User.objects.get(id=user_id))
 
-    def archive_rejection(self, listing_id):
+    def archive_rejection(self, listing_id, user_id):
         listing = Listing.objects.get(id=listing_id)
-        self.user.employer_rejections.remove(listing)
+        listing.employer_rejections.remove(User.objects.get(id=user_id))
 
     def delete(self, using=None, keep_parents=False):
         self.user.delete()
@@ -130,7 +130,7 @@ class StudentProfile(models.Model):
 
     def archive_acceptance(self, listing_id):
         listing = Listing.objects.get(id=listing_id)
-        listing.student_acceptances.remove(self.user)
+        listing.student_acceptances.remove(listing)
 
     def archive_rejection(self, listing_id):
         listing = Listing.objects.get(id=listing_id)

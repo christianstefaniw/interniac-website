@@ -16,5 +16,9 @@ urlpatterns = [
     path('archiverejected/<int:listing_id>/<int:student_id>', ArchiveRejection.as_view(), name='archive_rejected'),
     path('archiveinterviewrequest/<int:listing_id>/<int:student_id>', ArchiveInterviewRequest.as_view(),
          name='archive_interview_request'),
+    path('all/applications/<slug:slug>', AllApplications.as_view(), name='all_applications'),
+    path('all/rejections/<slug:slug>', AllRejections.as_view(), name='all_rejections'),
+    path('all/acceptances/<slug:slug>', AllAcceptances.as_view(), name='all_acceptances'),
+    path('all/interviewrequests/<slug:slug>', AllInterviewRequests.as_view(), name='all_interviewrequests'),
     path('', Applications.as_view(), name='applications')
 ]

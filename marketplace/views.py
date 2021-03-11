@@ -12,6 +12,7 @@ from .models import Listing, Career
 class Marketplace(LoginRequiredMixin, ListView):
     login_url = 'login'
     model = Listing
+    ordering = ['-posted']
     template_name = 'marketplace/marketplace.html'
 
     def get_context_data(self, **kwargs):
@@ -88,7 +89,7 @@ class EditListing(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('listings')
 
     fields = ['title', 'type', 'where', 'career', 'new_career', 'pay', 'time_commitment', 'location',
-              'application_deadline', 'application_url']
+              'application_deadline', 'description', 'application_url']
 
     def form_valid(self, form):
         if form.cleaned_data['where'] == 'Virtual':

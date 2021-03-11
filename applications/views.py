@@ -10,12 +10,49 @@ from decorators.student_required import student_required
 from marketplace.models import Listing
 
 
+class AllApplications(LoginRequiredMixin, TemplateView):
+    template_name = 'applications/employer/all/all-applications.html'
+    login_url = 'login'
+
+    def get_context_data(self, **kwargs):
+        context = super(AllApplications, self).get_context_data(**kwargs)
+        context['listing'] = Listing.objects.get(slug=self.kwargs['slug'])
+        return context
+
+
+class AllAcceptances(LoginRequiredMixin, TemplateView):
+    template_name = 'applications/employer/all/all-acceptances.html'
+    login_url = 'login'
+
+    def get_context_data(self, **kwargs):
+        context = super(AllAcceptances, self).get_context_data(**kwargs)
+        context['listing'] = Listing.objects.get(slug=self.kwargs['slug'])
+        return context
+
+
+class AllRejections(LoginRequiredMixin, TemplateView):
+    template_name = 'applications/employer/all/all-rejections.html'
+    login_url = 'login'
+
+    def get_context_data(self, **kwargs):
+        context = super(AllRejections, self).get_context_data(**kwargs)
+        context['listing'] = Listing.objects.get(slug=self.kwargs['slug'])
+        return context
+
+
+class AllInterviewRequests(LoginRequiredMixin, TemplateView):
+    template_name = 'applications/employer/all/all-interviewrequests.html'
+    login_url = 'login'
+
+    def get_context_data(self, **kwargs):
+        context = super(AllInterviewRequests, self).get_context_data(**kwargs)
+        context['listing'] = Listing.objects.get(slug=self.kwargs['slug'])
+        return context
+
+
 class Acceptances(LoginRequiredMixin, TemplateView):
     template_name = 'applications/acceptances.html'
     login_url = 'login'
-
-    def get(self, request, *args, **kwargs):
-        return super(Acceptances, self).get(request)
 
 
 class Rejections(LoginRequiredMixin, TemplateView):
@@ -51,10 +88,10 @@ class ArchiveInterviewRequest(LoginRequiredMixin, RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         listing = Listing.objects.get(id=self.kwargs.get('listing_id'))
         user = User.objects.get(id=self.kwargs.get('student_id'))
-        if listing.company != self.request.user and self.request.user != user:
+        if listing.company != self.request.user:
             raise PermissionError
         if self.request.user.is_employer:
-            self.request.user.employer_profile.archive_interview_request(listing.id)
+            self.request.user.employer_profile.archive_interview_request(listing.id, user.id)
         elif self.request.user.is_student:
             user.profile.archive_interview_request(listing.id)
         return super().get_redirect_url(*args, **kwargs)
@@ -67,10 +104,10 @@ class ArchiveRejection(LoginRequiredMixin, RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         listing = Listing.objects.get(id=self.kwargs.get('listing_id'))
         user = User.objects.get(id=self.kwargs.get('student_id'))
-        if listing.company != self.request.user and self.request.user != user:
+        if listing.company != self.request.user:
             raise PermissionError
         if self.request.user.is_employer:
-            self.request.user.employer_profile.archive_rejection(listing.id)
+            self.request.user.employer_profile.archive_rejection(listing.id, user.id)
         elif self.request.user.is_student:
             user.profile.archive_rejection(listing.id)
         return super().get_redirect_url(*args, **kwargs)

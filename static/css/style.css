@@ -1,5 +1,5 @@
 /* TODO refactor all of this */
-
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 /*
 GENERAL
@@ -67,7 +67,7 @@ html {
     scroll-behavior: smooth;
 }
 body {
-    font-family: 'font', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     overflow-x: hidden;
 }
 
@@ -80,9 +80,18 @@ body {
     border-radius: 15px;
 }
 
+.br-10{
+    border-radius: 10px;
+}
+
 a {
     text-decoration: none !important;
     display: inline-block;
+}
+
+nav{
+    background-color: white;
+    box-shadow: 0 0 3px 3px  lightgrey;
 }
 
 .primary {
@@ -141,6 +150,7 @@ input, textarea, select {
     padding: 0.6rem;
     border-radius: 7px;
     border: 1px solid lightgrey;
+    background-color: white;
     box-shadow: var(--light-outer-shadow);
 }
 
@@ -442,10 +452,12 @@ body {
 FONTS
  */
 
+/*
 @font-face {
     font-family: font;
     src: url('../assets/fonts/geometria-cufonfonts/Geometria-Medium.ttf');
 }
+*/
 
 /*
 END FONTS

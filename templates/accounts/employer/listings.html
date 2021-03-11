@@ -20,7 +20,7 @@
     <body>
 
         <section id="nav">
-            <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+            <nav class="navbar navbar-expand-lg navbar-light">
                 <a class="navbar-brand" href="{% url 'home' %}">
                     <img width=200 height="50" src="{% static "assets/images/logos/logo-transparent.png" %}" alt="logo"/>
                 </a>
@@ -58,9 +58,9 @@
                 </a>
             </div>
 
-            <div class="row">
+            <div class="row justify-content-around">
                 {% for listing in user.listing.all %}
-                    <div class="col-md-4 mb-5 text-center">
+                    <div class="col-md-2 mb-5">
                         <h4>{{ listing.title }}</h4>
                         <div>
                             <a class="success-btn" href="{{ listing.get_absolute_url }}">View</a>

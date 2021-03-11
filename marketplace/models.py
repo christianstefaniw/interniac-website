@@ -45,6 +45,7 @@ class Listing(models.Model):
     acceptances = models.ManyToManyField('accounts.User', related_name='listing_acceptances', blank=True)
     rejections = models.ManyToManyField('accounts.User', related_name='listing_rejections', blank=True)
     interview_requests = models.ManyToManyField('accounts.User', related_name='interviews', blank=True)
+
     application_url = models.URLField(blank=True, null=True)
     posted = models.DateField(default=django.utils.timezone.now, blank=True)
     slug = models.SlugField(max_length=50, unique=False, blank=True)

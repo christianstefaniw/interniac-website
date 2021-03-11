@@ -16,7 +16,7 @@
 
 <div class="mt-5">
     <a class="danger-btn"
-       href="{% url "delete" %}">Delete account</a>
+       href="{% url "delete" %}" onclick="return confirm('Are you sure?');">Delete account</a>
     <a class="neutral-btn"
        href="{% url 'logout' %}?next=/">Logout</a>
 </div>
