@@ -60,12 +60,19 @@
 
             <div class="row justify-content-around">
                 {% for listing in user.listing.all %}
-                    <div class="col-md-2 mb-5">
-                        <h4>{{ listing.title }}</h4>
-                        <div>
-                            <a class="success-btn" href="{{ listing.get_absolute_url }}">View</a>
-                            <a class="neutral-btn" href="{% url 'edit_listing' pk=listing.id %}">Edit</a>
-                            <a href="{% url 'delete_listing' listing_id=listing.id %}" class="danger-btn">Delete</a>
+                    <div class="col-md-3 mb-5 mr-2 ml-2 bg-white light-outer-shadow p-5 br-10">
+                        <h4 class="mb-4 font-weight-bold">{{ listing.title }}</h4>
+                        <div class="row text-center">
+                            <div class="col-lg-4">
+                                <a class="success-btn w-100" href="{{ listing.get_absolute_url }}">View</a>
+                            </div>
+                            <div class="col-lg-4">
+                                <a class="neutral-btn w-100" href="{% url 'edit_listing' pk=listing.id %}">Edit</a>
+                            </div>
+                            <div class="col-lg-4">
+                                <a href="{% url 'delete_listing' listing_id=listing.id %}"
+                                   class="danger-btn w-100">Delete</a>
+                            </div>
                         </div>
                     </div>
                 {% endfor %}
