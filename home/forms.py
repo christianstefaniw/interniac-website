@@ -27,4 +27,6 @@ class EmailForm(forms.Form):
 
     def is_valid(self):
         insert_into_spreadsheet(self.data['email_signup'])
+        send_email_thread(from_email=os.environ.get('EMAIL'), body='Thank you for signing up for our newsletter.',
+                          to=[self.data['email_signup']], reply_to=[None], subject='Thank you!')
         return super(EmailForm, self).is_valid()
