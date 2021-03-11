@@ -1,4 +1,5 @@
 import os
+import threading
 
 from django.contrib.auth.models import AbstractUser
 from django.db import models
@@ -139,6 +140,7 @@ class StudentProfile(models.Model):
     def apply(self, listing_id):
         listing = Listing.objects.get(id=listing_id)
         listing.applications.add(self.user)
+        listing.applied_email(self.user.first_name)
 
     def unapply(self, listing_id):
         listing = Listing.objects.get(id=listing_id)

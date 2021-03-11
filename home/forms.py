@@ -4,6 +4,7 @@ from django import forms
 from django.core.mail import EmailMessage
 from nocaptcha_recaptcha import NoReCaptchaField
 
+from helpers.email_thread import send_email_thread
 from .helpers import insert_into_spreadsheet
 
 
@@ -17,8 +18,8 @@ class ContactForm(forms.Form):
         email = self.cleaned_data['email']
         name = self.cleaned_data['name']
         message = self.cleaned_data['message'] + f"\nFrom: {name}"
-        EmailMessage(body=message, from_email=email, to=[os.environ.get("EMAIL")],
-                     reply_to=[email]).send()
+        send_email_thread(body=message, from_email=email, to=[os.environ.get("EMAIL")],
+                          reply_to=[email], subject=f'Message from {name}')
 
 
 class EmailForm(forms.Form):

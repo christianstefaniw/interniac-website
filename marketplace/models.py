@@ -8,6 +8,7 @@ from django_unique_slugify import unique_slugify
 
 from django.contrib.auth import get_user_model
 
+from helpers.email_thread import send_email_thread
 
 intern_types = (
     ('Paid', 'Paid'),
@@ -35,11 +36,13 @@ class Listing(models.Model):
 
     employer_acceptances = models.ManyToManyField('accounts.User', related_name='employer_acceptances', blank=True)
     employer_rejections = models.ManyToManyField('accounts.User', related_name='employer_rejections', blank=True)
-    employer_interview_requests = models.ManyToManyField('accounts.User', related_name='employer_interview_requests', blank=True)
+    employer_interview_requests = models.ManyToManyField('accounts.User', related_name='employer_interview_requests',
+                                                         blank=True)
 
     student_acceptances = models.ManyToManyField('accounts.User', related_name='student_acceptances', blank=True)
     student_rejections = models.ManyToManyField('accounts.User', related_name='student_rejections', blank=True)
-    student_interview_requests = models.ManyToManyField('accounts.User', related_name='student_interview_requests', blank=True)
+    student_interview_requests = models.ManyToManyField('accounts.User', related_name='student_interview_requests',
+                                                        blank=True)
 
     applications = models.ManyToManyField('accounts.User', related_name='applications', blank=True)
     acceptances = models.ManyToManyField('accounts.User', related_name='listing_acceptances', blank=True)
@@ -78,6 +81,17 @@ class Listing(models.Model):
     def get_absolute_url(self):
         return reverse('listing', kwargs={'slug': self.slug})
 
+    def applied_email(self, student_name):
+        message = f'''
+        {student_name} has applied for {self.title}
+
+        From, the Interniac Team
+                        '''
+
+        send_email_thread(body=message, from_email=os.environ.get("EMAIL"), to=[self.company.email],
+                          subject=f"New Application ({self.title})",
+                          reply_to=[os.environ.get("EMAIL")])
+
     def accept_email(self, student):
         email = student.email
 
@@ -89,9 +103,9 @@ Good luck!
 From, the Interniac Team
                 '''
 
-        EmailMessage(body=message, from_email=os.environ.get("EMAIL"),
-                     to=[email], subject=f"Congratulations! ({self.title})",
-                     reply_to=[self.company.email]).send()
+        send_email_thread(body=message, from_email=os.environ.get("EMAIL"),
+                          to=[email], subject=f"Congratulations! ({self.title})",
+                          reply_to=[self.company.email])
 
     def reject_email(self, student):
         email = student.email
@@ -103,10 +117,9 @@ Better luck next time.
 
 From, the Interniac Team
                     '''
-
-        EmailMessage(body=message, from_email=os.environ.get("EMAIL"),
-                     to=[email], subject=f"Response for {self.title}",
-                     reply_to=[self.company.email]).send()
+        send_email_thread(body=message, from_email=os.environ.get("EMAIL"),
+                          to=[email], subject=f"Response for {self.title}",
+                          reply_to=[self.company.email])
 
     def request_interview_email(self, student):
         email = student.email
@@ -118,9 +131,9 @@ Congratulations, you have moved onto the next stage of the recruitment process f
 From, the Interniac Team
                             '''
 
-        EmailMessage(body=message, from_email=os.environ.get("EMAIL"),
-                     to=[email], subject=f"Next steps for {self.title}",
-                     reply_to=[self.company.email]).send()
+        send_email_thread(body=message, from_email=os.environ.get("EMAIL"),
+                          to=[email], subject=f"Next steps for {self.title}",
+                          reply_to=[self.company.email])
 
     def remove_from_interview(self, student_id):
         user = get_user_model().objects.get(id=student_id)
