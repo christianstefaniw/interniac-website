@@ -192,6 +192,7 @@ nav > div > ul > li > a {
 }
 
 .danger-btn {
+    word-break: break-all;
     transition: background-color 0.5s ease;
     user-select: none;
     padding: 10px;
@@ -208,7 +209,7 @@ nav > div > ul > li > a {
 }
 
 .neutral-btn {
-    white-space: nowrap;
+    word-break: break-all;
     transition: background-color 0.5s ease;
     user-select: none;
     padding: 10px;
@@ -224,6 +225,7 @@ nav > div > ul > li > a {
 }
 
 .success-btn {
+    word-break: break-all;
     transition: background-color 0.5s ease;
     user-select: none;
     padding: 10px;
@@ -524,6 +526,7 @@ ul {
 }
 
 .listing-card {
+    height: 100%;
     width: 100%;
     display: inline-block;
     background-color: white;
@@ -852,12 +855,6 @@ END LANDING PAGE
 
     #market-container {
         max-width: 1300px;
-    }
-}
-
-@media screen and (max-width: 1104px) {
-    .bottom-application-btn {
-        margin-top: 1rem;
     }
 }
 

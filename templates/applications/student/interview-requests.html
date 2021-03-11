@@ -2,12 +2,16 @@
     {% for listing in user.student_interview_requests.all %}
         <div class="col-lg-3 mr-2 ml-2 bg-white light-outer-shadow p-5 br-10">
             <h2>{{ listing.title }}</h2>
-            <div class="mb-4 mt-3">
-                <a style="display: block; color: black" class="mb-2 mt-1"
-                   href="{% url 'single_application' listing_slug=listing.slug user_slug=user.slug %}">{{ user.first_name }} {{ user.last_name }}</a>
-                <a class="neutral-btn" href="mailto:{{ user.email }}">{{ user.email }}</a>
-                <a class="danger-btn" onclick="return confirm('Are you sure?');"
-                   href="{% url 'archive_interview_request' listing_id=listing.id student_id=user.id %}">Archive</a>
+            <div class="mt-3">
+                <div class="row text-center">
+                    <div class="col-md-6">
+                        <a class="neutral-btn h-100 w-100" href="mailto:{{ user.email }}">{{ user.email }}</a>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="danger-btn h-100 w-100" onclick="return confirm('Are you sure?');"
+                           href="{% url 'archive_interview_request' listing_id=listing.id student_id=user.id %}">Archive</a>
+                    </div>
+                </div>
             </div>
         </div>
     {% endfor %}

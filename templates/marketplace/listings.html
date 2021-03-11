@@ -1,28 +1,29 @@
-<div class="mt-5" id="listings">
+<div class="row mt-5">
     {% for listing in object_list %}
-        <div class="listing-card mb-5">
-            <div class="container-fluid mt-3 mb-3">
+        <div class="col-md-4 mb-5">
+            <div class="listing-card">
                 <div class="row mb-4">
                     <div class="col-lg-9">
                         <h3 class="mb-4 font-weight-bold">{{ listing.title }}</h3>
-                        <h5 class="mb-4 font-weight-bold primary" style="line-height: 0">{{ listing.company.employer_profile.company_name }}</h5>
-                            {% if listing.type == "paid" %}
-                                <p>paid -
-                                    {% if listing.where == 'in-person' %}
-                                        in person
-                                    {% else %}
-                                        virtual
-                                        </p>
-                                    {% endif %}
-                            {% else %}
-                                <p>unpaid -
-                                    {% if listing.where == 'in-person' %}
-                                        in person
-                                    {% else %}
-                                        virtual
-                                        </p>
-                                    {% endif %}
-                            {% endif %}
+                        <h5 class="mb-4 font-weight-bold primary"
+                            style="line-height: 0">{{ listing.company.employer_profile.company_name }}</h5>
+                        {% if listing.type == "paid" %}
+                            <p>paid -
+                                {% if listing.where == 'in-person' %}
+                                    in person
+                                {% else %}
+                                    virtual
+                                    </p>
+                                {% endif %}
+                        {% else %}
+                            <p>unpaid -
+                                {% if listing.where == 'in-person' %}
+                                    in person
+                                {% else %}
+                                    virtual
+                                    </p>
+                                {% endif %}
+                        {% endif %}
                         <p>Date posted: {{ listing.posted }}</p>
                     </div>
                     {% if user.is_student %}
@@ -37,10 +38,12 @@
                                 <p></p>
                             {% else %}
                                 {% if listing in user.applications.all %}
-                                    <button class="apply-unapply-btn" onclick="unapply({{ listing.id }}, this)">Unapply
+                                    <button class="apply-unapply-btn" onclick="unapply({{ listing.id }}, this)">
+                                        Unapply
                                     </button>
                                 {% else %}
-                                    <button class="apply-unapply-btn" onclick="apply({{ listing.id }}, this)">Apply
+                                    <button class="apply-unapply-btn" onclick="apply({{ listing.id }}, this)">
+                                        Apply
                                     </button>
                                 {% endif %}
                             {% endif %}

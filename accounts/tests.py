@@ -4,7 +4,7 @@ from django.test import TestCase, RequestFactory
 from datetime import date
 from django.core.exceptions import ObjectDoesNotExist
 
-from tests_mixins.init_accounts import InitAccountsMixin
+from mixins.init_accounts import InitAccountsMixin
 from .models import *
 
 

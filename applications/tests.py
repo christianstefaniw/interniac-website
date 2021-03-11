@@ -6,7 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from accounts.models import User
 from marketplace.models import Listing, Career
-from tests_mixins.init_accounts import InitAccountsMixin
+from mixins.init_accounts import InitAccountsMixin
 
 
 class ApplicationsTestCase(TestCase, InitAccountsMixin):

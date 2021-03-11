@@ -1,0 +1,36 @@
+{% extends 'applications/employer/all/all.html' %}
+
+
+{% block content %}
+    <div class="mb-4">
+        <a href="{% url 'applications' %}">
+            <i class="fas fa-arrow-circle-left fa-2x"></i>
+        </a>
+    </div>
+    <h1 class="text-center font-weight-bold">{{ listing.title }}</h1>
+    <div class="row justify-content-around">
+        {% for student in listing.applications.all %}
+            {% if student not in listing.acceptances.all %}
+                <div class="col-md-3 mb-5 mt-4 mr-2 ml-2 bg-white light-outer-shadow p-5 br-10">
+                    <p>{{ student.first_name }} {{ student.last_name }}</p>
+                    <div class="row text-center">
+                        <div class="col-lg-3">
+                            <a class="success-btn w-100 h-100" onclick="return confirm('Are you sure?');"
+                               href="{% url 'accept' listing_id=listing.id student_id=student.id %}">Accept</a>
+                        </div>
+                        <div class="col-lg-3">
+                            <a class="danger-btn w-100 h-100" onclick="return confirm('Are you sure?');"
+                               href="{% url 'reject' listing_id=listing.id student_id=student.id %} ">Reject</a>
+                        </div>
+                        <div class="col-lg-6">
+                            <a class="neutral-btn w-100 h-100"
+                               href="{% url 'single_application' listing_slug=listing.slug user_slug=student.slug %}">View
+                                Application</a>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+{% endblock %}

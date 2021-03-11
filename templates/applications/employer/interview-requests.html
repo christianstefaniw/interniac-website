@@ -2,23 +2,27 @@
     {% for listing in user.listing.all %}
         {% if listing.employer_interview_requests.all %}
             <div class="col-lg-3 mr-2 ml-2 bg-white light-outer-shadow p-5 br-10">
-                <a class="primary" href="{% url 'all_interviewrequests' slug=listing.slug %}">
+                <a class="primary mb-2" href="{% url 'all_interviewrequests' slug=listing.slug %}">
                     <h2>{{ listing.title }}</h2></a>
                 {% for student in listing.employer_interview_requests.all|slice:":3" %}
-                    <div class="mb-4">
-                        <a style="display: block; color: black" class="mb-4 mt-1"
+                    <div class="{% if not listing.employer_interview_requests.all.count == 1 %}mb-5{% endif %}">
+                        <a style="display: block; color: black" class="mb-2"
                            href="{% url 'single_application' listing_slug=listing.slug user_slug=student.slug %}">{{ student.first_name }} {{ student.last_name }}</a>
-                        <div class="row justify-content-between text-center">
-                            <div class="col-md-5">
-                                <a class="neutral-btn w-100" href="mailto:{{ student.email }}">{{ student.email }}</a>
+                        <div class="row text-center">
+                            <div class="col-md-6">
+                                <a class="neutral-btn w-100 h-100"
+                                   href="mailto:{{ student.email }}">{{ student.email }}</a>
                             </div>
-                            <div class="col-md-5">
-                                <a class="danger-btn w-100" onclick="return confirm('Are you sure?');"
+                            <div class="col-md-6">
+                                <a class="danger-btn w-100 h-100" onclick="return confirm('Are you sure?');"
                                    href="{% url 'archive_interview_request' listing_id=listing.id student_id=student.id %}">Archive</a>
                             </div>
                         </div>
                     </div>
                 {% endfor %}
+                {% if listing.applications.all|length > 3 %}
+                    <a class="secondary" href="{% url 'all_interviewrequests' slug=listing.slug %}">View more</a>
+                {% endif %}
             </div>
         {% endif %}
     {% endfor %}

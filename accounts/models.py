@@ -143,6 +143,12 @@ class StudentProfile(models.Model):
     def unapply(self, listing_id):
         listing = Listing.objects.get(id=listing_id)
         listing.applications.remove(self.user)
+        if self.user in listing.interview_requests.all():
+            listing.interview_requests.remove(self.user)
+        if self.user in listing.student_interview_requests.all():
+            listing.student_interview_requests.remove(self.user)
+        if self.user in listing.employer_interview_requests.all():
+            listing.employer_interview_requests.remove(self.user)
 
     def __str__(self):
         return f"{self.user.first_name}'s profile"

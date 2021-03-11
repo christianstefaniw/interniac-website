@@ -2,11 +2,18 @@
     {% for listing in user.applications.all %}
         <div class="col-lg-3 mr-2 ml-2 mb-5 bg-white light-outer-shadow p-5 br-10">
             <h2>{{ listing.title }}</h2>
-            <div class="mt-3 mb-4">
-                <a class="neutral-btn mr-3" href="{% url 'listing' slug=listing.slug %}">View Listing</a>
-                <a class="danger-btn ml-3 mr-3" href="{% url 'unapply' listing_id=listing.id %}?redirect=profile">Unapply</a>
-                <a class="success-btn ml-3 mr-3"
-                   href="mailto:{{ listing.company.email }}">Email {{ listing.company.company_name }}</a>
+            <div class="mt-4 row text-center">
+                <div class="col-lg-4">
+                    <a class="neutral-btn w-100 h-100" href="{% url 'listing' slug=listing.slug %}">View Listing</a>
+                </div>
+                <div class="col-lg-4">
+                    <a class="danger-btn h-100 w-100"
+                       href="{% url 'unapply' listing_id=listing.id %}?redirect=profile">Unapply</a>
+                </div>
+                <div class="col-lg-4">
+                    <a class="success-btn h-100 w-100"
+                       href="mailto:{{ listing.company.email }}">Email {{ listing.company.company_name }}</a>
+                </div>
             </div>
         </div>
     {% endfor %}

@@ -171,18 +171,23 @@
                         </div>
 
                     </div>
+                    {% if student not in listing.acceptances.all and student not in listing.rejections.all %}
+                        <div class="mt-4 mb-5">
+                            <a class="success-btn" onclick="return confirm('Are you sure?');"
+                               href="{% url 'accept' listing_id=listing.id student_id=student.id %}">Accept</a>
 
-                    <div class="mt-5 mb-5">
-                        <a class="success-btn" onclick="return confirm('Are you sure?');"
-                           href="{% url 'accept' listing_id=listing.id student_id=student.id %}">Accept</a>
+                            <a class="danger-btn ml-3" onclick="return confirm('Are you sure?');"
+                               href="{% url 'reject' listing_id=listing.id student_id=student.id %}">Reject</a>
 
-                        <a class="danger-btn ml-3" onclick="return confirm('Are you sure?');"
-                           href="{% url 'reject' listing_id=listing.id student_id=student.id %}">Reject</a>
-
-                        <a class="neutral-btn ml-3" onclick="return confirm('Are you sure?');"
-                           href="{% url 'request_interview' listing_id=listing.id student_id=student.id %}">Request
-                            Interview</a>
-                    </div>
+                            <a class="neutral-btn ml-3" onclick="return confirm('Are you sure?');"
+                               href="{% url 'request_interview' listing_id=listing.id student_id=student.id %}">Request
+                                Interview</a>
+                        </div>
+                    {% elif student in listing.acceptances.all %}
+                        <p class="text-success">Accepted</p>
+                    {% elif student in listing.rejections.all %}
+                        <p class="text-danger">Rejected</p>
+                    {% endif %}
                 </div>
             </div>
         </section>

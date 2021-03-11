@@ -8,9 +8,10 @@ from django.views.generic import TemplateView, RedirectView
 from accounts.models import User
 from decorators.student_required import student_required
 from marketplace.models import Listing
+from mixins.employer_required import EmployerRequiredMixin
 
 
-class AllApplications(LoginRequiredMixin, TemplateView):
+class AllApplications(LoginRequiredMixin, EmployerRequiredMixin, TemplateView):
     template_name = 'applications/employer/all/all-applications.html'
     login_url = 'login'
 
@@ -20,7 +21,7 @@ class AllApplications(LoginRequiredMixin, TemplateView):
         return context
 
 
-class AllAcceptances(LoginRequiredMixin, TemplateView):
+class AllAcceptances(LoginRequiredMixin, EmployerRequiredMixin, TemplateView):
     template_name = 'applications/employer/all/all-acceptances.html'
     login_url = 'login'
 
@@ -30,7 +31,7 @@ class AllAcceptances(LoginRequiredMixin, TemplateView):
         return context
 
 
-class AllRejections(LoginRequiredMixin, TemplateView):
+class AllRejections(LoginRequiredMixin, EmployerRequiredMixin, TemplateView):
     template_name = 'applications/employer/all/all-rejections.html'
     login_url = 'login'
 
@@ -40,7 +41,7 @@ class AllRejections(LoginRequiredMixin, TemplateView):
         return context
 
 
-class AllInterviewRequests(LoginRequiredMixin, TemplateView):
+class AllInterviewRequests(LoginRequiredMixin, EmployerRequiredMixin, TemplateView):
     template_name = 'applications/employer/all/all-interviewrequests.html'
     login_url = 'login'
 
@@ -72,12 +73,15 @@ class ArchiveAcceptance(LoginRequiredMixin, RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         listing = Listing.objects.get(id=self.kwargs.get('listing_id'))
         user = User.objects.get(id=self.kwargs.get('student_id'))
+
         if listing.company != self.request.user and self.request.user != user:
             raise PermissionError
+
         if self.request.user.is_employer:
             self.request.user.employer_profile.archive_acceptance(listing.id, user.id)
         elif self.request.user.is_student:
             user.profile.archive_acceptance(listing.id)
+
         return super().get_redirect_url(*args, **kwargs)
 
 
@@ -88,7 +92,7 @@ class ArchiveInterviewRequest(LoginRequiredMixin, RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         listing = Listing.objects.get(id=self.kwargs.get('listing_id'))
         user = User.objects.get(id=self.kwargs.get('student_id'))
-        if listing.company != self.request.user:
+        if listing.company != self.request.user and self.request.user != user:
             raise PermissionError
         if self.request.user.is_employer:
             self.request.user.employer_profile.archive_interview_request(listing.id, user.id)
@@ -104,7 +108,7 @@ class ArchiveRejection(LoginRequiredMixin, RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         listing = Listing.objects.get(id=self.kwargs.get('listing_id'))
         user = User.objects.get(id=self.kwargs.get('student_id'))
-        if listing.company != self.request.user:
+        if listing.company != self.request.user and self.request.user != user:
             raise PermissionError
         if self.request.user.is_employer:
             self.request.user.employer_profile.archive_rejection(listing.id, user.id)

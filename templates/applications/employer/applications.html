@@ -2,10 +2,10 @@
     {% for listing in user.listing.all %}
         {% if listing.applications.all %}
             <div class="col-lg-3 mr-2 ml-2 bg-white light-outer-shadow p-5 br-10" style="margin-bottom: 10rem;">
-                <h2>{{ listing.title }}</h2>
+                <h2 class="mb-4">{{ listing.title }}</h2>
                 {% for student in listing.applications.all|slice:":3" %}
                     {% if student not in listing.acceptances.all %}
-                        <div class="mb-5">
+                        <div class="{% if not listing.applications.all.count == 1 %}mb-5{% endif %}">
                             <p>{{ student.first_name }} {{ student.last_name }}</p>
                             <div class="row text-center">
                                 <div class="col-md-3">
