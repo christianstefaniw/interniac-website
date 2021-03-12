@@ -1,3 +1,6 @@
+from notifications import urls as notify_urls
+
+from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
@@ -14,6 +17,7 @@ from aboutus import urls as aboutus_urls
 
 urlpatterns = [
     path('', include(home_urls)),
+    url('^inbox/notifications/', include(notify_urls, namespace='notifications')),
     path('careers/', include(careers_urls)),
     path('aboutus/', include(aboutus_urls)),
     path('success/', success, name='success'),

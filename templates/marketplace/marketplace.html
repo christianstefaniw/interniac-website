@@ -78,14 +78,16 @@
                     </div>
                     <div class="col-md-8">
                         {% include 'marketplace/search-bar.html' %}
+                        <div id="listings">
+                            {% include 'marketplace/listings.html' %}
+                        </div>
 
-                        {% include 'marketplace/listings.html' %}
                     </div>
 
                 </div>
 
             </section>
         </div>
-        <script src="{% static 'js/marketplace.js' %}"></script>
+        <script src="{% static 'js/script.js' %}"></script>
     </body>
 </html>

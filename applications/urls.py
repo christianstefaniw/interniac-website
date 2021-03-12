@@ -20,5 +20,6 @@ urlpatterns = [
     path('all/rejections/<slug:slug>', AllRejections.as_view(), name='all_rejections'),
     path('all/acceptances/<slug:slug>', AllAcceptances.as_view(), name='all_acceptances'),
     path('all/interviewrequests/<slug:slug>', AllInterviewRequests.as_view(), name='all_interviewrequests'),
+    path('clearnotifs/<slug:slug>', clear_application_notifications, name='clear_notifs'),
     path('', Applications.as_view(), name='applications')
 ]

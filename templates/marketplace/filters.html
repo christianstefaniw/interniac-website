@@ -34,6 +34,7 @@
             url: filtersForm.attr('action'),
             data: filters + "&" + search,
             success: function (data) {
+                console.log(data)
                 $("#listings").html(data);
             },
             error: function (_) {

@@ -1,6 +1,7 @@
 import os
-import threading
 
+from notifications.models import Notification
+from notifications.signals import notify
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.dispatch import receiver
@@ -141,6 +142,9 @@ class StudentProfile(models.Model):
         listing = Listing.objects.get(id=listing_id)
         listing.applications.add(self.user)
         listing.applied_email(self.user.first_name)
+        if listing.company.notifications.unread().get(actor_object_id=listing.id):
+            return
+        notify.send(recipient=listing.company, verb='someone applied!', actor=listing, sender=listing)
 
     def unapply(self, listing_id):
         listing = Listing.objects.get(id=listing_id)

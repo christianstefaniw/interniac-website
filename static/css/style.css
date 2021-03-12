@@ -1,6 +1,7 @@
 /* TODO cta buttons mobile reformat for applications */
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
+
 /*
 GENERAL
  */
@@ -66,6 +67,7 @@ input:focus:invalid {
 html {
     scroll-behavior: smooth;
 }
+
 body {
     font-family: 'Open Sans', sans-serif;
     overflow-x: hidden;
@@ -80,7 +82,7 @@ body {
     border-radius: 15px;
 }
 
-.br-10{
+.br-10 {
     border-radius: 10px;
 }
 
@@ -89,9 +91,9 @@ a {
     display: inline-block;
 }
 
-nav{
+nav {
     background-color: white;
-    box-shadow: 0 0 3px 3px  lightgrey;
+    box-shadow: 0 0 3px 3px lightgrey;
 }
 
 .primary {
@@ -185,6 +187,20 @@ nav > div > ul > li > a {
     padding-right: 5px;
 }
 
+
+.notif-circle {
+    margin-top: -2rem;
+    margin-right: -2rem;
+    padding: 5px 15px;
+    border-radius: 50px;
+    background-color: red;
+    user-select: none;
+    color: white !important;
+}
+
+.notif-circle:hover {
+    cursor: pointer;
+}
 
 .bg-primary {
     background-color: var(--bg-color-primary);

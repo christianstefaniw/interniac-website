@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import TemplateView, RedirectView
 
 from accounts.models import User
@@ -209,3 +209,14 @@ def unapply(request, listing_id):
                       context={'which': Listing.objects.get(id=listing_id)})
     else:
         return HttpResponse(f'<button class="apply-unapply-btn" onclick="apply({listing_id}, this)">Apply</button>')
+
+
+# TODO create require employer decorator
+@login_required(login_url='login')
+def clear_application_notifications(request, slug):
+    listing = Listing.objects.get(slug=slug)
+    notifs = request.user.notifications.unread()
+    notifs = notifs.filter(actor_object_id=listing.id)
+    for _, i in enumerate(notifs):
+        i.mark_as_read()
+    return redirect(reverse('applications'))
