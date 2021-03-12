@@ -1,7 +1,6 @@
 import os
 
 import django
-from django.core.mail import EmailMessage
 from django.db import models
 from django.urls import reverse
 from django_unique_slugify import unique_slugify

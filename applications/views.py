@@ -10,6 +10,11 @@ from decorators.student_required import student_required
 from marketplace.models import Listing
 from mixins.employer_required import EmployerRequiredMixin
 
+__all__ = ['AllApplications', 'AllAcceptances', 'AllRejections', 'AllInterviewRequests', 'Acceptances', 'Rejections',
+           'InterviewRequests', 'ArchiveAcceptance', 'ArchiveInterviewRequest', 'ArchiveRejection', 'Applications',
+           'SingleApplication', 'accept', 'reject', 'request_interview', 'apply', 'unapply',
+           'clear_application_notifications']
+
 
 class AllApplications(LoginRequiredMixin, EmployerRequiredMixin, TemplateView):
     template_name = 'applications/employer/all/all-applications.html'

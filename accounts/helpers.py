@@ -2,7 +2,7 @@ from django.contrib.auth import login
 from django.forms import model_to_dict
 from django.shortcuts import redirect
 
-from accounts.forms import *
+from accounts.forms import EmployerProfileForm, EmployerUserForm, StudentUserForm, StudentProfileForm
 from accounts.models import EmployerProfile, User, StudentProfile
 from careers.forms import CareerForm
 

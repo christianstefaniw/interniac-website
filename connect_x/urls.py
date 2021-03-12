@@ -6,7 +6,7 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
-from .views import *
+from connect_x.views import success, error
 from home import urls as home_urls
 from authentication import urls as auth_urls
 from accounts import urls as accounts_urls

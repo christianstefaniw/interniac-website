@@ -1,7 +1,6 @@
 import os
 
 from django import forms
-from django.core.mail import EmailMessage
 from nocaptcha_recaptcha import NoReCaptchaField
 
 from helpers.email_thread import send_email_thread

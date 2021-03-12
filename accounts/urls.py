@@ -1,6 +1,6 @@
 from django.urls import path
 
-from accounts.views import *
+from accounts.views import Profile, Listings, delete_user
 
 
 urlpatterns = [

@@ -1,6 +1,5 @@
 import os
 
-from notifications.models import Notification
 from notifications.signals import notify
 from django.contrib.auth.models import AbstractUser
 from django.db import models
