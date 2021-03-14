@@ -1,5 +1,8 @@
-class EmployerRequiredMixin:
-    def get_context_data(self, **kwargs):
-        if not self.request.user.is_employer:
+from django.contrib.auth.mixins import AccessMixin
+
+
+class EmployerRequiredMixin(AccessMixin):
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_employer:
             raise PermissionError
-        return super(EmployerRequiredMixin, self).get_context_data(**kwargs)
+        return super().dispatch(request, *args, **kwargs)

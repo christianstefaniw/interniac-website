@@ -471,13 +471,6 @@ FONTS
  */
 
 /*
-@font-face {
-    font-family: font;
-    src: url('../assets/fonts/geometria-cufonfonts/Geometria-Medium.ttf');
-}
-*/
-
-/*
 END FONTS
  */
 
@@ -789,7 +782,7 @@ LANDING PAGE
 
 
 .landing-padding {
-    margin-top: 5rem;
+    margin-top: 6rem;
     margin-bottom: 4rem;
 }
 

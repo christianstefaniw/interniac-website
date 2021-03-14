@@ -7,23 +7,18 @@
                         <h3 class="mb-4 font-weight-bold">{{ listing.title }}</h3>
                         <h5 class="mb-4 font-weight-bold primary"
                             style="line-height: 0">{{ listing.company.employer_profile.company_name }}</h5>
-                        {% if listing.type == "paid" %}
-                            <p>paid -
-                                {% if listing.where == 'in-person' %}
-                                    in person
-                                {% else %}
-                                    virtual
-                                    </p>
-                                {% endif %}
+                        {% if listing.type == "Paid" %}
+                            <p><i data-toggle="tooltip" title="paid" class="fas fa-dollar-sign"></i>
                         {% else %}
-                            <p>unpaid -
-                                {% if listing.where == 'in-person' %}
-                                    in person
-                                {% else %}
-                                    virtual
-                                    </p>
-                                {% endif %}
+                            unpaid
                         {% endif %}
+                        -
+                        {% if listing.where == 'in-person' %}
+                            <i data-toggle="tooltip" title="in-person" class="fas fa-building"></i>
+                        {% else %}
+                            <i data-toggle="tooltip" title="virtual" class="fas fa-desktop"></i>
+                        {% endif %}
+                        </p>
                         <p>Date posted: {{ listing.posted }}</p>
                     </div>
                     {% if user.is_student %}
@@ -51,7 +46,6 @@
                     {% endif %}
 
                 </div>
-                <!--<p class="text-muted">{{ listing.description|truncatechars:500 }}</p>-->
                 <div class="row justify-content-end">
                     <a class="view mr-2" href="{{ listing.get_absolute_url }}">View</a>
                 </div>
