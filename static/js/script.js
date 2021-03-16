@@ -12,7 +12,9 @@ ids = {
     description: 'id_description',
     title: 'id_title',
     applicationUrl: 'id_application_url',
-    companyName: 'company-name'
+    companyName: 'company-name',
+    isStudent: 'id_student_employer_0',
+    isEmployer: 'id_student_employer_1'
 }
 
 $(`#${ids.internWhere}`).change(function () {
@@ -39,6 +41,25 @@ $(`#${ids.internType}`).change(function () {
         unhide(ids.pay)
     } else {
         hide(ids.pay)
+    }
+})
+
+$(`#${ids.isStudent}`).change(function () {
+    let state = $(this).val().toLowerCase()
+    if (state === 'student') {
+        hide(ids.companyName)
+    } else {
+        unhide(ids.companyName)
+    }
+})
+
+$(`#${ids.isEmployer}`).change(function () {
+    let state = $(this).val().toLowerCase()
+    console.log(state)
+    if (state === 'employer') {
+        unhide(ids.companyName)
+    } else {
+        hide(ids.companyName)
     }
 })
 
@@ -114,31 +135,6 @@ function showFilters() {
     }
 }
 
-function checkEmployer() {
-    let bool = $(`#${ids.employerRadio}:checked`).val()
-    if (bool === 'on') {
-        disable(ids.studentRadio)
-        unhide(ids.companyName)
-    } else {
-        undisable(ids.studentRadio)
-        hide(ids.companyName)
-    }
-}
-
-
-function checkStudent() {
-    let bool = $(`#${ids.studentRadio}:checked`).val()
-    if (bool === 'on') {
-        disable(ids.employerRadio)
-    } else {
-        undisable(ids.employerRadio)
-    }
-}
-
-$(`#${ids.employerRadio}`).change(checkEmployer)
-
-$(`#${ids.studentRadio}`).change(checkStudent)
-
 
 function disable(elId) {
     $(`#${elId}`).attr('disabled', true)
@@ -160,10 +156,6 @@ function unhide(elId) {
         el.addClass('mb-5')
     }
     el.show()
-}
-
-if (document.URL === '127.0.0.1:8000/auth/register') {
-    hide(ids.companyName);
 }
 
 

@@ -1,4 +1,6 @@
 /* TODO cta buttons mobile reformat for applications */
+/* TODO give crispy forms a try */
+
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
 
@@ -31,10 +33,11 @@ GENERAL
     background-color: var(--bootstrap-bg);
 }
 
-input[type=checkbox] {
+input[type=checkbox], input[type=radio] {
     width: auto;
     box-shadow: none;
 }
+
 
 .send-back {
     z-index: -1;
@@ -261,11 +264,7 @@ nav > div > ul > li > a {
 
 /* ERRORS */
 .errorlist > li {
-    background-color: #f2dede;
-    border-color: #ebccd1;
-    color: #a94442;
-    text-align: left;
-    padding: 5px;
+    color: #dc3545;
 }
 
 /* END ERRORS */

@@ -35,6 +35,7 @@ class Profile(LoginRequiredMixin, TemplateView):
 
         if self.request.user.is_student:
             student = Student(self.request)
+
             if kwargs.get('profile_form') and kwargs.get('user_form'):
                 context['student_profile_form'] = kwargs.get('profile_form')
                 context['student_user_form'] = kwargs.get('user_form')
