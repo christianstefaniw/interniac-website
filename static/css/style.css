@@ -156,6 +156,9 @@ input, textarea, select {
     box-shadow: var(--light-outer-shadow);
 }
 
+input[type=checkbox]:hover{
+    cursor: pointer;
+}
 
 .fas:hover {
     transition: color 0.5s ease;

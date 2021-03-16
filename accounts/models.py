@@ -28,7 +28,6 @@ class User(AbstractUser):
     def slug_employer(self):
         self.slug = f"{self.employer_profile.company_name}"
         unique_slugify(self, self.slug)
-        self.save()
 
     @property
     def get_full_name(self):
@@ -37,7 +36,6 @@ class User(AbstractUser):
     def slug_student(self):
         self.slug = self.get_full_name
         unique_slugify(self, self.slug)
-        self.save()
 
     @property
     def get_profile_pic_url(self):
@@ -94,10 +92,6 @@ class EmployerProfile(models.Model):
     def archive_rejection(self, listing_id, user_id):
         listing = Listing.objects.get(id=listing_id)
         listing.employer_rejections.remove(User.objects.get(id=user_id))
-
-    def delete(self, using=None, keep_parents=False):
-        self.user.delete()
-        return super(EmployerProfile, self).delete(using=None, keep_parents=False)
 
     def __str__(self):
         return self.company_name

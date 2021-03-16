@@ -15,14 +15,9 @@ class UserCreateForm(UserCreationForm):
 
     def save(self, commit=True):
         user = super(UserCreateForm, self).save(commit=True)
-        if user.is_student:
-            StudentProfile.objects.create(user=user, )
-            user.slug_student()
-        elif user.is_employer:
-            profile = EmployerProfile.objects.create(user=user, )
-            profile.company_name = self.cleaned_data['company_name']
-            profile.save()
-            user.slug_employer()
+        if user.is_employer:
+            user.employer_profile.company_name = self.cleaned_data['company_name']
+            user.employer_profile.save()
         return user
 
     def clean(self):

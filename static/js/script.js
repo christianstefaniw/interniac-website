@@ -11,17 +11,8 @@ ids = {
     appDeadline: 'id_application_deadline',
     description: 'id_description',
     title: 'id_title',
-    applicationUrl: 'id_application_url'
-}
-
-function unhide(id) {
-    $(`#${id}`).show()
-    $('label[for=' + id + ']').show()
-}
-
-function hide(id) {
-    $(`#${id}`).hide()
-    $('label[for=' + id + ']').hide()
+    applicationUrl: 'id_application_url',
+    companyName: 'company-name'
 }
 
 $(`#${ids.internWhere}`).change(function () {
@@ -51,8 +42,7 @@ $(`#${ids.internType}`).change(function () {
     }
 })
 
-
-$(document).ready(function () {
+if (document.URL === 'http://127.0.0.1:8000/marketplace/createlisting/') {
     let hide = $('form p').children()
     for (let i = 0; i in hide; i++) {
         if (myGetElem($(hide[i]), ids.internType)) {
@@ -65,7 +55,7 @@ $(document).ready(function () {
             continue
         }
         if (myGetElem($(hide[i]), ids.newCareer)) {
-            if ($(`#${ids.careerType}`).val() != '') {
+            if ($(`#${ids.careerType}`).val() !== '') {
                 $(`#${ids.newCareer}`).hide()
                 $(`label[for=${ids.newCareer}]`).hide()
             }
@@ -96,7 +86,7 @@ $(document).ready(function () {
         }
         $(hide[i]).remove()
     }
-})
+}
 
 function myGetElem(el, id) {
     return el.attr('for') === id || el.attr('id') === id;
@@ -128,10 +118,10 @@ function checkEmployer() {
     let bool = $(`#${ids.employerRadio}:checked`).val()
     if (bool === 'on') {
         disable(ids.studentRadio)
-        unhide('company-name')
+        unhide(ids.companyName)
     } else {
         undisable(ids.studentRadio)
-        hide('company-name')
+        hide(ids.companyName)
     }
 }
 
@@ -160,17 +150,22 @@ function undisable(elId) {
 
 
 function hide(elId) {
-    $(`#${elId}`).hide()
+    let el = $(`#${elId}`)
+    el.hide()
 }
 
 function unhide(elId) {
-    $(`#${elId}`).show()
+    let el = $(`#${elId}`)
+    if (elId === ids.companyName){
+        el.addClass('mb-5')
+    }
+    el.show()
 }
 
-$(document).ready(function () {
-        hide('company-name');
-    }
-)
+if (document.URL === '127.0.0.1:8000/auth/register') {
+    hide(ids.companyName);
+}
+
 
 anime({
     targets: '#404-row svg',
@@ -181,6 +176,6 @@ anime({
 });
 
 
-$(document).ready(function() {
-    $('body').tooltip({ selector: '[data-toggle=tooltip]' });
+$(document).ready(function () {
+    $('body').tooltip({selector: '[data-toggle=tooltip]'});
 });
