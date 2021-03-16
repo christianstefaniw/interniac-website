@@ -41,7 +41,7 @@ class Employer:
             if user.email != request.user:
                 login(request, user)
             user_form.save()
-            profile.save()
+            profile_form.save()
             return None, None
         else:
             return profile_form, user_form
@@ -71,7 +71,7 @@ class Student:
             if user.email != request.user:
                 login(request, user)
             user_form.save()
-            profile.save()
+            profile_form.save()
             return None, None
         else:
             return profile_form, user_form

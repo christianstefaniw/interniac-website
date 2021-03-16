@@ -1,13 +1,12 @@
 import os
 
-import django
+from django.utils import timezone
 from django.db import models
 from django.urls import reverse
-from django_unique_slugify import unique_slugify
-
 from django.contrib.auth import get_user_model
 
 from helpers.email_thread import send_email_thread
+
 
 intern_types = (
     ('Paid', 'Paid'),
@@ -49,7 +48,7 @@ class Listing(models.Model):
     interview_requests = models.ManyToManyField('accounts.User', related_name='interviews', blank=True)
 
     application_url = models.URLField(blank=True, null=True)
-    posted = models.DateField(default=django.utils.timezone.now, blank=True)
+    posted = models.DateField(default=timezone.now, blank=True)
     slug = models.SlugField(max_length=50, unique=False, blank=True)
 
     @property
@@ -71,11 +70,6 @@ class Listing(models.Model):
         }
 
         return data
-
-    def save(self, *args, **kwargs):
-        self.slug = self.title
-        unique_slugify(self, self.slug)
-        super(Listing, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse('listing', kwargs={'slug': self.slug})
@@ -185,3 +179,4 @@ class Career(models.Model):
 
     def __str__(self):
         return self.career
+

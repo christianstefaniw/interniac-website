@@ -1,9 +1,6 @@
-import os
-
 from notifications.signals import notify
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.dispatch import receiver
 from django.urls import reverse
 from django_unique_slugify import unique_slugify
 from phonenumber_field.modelfields import PhoneNumberField
@@ -141,7 +138,7 @@ class StudentProfile(models.Model):
         listing = Listing.objects.get(id=listing_id)
         listing.applications.add(self.user)
         listing.applied_email(self.user.first_name)
-        if listing.company.notifications.unread().get(actor_object_id=listing.id):
+        if listing.company.notifications.unread().filter(actor_object_id=listing.id).count() != 0:
             return
         notify.send(recipient=listing.company, verb='someone applied!', actor=listing, sender=listing)
 
@@ -157,39 +154,3 @@ class StudentProfile(models.Model):
 
     def __str__(self):
         return f"{self.user.first_name}'s profile"
-
-
-# These two auto-delete files from filesystem when they are unneeded:
-
-@receiver(models.signals.post_delete, sender=User)
-def auto_delete_file_on_delete(sender, instance, **kwargs):
-    """
-    Deletes file from filesystem
-    when corresponding `MediaFile` object is deleted.
-    """
-    if instance.profile_picture:
-        if instance.profile_picture.name == 'profile_pictures/default.png':
-            return
-        elif os.path.isfile(instance.profile_picture.path):
-            os.remove(instance.profile_picture.path)
-
-
-@receiver(models.signals.pre_save, sender=User)
-def auto_delete_file_on_change(sender, instance, **kwargs):
-    """
-    Deletes old file from filesystem
-    when corresponding `MediaFile` object is updated
-    with new file.
-    """
-    if not instance.pk:
-        return False
-
-    try:
-        old_file = User.objects.get(pk=instance.pk).profile_picture
-    except User.DoesNotExist:
-        return False
-
-    new_file = instance.profile_picture
-    if not old_file == new_file:
-        if os.path.isfile(old_file.path):
-            os.remove(old_file.path)
