@@ -1,19 +1,9 @@
 import os
 
-from django.dispatch import receiver, Signal
+from django.dispatch import receiver
 from django.db import models
 
 from .models import User
-
-clear_notifs_signal = Signal(providing_args=["listing"])
-
-
-@receiver(clear_notifs_signal)
-def clear(sender, listing, **kwargs):
-    notifs = sender.notifications.unread()
-    notifs = notifs.filter(actor_object_id=listing.id)
-    for _, i in enumerate(notifs):
-        i.mark_as_read()
 
 
 @receiver(models.signals.post_delete, sender=User)

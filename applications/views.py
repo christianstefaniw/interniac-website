@@ -6,7 +6,6 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import TemplateView, RedirectView
 
 from accounts.models import User
-from accounts.signals import clear_notifs_signal
 from decorators.student_required import student_required
 from marketplace.models import Listing
 from mixins.employer_required import EmployerRequiredMixin
@@ -206,6 +205,7 @@ def apply(request, listing_id):
 @login_required(login_url='login')
 @student_required
 def unapply(request, listing_id):
+    request.user.profile.unapply(listing_id)
     redirect_where = request.GET.get('redirect')
     if redirect_where == 'profile':
         return redirect('applications')
@@ -220,5 +220,8 @@ def unapply(request, listing_id):
 @login_required(login_url='login')
 def clear_application_notifications(request, slug):
     listing = Listing.objects.get(slug=slug)
-    clear_notifs_signal.send(sender=request.user, listing=listing)
+    notifs = request.user.notifications.unread()
+    notifs = notifs.filter(actor_object_id=listing.id)
+    for _, i in enumerate(notifs):
+        i.mark_as_read()
     return redirect(reverse('applications'))

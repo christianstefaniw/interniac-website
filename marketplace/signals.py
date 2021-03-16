@@ -8,7 +8,6 @@ from marketplace.models import Listing
 @receiver(post_save, sender=Listing)
 def slugify(sender, instance, created, **kwargs):
     if created:
-        print('ok')
         instance.slug = instance.title
         unique_slugify(instance, instance.slug)
         instance.save()
