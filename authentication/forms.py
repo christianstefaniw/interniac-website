@@ -3,8 +3,8 @@ from django.contrib.auth.forms import UserCreationForm
 
 from accounts.models import User
 
-CHOICES = [('student', 'student'),
-           ('employer', 'employer')]
+CHOICES = [('student', 'Student'),
+           ('employer', 'Employer')]
 
 
 class UserCreateForm(UserCreationForm):
