@@ -11,3 +11,9 @@ def send_email_thread(from_email, body, to, subject, reply_to) -> None:
 
     x = threading.Thread(target=_send)
     x.start()
+
+
+def send_email(from_email, body, to, subject, reply_to) -> None:
+    EmailMessage(body=body, from_email=from_email,
+                 to=to, subject=subject,
+                 reply_to=reply_to).send()

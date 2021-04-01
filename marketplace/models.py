@@ -5,7 +5,7 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 
-from helpers.email_thread import send_email_thread
+from helpers.email import send_email_thread, send_email
 
 
 intern_types = (
@@ -96,7 +96,7 @@ Good luck!
 From, the Interniac Team
                 '''
 
-        send_email_thread(body=message, from_email=os.environ.get("EMAIL"),
+        send_email(body=message, from_email=os.environ.get("EMAIL"),
                           to=[email], subject=f"Congratulations! ({self.title})",
                           reply_to=[self.company.email])
 
@@ -110,7 +110,7 @@ Better luck next time.
 
 From, the Interniac Team
                     '''
-        send_email_thread(body=message, from_email=os.environ.get("EMAIL"),
+        send_email(body=message, from_email=os.environ.get("EMAIL"),
                           to=[email], subject=f"Response for {self.title}",
                           reply_to=[self.company.email])
 
@@ -124,7 +124,7 @@ Congratulations, you have moved onto the next stage of the recruitment process f
 From, the Interniac Team
                             '''
 
-        send_email_thread(body=message, from_email=os.environ.get("EMAIL"),
+        send_email(body=message, from_email=os.environ.get("EMAIL"),
                           to=[email], subject=f"Next steps for {self.title}",
                           reply_to=[self.company.email])
 
