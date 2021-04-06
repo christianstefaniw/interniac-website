@@ -3,7 +3,7 @@
         <div class="col-md-4 mb-5">
             <div class="listing-card">
                 <div class="row mb-4">
-                    <div class="col-lg-9">
+                    <div class="col-lg-9 ml-2 mt-2">
                         <h3 class="mb-4 font-weight-bold">{{ listing.title }}</h3>
                         <h5 class="mb-4 font-weight-bold primary"
                             style="line-height: 0">{{ listing.company.employer_profile.company_name }}</h5>
@@ -13,7 +13,7 @@
                             unpaid
                         {% endif %}
                         -
-                        {% if listing.where == 'in-person' %}
+                        {% if listing.where == 'In-Person' %}
                             <i data-toggle="tooltip" title="in-person" class="fas fa-building"></i>
                         {% else %}
                             <i data-toggle="tooltip" title="virtual" class="fas fa-desktop"></i>
@@ -46,13 +46,15 @@
                     {% endif %}
 
                 </div>
-                <div class="row justify-content-end">
-                    <a class="view mr-2" href="{{ listing.get_absolute_url }}">View</a>
+                <div class="container-fluid">
+                    <div class="row justify-content-end">
+                        <a class="view mr-2" href="{{ listing.get_absolute_url }}">View</a>
+                    </div>
                 </div>
             </div>
         </div>
     {% empty %}
-        <h1 class="alert-danger text-center mt-3">No results</h1>
+        <h1 class="alert-danger text-center mt-3 w-100">No results</h1>
     {% endfor %}
 </div>
 

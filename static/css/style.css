@@ -1,7 +1,3 @@
-/* TODO cta buttons mobile reformat for applications */
-/* TODO give crispy forms a try */
-
-
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
 
 /*
@@ -14,10 +10,6 @@ GENERAL
     --bg-color-secondary: #8beaff;
     --bg-color-primary-dark: #196449;
     --highlight-color: #ffde59;
-    --gradient-primary-one: #2c7ee4;
-    --gradient-primary-two: #2db6ee;
-    --gradient-secondary-one: #fd5288;
-    --gradient-secondary-two: #ee886c;
     --bootstrap-bg: #0d6efd;
     --inner-shadow: inset 3px 3px 3px #d0d0d0, inset -3px -3px 3px #f8f8f8;
     --outer-shadow: 3px 3px 3px #d0d0d0, -3px -3px 3px #f8f8f8;
@@ -73,6 +65,7 @@ html {
 
 body {
     font-family: 'Open Sans', sans-serif;
+    background: #f2f2f2;
     overflow-x: hidden;
 }
 
@@ -339,9 +332,6 @@ END IMAGES
 
 
 /* SUCCESS-ERROR */
-body {
-    background: #f2f2f2;
-}
 
 .success {
     border: 1px solid #f2f2f2;

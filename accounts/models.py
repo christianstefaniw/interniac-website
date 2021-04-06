@@ -34,6 +34,8 @@ class User(AbstractUser):
         return f"{self.first_name} {self.last_name}"
 
     def slug_student(self):
+        print('ok')
+        print(self.get_full_name)
         self.slug = self.get_full_name
         unique_slugify(self, self.slug)
 

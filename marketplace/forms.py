@@ -41,6 +41,10 @@ class CreateListingForm(forms.ModelForm):
             if cleaned_data['location'] is not '' and cleaned_data['location'] is not None:
                 self.add_error('where', 'Virtual internship can\'t have a location')
 
+        if cleaned_data['where'] == 'in-person':
+            if cleaned_data['where'] is '' or cleaned_data['where'] is None:
+                self.add_error('where', 'Must have a location')
+
         if cleaned_data['type'] == 'Unpaid':
             if cleaned_data['pay'] is not '' and cleaned_data['pay'] is not None:
                 self.add_error('type', 'Unpaid internship can\'t have a salary')

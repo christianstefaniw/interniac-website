@@ -97,10 +97,14 @@ class EditListing(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         if form.cleaned_data['where'] == 'Virtual':
             if form.cleaned_data['location'] is not '' and form.cleaned_data['location'] is not None:
-                form.add_error('where', 'Virtual internship can\'t have a location')
+                form.cleaned_data['where'] = None
+                
         if form.cleaned_data['type'] == 'Unpaid':
             if form.cleaned_data['pay'] is not '' and form.cleaned_data['pay'] is not None:
-                form.add_error('type', 'Unpaid internship can\'t have a salary')
+                form.cleaned_data['pay'] = None
+        if form.cleaned_data['where'] == 'In-Person':
+            if form.cleaned_data['location'] is '' or form.cleaned_data['location'] is None:
+                form.add_error('where', 'In-person internship must have a location')
 
         if form.cleaned_data['career'] is not None and form.cleaned_data['career'] is not '':
             pass

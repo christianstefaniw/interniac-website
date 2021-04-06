@@ -20,27 +20,27 @@ ids = {
 $(`#${ids.internWhere}`).change(function () {
     let where = $(this).val().toLowerCase()
     if (where === 'in-person') {
-        unhide(ids.location)
+        unhideInputAndLabel(ids.location)
     } else {
-        hide(ids.location)
+        hideInputAndLabel(ids.location)
     }
 })
 
 $(`#${ids.careerType}`).change(function () {
     let career = $(this).val().toLowerCase()
     if (career === '') {
-        unhide(ids.newCareer)
+        unhideInputAndLabel(ids.newCareer)
     } else {
-        hide(ids.newCareer)
+        hideInputAndLabel(ids.newCareer)
     }
 })
 
 $(`#${ids.internType}`).change(function () {
     let type = $(this).val().toLowerCase()
     if (type === 'paid') {
-        unhide(ids.pay)
+        unhideInputAndLabel(ids.pay)
     } else {
-        hide(ids.pay)
+        hideInputAndLabel(ids.pay)
     }
 })
 
@@ -55,59 +55,63 @@ $(`#${ids.isStudent}`).change(function () {
 
 $(`#${ids.isEmployer}`).change(function () {
     let state = $(this).val().toLowerCase()
-    console.log(state)
     if (state === 'employer') {
         unhide(ids.companyName)
     } else {
         hide(ids.companyName)
     }
 })
-
-if (document.URL === 'http://127.0.0.1:8000/marketplace/createlisting/') {
-    let hide = $('form p').children()
-    for (let i = 0; i in hide; i++) {
-        if (myGetElem($(hide[i]), ids.internType)) {
-            continue;
-        }
-        if (myGetElem($(hide[i]), ids.internWhere)) {
-            continue;
-        }
-        if (myGetElem($(hide[i]), ids.careerType)) {
-            continue
-        }
-        if (myGetElem($(hide[i]), ids.newCareer)) {
-            if ($(`#${ids.careerType}`).val() !== '') {
-                $(`#${ids.newCareer}`).hide()
-                $(`label[for=${ids.newCareer}]`).hide()
+$(function () {
+    if ($('body').hasClass('hide-inputs')) {
+        let hide = $('form p').children()
+        for (let i = 0; i in hide; i++) {
+            if (myGetElem($(hide[i]), ids.internType)) {
+                continue;
             }
-            continue
+            if (myGetElem($(hide[i]), ids.internWhere)) {
+                continue;
+            }
+            if (myGetElem($(hide[i]), ids.careerType)) {
+                continue
+            }
+            if (myGetElem($(hide[i]), ids.newCareer)) {
+                if ($(`#${ids.careerType}`).val() !== '') {
+                    $(`#${ids.newCareer}`).hide()
+                    $(`label[for=${ids.newCareer}]`).hide()
+                }
+                continue
+            }
+            if (myGetElem($(hide[i]), ids.appDeadline)) {
+                continue
+            }
+            if (myGetElem($(hide[i]), ids.timeCommitment)) {
+                continue
+            }
+            if (myGetElem($(hide[i]), ids.description)) {
+                continue
+            }
+            if (myGetElem($(hide[i]), ids.title)) {
+                continue
+            }
+            if (myGetElem($(hide[i]), ids.applicationUrl)) {
+                continue
+            }
+            if (myGetElem($(hide[i]), ids.pay)) {
+                if ($(`#${ids.internType}`).val() !== 'Paid') {
+                    $(hide[i]).hide();
+                }
+                continue;
+            }
+            if (myGetElem($(hide[i]), ids.location)) {
+                if ($(`#${ids.internWhere}`).val() !== 'In-Person') {
+                    $(hide[i]).hide();
+                }
+                continue;
+            }
+            $(hide[i]).remove()
         }
-        if (myGetElem($(hide[i]), ids.appDeadline)) {
-            continue
-        }
-        if (myGetElem($(hide[i]), ids.timeCommitment)) {
-            continue
-        }
-        if (myGetElem($(hide[i]), ids.description)) {
-            continue
-        }
-        if (myGetElem($(hide[i]), ids.title)) {
-            continue
-        }
-        if (myGetElem($(hide[i]), ids.applicationUrl)) {
-            continue
-        }
-        if (myGetElem($(hide[i]), ids.pay)) {
-            $(hide[i]).hide();
-            continue;
-        }
-        if (myGetElem($(hide[i]), ids.location)) {
-            $(hide[i]).hide();
-            continue;
-        }
-        $(hide[i]).remove()
     }
-}
+});
 
 function myGetElem(el, id) {
     return el.attr('for') === id || el.attr('id') === id;
@@ -152,22 +156,27 @@ function hide(elId) {
 
 function unhide(elId) {
     let el = $(`#${elId}`)
-    if (elId === ids.companyName){
+    if (elId === ids.companyName) {
         el.addClass('mb-5')
     }
     el.show()
 }
 
+function unhideInputAndLabel(elId) {
+    let el = $(`#${elId}`)
+    let label = $(`label[for=${elId}]`)
+    el.show()
+    label.show()
+}
 
-anime({
-    targets: '#404-row svg',
-    autoplay: true,
-    loop: true,
-    easing: 'easeInOutSine',
-    direction: 'alternate'
-});
+function hideInputAndLabel(elId) {
+    let el = $(`#${elId}`)
+    let label = $(`label[for=${elId}]`)
+    el.hide()
+    label.hide()
+}
 
 
 $(document).ready(function () {
-    $('body').tooltip({selector: '[data-toggle=tooltip]'});
+    $('body').tooltip({ selector: '[data-toggle=tooltip]' });
 });

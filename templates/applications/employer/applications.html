@@ -5,7 +5,7 @@
         {% if listing.applications.all %}
             <div class="col-xl-3 mr-2 ml-2 bg-white light-outer-shadow br-10" style="margin-bottom: 10rem;">
 
-                <div class="text-right m-0 "><a class="notif-circle"
+                <div class="text-right m-0 "><a data-toggle="tooltip" title="Clear notifications" class="notif-circle"
                                                 href="{% url 'clear_notifs' slug=listing.slug %}">{{ listing|filter_from_notif:user|length }}</a>
                 </div>
                 <div class="p-5 m-0">

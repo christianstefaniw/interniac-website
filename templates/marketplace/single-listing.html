@@ -67,6 +67,11 @@
                     <h4 class="mt-5">Type</h4>
                     <p>{{ object.type }}</p>
 
+                    {% if object.type == 'Paid' %}
+                    <h4 class="mt-5">Pay</h4>
+                    <p>${{ object.pay }}</p>
+                    {% endif %}
+
                     <h4 class="mt-5">Where</h4>
                     <p>{{ object.where }}</p>
 
