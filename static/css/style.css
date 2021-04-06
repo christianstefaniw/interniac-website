@@ -54,6 +54,17 @@ nav {
     margin-bottom: 3rem;
 }
 
+.bottom-right{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.bottom{
+    position: absolute;
+    bottom: 0;
+}
+
 input:focus:invalid {
     border-color: transparent;
     box-shadow: 0 0 0 2px red;
@@ -202,7 +213,7 @@ nav > div > ul > li > a {
 }
 
 .bg-primary {
-    background-color: var(--bg-color-primary);
+    background-color: var(--bg-color-primary) !important;
 }
 
 .danger-btn {

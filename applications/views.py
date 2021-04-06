@@ -79,6 +79,7 @@ class ArchiveAcceptance(LoginRequiredMixin, RedirectView):
         listing = Listing.objects.get(id=self.kwargs.get('listing_id'))
         user = User.objects.get(id=self.kwargs.get('student_id'))
 
+
         if listing.company != self.request.user and self.request.user != user:
             raise PermissionError
 

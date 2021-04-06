@@ -34,8 +34,6 @@ class User(AbstractUser):
         return f"{self.first_name} {self.last_name}"
 
     def slug_student(self):
-        print('ok')
-        print(self.get_full_name)
         self.slug = self.get_full_name
         unique_slugify(self, self.slug)
 
@@ -124,7 +122,7 @@ class StudentProfile(models.Model):
 
     def archive_acceptance(self, listing_id):
         listing = Listing.objects.get(id=listing_id)
-        listing.student_acceptances.remove(listing)
+        self.user.student_acceptances.remove(listing)
 
     def archive_rejection(self, listing_id):
         listing = Listing.objects.get(id=listing_id)
