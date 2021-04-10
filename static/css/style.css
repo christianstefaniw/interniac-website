@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap");
 
 /*
 GENERAL
  */
 :root {
     --primary-color: #040456;
-    --secondary-color: #3DADFF;
+    --secondary-color: #3dadff;
     --bg-color-primary: #58b895;
     --bg-color-secondary: #8beaff;
     --bg-color-primary-dark: #196449;
@@ -25,11 +25,11 @@ GENERAL
     background-color: var(--bootstrap-bg);
 }
 
-input[type=checkbox], input[type=radio] {
+input[type="checkbox"],
+input[type="radio"] {
     width: auto;
     box-shadow: none;
 }
-
 
 .send-back {
     z-index: -1;
@@ -44,6 +44,10 @@ input[type=checkbox], input[type=radio] {
     color: var(--secondary-color);
 }
 
+.bottom {
+    bottom: 0;
+}
+
 .my-center {
     display: flex;
     justify-content: center;
@@ -54,13 +58,13 @@ nav {
     margin-bottom: 3rem;
 }
 
-.bottom-right{
+.bottom-right {
     position: absolute;
     bottom: 0;
     right: 0;
 }
 
-.bottom{
+.bottom {
     position: absolute;
     bottom: 0;
 }
@@ -75,7 +79,7 @@ html {
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
     background: #f2f2f2;
     overflow-x: hidden;
 }
@@ -104,11 +108,11 @@ nav {
 }
 
 .primary {
-    color: var(--primary-color)
+    color: var(--primary-color);
 }
 
 .secondary {
-    color: var(--secondary-color)
+    color: var(--secondary-color);
 }
 
 p {
@@ -126,13 +130,12 @@ p {
     background-color: var(--primary-color);
 }
 
-
-.btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active,
+.btn-outline-primary:not(:disabled):not(.disabled):active,
+.btn-outline-primary:not(:disabled):not(.disabled).active,
 .show > .btn-outline-primary.dropdown-toggle {
     color: #fff;
     background-color: var(--primary-color);
 }
-
 
 .btn-primary {
     background-color: var(--primary-color);
@@ -152,7 +155,9 @@ p {
     transition: color 0.5s ease;
 }
 
-input, textarea, select {
+input,
+textarea,
+select {
     outline: none;
     display: block;
     width: 100%;
@@ -163,14 +168,13 @@ input, textarea, select {
     box-shadow: var(--light-outer-shadow);
 }
 
-input[type=checkbox]:hover{
+input[type="checkbox"]:hover {
     cursor: pointer;
 }
 
 .fas:hover {
     transition: color 0.5s ease;
 }
-
 
 .inner-shadow {
     box-shadow: var(--inner-shadow);
@@ -179,7 +183,6 @@ input[type=checkbox]:hover{
 .outer-shadow {
     box-shadow: var(--outer-shadow);
 }
-
 
 .nav-item {
     margin-left: 1.5rem;
@@ -196,7 +199,6 @@ nav > div > ul > li > a {
     padding-left: 5px;
     padding-right: 5px;
 }
-
 
 .notif-circle {
     margin-top: -2rem;
@@ -224,6 +226,10 @@ nav > div > ul > li > a {
     background-color: #cbcaca;
     border-radius: 4px;
     color: #dc3545;
+    margin: auto 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .danger-btn:hover {
@@ -240,6 +246,9 @@ nav > div > ul > li > a {
     padding: 10px;
     background-color: #cbcaca;
     border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .neutral-btn:hover {
@@ -257,6 +266,9 @@ nav > div > ul > li > a {
     background-color: #cbcaca;
     border-radius: 4px;
     color: #28a745;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .success-btn:hover {
@@ -318,7 +330,8 @@ END IMAGES
 }
 
 @keyframes MoveUpDown {
-    0%, 100% {
+    0%,
+    100% {
         bottom: 0;
     }
     50% {
@@ -341,7 +354,6 @@ END IMAGES
 
 /* END DECORATIONS */
 
-
 /* SUCCESS-ERROR */
 
 .success {
@@ -353,7 +365,6 @@ END IMAGES
 .success_header {
     padding: 20px;
     border-radius: 20px 20px 0 0;
-
 }
 
 .check {
@@ -397,16 +408,13 @@ END IMAGES
 
 /* END SUCCESS-ERROR */
 
-
 /* 404 */
 
 #handboy {
     animation: swing ease-in-out 1.3s infinite alternate;
     transform-origin: 98% 98%;
     transform-box: fill-box;
-
 }
-
 
 #girllight {
     animation: swing ease-in-out 1.3s infinite alternate;
@@ -418,13 +426,11 @@ END IMAGES
     animation: swinghair ease-in-out 1.3s infinite alternate;
     transform-origin: 60% 0;
     transform-box: fill-box;
-
 }
 
 #zero {
     transform-origin: bottom;
     transform-box: fill-box;
-
 }
 
 @keyframes swing {
@@ -435,7 +441,6 @@ END IMAGES
         transform: rotate(-10deg);
     }
 }
-
 
 @keyframes swinghair {
     0% {
@@ -459,6 +464,7 @@ END IMAGES
     width: 200px;
 }
 
+
 .lh-1 {
     line-height: 1.5;
 }
@@ -476,7 +482,6 @@ FONTS
 /*
 END FONTS
  */
-
 
 /*
 FOOTER
@@ -511,25 +516,24 @@ END FOOTER
 }
 
 #id_type li:first-child {
-    display: none
+    display: none;
 }
 
 #id_where li:first-child {
-    display: none
+    display: none;
 }
 
 #id_career li:first-child {
-    display: none
+    display: none;
 }
 
 #id_company li:first-child {
-    display: none
+    display: none;
 }
 
 #searchbar {
     background-color: var(--form-input-bg);
 }
-
 
 ul {
     list-style-type: none;
@@ -562,19 +566,17 @@ ul {
 .apply-unapply-btn {
     transition: background-color 0.5s ease;
     cursor: pointer;
+    display: block;
+    width: 100%;
     padding: 4px;
     border-radius: 10px;
     border: 1px solid black;
-    outline: none;
+    outline: none !important;
     background-color: #efefef;
 }
 
-.apply-unapply-btn:active {
-    outline: none;
-}
-
-.apply-unapply-btn:focus {
-    outline: none;
+.break {
+    word-wrap: break-word;
 }
 
 .apply-unapply-btn:hover {
@@ -590,7 +592,6 @@ ul {
 }
 
 /* END LISTING */
-
 
 /* LOGIN */
 
@@ -611,7 +612,6 @@ ul {
 /* END LOGIN */
 
 /* PROFILE */
-
 
 /* END PROFILE */
 
@@ -643,7 +643,6 @@ ul {
 
 /* END EVENTS */
 
-
 /* NEWSLETTER */
 
 #id_email_signup {
@@ -653,7 +652,6 @@ ul {
 }
 
 /* END NEWSLETTER */
-
 
 /*
 CONTACT FORM
@@ -714,7 +712,6 @@ CONTACT FORM
     }
 }
 
-
 #send-container {
     margin-top: 2rem;
     position: relative;
@@ -722,7 +719,6 @@ CONTACT FORM
 }
 
 /* end send button */
-
 
 #contact-header {
     margin-bottom: 2rem;
@@ -733,7 +729,8 @@ CONTACT FORM
     font-weight: bolder;
 }
 
-#contact > p > input, #contact > p > textarea {
+#contact > p > input,
+#contact > p > textarea {
     background-color: var(--form-input-bg);
     border-radius: 30px;
     border: none;
@@ -767,7 +764,6 @@ END CONTACT FORM
     font-size: 3.5em;
 }
 
-
 .stat div b {
     font-size: 2.2em;
     padding-top: 0;
@@ -778,11 +774,9 @@ END CONTACT FORM
 
 /* END STATISTICS */
 
-
 /*
 LANDING PAGE
  */
-
 
 .landing-padding {
     margin-top: 6rem;
@@ -806,7 +800,6 @@ LANDING PAGE
     font-weight: bolder;
 }
 
-
 #working {
     position: absolute;
     margin-left: 500px;
@@ -818,7 +811,6 @@ END LANDING PAGE
  */
 
 /* END HOME */
-
 
 /* ANIMATIONS */
 
@@ -846,7 +838,6 @@ END LANDING PAGE
 
 /* END ANIMATIONS */
 
-
 /* BREAK POINTS */
 
 @media screen and (max-width: 1800px) {
@@ -870,15 +861,14 @@ END LANDING PAGE
 }
 
 @media screen and (max-width: 991px) {
-
     .bottom-application-btn {
         margin-top: 0;
     }
-
 }
 
 @media screen and (max-width: 767px) {
-    input, textarea {
+    input,
+    textarea {
         width: 100%;
     }
 
@@ -903,13 +893,17 @@ END LANDING PAGE
         margin: 1.5rem 0;
         box-shadow: 0 0.4em 0.5em rgb(0, 0, 0.8);
     }
-
-
 }
 
 @media screen and (max-width: 266px) {
     #send-container {
-        width: 100%
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .mtb-xl{
+        margin: 1rem 0;
     }
 }
 

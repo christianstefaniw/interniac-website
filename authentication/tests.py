@@ -16,8 +16,7 @@ class AuthenticationTestCase(TestCase):
             'last_name': 'student_last',
             'password1': 'some_password',
             'password2': 'some_password',
-            'is_student': True,
-            'is_employer': False
+            'student_employer': 'student'
         }
 
     @staticmethod
@@ -28,8 +27,7 @@ class AuthenticationTestCase(TestCase):
             'last_name': 'teacher_last',
             'password1': 'some_password',
             'password2': 'some_password',
-            'is_student': False,
-            'is_employer': True,
+            'student_employer': 'employer',
             'company_name': 'some company'
         }
 
@@ -85,7 +83,6 @@ class AuthenticationTestCase(TestCase):
 
         self.register(registration_data)
         response = self.register(registration_data)
-
         self.assertTrue(response.context['form'].errors['email'])
 
     def test_register_student_has_company(self):
@@ -94,7 +91,7 @@ class AuthenticationTestCase(TestCase):
 
         response = self.register(registration_data)
 
-        self.assertTrue(response.context['form'].errors['is_student'])
+        self.assertTrue(response.context['form'].errors['student_employer'])
 
     def test_register_employer_no_company(self):
         registration_data = self.employer_registration_data()
@@ -106,11 +103,11 @@ class AuthenticationTestCase(TestCase):
 
     def test_register_not_employer_not_student(self):
         registration_data = self.student_registration_data()
-        registration_data['is_student'], registration_data['is_employer'] = False, False
+        registration_data['student_employer'] = ''
 
         response = self.register(registration_data)
 
-        self.assertTrue(response.context['form'].errors['is_student'])
+        self.assertTrue(response.context['form'].errors['student_employer'])
 
     def test_register_employer_register(self):
         registration_data = self.employer_registration_data()

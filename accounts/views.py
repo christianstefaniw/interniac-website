@@ -10,7 +10,6 @@ from .helpers import Student, Employer, save_career
 
 class Profile(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/profile.html'
-    login_url = reverse_lazy('login')
 
     def post(self, request, **kwargs):
         if 'hs' in request.POST:
@@ -60,7 +59,6 @@ class Profile(LoginRequiredMixin, TemplateView):
 
 class Listings(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/employer/listings.html'
-    login_url = 'login'
 
     def get(self, request, *args, **kwargs):
         if not request.user.is_employer:
@@ -68,7 +66,7 @@ class Listings(LoginRequiredMixin, TemplateView):
         return super(Listings, self).get(request, args, kwargs)
 
 
-@login_required(login_url='login')
+@login_required
 def delete_user(request):
     request.user.delete()
     return redirect('login')

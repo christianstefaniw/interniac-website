@@ -8,7 +8,6 @@ from phonenumber_field.modelfields import PhoneNumberField
 from accounts.managers import UserManager
 from marketplace.models import Listing
 
-
 class User(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
@@ -116,28 +115,24 @@ class StudentProfile(models.Model):
     link3 = models.URLField(null=True, blank=True)
     link4 = models.URLField(null=True, blank=True)
 
-    def archive_interview_request(self, listing_id):
+    def archive_interview_request(self, listing):
         listing = Listing.objects.get(id=listing_id)
         self.user.student_interview_requests.remove(listing)
 
-    def archive_acceptance(self, listing_id):
-        listing = Listing.objects.get(id=listing_id)
+    def archive_acceptance(self, listing):
         self.user.student_acceptances.remove(listing)
 
-    def archive_rejection(self, listing_id):
-        listing = Listing.objects.get(id=listing_id)
+    def archive_rejection(self, listing):
         self.user.student_rejections.remove(listing)
 
-    def apply(self, listing_id):
-        listing = Listing.objects.get(id=listing_id)
+    def apply(self, listing):        
         listing.applications.add(self.user)
         listing.applied_email(self.user.first_name)
         if listing.company.notifications.unread().filter(actor_object_id=listing.id).count() != 0:
             return
         notify.send(recipient=listing.company, verb='someone applied!', actor=listing, sender=listing)
 
-    def unapply(self, listing_id):
-        listing = Listing.objects.get(id=listing_id)
+    def unapply(self, listing):
         listing.applications.remove(self.user)
         if self.user in listing.interview_requests.all():
             listing.interview_requests.remove(self.user)

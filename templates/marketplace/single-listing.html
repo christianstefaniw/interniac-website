@@ -110,12 +110,14 @@
 
                     <div class="mt-5 mb-5">
                         {% if user.is_student and not object.application_url %}
-                            {% if listing in user.applications.all %}
-                                <a class="danger-btn"
-                                   href="{% url 'unapply' listing_id=listing.id %}?redirect=success">Unapply</a>
-                            {% else %}
-                                <a class="success-btn mt-5 mb-5"
-                                   href="{% url 'apply' listing_id=listing.id %}?redirect=success">Apply</a>
+                            {% if listing not in object.rejections.all and listing not in object.acceptances.all %}
+                                {% if listing in user.applications.all %}
+                                    <a class="danger-btn"
+                                    href="{% url 'unapply' listing_id=listing.id %}?redirect=success">Unapply</a>
+                                {% else %}
+                                    <a class="success-btn mt-5 mb-5"
+                                    href="{% url 'apply' listing_id=listing.id %}?redirect=success">Apply</a>
+                                {% endif %}
                             {% endif %}
                         {% endif %}
                     </div>

@@ -38,7 +38,7 @@ class UserCreateForm(UserCreationForm):
         if self.cleaned_data.get('student_employer') == 'employer' and not self.cleaned_data.get('company_name'):
             self.add_error('company_name', 'Enter your companies name')
         if self.cleaned_data.get('student_employer') == 'student' and self.cleaned_data.get('company_name') != '':
-            self.add_error('is_student', 'Student can\'t have a company')
+            self.add_error('student_employer', 'Student can\'t have a company')
         return cleaned_data
 
     def __init__(self, *args, **kwargs):

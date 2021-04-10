@@ -15,9 +15,9 @@
         <script src="https://kit.fontawesome.com/a76f8913d2.js" crossorigin="anonymous"></script>
 
         <title>Interniac</title>
-
     </head>
     <body>
+
         <section id="nav">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <a class="navbar-brand" href="{% url 'home' %}">
@@ -49,19 +49,21 @@
                 </div>
             </nav>
         </section>
+
         <div class="container-fluid">
             <div class="mb-4">
                 <a href="{% url 'profile' %}">
                     <i class="fas fa-arrow-circle-left fa-2x"></i>
                 </a>
             </div>
+
             {% if user.is_employer %}
-                {% include 'applications/employer/acceptances.html' %}
+                {% include 'applications/employer/awaiting-confirm.html' %}
             {% elif user.is_student %}
-                {% include 'applications/student/acceptances.html' %}
+                {% include 'applications/student/awaiting-confirm.html' %}
             {% endif %}
         </div>
 
+        <script src="{% static 'js/script.js' %}"></script>
     </body>
 </html>
-

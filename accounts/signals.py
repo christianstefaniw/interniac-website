@@ -10,11 +10,11 @@ from .models import User, StudentProfile, EmployerProfile
 def create_profile(sender, instance, created, **kwargs):
     if created:
         if instance.is_student:
-            instance.slug_student()
             StudentProfile.objects.create(user=instance)
+            instance.slug_student()
         elif instance.is_employer:
-            instance.slug_employer()
             EmployerProfile.objects.create(user=instance)
+            instance.slug_employer()
         instance.save()
             
 

@@ -10,12 +10,17 @@
                 {{ student_user_form.profile_picture }}
             </p>
 
-
             <div class="mt-4">
-                <a class="danger-btn"
-                   href="{% url "delete" %}" onclick="return confirm('Are you sure?');">Delete account</a>
-                <a class="neutral-btn float-right"
-                   href="{% url 'logout' %}?next=/">Logout</a>
+                <div class="row justify-content-between">
+                    <div class="col-xl-7">
+                        <a class="danger-btn"
+                        href="{% url "delete" %}" onclick="return confirm('Are you sure?');">Delete account</a>
+                    </div>
+                    <div class="col-xl-4 mtb-xl">
+                        <a class="neutral-btn"
+                        href="{% url 'logout' %}?next=/">Logout</a>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -149,18 +154,22 @@
 
             <div style="margin-bottom: 5rem"></div>
 
-            <div class="row text-center">
-                <div class="col-md-3 mb-4">
-                    <a href="{% url 'applications' %}" class="neutral-btn w-100">View applications</a>
+            <div class="row text-center justify-content-around">
+                <div class="col-md-4 mb-4">
+                    <a href="{% url 'applications' %}" class="neutral-btn w-100">View Applications</a>
                 </div>
-                <div class="col-md-3 mb-4">
-                    <a href="{% url 'acceptances' %}" class="success-btn w-100">View acceptances</a>
+                <div class="col-md-4 mb-4">
+                    <a href="{% url 'rejections' %}" class="danger-btn w-100">View Rejections</a>
                 </div>
-                <div class="col-md-3 mb-4">
-                    <a href="{% url 'rejections' %}" class="danger-btn w-100">View rejections</a>
+                <div class="col-md-4 mb-4">
+                    <a href="{% url 'interview_requests' %}" class="neutral-btn w-100">View Interview Requests</a>
                 </div>
-                <div class="col-md-3 mb-4">
-                    <a href="{% url 'interview_requests' %}" class="neutral-btn w-100">View interview requests</a>
+                <div class="col-lg-4 mb-4">
+                    <a class="success-btn w-100" href="{% url 'awaiting_confirm' %}">Awaiting Confirmation</a>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <a href="{% url 'acceptances' %}" class="success-btn w-100">View Acceptances</a>
                 </div>
             </div>
 

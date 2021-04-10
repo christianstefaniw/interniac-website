@@ -2,7 +2,7 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 import django_heroku
-
+from django.urls import reverse_lazy
 
 load_dotenv()
 
@@ -95,6 +95,10 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+LOGIN_URL = reverse_lazy('login')
+
+DJANGO_NOTIFICATIONS_CONFIG = { 'SOFT_DELETE': True}
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'

@@ -6,13 +6,14 @@ from accounts.models import User, EmployerProfile, StudentProfile
 class InitAccountsMixin(object):
     @classmethod
     def set_up(cls):
+       
         student = User.objects.create_user(email='test@gmail.com', first_name='first', last_name='last',
                                            password='password',
                                            is_student=True, is_employer=False)
         employer = User.objects.create_user(email='test2@gmail.com', first_name='first', last_name='last',
                                             password='password',
                                             is_student=False, is_employer=True)
-
+                                            
         cls.student_profile(student.id, '+12125552368')
         student = User.objects.get(id=student.id)
         cls.employer_profile(employer.id)
@@ -26,17 +27,17 @@ class InitAccountsMixin(object):
     @staticmethod
     def employer_profile(employer_id) -> None:
         employer = User.objects.get(id=employer_id)
-        employer_profile = EmployerProfile.objects.create(user=employer)
+        employer_profile = employer.employer_profile
+        
         employer_profile.company_name = 'some company'
         employer_profile.company_website = 'http://www.google.com'
         employer_profile.full_clean()
         employer_profile.save()
-        employer.slug_employer()
 
     @staticmethod
     def student_profile(student_id, phone) -> None:
         student = User.objects.get(id=student_id)
-        student_profile = StudentProfile.objects.create(user=student)
+        student_profile = StudentProfile.objects.get(user=student)
         student_profile.phone = phone
         student_profile.dob = date.today()
         student_profile.hs = 'humberside'
@@ -55,4 +56,3 @@ class InitAccountsMixin(object):
         student_profile.link4 = None
         student_profile.full_clean()
         student_profile.save()
-        student.slug_student()

@@ -13,7 +13,6 @@ __all__ = ['Marketplace', 'CreateListing', 'FilterListings', 'ViewListing', 'del
 
 
 class Marketplace(LoginRequiredMixin, ListView):
-    login_url = 'login'
     model = Listing
     ordering = ['-posted']
     template_name = 'marketplace/marketplace.html'
@@ -25,7 +24,6 @@ class Marketplace(LoginRequiredMixin, ListView):
 
 
 class CreateListing(LoginRequiredMixin, CreateView):
-    login_url = 'login'
     template_name = 'marketplace/create-listing.html'
     form_class = CreateListingForm
 
@@ -75,7 +73,7 @@ class ViewListing(LoginRequiredMixin, DetailView):
     template_name = 'marketplace/single-listing.html'
 
 
-@login_required(login_url='login')
+@login_required
 def delete_listing(request, listing_id):
     listing = Listing.objects.get(id=listing_id)
     if request.user != listing.company:
