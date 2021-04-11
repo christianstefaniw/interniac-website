@@ -62,6 +62,10 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
             'student_id': self.student.id
         }))
 
+    def confirm_acceptance(self) -> HttpResponse:
+        path = reverse('confirm_acceptance', kwargs={'listing_id': self.listing.id})
+        return self.client.get(path)
+
     def test_applications_login_redirect(self):
         self.check_login_redirected(reverse('applications'))
 
@@ -179,6 +183,7 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
         self.accept_student()
         self.logout()
         self.login(self.student)
+        self.confirm_acceptance()
         response = self.client.get(path, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertFalse(self.student in self.listing.student_acceptances.all())
@@ -202,6 +207,11 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
         self.login_apply_out()
         self.login(self.employer)
         self.accept_student()
+        self.logout()
+        self.login(self.student)
+        self.confirm_acceptance()
+        self.logout()
+        self.login(self.employer)
         response = self.client.get(path, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertFalse(self.student in self.listing.employer_acceptances.all())
@@ -342,6 +352,19 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
             'listing_id': self.listing.id,
             'student_id': self.student.id
         }))
+
+    def test_student_confirm(self):
+        self.login_apply_out()
+        self.login(self.employer)
+        self.accept_student()
+        self.logout()
+        self.login(self.student)
+        response = self.confirm_acceptance()
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(self.student in self.listing.acceptances.all())
+        self.assertTrue(self.student in self.listing.employer_acceptances.all())
+        self.assertTrue(self.student in self.listing.student_acceptances.all())
+        self.assertFalse(self.student in self.listing.awaiting_confirm_acceptance.all())
 
     def test_employer_accept(self):
         self.login_apply_out()
