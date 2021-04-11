@@ -348,10 +348,7 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
         self.login(self.employer)
         response = self.accept_student()
         self.assertEqual(response.status_code, 200)
-        self.assertTrue(self.student in self.listing.student_acceptances.all())
-        self.assertTrue(self.student in self.listing.employer_acceptances.all())
-        self.assertTrue(self.student in self.listing.acceptances.all())
-        self.assertFalse(self.student in self.listing.applications.all())
+        self.assertTrue(self.student in self.listing.awaiting_confirm_acceptance.all())
 
     # try to accept a student as a student
     def test_student_accept(self):

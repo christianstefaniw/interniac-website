@@ -116,7 +116,6 @@ class StudentProfile(models.Model):
     link4 = models.URLField(null=True, blank=True)
 
     def archive_interview_request(self, listing):
-        listing = Listing.objects.get(id=listing_id)
         self.user.student_interview_requests.remove(listing)
 
     def archive_acceptance(self, listing):

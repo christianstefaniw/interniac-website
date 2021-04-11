@@ -224,7 +224,7 @@ def apply(request, listing_id):
 @login_required
 @student_required
 def unapply(request, listing_id):
-    listing = Listing.objects.get(id=listing.id)
+    listing = Listing.objects.get(id=listing_id)
     request.user.profile.unapply(listing)
     redirect_where = request.GET.get('redirect')
     if redirect_where == 'profile':
