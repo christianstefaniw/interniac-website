@@ -16,10 +16,28 @@ class Marketplace(LoginRequiredMixin, ListView):
     model = Listing
     ordering = ['-posted']
     template_name = 'marketplace/marketplace.html'
+    paginate_by = 30
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
         context['filters'] = Filter()
+
+        if not context.get('is_paginated', False):
+            return context
+
+        paginator = context.get('paginator')
+        num_pages = paginator.num_pages
+        current_page = context.get('page_obj')
+        page_no = current_page.number
+
+        if num_pages <= 15 or page_no <= 6:
+            pages = [x for x in range(1, min(num_pages + 1, 16))]
+        elif page_no > num_pages - 6:
+            pages = [x for x in range(num_pages - 14, num_pages + 1)]
+        else:
+            pages = [x for x in range(page_no - 5, page_no + 6)]
+
+        context.update({'pages': pages})
         return context
 
 
@@ -44,6 +62,7 @@ class FilterListings(LoginRequiredMixin, ListView):
     template_name = 'marketplace/listings.html'
     model = Listing
     queryset = Listing.objects.all().order_by('-posted')
+    paginate_by = 30
 
     def get_queryset(self):
         queryset = super().get_queryset()

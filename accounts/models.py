@@ -116,23 +116,26 @@ class StudentProfile(models.Model):
     link4 = models.URLField(null=True, blank=True)
 
     def archive_interview_request(self, listing):
-        self.user.student_interview_requests.remove(listing)
+        listing.archive_interview_request(self.user)
 
     def archive_acceptance(self, listing):
-        self.user.student_acceptances.remove(listing)
+        listing.archive_student_acceptance(self.user)
 
     def archive_rejection(self, listing):
-        self.user.student_rejections.remove(listing)
+        listing.archive_student_rejection(self.user)
 
     def apply(self, listing):        
-        listing.applications.add(self.user)
+        listing.add_application(self.user)
         listing.applied_email(self.user.first_name)
-        if listing.company.notifications.unread().filter(actor_object_id=listing.id).count() != 0:
+
+        if listing.company.notifications.unread().filter(actor_object_id=listing.id).filter(action_object_object_id=self.user.id).count() != 0:
+            print(listing.company.notifications.unread().filter(actor_object_id=listing.id).filter(action_object_object_id=self.user.id))
             return
-        notify.send(recipient=listing.company, verb='someone applied!', actor=listing, sender=listing)
+
+        notify.send(recipient=listing.company, verb='someone applied!', actor=listing, sender=listing, action_object=self.user)
 
     def unapply(self, listing):
-        listing.applications.remove(self.user)
+        listing.remove_application(self.user)
         if self.user in listing.interview_requests.all():
             listing.interview_requests.remove(self.user)
         if self.user in listing.student_interview_requests.all():

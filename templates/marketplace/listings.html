@@ -65,9 +65,6 @@
     function apply(id, el) {
         $.ajax({
             type: 'get',
-            headers: {
-                'SameSite': 'Lax'
-            },
             url: `/applications/apply/${id}`,
             success: function (data) {
                 $(el).replaceWith(data);
@@ -82,9 +79,6 @@
         $.ajax({
             type: 'get',
             url: `/applications/unapply/${id}`,
-            headers: {
-                'SameSite': 'Lax'
-            },
             success: function (data) {
                 $(el).replaceWith(data);
             },

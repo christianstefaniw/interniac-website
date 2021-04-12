@@ -122,6 +122,21 @@ class Listing(models.Model):
                    to=[email], subject=f"Next steps for {self.title}",
                    reply_to=[self.company.email])
 
+    def add_application(self, student):
+        self.applications.add(student)
+
+    def remove_application(self, student):
+        self.applications.remove(student)
+
+    def archive_student_acceptance(self, student):
+        self.student_acceptances.remove(student)
+
+    def archive_student_rejection(self, student):
+        self.student_rejections.remove(student)
+
+    def archive_interview_request(self, student):
+        self.student_interview_requests.remove(student)
+
     def remove_from_interview(self, student):
         if student in self.interview_requests.all():
             self.interview_requests.remove(student)
@@ -133,9 +148,16 @@ class Listing(models.Model):
     def decline_acceptance(self, student):
         self.awaiting_confirm_acceptance.remove(student)
 
+        message = declined_message(f'{student.first_name} {student.last_name}', self.title)
+
+        send_email(body=confirmed_message, from_email=os.environ.get("EMAIL"),
+                   to=[self.company.email], subject=f"Student Declined",
+                   reply_to=[student.email]
+                   )
+
     def confirm_acceptance(self, student):
         for listing in student.applications.all():
-            listing.applications.remove(student)
+            listing.remove_application(student)
 
         for listing in student.awaiting_confirm_acceptance.all():
             listing.awaiting_confirm_acceptance.remove(student)
@@ -145,6 +167,12 @@ class Listing(models.Model):
         self.employer_acceptances.add(student)
         self.student_acceptances.add(student)
 
+        message = confirmed_message(f'{student.first_name} {student.last_name}', self.title)
+
+        send_email(body=message, from_email=os.environ.get("EMAIL"),
+                   to=[self.company.email], subject=f"Student Confirmed!",
+                   reply_to=[student.email]
+                   )
         
 
     def accept(self, student):

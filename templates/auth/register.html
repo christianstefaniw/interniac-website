@@ -121,13 +121,22 @@
                                     {{ form.student_employer.errors }}
                                 </div>
                             </div>
-                            <div class="row mt-3" id="company-name" style="display: none">
+
+                            <div class="row mt-2" id="company-name" style="display: none">
                                 <div class="col-md-5">
                                     {{ form.company_name.label_tag }}
                                     {{ form.company_name }}
                                     {{ form.company_name.errors }}
                                 </div>
                             </div>
+                    
+                            <div class="row mb-3">
+                                <div class="col-md-5 mr-1">
+                                    {{ form.captcha }}
+                                    {{ form.captcha.errors }}
+                                </div>
+                            </div>
+                           
                             <button type="submit" class="btn btn-primary mb-2">Create Account</button>
                         </form>
                         <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
@@ -135,6 +144,7 @@
                 </div>
             </div>
         </section>
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <script src="{% static 'js/script.js' %}"></script>
     </body>
 </html>

@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from nocaptcha_recaptcha import NoReCaptchaField
 
 from accounts.models import User
 
@@ -13,6 +14,7 @@ class UserCreateForm(UserCreationForm):
     student_employer = forms.ChoiceField(choices=CHOICES,
                                          widget=forms.RadioSelect,
                                          label='Student or employer')
+    captcha = NoReCaptchaField(label='')
 
     class Meta:
         model = User
