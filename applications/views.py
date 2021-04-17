@@ -125,7 +125,7 @@ class ArchiveRejection(LoginRequiredMixin, RedirectView):
             user.profile.archive_rejection(listing.id)
         return super().get_redirect_url(*args, **kwargs)
 
-class DeclineAcceptance(LoginRequiredMixin, RedirectView, StudentRequiredMixin):
+class DeclineAcceptance(RedirectView, StudentRequiredMixin):
     url = reverse_lazy('awaiting_confirm')
 
     def get_redirect_url(self, *args, **kwargs):
@@ -134,7 +134,7 @@ class DeclineAcceptance(LoginRequiredMixin, RedirectView, StudentRequiredMixin):
         return super().get_redirect_url(*args, **kwargs)
 
 
-class ConfirmAcceptance(LoginRequiredMixin, RedirectView, StudentRequiredMixin):
+class ConfirmAcceptance(RedirectView, StudentRequiredMixin):
     url = reverse_lazy('awaiting_confirm')
 
     def get_redirect_url(self, *args, **kwargs):

@@ -1,6 +1,6 @@
 from datetime import date
 
-from accounts.models import User, EmployerProfile, StudentProfile
+from accounts.models import User, StudentProfile
 
 
 class InitAccountsMixin(object):

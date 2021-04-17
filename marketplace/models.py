@@ -150,7 +150,7 @@ class Listing(models.Model):
 
         message = declined_message(f'{student.first_name} {student.last_name}', self.title)
 
-        send_email(body=confirmed_message, from_email=os.environ.get("EMAIL"),
+        send_email(body=message, from_email=os.environ.get("EMAIL"),
                    to=[self.company.email], subject=f"Student Declined",
                    reply_to=[student.email]
                    )
