@@ -11,7 +11,7 @@ class ContactForm(forms.Form):
     name = forms.CharField(max_length=120, widget=forms.TextInput())
     email = forms.EmailField(widget=forms.EmailInput())
     message = forms.CharField(widget=forms.Textarea())
-    captcha = NoReCaptchaField(label='')
+    captcha = NoReCaptchaField(label='', required=False)
 
     def send_email(self):
         email = self.cleaned_data['email']

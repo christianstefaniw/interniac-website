@@ -155,8 +155,6 @@ class Listing(models.Model):
         self.employer_rejections.add(user)
         self.student_rejections.add(user)
 
-        self.reject_email(user)
-
         self.remove_from_interview(user.id)
 
     def request_interview(self, student_id):

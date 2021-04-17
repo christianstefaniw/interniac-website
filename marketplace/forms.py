@@ -26,7 +26,7 @@ class Filter(forms.Form):
 class CreateListingForm(forms.ModelForm):
     new_career = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Create a new career'}), required=False)
     application_url = forms.URLField(widget=forms.URLInput(attrs={'placeholder': 'optional'}), required=False)
-    captcha = NoReCaptchaField(label='')
+    captcha = NoReCaptchaField(label='', required=False)
 
     class Meta:
         model = Listing

@@ -1,5 +1,4 @@
 from http import HTTPStatus
-
 from django.test import TestCase
 from django.urls import reverse
 
@@ -39,7 +38,6 @@ class AuthenticationTestCase(TestCase):
     def all_login_tests(self, data):
         login_data = {'username': data['email'], 'password': data['password2']}
         response = self.client.post(reverse('login'), data=login_data, follow=True)
-
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request['PATH_INFO'], reverse('profile'))
         self.client.logout()

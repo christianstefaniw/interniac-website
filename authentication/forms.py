@@ -14,7 +14,7 @@ class UserCreateForm(UserCreationForm):
     student_employer = forms.ChoiceField(choices=CHOICES,
                                          widget=forms.RadioSelect,
                                          label='Student or employer')
-    captcha = NoReCaptchaField(label='')
+    captcha = NoReCaptchaField(label='', required=False)
 
     class Meta:
         model = User

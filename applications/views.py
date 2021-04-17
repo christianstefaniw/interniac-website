@@ -90,9 +90,9 @@ class ArchiveAcceptance(LoginRequiredMixin, RedirectView):
             raise PermissionError
 
         if self.request.user.is_employer:
-            self.request.user.employer_profile.archive_acceptance(listing.id, user.id)
+            self.request.user.employer_profile.archive_acceptance(listing, user)
         elif self.request.user.is_student:
-            user.profile.archive_acceptance(listing.id)
+            user.profile.archive_acceptance(listing)
 
         return super().get_redirect_url(*args, **kwargs)
 
@@ -106,9 +106,9 @@ class ArchiveInterviewRequest(LoginRequiredMixin, RedirectView):
         if listing.company != self.request.user and self.request.user != user:
             raise PermissionError
         if self.request.user.is_employer:
-            self.request.user.employer_profile.archive_interview_request(listing.id, user.id)
+            self.request.user.employer_profile.archive_interview_request(listing, user)
         elif self.request.user.is_student:
-            user.profile.archive_interview_request(listing.id)
+            user.profile.archive_interview_request(listing)
         return super().get_redirect_url(*args, **kwargs)
 
 
@@ -121,9 +121,9 @@ class ArchiveRejection(LoginRequiredMixin, RedirectView):
         if listing.company != self.request.user and self.request.user != user:
             raise PermissionError
         if self.request.user.is_employer:
-            self.request.user.employer_profile.archive_rejection(listing.id, user.id)
+            self.request.user.employer_profile.archive_rejection(listing, user)
         elif self.request.user.is_student:
-            user.profile.archive_rejection(listing.id)
+            user.profile.archive_rejection(listing)
         return super().get_redirect_url(*args, **kwargs)
 
 class DeclineAcceptanceAndEmail(RedirectView, StudentRequiredMixin):
