@@ -1,12 +1,11 @@
 import os
+from notifications.signals import notify
 
 from django.utils import timezone
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 
-from helpers.email import send_email_thread, send_email
-from .helpers import *
 
 INTERN_TYPES = (
     ('Paid', 'Paid'),
@@ -89,38 +88,21 @@ class Listing(models.Model):
     def get_absolute_url(self):
         return reverse('listing', kwargs={'slug': self.slug})
 
-    def applied_email(self, student_name):
-        message = applied_msg(student_name, self.title)
+    def apply(self, student):        
+        self.add_application(student)
+        if self.company.notifications.unread().filter(actor_object_id=self.id).filter(action_object_object_id=student.id).count() != 0:
+            return
 
-        send_email_thread(body=message, from_email=os.environ.get("EMAIL"), to=[self.company.email],
-                          subject=f"New Application ({self.title})",
-                          reply_to=[os.environ.get("EMAIL")])
+        notify.send(recipient=self.company, verb='someone applied!', actor=self, sender=self, action_object=student)
 
-    def accept_email(self, student):
-        email = student.email
-
-        message = accept_msg(self.company, self.title)
-
-        send_email(body=message, from_email=os.environ.get("EMAIL"),
-                   to=[email], subject=f"Congratulations! ({self.title})",
-                   reply_to=[self.company.email])
-
-    def reject_email(self, student):
-        email = student.email
-
-        message = reject_msg(self.company, self.title)
-
-        send_email(body=message, from_email=os.environ.get("EMAIL"),
-                   to=[email], subject=f"Response for {self.title}",
-                   reply_to=[self.company.email])
-
-    def request_interview_email(self, student):
-        email = student.email
-        message = request_interview_msg(self.company)
-
-        send_email(body=message, from_email=os.environ.get("EMAIL"),
-                   to=[email], subject=f"Next steps for {self.title}",
-                   reply_to=[self.company.email])
+    def unapply(self, student):
+        self.remove_application(student)
+        if student in self.interview_requests.all():
+            self.interview_requests.remove(student)
+        if student in self.student_interview_requests.all():
+            self.student_interview_requests.remove(student)
+        if student in self.employer_interview_requests.all():
+            self.employer_interview_requests.remove(student)
 
     def add_application(self, student):
         self.applications.add(student)
@@ -148,13 +130,6 @@ class Listing(models.Model):
     def decline_acceptance(self, student):
         self.awaiting_confirm_acceptance.remove(student)
 
-        message = declined_message(f'{student.first_name} {student.last_name}', self.title)
-
-        send_email(body=message, from_email=os.environ.get("EMAIL"),
-                   to=[self.company.email], subject=f"Student Declined",
-                   reply_to=[student.email]
-                   )
-
     def confirm_acceptance(self, student):
         for listing in student.applications.all():
             listing.remove_application(student)
@@ -166,19 +141,10 @@ class Listing(models.Model):
         self.acceptances.add(student)
         self.employer_acceptances.add(student)
         self.student_acceptances.add(student)
-
-        message = confirmed_message(f'{student.first_name} {student.last_name}', self.title)
-
-        send_email(body=message, from_email=os.environ.get("EMAIL"),
-                   to=[self.company.email], subject=f"Student Confirmed!",
-                   reply_to=[student.email]
-                   )
         
-
     def accept(self, student):
         self.applications.remove(student)
         self.awaiting_confirm_acceptance.add(student)
-        self.accept_email(student)
         self.remove_from_interview(student)
 
     def reject(self, student_id):
@@ -199,8 +165,6 @@ class Listing(models.Model):
         self.interview_requests.add(user)
         self.employer_interview_requests.add(user)
         self.student_interview_requests.add(user)
-
-        self.request_interview_email(user)
 
     def __str__(self):
         return self.title

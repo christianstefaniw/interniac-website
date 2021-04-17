@@ -11,11 +11,12 @@ from decorators.employer_required import employer_required
 from marketplace.models import Listing
 from mixins.employer_required import EmployerRequiredMixin
 from mixins.student_required import StudentRequiredMixin
+from .helpers import *
 
 __all__ = ['AllApplications', 'AllAcceptances', 'AllRejections', 'AllInterviewRequests', 'AllAwaitingConfirm','Acceptances', 'Rejections',
            'InterviewRequests', 'ArchiveAcceptance', 'ArchiveInterviewRequest', 'ArchiveRejection', 'Applications',
-           'SingleApplication', 'accept', 'reject', 'request_interview', 'apply', 'unapply',
-           'clear_application_notifications', 'DeclineAcceptance', 'ConfirmAcceptance', 'AwaitingConfirm']
+           'SingleApplication', 'accept_and_email', 'reject_and_email', 'request_interview_and_email', 'apply_and_email', 'unapply',
+           'clear_application_notifications', 'DeclineAcceptanceAndEmail', 'ConfirmAcceptanceAndEmail', 'AwaitingConfirm']
 
 
 class AllApplications(LoginRequiredMixin, EmployerRequiredMixin, TemplateView):
@@ -125,21 +126,23 @@ class ArchiveRejection(LoginRequiredMixin, RedirectView):
             user.profile.archive_rejection(listing.id)
         return super().get_redirect_url(*args, **kwargs)
 
-class DeclineAcceptance(RedirectView, StudentRequiredMixin):
+class DeclineAcceptanceAndEmail(RedirectView, StudentRequiredMixin):
     url = reverse_lazy('awaiting_confirm')
 
     def get_redirect_url(self, *args, **kwargs):
         listing = Listing.objects.get(id=self.kwargs.get('listing_id'))
         listing.decline_acceptance(self.request.user)
+        DeclineAcceptance.declined_acceptance_email(self.request.user, listing)
         return super().get_redirect_url(*args, **kwargs)
 
 
-class ConfirmAcceptance(RedirectView, StudentRequiredMixin):
+class ConfirmAcceptanceAndEmail(RedirectView, StudentRequiredMixin):
     url = reverse_lazy('awaiting_confirm')
 
     def get_redirect_url(self, *args, **kwargs):
         listing = Listing.objects.get(id=self.kwargs.get('listing_id'))
         listing.confirm_acceptance(self.request.user)
+        ConfirmAcceptance.confirmed_acceptance_email(self.request.user, listing)
         return super().get_redirect_url(*args, **kwargs)
 
 class Applications(LoginRequiredMixin, TemplateView):
@@ -168,7 +171,7 @@ class SingleApplication(LoginRequiredMixin, TemplateView):
 
 
 @login_required
-def accept(request, listing_id, student_id):
+def accept_and_email(request, listing_id, student_id):
     listing = Listing.objects.get(id=listing_id)
 
     if request.user != listing.company:
@@ -176,12 +179,13 @@ def accept(request, listing_id, student_id):
 
     student = User.objects.get(id=student_id)
     listing.accept(student)
+    AcceptStudent.accept_student_email(student, listing)
     return render(request, 'success-error/success-accepted-student.html',
                   context={'first': student.first_name, 'last': student.last_name, 'listing_title': listing.title})
 
 
 @login_required
-def reject(request, listing_id, student_id):
+def reject_and_email(request, listing_id, student_id):
     listing = Listing.objects.get(id=listing_id)
 
     if request.user != listing.company:
@@ -189,12 +193,13 @@ def reject(request, listing_id, student_id):
 
     student = User.objects.get(id=student_id)
     listing.reject(student_id)
+    RejectStudent.reject_student_email(student, listing)
     return render(request, 'success-error/success-rejected-student.html',
                   context={'first': student.first_name, 'last': student.last_name, 'listing_title': listing.title})
 
 
 @login_required
-def request_interview(request, listing_id, student_id):
+def request_interview_and_email(request, listing_id, student_id):
     listing = Listing.objects.get(id=listing_id)
 
     if request.user != listing.company:
@@ -202,21 +207,23 @@ def request_interview(request, listing_id, student_id):
 
     student = User.objects.get(id=student_id)
     listing.request_interview(student_id)
+    RequestInterview.request_interview_email(student, listing)
     return render(request, 'success-error/success-requested-interview.html',
                   context={'first': student.first_name, 'last': student.last_name, 'listing_title': listing.title})
 
 
 @login_required
 @student_required
-def apply(request, listing_id):
+def apply_and_email(request, listing_id):
     listing = Listing.objects.get(id=listing_id)
-    request.user.profile.apply(listing)
+    listing.apply(request.user)
+    Applied.applied_email(request.user, listing)
     redirect_where = request.GET.get('redirect')
     if redirect_where == 'profile':
         return redirect(request.user)
     elif redirect_where == 'success':
         return render(request, 'success-error/success-applied.html',
-                      context={'which': Listing.objects.get(id=listing_id)})
+                      context={'which': listing})
     else:
         return HttpResponse(f'<button class="apply-unapply-btn" onclick="unapply({listing_id}, this)">Unapply</button>')
 
@@ -225,7 +232,7 @@ def apply(request, listing_id):
 @student_required
 def unapply(request, listing_id):
     listing = Listing.objects.get(id=listing_id)
-    request.user.profile.unapply(listing)
+    listing.unapply(request.user)
     redirect_where = request.GET.get('redirect')
     if redirect_where == 'profile':
         return redirect('applications')

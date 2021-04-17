@@ -64,14 +64,14 @@
                         <h4 class="mb-4 font-weight-bold">{{ listing.title }}</h4>
                         <div class="row text-center">
                             <div class="col-lg-4">
-                                <a class="success-cta-btn w-100" href="{{ listing.get_absolute_url }}">View</a>
+                                <a class="success-cta-btn  mat-btn w-100" href="{{ listing.get_absolute_url }}">View</a>
                             </div>
                             <div class="col-lg-4">
-                                <a class="neutral-cta-btn w-100" href="{% url 'edit_listing' pk=listing.id %}">Edit</a>
+                                <a class="neutral-cta-btn  mat-btn w-100" href="{% url 'edit_listing' pk=listing.id %}">Edit</a>
                             </div>
                             <div class="col-lg-4">
                                 <a href="{% url 'delete_listing' listing_id=listing.id %}"
-                                   class="danger-cta-btn w-100">Delete</a>
+                                   class="danger-cta-btn  mat-btn w-100">Delete</a>
                             </div>
                         </div>
                     </div>

@@ -272,8 +272,8 @@ nav > div > ul > li > a {
 }
 
 .danger-cta-btn {
+    text-align: center;
     word-break: break-all;
-    transition: background-color 0.5s ease;
     user-select: none;
     padding: 0.65rem;
     border-radius: 4px;
@@ -282,22 +282,15 @@ nav > div > ul > li > a {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #ffffff;
-}
-
-.danger-cta-btn:hover {
-    transition: background-color 0.5s ease;
-    background-color: #fa0019;
-    color: #ffffff;
-    text-decoration: none;
+    color: #ffffff !important;
 }
 
 .neutral-cta-btn {
+    text-align: center;
     word-break: break-all;
-    transition: background-color 0.5s ease;
     user-select: none;
     padding: 0.65rem;
-    color: #ffffff;
+    color: #ffffff !important;
     background-color: #2c7ee4;
     border-radius: 4px;
     display: flex;
@@ -305,31 +298,45 @@ nav > div > ul > li > a {
     align-items: center;
 }
 
-.neutral-cta-btn:hover {
-    transition: background-color 0.5s ease;
-    color: #ffffff;
-    background-color: #0073ff;
-    text-decoration: none;
-}
-
 .success-cta-btn {
+    text-align: center;
     word-break: break-all;
-    transition: background-color 0.5s ease;
     user-select: none;
     padding: 0.65rem;
-    color: #ffffff;
+    color: #ffffff !important;
     border-radius: 4px;
-    background-color: #28a745;
+    background-color: #238f3c;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.success-cta-btn:hover {
-    transition: background-color 0.5s ease;
-    text-decoration: none;
-    background-color: #26d34f;
-    color: #ffffff;
+.mat-btn {
+    overflow: hidden;
+    position: relative;
+}
+
+.mat-btn:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    width: 0;
+    padding-top: 0;
+    border-radius: 100%;
+    background-color: rgba(236, 240, 241, .3);
+    transform: translate(-50%, -50%);
+}
+
+.mat-btn:active:before {
+    width: 120%;
+    padding-top: 120%;
+    transition: width .2s ease-out, padding-top .2s ease-out;
+}
+
+.mat-btn:focus:not(:active)::after {
+    animation: ripple 1s ease-out;
 }
 
 /* ERRORS */

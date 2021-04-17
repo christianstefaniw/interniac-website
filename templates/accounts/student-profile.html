@@ -13,11 +13,11 @@
             <div class="mt-4">
                 <div class="row justify-content-between">
                     <div class="col-xl-7">
-                        <a class="danger-cta-btn"
+                        <a class="danger-cta-btn  mat-btn"
                         href="{% url "delete" %}" onclick="return confirm('Are you sure?');">Delete account</a>
                     </div>
                     <div class="col-xl-4 mtb-xl">
-                        <a class="neutral-cta-btn"
+                        <a class="neutral-cta-btn  mat-btn"
                         href="{% url 'logout' %}?next=/">Logout</a>
                     </div>
                 </div>
@@ -156,20 +156,20 @@
 
             <div class="row text-center justify-content-around">
                 <div class="col-md-4 mb-4">
-                    <a href="{% url 'applications' %}" class="neutral-cta-btn w-100">View Applications</a>
+                    <a href="{% url 'applications' %}" class="neutral-cta-btn  mat-btn w-100">View Applications</a>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <a href="{% url 'rejections' %}" class="danger-cta-btn w-100">View Rejections</a>
+                    <a href="{% url 'rejections' %}" class="danger-cta-btn  mat-btn w-100">View Rejections</a>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <a href="{% url 'interview_requests' %}" class="neutral-cta-btn w-100">View Interview Requests</a>
+                    <a href="{% url 'interview_requests' %}" class="neutral-cta-btn  mat-btn w-100">View Interview Requests</a>
                 </div>
                 <div class="col-lg-4 mb-4">
-                    <a class="success-cta-btn w-100" href="{% url 'awaiting_confirm' %}">Awaiting Confirmation</a>
+                    <a class="success-cta-btn  mat-btn w-100" href="{% url 'awaiting_confirm' %}">Awaiting Confirmation</a>
                 </div>
                 
                 <div class="col-md-4 mb-4">
-                    <a href="{% url 'acceptances' %}" class="success-cta-btn w-100">View Acceptances</a>
+                    <a href="{% url 'acceptances' %}" class="success-cta-btn  mat-btn w-100">View Acceptances</a>
                 </div>
             </div>
 

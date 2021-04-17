@@ -1,4 +1,3 @@
-from notifications.signals import notify
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.urls import reverse
@@ -123,25 +122,6 @@ class StudentProfile(models.Model):
 
     def archive_rejection(self, listing):
         listing.archive_student_rejection(self.user)
-
-    def apply(self, listing):        
-        listing.add_application(self.user)
-        listing.applied_email(self.user.first_name)
-
-        if listing.company.notifications.unread().filter(actor_object_id=listing.id).filter(action_object_object_id=self.user.id).count() != 0:
-            print(listing.company.notifications.unread().filter(actor_object_id=listing.id).filter(action_object_object_id=self.user.id))
-            return
-
-        notify.send(recipient=listing.company, verb='someone applied!', actor=listing, sender=listing, action_object=self.user)
-
-    def unapply(self, listing):
-        listing.remove_application(self.user)
-        if self.user in listing.interview_requests.all():
-            listing.interview_requests.remove(self.user)
-        if self.user in listing.student_interview_requests.all():
-            listing.student_interview_requests.remove(self.user)
-        if self.user in listing.employer_interview_requests.all():
-            listing.employer_interview_requests.remove(self.user)
 
     def __str__(self):
         return f"{self.user.first_name}'s profile"

@@ -174,15 +174,15 @@
                     {% if student not in listing.acceptances.all and student not in listing.rejections.all %}
                         <div class="my-5 row">
                             <div class="col-md-4">
-                                <a class="success-cta-btn" onclick="return confirm('Are you sure?');"
+                                <a class="success-cta-btn  mat-btn" onclick="return confirm('Are you sure?');"
                                 href="{% url 'accept' listing_id=listing.id student_id=student.id %}">Accept</a>
                             </div>
                             <div class="col-md-4 mtb-md">
-                                <a class="danger-cta-btn" onclick="return confirm('Are you sure?');"
+                                <a class="danger-cta-btn  mat-btn" onclick="return confirm('Are you sure?');"
                                href="{% url 'reject' listing_id=listing.id student_id=student.id %}">Reject</a>
                             </div>
                             <div class="col-md-4">
-                                <a class="neutral-cta-btn" onclick="return confirm('Are you sure?');"
+                                <a class="neutral-cta-btn  mat-btn" onclick="return confirm('Are you sure?');"
                                href="{% url 'request_interview' listing_id=listing.id student_id=student.id %}">Request
                                 Interview</a>
                             </div>
