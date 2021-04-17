@@ -271,64 +271,65 @@ nav > div > ul > li > a {
     background-color: var(--bg-color-primary) !important;
 }
 
-.danger-btn {
+.danger-cta-btn {
     word-break: break-all;
     transition: background-color 0.5s ease;
     user-select: none;
-    padding: 10px;
-    background-color: #cbcaca;
+    padding: 0.65rem;
     border-radius: 4px;
-    color: #dc3545;
+    background-color: #dc3545;
     margin: auto 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #ffffff;
 }
 
-.danger-btn:hover {
+.danger-cta-btn:hover {
     transition: background-color 0.5s ease;
+    background-color: #fa0019;
+    color: #ffffff;
     text-decoration: none;
-    background-color: #e2dcdc;
-    color: #dc3545;
 }
 
-.neutral-btn {
+.neutral-cta-btn {
     word-break: break-all;
     transition: background-color 0.5s ease;
     user-select: none;
-    padding: 10px;
-    background-color: #cbcaca;
+    padding: 0.65rem;
+    color: #ffffff;
+    background-color: #2c7ee4;
     border-radius: 4px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.neutral-btn:hover {
+.neutral-cta-btn:hover {
     transition: background-color 0.5s ease;
+    color: #ffffff;
+    background-color: #0073ff;
     text-decoration: none;
-    background-color: #e2dcdc;
-    color: #2c7ee4;
 }
 
-.success-btn {
+.success-cta-btn {
     word-break: break-all;
     transition: background-color 0.5s ease;
     user-select: none;
-    padding: 10px;
-    background-color: #cbcaca;
+    padding: 0.65rem;
+    color: #ffffff;
     border-radius: 4px;
-    color: #28a745;
+    background-color: #28a745;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.success-btn:hover {
+.success-cta-btn:hover {
     transition: background-color 0.5s ease;
     text-decoration: none;
-    background-color: #e2dcdc;
-    color: #28a745;
+    background-color: #26d34f;
+    color: #ffffff;
 }
 
 /* ERRORS */

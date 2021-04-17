@@ -7,14 +7,14 @@
         <div class="mt-3">
             <div class="row text-center">
                 <div class="col-md-6">
-                    <a data-toggle="tooltip" title="Accept" class="success-btn h-100 w-100"
+                    <a data-toggle="tooltip" title="Accept" class="success-cta-btn h-100 w-100"
                         onclick="return confirm('This will automatically withdraw your application for ALL other Internships you have applied for. Are you sure you would like to continue?');"
                         href="{% url 'confirm_acceptance' listing_id=listing.id %}"><i class="far fa-check-circle fa-2x"
                             aria-hidden="true"></i>
                     </a>
                 </div>
                 <div class="col-md-6">
-                    <a data-toggle="tooltip" title="Decline" class="danger-btn h-100 w-100"
+                    <a data-toggle="tooltip" title="Decline" class="danger-cta-btn h-100 w-100"
                         onclick="return confirm('Are you sure?');"
                         href="{% url 'decline_acceptance' listing_id=listing.id %}"><i class="fas fa-times fa-2x"
                             aria-hidden="true"></i>

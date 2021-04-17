@@ -4,14 +4,14 @@
             <h2>{{ listing.title }}</h2>
             <div class="mt-4 row text-center">
                 <div class="col-xl-4">
-                    <a class="neutral-btn w-100 h-100" href="{% url 'listing' slug=listing.slug %}">View Listing</a>
+                    <a class="neutral-cta-btn w-100 h-100" href="{% url 'listing' slug=listing.slug %}">View Listing</a>
                 </div>
                 <div class="col-xl-4 mtb-xl">
-                    <a class="danger-btn h-100 w-100"
+                    <a class="danger-cta-btn h-100 w-100"
                        href="{% url 'unapply' listing_id=listing.id %}?redirect=profile">Unapply</a>
                 </div>
                 <div class="col-xl-4">
-                    <a class="success-btn h-100 w-100"
+                    <a class="success-cta-btn h-100 w-100"
                        href="mailto:{{ listing.company.email }}">Email {{ listing.company.company_name }}</a>
                 </div>
             </div>
