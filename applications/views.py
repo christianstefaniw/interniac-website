@@ -141,6 +141,8 @@ class ConfirmAcceptanceAndEmail(RedirectView, StudentRequiredMixin):
 
     def get_redirect_url(self, *args, **kwargs):
         listing = Listing.objects.get(id=self.kwargs.get('listing_id'))
+        if not listing.check_if_accepted(self.request.user):
+            raise PermissionError
         listing.confirm_acceptance(self.request.user)
         ConfirmAcceptance.confirmed_acceptance_email(self.request.user, listing)
         return super().get_redirect_url(*args, **kwargs)

@@ -119,6 +119,9 @@ class Listing(models.Model):
     def archive_interview_request(self, student):
         self.student_interview_requests.remove(student)
 
+    def check_if_accepted(self, user):
+        return user in self.awaiting_confirm_acceptance.all()
+
     def remove_from_interview(self, student):
         if student in self.interview_requests.all():
             self.interview_requests.remove(student)

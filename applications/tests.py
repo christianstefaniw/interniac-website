@@ -42,6 +42,12 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
         self.apply()
         self.logout()
 
+    def create_rand_listing(self) -> Listing:
+        career = Career.objects.create(career='New career')
+        career.save()
+        return Listing.objects.create(company=self.employer, title='some listing', type='Unpaid', where='Virtual',
+                                      career=career, application_deadline=timezone.now(), description='description')
+
     @staticmethod
     def create_new_employer():
         new_employer = User.objects.create_user(email='rand@gmail.com', first_name='first', last_name='last',
@@ -65,6 +71,20 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
     def confirm_acceptance(self) -> HttpResponse:
         path = reverse('confirm_acceptance', kwargs={'listing_id': self.listing.id})
         return self.client.get(path)
+
+    def decline_acceptance(self) -> HttpResponse:
+        path = reverse('decline_acceptance', kwargs={'listing_id': self.listing.id})
+        return self.client.get(path)
+
+    # login as student and apply then logout
+    # login as employer and accept student
+    # login as student
+    def apply_accept_login(self):
+        self.login_apply_out()
+        self.login(self.employer)
+        self.accept_student()
+        self.logout()
+        self.login(self.student)
 
     def test_applications_login_redirect(self):
         self.check_login_redirected(reverse('applications'))
@@ -92,11 +112,7 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
             'listing_id': self.listing.id,
             'student_id': self.student.id
         })
-        self.login_apply_out()
-        self.login(self.employer)
-        self.accept_student()
-        self.logout()
-        self.login(self.student)
+        self.apply_accept_login()
         response = self.client.get(path, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertFalse(self.student in self.listing.student_interview_requests.all())
@@ -135,11 +151,7 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
             'listing_id': self.listing.id,
             'student_id': self.student.id
         })
-        self.login_apply_out()
-        self.login(self.employer)
-        self.accept_student()
-        self.logout()
-        self.login(self.student)
+        self.apply_accept_login()
         response = self.client.get(path, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertFalse(self.student in self.listing.student_rejections.all())
@@ -178,11 +190,7 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
             'listing_id': self.listing.id,
             'student_id': self.student.id
         })
-        self.login_apply_out()
-        self.login(self.employer)
-        self.accept_student()
-        self.logout()
-        self.login(self.student)
+        self.apply_accept_login()
         self.confirm_acceptance()
         response = self.client.get(path, follow=True)
         self.assertEqual(response.status_code, 200)
@@ -204,11 +212,7 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
             'listing_id': self.listing.id,
             'student_id': self.student.id
         })
-        self.login_apply_out()
-        self.login(self.employer)
-        self.accept_student()
-        self.logout()
-        self.login(self.student)
+        self.apply_accept_login()
         self.confirm_acceptance()
         self.logout()
         self.login(self.employer)
@@ -353,12 +357,52 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
             'student_id': self.student.id
         }))
 
-    def test_student_confirm(self):
+    def test_student_confirm_acceptance_not_accepted(self):
         self.login_apply_out()
+        new_listing = self.create_rand_listing()
+        self.login(self.student)
+        self.client.post(reverse('apply', kwargs={'listing_id': new_listing.id}))
+        self.assertTrue(self.student in new_listing.applications.all())
+        self.assertRaises(PermissionError, self.confirm_acceptance)
+
+    # test that previous awaiting acceptances will be withdrawn upon accepting an internship
+    def test_student_withdraw_awaiting_acceptances(self):
+        self.apply_accept_login()
+        new_listing = self.create_rand_listing()
+        self.client.post(reverse('apply', kwargs={'listing_id': new_listing.id}))
+        self.assertTrue(self.student in new_listing.applications.all())
+        self.logout()
         self.login(self.employer)
-        self.accept_student()
+        self.client.post(reverse('accept', kwargs={
+            'listing_id': new_listing.id,
+            'student_id': self.student.id
+        }))
         self.logout()
         self.login(self.student)
+        
+        self.confirm_acceptance()
+        self.assertFalse(self.student in new_listing.awaiting_confirm_acceptance.all())
+
+    # test that previous applications will be withdrawn upon accepting an internship
+    def test_student_withdraw_application(self):
+        self.apply_accept_login()
+        new_listing = self.create_rand_listing()
+        self.client.post(reverse('apply', kwargs={'listing_id': new_listing.id}))
+        self.assertTrue(self.student in new_listing.applications.all())
+        self.confirm_acceptance()
+        self.assertFalse(self.student in new_listing.applications.all())
+
+    def test_student_decline(self):
+        self.apply_accept_login()
+        response = self.decline_acceptance()
+        self.assertEqual(response.status_code, 302)
+        self.assertFalse(self.student in self.listing.acceptances.all())
+        self.assertFalse(self.student in self.listing.employer_acceptances.all())
+        self.assertFalse(self.student in self.listing.student_acceptances.all())
+        self.assertFalse(self.student in self.listing.awaiting_confirm_acceptance.all())
+
+    def test_student_confirm(self):
+        self.apply_accept_login()
         response = self.confirm_acceptance()
         self.assertEqual(response.status_code, 302)
         self.assertTrue(self.student in self.listing.acceptances.all())
@@ -404,7 +448,6 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
         }))
 
     def test_student_apply(self):
-        path = reverse('apply', kwargs={'listing_id': self.listing.id})
         self.login(self.student)
         response = self.apply()
         self.assertEqual(response.status_code, 200)
