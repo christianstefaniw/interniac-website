@@ -6,14 +6,15 @@
     {{ filters.where.label_tag }}
     {{ filters.where }}
 
-    {% if filters.career.all %}
+    {% if filters.career %}
         {{ filters.career.label_tag }}
         {{ filters.career }}
     {% endif %}
 
-
-    {{ filters.company.label_tag }}
-    {{ filters.company }}
+    {% if filters.company %}
+        {{ filters.company.label_tag }}
+        {{ filters.company }}
+    {% endif %}
 </form>
 
 

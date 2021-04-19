@@ -24,7 +24,7 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
         self.client.logout()
 
     def apply(self) -> HttpResponse:
-        return self.client.get(reverse('apply', kwargs={'listing_id': self.listing.id}),
+        return self.client.post(reverse('apply', kwargs={'listing_id': self.listing.id}),
                                )
 
     def create_listing(self) -> Listing:
@@ -391,6 +391,14 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
         self.assertTrue(self.student in new_listing.applications.all())
         self.confirm_acceptance()
         self.assertFalse(self.student in new_listing.applications.all())
+
+    def test_student_decline_acceptance_not_accepted(self):
+        self.login_apply_out()
+        new_listing = self.create_rand_listing()
+        self.login(self.student)
+        self.client.post(reverse('apply', kwargs={'listing_id': new_listing.id}))
+        self.assertTrue(self.student in new_listing.applications.all())
+        self.assertRaises(PermissionError, self.decline_acceptance)
 
     def test_student_decline(self):
         self.apply_accept_login()

@@ -19,7 +19,7 @@ __all__ = ['AllApplications', 'AllAcceptances', 'AllRejections', 'AllInterviewRe
            'clear_application_notifications', 'DeclineAcceptanceAndEmail', 'ConfirmAcceptanceAndEmail', 'AwaitingConfirm']
 
 
-class AllApplications(LoginRequiredMixin, EmployerRequiredMixin, TemplateView):
+class AllApplications(EmployerRequiredMixin, TemplateView):
     template_name = 'applications/employer/all/all-applications.html'
 
     def get_context_data(self, **kwargs):
@@ -28,7 +28,7 @@ class AllApplications(LoginRequiredMixin, EmployerRequiredMixin, TemplateView):
         return context
 
 
-class AllAcceptances(LoginRequiredMixin, EmployerRequiredMixin, TemplateView):
+class AllAcceptances(EmployerRequiredMixin, TemplateView):
     template_name = 'applications/employer/all/all-acceptances.html'
 
     def get_context_data(self, **kwargs):
@@ -37,7 +37,7 @@ class AllAcceptances(LoginRequiredMixin, EmployerRequiredMixin, TemplateView):
         return context
 
 
-class AllRejections(LoginRequiredMixin, EmployerRequiredMixin, TemplateView):
+class AllRejections(EmployerRequiredMixin, TemplateView):
     template_name = 'applications/employer/all/all-rejections.html'
 
     def get_context_data(self, **kwargs):
@@ -46,7 +46,7 @@ class AllRejections(LoginRequiredMixin, EmployerRequiredMixin, TemplateView):
         return context
 
 
-class AllInterviewRequests(LoginRequiredMixin, EmployerRequiredMixin, TemplateView):
+class AllInterviewRequests(EmployerRequiredMixin, TemplateView):
     template_name = 'applications/employer/all/all-interviewrequests.html'
 
     def get_context_data(self, **kwargs):
@@ -54,7 +54,7 @@ class AllInterviewRequests(LoginRequiredMixin, EmployerRequiredMixin, TemplateVi
         context['listing'] = Listing.objects.get(slug=self.kwargs['slug'])
         return context
 
-class AllAwaitingConfirm(LoginRequiredMixin, EmployerRequiredMixin, TemplateView):
+class AllAwaitingConfirm(EmployerRequiredMixin, TemplateView):
     template_name = 'applications/employer/all/all-awaiting-confirm.html'
 
     def get_context_data(self, **kwargs):
@@ -131,6 +131,8 @@ class DeclineAcceptanceAndEmail(RedirectView, StudentRequiredMixin):
 
     def get_redirect_url(self, *args, **kwargs):
         listing = Listing.objects.get(id=self.kwargs.get('listing_id'))
+        if not listing.check_if_accepted(self.request.user):
+            raise PermissionError
         listing.decline_acceptance(self.request.user)
         DeclineAcceptance.declined_acceptance_email(self.request.user, listing)
         return super().get_redirect_url(*args, **kwargs)

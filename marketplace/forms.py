@@ -37,6 +37,7 @@ class CreateListingForm(forms.ModelForm):
 
     def clean(self):
         cleaned_data = super(CreateListingForm, self).clean()
+
         if cleaned_data['where'] == 'Virtual':
             if cleaned_data['location'] is not '' and cleaned_data['location'] is not None:
                 self.add_error('where', 'Virtual internship can\'t have a location')
