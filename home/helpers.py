@@ -14,7 +14,7 @@ def insert_into_spreadsheet(email) -> None:
         os.path.join(Path(__file__).resolve().parent.parent, 'client_secret.json'), scope)
     else:
         creds_file = ServiceAccountCredentials.from_json_keyfile_name(
-        os.path.join(Path(__file__).resolve().parent.parent, '../google-credentials.json'), scope)
+        os.path.join(Path(__file__).resolve().parent.parent, 'google-credentials.json'), scope)
     creds = creds_file
     client = gspread.authorize(creds)
     sheet = client.open("Join Interniac (Responses)").sheet1
