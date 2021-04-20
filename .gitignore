@@ -109,7 +109,7 @@ ENV/
 *.pid
 
 # misc
-client_secret.json
+google-credentials.json
 
 # Ignore Django Migrations in Development if you are working on team
 
