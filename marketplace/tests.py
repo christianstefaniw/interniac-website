@@ -12,7 +12,7 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
     @classmethod
     def setUpTestData(cls):
         super().set_up()
-        cls.listing_id = 0
+        cls.listing_id = 1
         cls.career = Career.objects.create(career='some career')
         cls.career.save()
 
@@ -23,7 +23,6 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
 
     def create_listing(self, data) -> HttpResponse:
         resp = self.client.post(reverse('createlisting'), data=data, follow=True)
-        self.listing_id += 1
         return resp
 
     def login(self, profile) -> None:
@@ -45,12 +44,25 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
             'description': 'description'
         }
 
-    def check_login_redirected(self, path):
-        response = self.client.get(path, follow=True)
-        self.assertEqual(response.request['PATH_INFO'], reverse('login'))
-
     def test_create_listing(self):
         self.login(self.employer)
-        response = self.create_listing(self.listing_data())
+        data = self.listing_data()
+        response = self.create_listing(data)
         self.assertEqual(response.status_code, 200)
         self.assertTrue(self.find_listing(self.listing_id))
+
+    def test_create_paid_listing(self):
+        self.login(self.employer)
+        data = self.listing_data()
+        data['type'] = 'Paid'
+        data['pay'] = '$12'
+        response = self.create_listing(data)
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(self.find_listing(self.listing_id))
+
+    def test_create_paid_with_no_pay(self):
+        self.login(self.employer)
+        data = self.listing_data()
+        data['type'] = 'Paid'
+        response = self.create_listing(data)
+        self.assertTrue(response.context['form'].errors['pay'])
