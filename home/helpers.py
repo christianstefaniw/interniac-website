@@ -10,7 +10,8 @@ from connect_x import settings
 
 def insert_into_spreadsheet(email) -> None:
     scope = ['https://www.googleapis.com/auth/drive']
-    creds = ServiceAccountCredentials.from_json_keyfile_name('../google-credentials.json', scope)
+    creds = ServiceAccountCredentials.from_json_keyfile_name(
+        os.path.join(Path(__file__).resolve().parent.parent, 'google-credentials.json'), scope)
     client = gspread.authorize(creds)
     sheet = client.open("Join Interniac (Responses)").sheet1
     if not _email_exists(email, sheet):
