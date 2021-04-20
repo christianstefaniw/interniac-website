@@ -70,7 +70,7 @@
                                 <a class="neutral-cta-btn  mat-btn w-100" href="{% url 'edit_listing' pk=listing.id %}">Edit</a>
                             </div>
                             <div class="col-lg-4">
-                                <a href="{% url 'delete_listing' listing_id=listing.id %}"
+                                <a onclick="return confirm('Are you sure?');" href="{% url 'delete_listing' listing_id=listing.id %}"
                                    class="danger-cta-btn  mat-btn w-100">Delete</a>
                             </div>
                         </div>

@@ -44,7 +44,7 @@ class CreateListingForm(forms.ModelForm):
 
         if cleaned_data['where'] == 'In-Person':
             if cleaned_data['location'] == '' or cleaned_data['location'] == None:
-                self.add_error('where', 'Must have a location')
+                self.add_error('location', 'Must have a location')
 
         if cleaned_data['type'] == 'Paid':
             if cleaned_data['pay'] == '' or cleaned_data['pay'] == None:
@@ -57,5 +57,9 @@ class CreateListingForm(forms.ModelForm):
         if cleaned_data['career'] != None and cleaned_data['career'] != '':
             if cleaned_data['new_career'] != '' and cleaned_data['new_career'] != None:
                 self.add_error('career', 'Can\'t make a new career if there is a selected career')
+
+        if cleaned_data['career'] == None or cleaned_data['career'] == '':
+            if cleaned_data['new_career'] == '' or cleaned_data['new_career'] == None:
+                self.add_error('career', 'Please select a career')
 
         return cleaned_data
