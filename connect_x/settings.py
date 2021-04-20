@@ -9,7 +9,6 @@ from sentry_sdk.integrations.django import DjangoIntegration
 
 load_dotenv()
 
-
 sentry_sdk.init(
     dsn=os.getenv('SENTRY_DNS'),
     integrations=[DjangoIntegration()],
@@ -140,4 +139,5 @@ MEDIA_URL = '/media/'
 
 AUTH_USER_MODEL = 'accounts.User'
 
-django_heroku.settings(locals())
+if not DEBUG:
+    django_heroku.settings(locals())

@@ -5,7 +5,7 @@ from django.utils import timezone
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
-import connect_x.settings
+from connect_x import settings
 
 def insert_into_spreadsheet(email) -> None:
     if settings.DEBUG:
