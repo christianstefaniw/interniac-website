@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import TemplateView, RedirectView
+from django.core.exceptions import PermissionDenied
 
 from accounts.models import User
 from decorators.student_required import student_required
@@ -87,7 +88,7 @@ class ArchiveAcceptance(LoginRequiredMixin, RedirectView):
 
 
         if listing.company != self.request.user and self.request.user != user:
-            raise PermissionError
+            raise PermissionDenied
 
         if self.request.user.is_employer:
             self.request.user.employer_profile.archive_acceptance(listing, user)
@@ -104,7 +105,7 @@ class ArchiveInterviewRequest(LoginRequiredMixin, RedirectView):
         listing = Listing.objects.get(id=self.kwargs.get('listing_id'))
         user = User.objects.get(id=self.kwargs.get('student_id'))
         if listing.company != self.request.user and self.request.user != user:
-            raise PermissionError
+            raise PermissionDenied
         if self.request.user.is_employer:
             self.request.user.employer_profile.archive_interview_request(listing, user)
         elif self.request.user.is_student:
@@ -119,7 +120,7 @@ class ArchiveRejection(LoginRequiredMixin, RedirectView):
         listing = Listing.objects.get(id=self.kwargs.get('listing_id'))
         user = User.objects.get(id=self.kwargs.get('student_id'))
         if listing.company != self.request.user and self.request.user != user:
-            raise PermissionError
+            raise PermissionDenied
         if self.request.user.is_employer:
             self.request.user.employer_profile.archive_rejection(listing, user)
         elif self.request.user.is_student:
@@ -132,7 +133,7 @@ class DeclineAcceptanceAndEmail(RedirectView, StudentRequiredMixin):
     def get_redirect_url(self, *args, **kwargs):
         listing = Listing.objects.get(id=self.kwargs.get('listing_id'))
         if not listing.check_if_accepted(self.request.user):
-            raise PermissionError
+            raise PermissionDenied
         listing.decline_acceptance(self.request.user)
         DeclineAcceptance.declined_acceptance_email(self.request.user, listing)
         return super().get_redirect_url(*args, **kwargs)
@@ -144,7 +145,7 @@ class ConfirmAcceptanceAndEmail(RedirectView, StudentRequiredMixin):
     def get_redirect_url(self, *args, **kwargs):
         listing = Listing.objects.get(id=self.kwargs.get('listing_id'))
         if not listing.check_if_accepted(self.request.user):
-            raise PermissionError
+            raise PermissionDenied
         listing.confirm_acceptance(self.request.user)
         ConfirmAcceptance.confirmed_acceptance_email(self.request.user, listing)
         return super().get_redirect_url(*args, **kwargs)
@@ -158,7 +159,7 @@ class SingleApplication(LoginRequiredMixin, TemplateView):
 
     def get(self, *args, **kwargs):
         if self.request.user != self.get_listing().company:
-            raise PermissionError
+            raise PermissionDenied
         return super(SingleApplication, self).get(self.request)
 
     def get_context_data(self, **kwargs):
@@ -179,7 +180,7 @@ def accept_and_email(request, listing_id, student_id):
     listing = Listing.objects.get(id=listing_id)
 
     if request.user != listing.company:
-        raise PermissionError
+        raise PermissionDenied
 
     student = User.objects.get(id=student_id)
     listing.accept(student)
@@ -193,7 +194,7 @@ def reject_and_email(request, listing_id, student_id):
     listing = Listing.objects.get(id=listing_id)
 
     if request.user != listing.company:
-        raise PermissionError
+        raise PermissionDenied
 
     student = User.objects.get(id=student_id)
     listing.reject(student_id)
@@ -207,7 +208,7 @@ def request_interview_and_email(request, listing_id, student_id):
     listing = Listing.objects.get(id=listing_id)
 
     if request.user != listing.company:
-        raise PermissionError
+        raise PermissionDenied
 
     student = User.objects.get(id=student_id)
     listing.request_interview(student_id)

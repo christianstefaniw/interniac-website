@@ -3,8 +3,19 @@ import os
 from dotenv import load_dotenv
 import django_heroku
 from django.urls import reverse_lazy
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
 
 load_dotenv()
+
+
+sentry_sdk.init(
+    dsn=os.getenv('SENTRY_DNS'),
+    integrations=[DjangoIntegration()],
+    traces_sample_rate=1.0,
+    send_default_pii=True
+)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 

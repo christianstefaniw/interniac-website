@@ -1,6 +1,5 @@
 from django.shortcuts import render
 
-
 def success(request):
     return render(request, 'success-error/success-general.html')
 

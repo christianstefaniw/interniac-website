@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.views.generic import TemplateView
+from django.core.exceptions import PermissionDenied
 
 from careers.forms import CareerForm
 from .helpers import Student, Employer, save_career
@@ -61,7 +62,7 @@ class Listings(LoginRequiredMixin, TemplateView):
 
     def get(self, request, *args, **kwargs):
         if not request.user.is_employer:
-            raise PermissionError
+            raise PermissionDenied
         return super(Listings, self).get(request, args, kwargs)
 
 

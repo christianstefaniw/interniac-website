@@ -91,7 +91,8 @@ class UserTestCase(TestCase, InitAccountsMixin):
 
     def test_listings_student_url(self):
         self.login(self.student)
-        self.assertRaises(PermissionError, self.client.get, reverse('listings'))
+        response = self.client.get(reverse('listings'))
+        self.assertEqual(response.status_code, 403)
 
     def test_profile_login_redirect(self):
         self.check_login_redirected(reverse('profile'))

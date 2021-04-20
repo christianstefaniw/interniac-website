@@ -4,6 +4,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView, UpdateView
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 
 from .forms import CreateListingForm, Filter
 from .models import Listing, Career
@@ -96,7 +97,7 @@ class ViewListing(LoginRequiredMixin, DetailView):
 def delete_listing(request, listing_id):
     listing = Listing.objects.get(id=listing_id)
     if request.user != listing.company:
-        raise PermissionError
+        raise PermissionDenied
 
     listing.delete()
 
@@ -104,29 +105,10 @@ def delete_listing(request, listing_id):
 
 
 class EditListing(LoginRequiredMixin, UpdateView):
+    form_class = CreateListingForm
     model = Listing
     template_name = 'marketplace/edit-listing.html'
     success_url = reverse_lazy('listings')
-
-    fields = ['title', 'type', 'where', 'career', 'new_career', 'pay', 'time_commitment', 'location',
-              'application_deadline', 'description', 'application_url']
-
-    def post(self, request, **kwargs):
-        request.POST = request.POST.copy()
-
-        if request.POST['where'] == 'Virtual':
-            if request.POST['location'] != '' and request.POST['location'] is not None:
-                request.POST['location'] = ''
-
-        if request.POST['type'] == 'Unpaid':
-            if request.POST['pay'] != '' and request.POST['pay'] is not None:
-                request.POST['pay'] = ''
-
-        if request.POST['career'] is not None and request.POST['career'] != '':
-            if request.POST['new_career'] != '' and request.POST['new_career'] is not None:
-                request.POST['new_career'] = ''
-
-        return super().post(request, **kwargs)
 
     def form_valid(self, form):
         if form.cleaned_data['where'] == 'In-Person':

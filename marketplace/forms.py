@@ -39,7 +39,8 @@ class CreateListingForm(forms.ModelForm):
         widgets = {
             'application_deadline': forms.DateTimeInput(attrs={'type': 'datetime-local'}, format="%d %b %Y %H:%M %Z")
         }
-        fields = ('title', 'type', 'pay', 'where', 'location', 'career', 'new_career', 'time_commitment', 'application_deadline', 'description', 'application_url', )
+        fields = ('title', 'type', 'pay', 'where', 'location', 'career', 'new_career',
+                  'time_commitment', 'application_deadline', 'description', 'application_url', )
 
     def clean(self):
         cleaned_data = super(CreateListingForm, self).clean()

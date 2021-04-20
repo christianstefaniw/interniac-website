@@ -1,5 +1,6 @@
 from django.shortcuts import redirect
 from django.views.generic import UpdateView, ListView
+from django.core.exceptions import PermissionDenied
 
 from careers.models import Career
 
@@ -21,4 +22,4 @@ def delete_career(request, career_id):
         career.delete()
         return redirect('success')
     else:
-        raise PermissionError
+        raise PermissionDenied

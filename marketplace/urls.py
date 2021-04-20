@@ -8,5 +8,5 @@ urlpatterns = [
     path('filter/', FilterListings.as_view(), name='filter'),
     path('listing/<slug:slug>', ViewListing.as_view(), name='listing'),
     path('delete/<int:listing_id>', delete_listing, name='delete_listing'),
-    path('editlisting/<pk>/', EditListing.as_view(), name='edit_listing')
+    path('editlisting/<slug:slug>/', EditListing.as_view(), name='edit_listing')
 ]

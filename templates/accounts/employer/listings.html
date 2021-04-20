@@ -67,7 +67,7 @@
                                 <a class="success-cta-btn  mat-btn w-100" href="{{ listing.get_absolute_url }}">View</a>
                             </div>
                             <div class="col-lg-4">
-                                <a class="neutral-cta-btn  mat-btn w-100" href="{% url 'edit_listing' pk=listing.id %}">Edit</a>
+                                <a class="neutral-cta-btn  mat-btn w-100" href="{% url 'edit_listing' slug=listing.slug %}">Edit</a>
                             </div>
                             <div class="col-lg-4">
                                 <a onclick="return confirm('Are you sure?');" href="{% url 'delete_listing' listing_id=listing.id %}"
