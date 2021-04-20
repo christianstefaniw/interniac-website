@@ -12,6 +12,7 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
     def setUpTestData(cls):
         super().set_up()
         cls.listing_id = 1
+        cls.listing_slug = 'some-listing'
         cls.career = Career.objects.create(career='some career')
         cls.career.save()
 
@@ -26,7 +27,7 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
         return self.client.post(reverse('createlisting'), data=data, follow=True)
 
     def update_listing(self, data) -> HttpResponse:
-        return self.client.post(reverse('edit_listing', kwargs={'pk': self.listing_id}), data=data, follow=True)
+        return self.client.post(reverse('edit_listing', kwargs={'slug': self.listing_slug}), data=data, follow=True)
 
     def login(self, profile) -> None:
         self.client.login(username=profile.email, password=self.password)

@@ -3,8 +3,6 @@ from django.core.exceptions import PermissionDenied
 
 class StudentRequiredMixin(AccessMixin):
     def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            return self.handle_no_permission()
-        if not request.user.is_student:
+        if not request.user.is_student or not request.user.is_authenticated:
             raise PermissionDenied
         return super().dispatch(request, *args, **kwargs)
