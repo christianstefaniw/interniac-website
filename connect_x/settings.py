@@ -24,7 +24,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # DEBUG = True
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://www.interniac.org']
+ALLOWED_HOSTS = ['http://www.interniac.org']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
