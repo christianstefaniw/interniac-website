@@ -1,4 +1,3 @@
-import os
 from notifications.signals import notify
 
 from django.utils import timezone

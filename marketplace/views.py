@@ -113,27 +113,27 @@ class EditListing(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         if form.cleaned_data['where'] == 'Virtual':
-            if form.cleaned_data['location'] != '' and form.cleaned_data['location'] != None:
+            if form.cleaned_data['location'] != '' and form.cleaned_data['location'] is not None:
                 form.cleaned_data['location'] = None
 
         if form.cleaned_data['where'] == 'In-Person':
-            if form.cleaned_data['location'] == '' or form.cleaned_data['location'] == None:
+            if form.cleaned_data['location'] == '' or form.cleaned_data['location'] is None:
                 form.add_error('location', 'Must have a location')
 
         if form.cleaned_data['type'] == 'Paid':
-            if form.cleaned_data['pay'] == '' or form.cleaned_data['pay'] == None:
+            if form.cleaned_data['pay'] == '' or form.cleaned_data['pay'] is None:
                 form.add_error('pay', 'Paid internship must have a salary')
 
         if form.cleaned_data['type'] == 'Unpaid':
-            if form.cleaned_data['pay'] != '' and form.cleaned_data['pay'] != None:
+            if form.cleaned_data['pay'] != '' and form.cleaned_data['pay'] is not None:
                 form.cleaned_data['pay'] = None
 
-        if form.cleaned_data['career'] != None and form.cleaned_data['career'] != '':
-            if form.cleaned_data['new_career'] != '' and form.cleaned_data['new_career'] != None:
+        if form.cleaned_data['career'] is not None and form.cleaned_data['career'] != '':
+            if form.cleaned_data['new_career'] != '' and form.cleaned_data['new_career'] is not None:
                 form.cleaned_data['new_career'] = None
 
-        if form.cleaned_data['career'] == None or form.cleaned_data['career'] == '':
-            if form.cleaned_data['new_career'] != None and form.cleaned_data['new_career'] != '':
+        if form.cleaned_data['career'] is None or form.cleaned_data['career'] == '':
+            if form.cleaned_data['new_career'] is not None and form.cleaned_data['new_career'] != '':
                 new_career, _ = Career.objects.get_or_create(career=form.cleaned_data['new_career'])
                 listing = form.save(commit=False)
                 listing.career = new_career

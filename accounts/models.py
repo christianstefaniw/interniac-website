@@ -5,7 +5,6 @@ from django_unique_slugify import unique_slugify
 from phonenumber_field.modelfields import PhoneNumberField
 
 from accounts.managers import UserManager
-from marketplace.models import Listing
 
 class User(AbstractUser):
     USERNAME_FIELD = 'email'

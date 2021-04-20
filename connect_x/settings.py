@@ -1,6 +1,5 @@
 from pathlib import Path
 import os
-import sys
 from dotenv import load_dotenv
 import django_heroku
 from django.urls import reverse_lazy
@@ -129,4 +128,4 @@ MEDIA_URL = '/media/'
 
 AUTH_USER_MODEL = 'accounts.User'
 
-# django_heroku.settings(locals())
+django_heroku.settings(locals())
