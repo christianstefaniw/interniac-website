@@ -103,6 +103,31 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
         response = self.create_listing(data)
         self.assertTrue(response.context['form'].errors['career'])
 
+    def test_create_listing_unpaid_with_pay(self):
+        self.login(self.employer)
+        data = self.listing_data
+        data['pay'] = '5'
+        self.create_listing(data)
+        listing = Listing.objects.get(id=self.listing_id)
+        self.assertEqual(listing.pay, '')
+
+    def test_create_listing_virtual_with_location(self):
+        self.login(self.employer)
+        data = self.listing_data
+        data['where'] = 'Virtual'
+        data['location'] = 'location'
+        self.create_listing(data)
+        listing = Listing.objects.get(id=self.listing_id)
+        self.assertEqual(listing.location, '')
+
+    def test_create_listing_with_career_and_new_career(self):
+        self.login(self.employer)
+        data = self.listing_data
+        data['new_career'] = 'new'
+        self.create_listing(data)
+        listing = Listing.objects.get(id=self.listing_id)
+        self.assertEqual(listing.career, self.career)
+
     def test_delete_listing(self):
         self.login(self.employer)
         self.create_listing(self.listing_data)
@@ -175,5 +200,14 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
         self.update_listing(update_data)
         listing = Listing.objects.get(id=self.listing_id)
         self.assertTrue(listing.career == new_career)
+
+    def test_update_listing_virtual_with_location(self):
+        self.login(self.employer)
+        self.create_listing(self.listing_data)
+        update_data = self.listing_data
+        update_data['location'] = 'location'
+        self.update_listing(update_data)
+        listing = Listing.objects.get(id=self.listing_id)
+        self.assertTrue(listing.location == '')
 
     

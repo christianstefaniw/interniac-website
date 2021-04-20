@@ -111,11 +111,24 @@ class EditListing(LoginRequiredMixin, UpdateView):
     fields = ['title', 'type', 'where', 'career', 'new_career', 'pay', 'time_commitment', 'location',
               'application_deadline', 'description', 'application_url']
 
-    def form_valid(self, form):
-        if form.cleaned_data['where'] == 'Virtual':
-            if form.cleaned_data['location'] != '' and form.cleaned_data['location'] is not None:
-                form.cleaned_data['location'] = None
+    def post(self, request, **kwargs):
+        request.POST = request.POST.copy()
 
+        if request.POST['where'] == 'Virtual':
+            if request.POST['location'] != '' and request.POST['location'] is not None:
+                request.POST['location'] = ''
+
+        if request.POST['type'] == 'Unpaid':
+            if request.POST['pay'] != '' and request.POST['pay'] is not None:
+                request.POST['pay'] = ''
+
+        if request.POST['career'] is not None and request.POST['career'] != '':
+            if request.POST['new_career'] != '' and request.POST['new_career'] is not None:
+                request.POST['new_career'] = ''
+
+        return super().post(request, **kwargs)
+
+    def form_valid(self, form):
         if form.cleaned_data['where'] == 'In-Person':
             if form.cleaned_data['location'] == '' or form.cleaned_data['location'] is None:
                 form.add_error('location', 'Must have a location')
@@ -123,14 +136,6 @@ class EditListing(LoginRequiredMixin, UpdateView):
         if form.cleaned_data['type'] == 'Paid':
             if form.cleaned_data['pay'] == '' or form.cleaned_data['pay'] is None:
                 form.add_error('pay', 'Paid internship must have a salary')
-
-        if form.cleaned_data['type'] == 'Unpaid':
-            if form.cleaned_data['pay'] != '' and form.cleaned_data['pay'] is not None:
-                form.cleaned_data['pay'] = None
-
-        if form.cleaned_data['career'] is not None and form.cleaned_data['career'] != '':
-            if form.cleaned_data['new_career'] != '' and form.cleaned_data['new_career'] is not None:
-                form.cleaned_data['new_career'] = None
 
         if form.cleaned_data['career'] is None or form.cleaned_data['career'] == '':
             if form.cleaned_data['new_career'] is not None and form.cleaned_data['new_career'] != '':

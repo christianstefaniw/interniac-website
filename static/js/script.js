@@ -65,15 +65,7 @@ $(function () {
     if ($('body').hasClass('hide-inputs')) {
         let hide = $('form p').children()
         for (let i = 0; i in hide; i++) {
-            if (myGetElem($(hide[i]), ids.internType)) {
-                continue;
-            }
-            if (myGetElem($(hide[i]), ids.internWhere)) {
-                continue;
-            }
-            if (myGetElem($(hide[i]), ids.careerType)) {
-                continue
-            }
+
             if (myGetElem($(hide[i]), ids.newCareer)) {
                 if ($(`#${ids.careerType}`).val() !== '') {
                     $(`#${ids.newCareer}`).hide()
@@ -81,34 +73,20 @@ $(function () {
                 }
                 continue
             }
-            if (myGetElem($(hide[i]), ids.appDeadline)) {
-                continue
-            }
-            if (myGetElem($(hide[i]), ids.timeCommitment)) {
-                continue
-            }
-            if (myGetElem($(hide[i]), ids.description)) {
-                continue
-            }
-            if (myGetElem($(hide[i]), ids.title)) {
-                continue
-            }
-            if (myGetElem($(hide[i]), ids.applicationUrl)) {
-                continue
-            }
+
             if (myGetElem($(hide[i]), ids.pay)) {
                 if ($(`#${ids.internType}`).val() !== 'Paid') {
                     $(hide[i]).hide();
                 }
                 continue;
             }
+            
             if (myGetElem($(hide[i]), ids.location)) {
                 if ($(`#${ids.internWhere}`).val() !== 'In-Person') {
                     $(hide[i]).hide();
                 }
                 continue;
             }
-            $(hide[i]).remove()
         }
     }
 });
