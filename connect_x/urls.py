@@ -28,6 +28,3 @@ urlpatterns = [
     path('marketplace/', include(marketplace_urls)),
     path('applications/', include(application_urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-handler500 = 'connect_x.views.Error404Handler'
-

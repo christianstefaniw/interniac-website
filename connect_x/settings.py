@@ -21,9 +21,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = True
+# DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://www.interniac.org']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -119,12 +120,12 @@ EMAIL_HOST_USER = os.environ.get('EMAIL')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 
 
-# NORECAPTCHA_SITE_KEY = os.environ.get('NORECAPTCHA_SITE_KEY')
-# NORECAPTCHA_SECRET_KEY = os.environ.get('NORECAPTCHA_SECRET_KEY')
+NORECAPTCHA_SITE_KEY = os.environ.get('NORECAPTCHA_SITE_KEY')
+NORECAPTCHA_SECRET_KEY = os.environ.get('NORECAPTCHA_SECRET_KEY')
 
 # TESTING CAPTCHA
-NORECAPTCHA_SITE_KEY = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
-NORECAPTCHA_SECRET_KEY = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'
+# NORECAPTCHA_SITE_KEY = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
+# NORECAPTCHA_SECRET_KEY = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'
 
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -139,4 +140,4 @@ MEDIA_URL = '/media/'
 
 AUTH_USER_MODEL = 'accounts.User'
 
-# django_heroku.settings(locals())
+django_heroku.settings(locals())

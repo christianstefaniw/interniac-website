@@ -211,4 +211,20 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
         listing = Listing.objects.get(id=self.listing_id)
         self.assertTrue(listing.location == '')
 
-    
+    def test_update_listing_unpaid_with_pay(self):
+        self.login(self.employer)
+        self.create_listing(self.listing_data)
+        update_data = self.listing_data
+        update_data['pay'] = '5'
+        self.update_listing(update_data)
+        listing = Listing.objects.get(id=self.listing_id)
+        self.assertTrue(listing.pay == '')
+
+    def test_update_listing_new_career_and_brand_new_career(self):
+        self.login(self.employer)
+        self.create_listing(self.listing_data)
+        update_data = self.listing_data
+        update_data['new_career'] = 'new career'
+        self.update_listing(update_data)
+        listing = Listing.objects.get(id=self.listing_id)
+        self.assertTrue(listing.career == self.career)
