@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core.files.uploadedfile import InMemoryUploadedFile
 
 from accounts.models import User
+from helpers import validate_profile_img
 
 CHOICES = [('student', 'Student'),
            ('employer', 'Employer')]
@@ -40,7 +41,6 @@ class UserCreateForm(UserCreationForm):
     def clean_profile_picture(self):
         pic = self.cleaned_data['profile_picture']
         if type(pic) is InMemoryUploadedFile:
-            from .helpers import validate_profile_img
             return validate_profile_img(pic)
         return pic
 
