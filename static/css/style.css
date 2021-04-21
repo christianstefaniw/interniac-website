@@ -600,7 +600,7 @@ END FOOTER
     background-color: var(--form-input-bg);
 }
 
-ul {
+ul, ol {
     list-style-type: none;
     padding: 0;
 }
@@ -904,15 +904,11 @@ END LANDING PAGE
 /* END ANIMATIONS */
 
 /* CAREERS */
-.careers ul{
+.careers ul, .careers ol{
     list-style-type: initial !important;
-    padding: initial !important;
+    padding-left: 2.5em !important;
 }
 
-.careers li{
-    line-height: 2;
-    padding: initial !important;
-}
 
 /* END CAREERS */
 
