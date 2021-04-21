@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'notifications',
     'phonenumber_field',
     'nocaptcha_recaptcha',
+    'defender',
     'accounts',
     'aboutus',
     'careers',
@@ -54,6 +55,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'defender.middleware.FailedLoginMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -145,6 +147,8 @@ AUTH_USER_MODEL = 'accounts.User'
 CLOUDINARY_STORAGE = {'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'), 'API_KEY': os.getenv(
     'CLOUDINARY_API_KEY'), 'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'), }
 
+DEFENDER_LOGIN_FAILURE_LIMIT = 3
+DEFENDER_LOCKOUT_TEMPLATE = 'admin-lockout.html'
 
 if not DEBUG:
     django_heroku.settings(locals())
