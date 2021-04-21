@@ -71,15 +71,15 @@ class FilterListings(LoginRequiredMixin, ListView):
         params = self.request.GET
         if params.getlist('type'):
             for i in range(len(params.getlist('type'))):
-                query = query & Q(type__startswith=params.getlist('type')[i])
+                query = query & Q(type__istartswith=params.getlist('type')[i])
         if params.getlist('where'):
             for i in range(len(params.getlist('where'))):
-                query = query & Q(where__startswith=params.getlist('where')[i])
+                query = query & Q(where__istartswith=params.getlist('where')[i])
         if params.getlist('career'):
             for i in range(len(params.getlist('career'))):
                 query = query & Q(career_id=int(params.getlist('career')[i]))
         if params.get('search'):
-            query = query & Q(title__contains=params.get('search')) | Q(description__contains=params.get('search'))
+            query = query & Q(title__icontains=params.get('search')) | Q(description__icontains=params.get('search'))
         if params.get('company'):
             query = query & Q(company=params.get('company'))
 
