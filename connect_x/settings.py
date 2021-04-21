@@ -25,7 +25,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # DEBUG = True
 DEBUG = False
 
-ALLOWED_HOSTS = ['http://www.interniac.org', 'https://interniac.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['www.interniac.org', 'www.interniac.herokuapp.com', '127.0.0.1']
 
 INSTALLED_APPS = [
     'django.contrib.admin',

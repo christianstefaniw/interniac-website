@@ -88,7 +88,8 @@ def validate_profile_img(image):
         return image
     pil_img = Image.open(image)
     width, height = pil_img.size
-    if width > 1080 or height > 1920:
+    area = width * height
+    if area > (1920 * 1080):
         raise forms.ValidationError('Selected image is too large')
     else:
         return image
