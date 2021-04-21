@@ -904,7 +904,7 @@ END LANDING PAGE
 /* END ANIMATIONS */
 
 /* CAREERS */
-.careers ul, .careers ol{
+.careers ul{
     list-style-type: initial !important;
     padding-left: 2.5em !important;
 }
