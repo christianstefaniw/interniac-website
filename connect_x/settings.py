@@ -153,3 +153,4 @@ DEFENDER_LOCKOUT_TEMPLATE = 'admin-lockout.html'
 if not DEBUG:
     django_heroku.settings(locals())
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+    DEFENDER_REDIS_URL = os.getenv('REDIS_URL')
