@@ -14,7 +14,6 @@ def create_profile(sender, instance, created, **kwargs):
             EmployerProfile.objects.create(user=instance)
             instance.slug_employer()
         instance.save()
-            
 
 @receiver(models.signals.post_delete, sender=EmployerProfile)
 def delete_user(sender, instance, **kwargs):
