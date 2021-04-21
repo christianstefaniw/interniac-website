@@ -35,6 +35,13 @@ class UserCreateForm(UserCreationForm):
             user.employer_profile.save()
         return user
 
+    def clean_profile_picture(self):
+        pic = self.cleaned_data['profile_picture']
+        if type(pic) is InMemoryUploadedFile:
+            from .helpers import validate_profile_img
+            return validate_profile_img(pic)
+        return pic
+
     def clean(self):
         cleaned_data = super(UserCreateForm, self).clean()
         if self.cleaned_data.get('student_employer') == 'employer' and not self.cleaned_data.get('company_name'):
