@@ -1,6 +1,8 @@
+from nocaptcha_recaptcha import NoReCaptchaField
+
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from nocaptcha_recaptcha import NoReCaptchaField
+from django.core.files.uploadedfile import InMemoryUploadedFile
 
 from accounts.models import User
 
