@@ -5,6 +5,8 @@ import django_heroku
 from django.urls import reverse_lazy
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
+import cloudinary
+import cloudinary_storage
 
 
 load_dotenv()
@@ -20,10 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-# DEBUG = True
-DEBUG = False
+DEBUG = True
+# DEBUG = False
 
-ALLOWED_HOSTS = ['http://www.interniac.org']
+ALLOWED_HOSTS = ['http://www.interniac.org', '127.0.0.1']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -32,6 +34,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary_storage',
+    'cloudinary',
     'notifications',
     'phonenumber_field',
     'nocaptcha_recaptcha',
@@ -59,8 +63,7 @@ ROOT_URLCONF = 'connect_x.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -109,7 +112,7 @@ USE_TZ = True
 
 LOGIN_URL = reverse_lazy('login')
 
-DJANGO_NOTIFICATIONS_CONFIG = { 'SOFT_DELETE': True}
+DJANGO_NOTIFICATIONS_CONFIG = {'SOFT_DELETE': True}
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -139,5 +142,9 @@ MEDIA_URL = '/media/'
 
 AUTH_USER_MODEL = 'accounts.User'
 
-if not DEBUG:
-    django_heroku.settings(locals())
+CLOUDINARY_STORAGE = {'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'), 'API_KEY': os.getenv(
+    'CLOUDINARY_API_KEY'), 'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'), }
+
+
+# if not DEBUG:
+#    django_heroku.settings(locals())

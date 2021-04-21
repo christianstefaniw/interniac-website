@@ -1,6 +1,9 @@
+from PIL import Image
+
 from django.contrib.auth import login
 from django.forms import model_to_dict
 from django.shortcuts import redirect
+from django import forms
 
 from accounts.forms import EmployerProfileForm, EmployerUserForm, StudentUserForm, StudentProfileForm
 from accounts.models import EmployerProfile, User, StudentProfile
@@ -28,7 +31,8 @@ class Employer:
         return profile
 
     def employer_user(self):
-        email_picture_name = EmployerUserForm(initial=model_to_dict(self.request.user))
+        email_picture_name = EmployerUserForm(
+            initial=model_to_dict(self.request.user))
         return email_picture_name
 
     @staticmethod
@@ -36,7 +40,8 @@ class Employer:
         profile = EmployerProfile.objects.get(user=request.user)
         profile_form = EmployerProfileForm(request.POST, instance=profile)
         user = User.objects.get(email=request.user.email)
-        user_form = EmployerUserForm(request.POST, request.FILES, instance=user)
+        user_form = EmployerUserForm(
+            request.POST, request.FILES, instance=user)
         if all((profile_form.is_valid(), user_form.is_valid())):
             if user.email != request.user:
                 login(request, user)
@@ -58,7 +63,8 @@ class Student:
         return profile
 
     def student_user(self):
-        email_picture = StudentUserForm(initial=model_to_dict(self.request.user))
+        email_picture = StudentUserForm(
+            initial=model_to_dict(self.request.user))
         return email_picture
 
     @staticmethod
@@ -75,3 +81,14 @@ class Student:
             return None, None
         else:
             return profile_form, user_form
+
+
+def validate_profile_img(image):
+    if not image:
+        return image
+    pil_img = Image.open(image)
+    width, height = pil_img.size
+    if width > 1080 or height > 1920:
+        raise forms.ValidationError('Selected image is too large')
+    else:
+        return image

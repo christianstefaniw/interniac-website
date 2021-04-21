@@ -2,7 +2,6 @@ from django import forms
 
 from .models import StudentProfile, User, EmployerProfile
 
-
 class StudentProfileForm(forms.ModelForm):
     class Meta:
         model = StudentProfile
@@ -34,6 +33,11 @@ class StudentUserForm(forms.ModelForm):
         }
         fields = ['email', 'profile_picture', 'first_name', 'last_name']
 
+    def clean_profile_picture(self):
+        from .helpers import validate_profile_img
+        image = self.cleaned_data['profile_picture']
+        return validate_profile_img(image)
+            
 
 class EmployerProfileForm(forms.ModelForm):
     class Meta:
@@ -48,3 +52,8 @@ class EmployerUserForm(forms.ModelForm):
             'profile_picture': forms.FileInput
         }
         fields = ['email', 'profile_picture', 'first_name', 'last_name']
+
+    def clean_profile_picture(self):
+        from .helpers import validate_profile_img
+        image = self.cleaned_data['profile_picture']
+        return validate_profile_img(image)

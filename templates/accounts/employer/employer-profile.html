@@ -12,6 +12,7 @@
                 <p>
                     {{ employer_user_form.profile_picture.label_tag }}
                     {{ employer_user_form.profile_picture }}
+                    {{ employer_user_form.profile_picture.errors }}
                 </p>
 
                 <div class="mt-4">
@@ -33,6 +34,7 @@
                 <p>
                     {{ employer_profile_form.company_name.label_tag }}
                     {{ employer_profile_form.company_name }}
+                    {{ employer_user_form.company.errors }}
                 </p>
 
                 <div class="row">
@@ -40,6 +42,7 @@
                         <p>
                             {{ employer_user_form.first_name.label_tag }}
                             {{ employer_user_form.first_name }}
+                            {{ employer_user_form.first_name.errors }}
                         </p>
 
                     </div>
@@ -47,6 +50,7 @@
                         <p>
                             {{ employer_user_form.last_name.label_tag }}
                             {{ employer_user_form.last_name }}
+                            {{ employer_user_form.last_name.errors }}
                         </p>
 
                     </div>
@@ -55,6 +59,7 @@
                     <p>
                         {{ employer_user_form.email.label_tag }}
                         {{ employer_user_form.email }}
+                        {{ employer_user_form.email.errors }}
                     </p>
 
                 </div>
@@ -62,6 +67,7 @@
                     <p>
                         {{ employer_profile_form.company_website.label_tag }}
                         {{ employer_profile_form.company_website }}
+                        {{ employer_user_form.company_website.errors }}
                     </p>
 
                 </div>
