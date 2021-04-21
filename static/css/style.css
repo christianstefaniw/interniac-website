@@ -908,6 +908,11 @@ END LANDING PAGE
     list-style-type: initial !important;
     padding: initial !important;
 }
+
+.careers li{
+    padding: initial !important;
+}
+
 /* END CAREERS */
 
 /* BREAK POINTS */
