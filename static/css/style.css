@@ -910,6 +910,7 @@ END LANDING PAGE
 }
 
 .careers li{
+    line-height: 2;
     padding: initial !important;
 }
 
