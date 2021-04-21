@@ -53,19 +53,20 @@
         <div class="container-fluid">
             <div class="row justify-content-around">
                 <div class="col-lg-3">
-                    <form method="post" id="login">
-                        {% if cooloff_time_minutes %}
-                            <p>You can login again after: <b>{{ cooloff_time_minutes|add:"0" }} minutes</b></p>
-                        {% else %}
+                    {% if cooloff_time_minutes %}
+                        <p>You can login again after: <b>{{ cooloff_time_minutes|add:"0" }} minutes</b></p>
+                    {% else %}
+                        <form method="post" id="login">
                             {% csrf_token %}
                             {{ form.as_p }}
                             <button type="submit" class="btn btn-primary mt-3" id="login-btn">Login</button>
-                        {% endif %}
-                    </form>
-                    <div class="mt-3 mb-5">
-                        <a class="float-left text-success" href="{% url 'register' %}">Register</a>
-                        <a class="float-right text-danger" href="{% url 'password_reset' %}">Forgot password?</a>
-                    </div>
+                        </form>
+                        <div class="mt-3 mb-5">
+                            <a class="float-left text-success" href="{% url 'register' %}">Register</a>
+                            <a class="float-right text-danger" href="{% url 'password_reset' %}">Forgot password?</a>
+                        </div>
+                    {% endif %}
+                    
                     <img width="40%" class="position-absolute send-back spin mt-5" src="{% static 'assets/decorations/blob-bg-primary.svg' %}" alt=""/>
 
                 </div>
