@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700;800&display=swap");
 
 /*
 GENERAL
@@ -29,6 +29,10 @@ input[type="checkbox"],
 input[type="radio"] {
     width: auto;
     box-shadow: none;
+}
+
+.boldest{
+    font-weight: 800;
 }
 
 .send-back {
