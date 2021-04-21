@@ -79,7 +79,7 @@ class FilterListings(LoginRequiredMixin, ListView):
             for i in range(len(params.getlist('career'))):
                 query = query & Q(career_id=int(params.getlist('career')[i]))
         if params.get('search'):
-            query = query & Q(title__contains=params.get('search'))
+            query = query & Q(title__contains=params.get('search')) | Q(description__contains=params.get('search'))
         if params.get('company'):
             query = query & Q(company=params.get('company'))
 

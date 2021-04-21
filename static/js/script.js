@@ -61,6 +61,7 @@ $(`#${ids.isEmployer}`).change(function () {
         hide(ids.companyName)
     }
 })
+
 $(function () {
     if ($('body').hasClass('hide-inputs')) {
         let hide = $('form p').children()
