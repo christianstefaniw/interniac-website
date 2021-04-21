@@ -59,7 +59,7 @@
                         {% endautoescape %}
                         {% if user.is_superuser or user.is_staff %}
                             <div>
-                                <a class="danger-cta-btn  mat-btn" href="{% url 'delete_career' career_id=career.id %}">Delete</a>
+                                <a class="danger-cta-btn mb-2 mat-btn" href="{% url 'delete_career' career_id=career.id %}">Delete</a>
                                 <a class="neutral-cta-btn  mat-btn" href="{% url 'edit_career' pk=career.id %}">Edit</a>
                             </div>
                         {% endif %}
