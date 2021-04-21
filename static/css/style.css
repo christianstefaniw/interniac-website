@@ -600,7 +600,7 @@ END FOOTER
     background-color: var(--form-input-bg);
 }
 
-ul, ol {
+ul {
     list-style-type: none;
     padding: 0;
 }
