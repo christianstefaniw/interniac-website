@@ -54,6 +54,7 @@
             <div class="container">
                 {% for career in object_list %}
                     <div class="mb-5">
+                        
                         {% autoescape off %}
                             {{ career.content }}
                         {% endautoescape %}
