@@ -22,8 +22,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = True
-# DEBUG = False
+# DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['http://www.interniac.org', 'https://interniac.herokuapp.com', '127.0.0.1']
 
@@ -145,7 +145,7 @@ AUTH_USER_MODEL = 'accounts.User'
 CLOUDINARY_STORAGE = {'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'), 'API_KEY': os.getenv(
     'CLOUDINARY_API_KEY'), 'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'), }
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 if not DEBUG:
     django_heroku.settings(locals())
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
