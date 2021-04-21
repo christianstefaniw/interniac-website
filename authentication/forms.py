@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core.files.uploadedfile import InMemoryUploadedFile
 
 from accounts.models import User
-from helpers import validate_profile_img
+from helpers.profile_img_validation import validate_profile_img
 
 CHOICES = [('student', 'Student'),
            ('employer', 'Employer')]

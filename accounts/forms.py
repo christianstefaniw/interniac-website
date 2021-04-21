@@ -2,7 +2,7 @@ from django import forms
 from django.core.files.uploadedfile import InMemoryUploadedFile
 
 from .models import StudentProfile, User, EmployerProfile
-from helpers import validate_profile_img
+from helpers.profile_img_validation import validate_profile_img
 
 class StudentProfileForm(forms.ModelForm):
     class Meta:
