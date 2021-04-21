@@ -17,6 +17,7 @@ GENERAL
     --light-outer-shadow: 1px 2px 4px lightgrey;
 }
 
+
 .light-outer-shadow {
     box-shadow: var(--light-outer-shadow);
 }
@@ -784,6 +785,8 @@ CONTACT FORM
 
 /* end send button */
 
+/* contact form */
+
 #contact-header {
     margin-bottom: 2rem;
 }
@@ -804,9 +807,7 @@ CONTACT FORM
     margin-top: 1rem;
 }
 
-/*
-END CONTACT FORM
- */
+/*END CONTACT FORM*/
 
 /* STATISTICS */
 
@@ -901,6 +902,13 @@ END LANDING PAGE
 }
 
 /* END ANIMATIONS */
+
+/* CAREERS */
+.careers ul{
+    list-style-type: initial !important;
+    padding: initial !important;
+}
+/* END CAREERS */
 
 /* BREAK POINTS */
 

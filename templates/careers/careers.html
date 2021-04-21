@@ -51,10 +51,9 @@
         </section>
 
         <section class="mt-5">
-            <div class="container">
+            <div class="container careers">
                 {% for career in object_list %}
                     <div class="mb-5">
-                        
                         {% autoescape off %}
                             {{ career.content }}
                         {% endautoescape %}
