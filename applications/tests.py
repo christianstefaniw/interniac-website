@@ -57,13 +57,13 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
         return new_employer
 
     def accept_student(self) -> HttpResponse:
-        return self.client.get(reverse('accept', kwargs={
+        return self.client.post(reverse('accept', kwargs={
             'listing_id': self.listing.id,
             'student_id': self.student.id
         }))
 
     def reject_student(self) -> HttpResponse:
-        return self.client.get(reverse('reject', kwargs={
+        return self.client.post(reverse('reject', kwargs={
             'listing_id': self.listing.id,
             'student_id': self.student.id
         }))
@@ -71,12 +71,12 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
     def confirm_acceptance(self) -> HttpResponse:
         path = reverse('confirm_acceptance', kwargs={
                        'listing_id': self.listing.id})
-        return self.client.get(path)
+        return self.client.post(path)
 
     def decline_acceptance(self) -> HttpResponse:
         path = reverse('decline_acceptance', kwargs={
                        'listing_id': self.listing.id})
-        return self.client.get(path)
+        return self.client.post(path)
 
     # login as student and apply then logout
     # login as employer and accept student
@@ -382,6 +382,17 @@ class ApplicationsTestCase(TestCase, InitAccountsMixin):
         self.assertTrue(self.student in new_listing.applications.all())
         response = self.confirm_acceptance()
         self.assertEqual(response.status_code, 403)
+
+    def test_employer_confirm_acceptance(self):
+        self.login_apply_out()
+        self.login(self.employer)
+        response = self.confirm_acceptance()
+        self.assertEqual(403, response.status_code)
+
+    def test_no_auth_confirm_acceptance(self):
+        self.login_apply_out()
+        response = self.confirm_acceptance()
+        self.assertEqual(403, response.status_code)
 
     # test that previous awaiting acceptances will be withdrawn upon accepting an internship
     def test_student_withdraw_awaiting_acceptances(self):

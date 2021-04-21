@@ -54,9 +54,13 @@
             <div class="row justify-content-around">
                 <div class="col-lg-3">
                     <form method="post" id="login">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <button type="submit" class="btn btn-primary mt-3" id="login-btn">Login</button>
+                        {% if cooloff_time_minutes %}
+                            <p>You can login again after: <b>{{ cooloff_time_minutes|add:"0" }} minutes</b></p>
+                        {% else %}
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit" class="btn btn-primary mt-3" id="login-btn">Login</button>
+                        {% endif %}
                     </form>
                     <div class="mt-3 mb-5">
                         <a class="float-left text-success" href="{% url 'register' %}">Register</a>

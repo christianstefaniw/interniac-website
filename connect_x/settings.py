@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+import sys
 from dotenv import load_dotenv
 import django_heroku
 from django.urls import reverse_lazy
@@ -147,8 +148,9 @@ AUTH_USER_MODEL = 'accounts.User'
 CLOUDINARY_STORAGE = {'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'), 'API_KEY': os.getenv(
     'CLOUDINARY_API_KEY'), 'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'), }
 
-DEFENDER_LOGIN_FAILURE_LIMIT = 3
-DEFENDER_LOCKOUT_TEMPLATE = 'admin-lockout.html'
+
+DEFENDER_LOGIN_FAILURE_LIMIT = 10
+DEFENDER_LOCKOUT_TEMPLATE = 'auth/login.html'
 
 if not DEBUG:
     django_heroku.settings(locals())

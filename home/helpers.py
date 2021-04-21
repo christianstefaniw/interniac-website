@@ -1,11 +1,8 @@
 import os
-import threading
 from pathlib import Path
 from django.utils import timezone
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-
-from connect_x import settings
 
 
 def insert_into_spreadsheet(email) -> None:

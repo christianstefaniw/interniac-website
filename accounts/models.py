@@ -6,6 +6,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 from cloudinary.models import CloudinaryField
 
 from accounts.managers import UserManager
+from connect_x.settings import DEBUG
 
 class User(AbstractUser):
     USERNAME_FIELD = 'email'
@@ -14,7 +15,11 @@ class User(AbstractUser):
 
     username = models.CharField(max_length=256, unique=False, blank=True)
     email = models.EmailField(max_length=256, unique=True, blank=False)
-    profile_picture = CloudinaryField('Profile picture', default='default_aze1tf.png')
+    if DEBUG:
+        profile_picture = models.ImageField(upload_to='profile_pictures', default='profile_pictures/default.png',
+                                        null=True, blank=True)
+    else:
+        profile_picture = CloudinaryField('Profile picture', default='default_aze1tf.png')
     is_student = models.BooleanField(default=False)
     is_employer = models.BooleanField(default=False)
     slug = models.SlugField(max_length=256, unique=False, blank=True)

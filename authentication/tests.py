@@ -1,11 +1,13 @@
 from http import HTTPStatus
+from defender.test import DefenderTestCaseMixin
+
 from django.test import TestCase
 from django.urls import reverse
 
 from accounts.models import User, StudentProfile, EmployerProfile
 
 
-class AuthenticationTestCase(TestCase):
+class AuthenticationTestCase(TestCase, DefenderTestCaseMixin):
 
     @staticmethod
     def student_registration_data():
@@ -29,6 +31,9 @@ class AuthenticationTestCase(TestCase):
             'student_employer': 'employer',
             'company_name': 'some company'
         }
+
+    def tearDown(self):
+        super().tearDown()
 
     def register(self, data):
         return self.client.post(
