@@ -3,7 +3,9 @@ autopep8==1.5.6
 cachetools==4.2.1
 certifi==2020.12.5
 chardet==4.0.0
+cloudinary==1.25.0
 dj-database-url==0.5.0
+dj3-cloudinary-storage==0.0.4
 Django==3.1.6
 django-crispy-forms==1.11.1
 django-heroku==0.3.1
