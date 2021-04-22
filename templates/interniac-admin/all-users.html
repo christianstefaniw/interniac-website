@@ -4,7 +4,7 @@
 <div class="row justify-content-around">
     {% for user in object_list %}
         {% if not user.is_staff or not user.is_superuser %}
-            <div class="col-lg-4 mb-3">
+            <div class="col-lg-3 mb-5">
                 <img width="100%" src="{{ user.profile_picture.url }}" alt="profile picture" />
                 <p>{{ user.get_full_name }}</p>
                 <p>{{ user.email }}</p>
