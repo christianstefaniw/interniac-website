@@ -4,20 +4,20 @@
 
 <section>
     <div class="row justify-content-around mt-4">
-        <div class="col-lg-4">
+        <div class="col-lg-4 mt-2">
             <a class="neutral-cta-btn mat-btn" href="{% url 'create_career_info' %}">Create Career Info</a>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4 mt-2">
             <a class="neutral-cta-btn mat-btn" href="{% url 'all_users' %}">View Users</a>
         </div>
     </div>
 </section>
 
 <div class="row justify-content-around" style="margin-top: 8rem;">
-    <div class="col-lg-6">
+    <div class="col-lg-6 mt-2">
         <a class="neutral-cta-btn  mat-btn" href="{% url 'logout' %}?next=/">Logout</a>
     </div>
-    <div class="col-lg-6">
+    <div class="col-lg-6 mt-2">
         <a class="danger-cta-btn mat-btn mb-3" href="{% url 'delete' %}"
             onclick="return confirm('Are you sure?');">Delete account</a>
     </div>
