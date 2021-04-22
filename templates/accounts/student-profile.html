@@ -40,6 +40,7 @@
                     <p>
                         {{ student_profile_form.dob.label_tag }}
                         {{ student_profile_form.dob }}
+                        {{ student_profile_form.dob.errors }}
                     </p>
 
                 </div>
@@ -48,6 +49,7 @@
                     <p>
                         {{ student_profile_form.hs.label_tag }}
                         {{ student_profile_form.hs }}
+                        {{ student_profile_form.errors }}
                     </p>
 
                 </div>
@@ -56,6 +58,7 @@
                     <p>
                         {{ student_profile_form.hs_addy.label_tag }}
                         {{ student_profile_form.hs_addy }}
+                        {{ student_profile_form.hs_addy.errors }}
                     </p>
 
                 </div>
@@ -65,6 +68,7 @@
                     <p>
                         {{ student_user_form.email.label_tag }}
                         {{ student_user_form.email }}
+                        {{ student_user_form.email.errors }}
                     </p>
 
                 </div>
@@ -72,6 +76,7 @@
                     <p>
                         {{ student_user_form.first_name.label_tag }}
                         {{ student_user_form.first_name }}
+                        {{ student_user_form.first_name.errors }}
                     </p>
 
                 </div>
@@ -79,6 +84,7 @@
                     <p>
                         {{ student_user_form.last_name.label_tag }}
                         {{ student_user_form.last_name }}
+                        {{ student_user_form.last_name.errors }}
                     </p>
 
                 </div>
@@ -88,6 +94,7 @@
                     <p>
                         {{ student_profile_form.teacher_or_counselor_email.label_tag }}
                         {{ student_profile_form.teacher_or_counselor_email }}
+                        {{ student_profile_form.errors }}
                     </p>
 
                 </div>
@@ -96,6 +103,7 @@
                     <p>
                         {{ student_profile_form.teacher_or_counselor_name.label_tag }}
                         {{ student_profile_form.teacher_or_counselor_name }}
+                        {{ student_profile_form.teacher_or_counselor_name.errors }}
                     </p>
 
                 </div>
@@ -105,6 +113,7 @@
                     <p>
                         {{ student_profile_form.extracurriculars.label_tag }}
                         {{ student_profile_form.extracurriculars }}
+                        {{ student_profile_form.extracurriculars.errors }}
                     </p>
 
                 </div>
@@ -113,6 +122,7 @@
                     <p>
                         {{ student_profile_form.volunteering_exp.label_tag }}
                         {{ student_profile_form.volunteering_exp }}
+                        {{ student_profile_form.volunteering_exp.errors }}
                     </p>
 
                 </div>
@@ -121,6 +131,7 @@
                     <p>
                         {{ student_profile_form.awards_achievements.label_tag }}
                         {{ student_profile_form.awards_achievements }}
+                        {{ student_profile_form.awards_achievements.errors }}
                     </p>
 
                 </div>
@@ -129,6 +140,7 @@
                     <p>
                         {{ student_profile_form.work_exp.label_tag }}
                         {{ student_profile_form.work_exp }}
+                        {{ student_profile_form.work_exp.errors }}
                     </p>
 
                 </div>
@@ -138,6 +150,7 @@
                     <p>
                         {{ student_profile_form.skills.label_tag }}
                         {{ student_profile_form.skills }}
+                        {{ student_profile_form.skills.errors }}
                     </p>
 
                 </div>
@@ -146,8 +159,32 @@
                     <p>
                         {{ student_profile_form.leadership_roles.label_tag }}
                         {{ student_profile_form.leadership_roles }}
+                        {{ student_profile_form.leadership_roles.errors }}
                     </p>
 
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    {{ student_profile_form.link1.label_tag }}
+                    {{ student_profile_form.link1 }}
+                    {{ student_profile_form.link1.errors }}
+                </div>
+                <div class="col-md-3">
+                    {{ student_profile_form.link2.label_tag }}
+                    {{ student_profile_form.link2 }}
+                    {{ student_profile_form.link2.errors }}
+                </div>
+                <div class="col-md-3">
+                    {{ student_profile_form.link3.label_tag }}
+                    {{ student_profile_form.link3 }}
+                    {{ student_profile_form.link3.errors }}
+                </div>
+                <div class="col-md-3">
+                    {{ student_profile_form.link4.label_tag }}
+                    {{ student_profile_form.link4 }}
+                    {{ student_profile_form.link4.errors }}
                 </div>
             </div>
 
