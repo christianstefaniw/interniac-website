@@ -81,7 +81,7 @@ $(function () {
                 }
                 continue;
             }
-            
+
             if (myGetElem($(hide[i]), ids.location)) {
                 if ($(`#${ids.internWhere}`).val() !== 'In-Person') {
                     $(hide[i]).hide();
@@ -158,4 +158,5 @@ function hideInputAndLabel(elId) {
 
 $(document).ready(function () {
     $('body').tooltip({ selector: '[data-toggle=tooltip]' });
+    $('input[type=url]').each(function (_, el) { $(el).tooltip({ 'trigger': 'focus', 'title': 'Must start with "http"' }) });
 });

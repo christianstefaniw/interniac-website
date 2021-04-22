@@ -24,6 +24,10 @@ class StudentProfileForm(forms.ModelForm):
             'extracurriculars': 'Extracurricular Activities',
             'skills': 'Skills',
             'leadership_roles': 'Leadership Roles',
+            'link1': 'Link 1',
+            'link2': 'Link 2',
+            'link3': 'Link 3',
+            'link4': 'Link 4'
         }
 
 

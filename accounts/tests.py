@@ -118,7 +118,7 @@ class UserTestCase(TestCase, InitAccountsMixin):
 
     def test_employer_company_name(self):
         self.assertEqual(self.employer.employer_profile.company_name, 'some company')
-        self.assertEqual(30, EmployerProfile._meta.get_field('company_name').max_length)
+        self.assertEqual(50, EmployerProfile._meta.get_field('company_name').max_length)
 
     def test_employer_profile_attached(self):
         self.assertTrue(self.employer.employer_profile)
@@ -195,7 +195,7 @@ class UserTestCase(TestCase, InitAccountsMixin):
 
     def test_student_teacher_or_counselor_name(self):
         self.assertEqual(self.student.profile.teacher_or_counselor_name, 'teacher teacher')
-        self.assertEqual(40, StudentProfile._meta.get_field('teacher_or_counselor_name').max_length)
+        self.assertEqual(100, StudentProfile._meta.get_field('teacher_or_counselor_name').max_length)
         self.assertEqual(True, StudentProfile._meta.get_field('teacher_or_counselor_name').null)
         self.assertEqual(True, StudentProfile._meta.get_field('teacher_or_counselor_name').blank)
 
@@ -210,13 +210,13 @@ class UserTestCase(TestCase, InitAccountsMixin):
 
     def test_student_hs_addy(self):
         self.assertEqual(self.student.profile.hs_addy, '123 random st')
-        self.assertEqual(40, StudentProfile._meta.get_field('hs_addy').max_length)
+        self.assertEqual(100, StudentProfile._meta.get_field('hs_addy').max_length)
         self.assertEqual(True, StudentProfile._meta.get_field('hs_addy').null)
         self.assertEqual(True, StudentProfile._meta.get_field('hs_addy').blank)
 
     def test_student_hs(self):
         self.assertEqual(self.student.profile.hs, 'humberside')
-        self.assertEqual(40, StudentProfile._meta.get_field('hs').max_length)
+        self.assertEqual(100, StudentProfile._meta.get_field('hs').max_length)
         self.assertEqual(True, StudentProfile._meta.get_field('hs').null)
         self.assertEqual(True, StudentProfile._meta.get_field('hs').blank)
 

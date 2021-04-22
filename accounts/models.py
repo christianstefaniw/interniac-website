@@ -55,7 +55,7 @@ class User(AbstractUser):
 
 class EmployerProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, related_name='employer_profile')
-    company_name = models.CharField(max_length=30, unique=False, blank=False)
+    company_name = models.CharField(max_length=50, unique=False, blank=False)
     company_website = models.URLField(blank=True)
 
     def archive_interview_request(self, listing, user):
@@ -75,10 +75,10 @@ class StudentProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, related_name='profile')
     phone = PhoneNumberField(blank=True, null=True, unique=True)
     dob = models.DateField(null=True, blank=True)
-    hs = models.CharField(max_length=40, null=True, blank=True)
-    hs_addy = models.CharField(max_length=40, null=True, blank=True)
+    hs = models.CharField(max_length=100, null=True, blank=True)
+    hs_addy = models.CharField(max_length=100, null=True, blank=True)
     teacher_or_counselor_email = models.EmailField(null=True, blank=True)
-    teacher_or_counselor_name = models.CharField(max_length=40, null=True, blank=True)
+    teacher_or_counselor_name = models.CharField(max_length=100, null=True, blank=True)
     awards_achievements = models.TextField(null=True, blank=True)
     work_exp = models.TextField(null=True, blank=True)
     volunteering_exp = models.TextField(null=True, blank=True)

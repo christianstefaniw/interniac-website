@@ -3,7 +3,7 @@
 <form class="mt-5" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-lg-2">
             <img class="img-fluid mb-2" src="{{ user.get_profile_pic_url }}" alt="profile-picture"/>
             <p>
                 {{ student_user_form.profile_picture.label_tag }}
@@ -25,9 +25,9 @@
             </div>
 
         </div>
-        <div class="col-md-10">
+        <div class="col-lg-10">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-lg-3">
                     <p>
                         {{ student_profile_form.phone.label_tag }}
                         {{ student_profile_form.phone }}
@@ -36,7 +36,7 @@
 
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-lg-3">
                     <p>
                         {{ student_profile_form.dob.label_tag }}
                         {{ student_profile_form.dob }}
@@ -45,7 +45,7 @@
 
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-lg-3">
                     <p>
                         {{ student_profile_form.hs.label_tag }}
                         {{ student_profile_form.hs }}
@@ -54,7 +54,7 @@
 
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-lg-3">
                     <p>
                         {{ student_profile_form.hs_addy.label_tag }}
                         {{ student_profile_form.hs_addy }}
@@ -64,7 +64,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-lg-4">
                     <p>
                         {{ student_user_form.email.label_tag }}
                         {{ student_user_form.email }}
@@ -72,7 +72,7 @@
                     </p>
 
                 </div>
-                <div class="col-md-4">
+                <div class="col-lg-4">
                     <p>
                         {{ student_user_form.first_name.label_tag }}
                         {{ student_user_form.first_name }}
@@ -80,7 +80,7 @@
                     </p>
 
                 </div>
-                <div class="col-md-4">
+                <div class="col-lg-4">
                     <p>
                         {{ student_user_form.last_name.label_tag }}
                         {{ student_user_form.last_name }}
@@ -90,7 +90,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-lg-6">
                     <p>
                         {{ student_profile_form.teacher_or_counselor_email.label_tag }}
                         {{ student_profile_form.teacher_or_counselor_email }}
@@ -99,7 +99,7 @@
 
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-lg-6">
                     <p>
                         {{ student_profile_form.teacher_or_counselor_name.label_tag }}
                         {{ student_profile_form.teacher_or_counselor_name }}
@@ -109,7 +109,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-lg-3">
                     <p>
                         {{ student_profile_form.extracurriculars.label_tag }}
                         {{ student_profile_form.extracurriculars }}
@@ -118,7 +118,7 @@
 
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-lg-3">
                     <p>
                         {{ student_profile_form.volunteering_exp.label_tag }}
                         {{ student_profile_form.volunteering_exp }}
@@ -127,7 +127,7 @@
 
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-lg-3">
                     <p>
                         {{ student_profile_form.awards_achievements.label_tag }}
                         {{ student_profile_form.awards_achievements }}
@@ -136,7 +136,7 @@
 
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-lg-3">
                     <p>
                         {{ student_profile_form.work_exp.label_tag }}
                         {{ student_profile_form.work_exp }}
@@ -146,7 +146,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-lg-6">
                     <p>
                         {{ student_profile_form.skills.label_tag }}
                         {{ student_profile_form.skills }}
@@ -155,7 +155,7 @@
 
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-lg-6">
                     <p>
                         {{ student_profile_form.leadership_roles.label_tag }}
                         {{ student_profile_form.leadership_roles }}
@@ -166,22 +166,22 @@
             </div>
 
             <div class="row mb-4">
-                <div class="col-md-3">
+                <div class="col-lg-3">
                     {{ student_profile_form.link1.label_tag }}
                     {{ student_profile_form.link1 }}
                     {{ student_profile_form.link1.errors }}
                 </div>
-                <div class="col-md-3">
+                <div class="col-lg-3">
                     {{ student_profile_form.link2.label_tag }}
                     {{ student_profile_form.link2 }}
                     {{ student_profile_form.link2.errors }}
                 </div>
-                <div class="col-md-3">
+                <div class="col-lg-3">
                     {{ student_profile_form.link3.label_tag }}
                     {{ student_profile_form.link3 }}
                     {{ student_profile_form.link3.errors }}
                 </div>
-                <div class="col-md-3">
+                <div class="col-lg-3">
                     {{ student_profile_form.link4.label_tag }}
                     {{ student_profile_form.link4 }}
                     {{ student_profile_form.link4.errors }}
@@ -193,20 +193,20 @@
             <div style="margin-bottom: 5rem"></div>
 
             <div class="row text-center justify-content-around">
-                <div class="col-md-4 mb-4">
+                <div class="col-lg-4 mb-4">
                     <a href="{% url 'applications' %}" class="neutral-cta-btn  mat-btn w-100">View Applications</a>
                 </div>
-                <div class="col-md-4 mb-4">
+                <div class="col-lg-4 mb-4">
                     <a href="{% url 'rejections' %}" class="danger-cta-btn  mat-btn w-100">View Rejections</a>
                 </div>
-                <div class="col-md-4 mb-4">
+                <div class="col-lg-4 mb-4">
                     <a href="{% url 'interview_requests' %}" class="neutral-cta-btn  mat-btn w-100">View Interview Requests</a>
                 </div>
                 <div class="col-lg-4 mb-4">
                     <a class="success-cta-btn  mat-btn w-100" href="{% url 'awaiting_confirm' %}">Awaiting Confirmation</a>
                 </div>
                 
-                <div class="col-md-4 mb-4">
+                <div class="col-lg-4 mb-4">
                     <a href="{% url 'acceptances' %}" class="success-cta-btn  mat-btn w-100">View Acceptances</a>
                 </div>
             </div>
