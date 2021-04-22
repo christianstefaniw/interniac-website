@@ -1,31 +1,33 @@
 {% extends 'interniac-admin/interniac-admin.html' %}
 
 {% block content %}
-    <div class="col-6 text-center">
-        <img width="100%" src="{{ object.profile_picture.url }}" alt="profile picture" />
-        <div class="mt-2 mb-4">
-            <em>
-                {% if object.is_employer %}
-                    <h4>Employer</h4>
-                {% elif object.is_student %}
-                    <h4>Student</h4>
-                {% else %}
-                    <h4>Unknown User Type (maybe admin?)</h4>
-                {% endif %}
-            </em>
-        </div>
-    
-    
-        {% if object.is_student %}
-            {% include 'user-data/student-data.html' with student=object %}
-        {% elif object.is_employer %}
-            {% include 'user-data/employer-data.html' with employer=object %}
-        {% endif %}
-    
-        <div class="row justify-content-center">
-            <div class="col-4">
-                <a class="danger-cta-btn mat-btn" onclick="return confirm('Are you sure?');"
-                        href="{% url 'delete_account' id=object.id %}">Delete Account</a>
+    <div class="row justify-content-center">
+        <div class="col-6 text-center">
+            <img width="100%" src="{{ object.profile_picture.url }}" alt="profile picture" />
+            <div class="mt-2 mb-4">
+                <em>
+                    {% if object.is_employer %}
+                        <h4>Employer</h4>
+                    {% elif object.is_student %}
+                        <h4>Student</h4>
+                    {% else %}
+                        <h4>Unknown User Type (maybe admin?)</h4>
+                    {% endif %}
+                </em>
+            </div>
+        
+        
+            {% if object.is_student %}
+                {% include 'user-data/student-data.html' with student=object %}
+            {% elif object.is_employer %}
+                {% include 'user-data/employer-data.html' with employer=object %}
+            {% endif %}
+        
+            <div class="row justify-content-center">
+                <div class="col-4">
+                    <a class="danger-cta-btn mat-btn" onclick="return confirm('Are you sure?');"
+                            href="{% url 'delete_account' id=object.id %}">Delete Account</a>
+                </div>
             </div>
         </div>
     </div>
