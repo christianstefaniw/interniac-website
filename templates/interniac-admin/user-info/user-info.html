@@ -23,7 +23,7 @@
                 {% include 'user-data/employer-data.html' with employer=object %}
             {% endif %}
         
-            <div class="row justify-content-center">
+            <div class="row justify-content-center mb-3">
                 <div class="col-12">
                     <a class="danger-cta-btn mat-btn" onclick="return confirm('Are you sure?');"
                             href="{% url 'delete_account' id=object.id %}">Delete Account</a>
