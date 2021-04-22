@@ -7,18 +7,6 @@ from django import forms
 
 from accounts.forms import EmployerProfileForm, EmployerUserForm, StudentUserForm, StudentProfileForm
 from accounts.models import EmployerProfile, User, StudentProfile
-from careers.forms import CareerForm
-
-
-def save_career(request):
-    form = CareerForm(request.POST)
-
-    if form.is_valid():
-        form.save()
-        return redirect('success')
-    else:
-        return redirect('error')
-
 
 class Employer:
 

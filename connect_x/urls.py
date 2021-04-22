@@ -14,6 +14,7 @@ from marketplace import urls as marketplace_urls
 from applications import urls as application_urls
 from careers import urls as careers_urls
 from aboutus import urls as aboutus_urls
+from interniac_admin import urls as interniac_admin_urls
 
 urlpatterns = [
     path('', include(home_urls)),
@@ -24,6 +25,7 @@ urlpatterns = [
     path('error/', error, name='error'),
     path('management/', admin.site.urls),
     path('management/defender/', include('defender.urls')),
+    path('interniacadmin/', include(interniac_admin_urls)),
     path('accounts/', include(accounts_urls)),
     path('auth/', include(auth_urls)),
     path('marketplace/', include(marketplace_urls)),

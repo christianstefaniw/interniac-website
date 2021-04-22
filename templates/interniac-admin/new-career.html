@@ -1,0 +1,14 @@
+{% extends 'interniac-admin/interniac-admin.html' %}
+
+{% block content %}
+    <div class="row mt-5 justify-content-around">
+        <div class="col-md-12">
+            <h4>New career</h4>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-primary w-100 save-btn" type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

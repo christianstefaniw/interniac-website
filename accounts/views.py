@@ -4,8 +4,7 @@ from django.shortcuts import redirect
 from django.views.generic import TemplateView
 from django.core.exceptions import PermissionDenied
 
-from careers.forms import CareerForm
-from .helpers import Student, Employer, save_career
+from .helpers import Student, Employer
 
 
 class Profile(LoginRequiredMixin, TemplateView):
@@ -23,9 +22,6 @@ class Profile(LoginRequiredMixin, TemplateView):
             if profile_form or user_form:
                 return super(Profile, self).render_to_response(self.get_context_data(profile_form=profile_form,
                                                                                      user_form=user_form))
-
-        elif 'content' in request.POST and (self.request.user.is_staff or self.request.user.is_superuser):
-            return save_career(request)
 
         return super(Profile, self).render_to_response(self.get_context_data())
 
@@ -50,9 +46,6 @@ class Profile(LoginRequiredMixin, TemplateView):
             else:
                 context['employer_profile_form'] = employer.employer_profile()
                 context['employer_user_form'] = employer.employer_user()
-
-        if self.request.user.is_staff or self.request.user.is_superuser:
-            context['new_career'] = CareerForm()
 
         return context
 

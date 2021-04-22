@@ -1,58 +1,14 @@
-{% load static %}
+{% extends 'careers/careers-page.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-
-        <meta charset="UTF-8">
-        <title>Interniac</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        {% include 'boilerplate/bootstrap.html' %}
-        <link rel="stylesheet" href="{% static "css/style.css" %}"/>
-        <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logos/logo-small-transparent.png' %}"/>
-        <script src="https://kit.fontawesome.com/a76f8913d2.js" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <section id="nav">
-            <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand" href="{% url 'home' %}">
-                    <img width=200 height="50" src="{% static "assets/images/logos/logo-transparent.png" %}" alt="logo"/>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'home' %}">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'careers' %}">Careers</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'aboutus' %}">About Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'marketplace' %}">Marketplace</a>
-                        </li>
-                        <li class="nav-item nav-item-active">
-                            <a class="nav-link" href="{{ user.get_absolute_url }}">Account</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </section>
-        <div class="container-fluid">
-            <a class="mb-4" href="{{ request.META.HTTP_REFERER }}">
-                <i class="fas fa-arrow-circle-left fa-2x"></i>
-            </a>
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button class="btn btn-primary w-100" type="submit">Save</button>
-            </form>
-        </div>
-    </body>
-</html>
+{% block content %}
+<div class="container-fluid">
+    <a class="mb-4" href="{{ request.META.HTTP_REFERER }}">
+        <i class="fas fa-arrow-circle-left fa-2x"></i>
+    </a>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary w-100" type="submit">Save</button>
+    </form>
+</div>
+{% endblock %}

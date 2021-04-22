@@ -6,12 +6,11 @@
 
         <meta charset="UTF-8">
         <title>Interniac</title>
-        {% include 'boilerplate/bootstrap.html' %}
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% include 'boilerplate/bootstrap.html' %}
         <link rel="stylesheet" href="{% static "css/style.css" %}"/>
         <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logos/logo-small-transparent.png' %}"/>
-
-
+        <script src="https://kit.fontawesome.com/a76f8913d2.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <section id="nav">
@@ -45,22 +44,7 @@
                 </div>
             </nav>
         </section>
-        <div class="container-fluid">
-            {% if user.is_student %}
-                {% block student-profile %}
-                    {% include 'accounts/student-profile.html' %}
-                {% endblock %}
-            {% elif user.is_employer %}
-                {% block employer-profile %}
-                    {% include 'accounts/employer/employer-profile.html' %}
-                {% endblock %}
-            {% elif user.is_staff or user.is_superuser %}
-                {% block staff-profile %}
-                    {% include 'accounts/staff-profile.html' %}
-                {% endblock %}
-            {% else %}
-                <h1>Error</h1>
-            {% endif %}
-        </div>
+        {% block content %}
+        {% endblock %}
     </body>
 </html>

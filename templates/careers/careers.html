@@ -1,79 +1,24 @@
-{% load static %}
+{% extends 'careers/careers-page.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        {% include 'boilerplate/bootstrap.html' %}
-        <link rel="stylesheet" href="{% static "css/style.css" %}"/>
-        <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logos/logo-small-transparent.png' %}"/>
-        <script src="https://kit.fontawesome.com/a76f8913d2.js" crossorigin="anonymous"></script>
-        <title>Interniac</title>
-    </head>
-    <body>
-        <section id="nav">
-            <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand" href="{% url 'home' %}">
-                    <img width=200 height="50" src="{% static "assets/images/logos/logo-transparent.png" %}" alt="logo"/>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'home' %}">Home</a>
-                        </li>
-                        <li class="nav-item nav-item-active">
-                            <a class="nav-link" href="{% url 'careers' %}">Careers</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'aboutus' %}">About Us</a>
-                        </li>
-                        {% if user.is_authenticated %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'marketplace' %}">Marketplace</a>
-                            </li>
-                        {% endif %}
-                        <li class="nav-item">
-                            {% if user.is_authenticated %}
-                                <a class="nav-link" href="{{ user.get_absolute_url }}">Account</a>
-                            {% else %}
-                                <a class="nav-link" href="{% url 'login' %}">Login</a>
-                            {% endif %}
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </section>
-
-        <section class="mt-5">
-            <div class="container careers">
-                {% for career in object_list %}
-                    <div class="mb-5">
-                        {% autoescape off %}
-                            {{ career.content }}
-                        {% endautoescape %}
-                        {% if user.is_superuser or user.is_staff %}
-                            <div>
-                                <a class="danger-cta-btn mb-2 mat-btn" href="{% url 'delete_career' career_id=career.id %}">Delete</a>
-                                <a class="neutral-cta-btn  mat-btn" href="{% url 'edit_career' pk=career.id %}">Edit</a>
-                            </div>
-                        {% endif %}
-
+{% block content %}
+<section class="mt-5">
+    <div class="container careers">
+        {% for career in object_list %}
+            <div class="mb-5">
+                {% autoescape off %}
+                    {{ career.content }}
+                {% endautoescape %}
+                {% if user.is_superuser or user.is_staff %}
+                    <div>
+                        <a class="danger-cta-btn mb-2 mat-btn" onclick="return confirm('Are you sure?');" href="{% url 'delete_career' career_id=career.id %}">Delete</a>
+                        <a class="neutral-cta-btn  mat-btn" href="{% url 'edit_career' pk=career.id %}">Edit</a>
                     </div>
+                {% endif %}
 
-                {% endfor %}
             </div>
 
-        </section>
+        {% endfor %}
+    </div>
 
-        <section>
-            {% include 'boilerplate/footer.html' %}
-        </section>
-
-    </body>
-</html>
+</section>
+{% endblock %}

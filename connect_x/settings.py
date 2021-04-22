@@ -12,13 +12,6 @@ import cloudinary_storage
 
 load_dotenv()
 
-sentry_sdk.init(
-    dsn=os.getenv('SENTRY_DNS'),
-    integrations=[DjangoIntegration()],
-    traces_sample_rate=1.0,
-    send_default_pii=True
-)
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY')
@@ -26,7 +19,8 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # DEBUG = True
 DEBUG = False
 
-ALLOWED_HOSTS = ['www.interniac.org', 'www.interniac.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['www.interniac.org',
+                 'www.interniac.herokuapp.com', '127.0.0.1']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -47,7 +41,8 @@ INSTALLED_APPS = [
     'marketplace',
     'authentication',
     'home',
-    'applications'
+    'applications',
+    'interniac_admin'
 ]
 
 MIDDLEWARE = [
@@ -125,13 +120,8 @@ EMAIL_HOST_USER = os.environ.get('EMAIL')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 
 
-NORECAPTCHA_SITE_KEY = os.environ.get('NORECAPTCHA_SITE_KEY')
-NORECAPTCHA_SECRET_KEY = os.environ.get('NORECAPTCHA_SECRET_KEY')
-
-# TESTING CAPTCHA
-# NORECAPTCHA_SITE_KEY = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
-# NORECAPTCHA_SECRET_KEY = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'
-
+NORECAPTCHA_SITE_KEY = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
+NORECAPTCHA_SECRET_KEY = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
@@ -156,3 +146,11 @@ if not DEBUG:
     django_heroku.settings(locals())
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
     DEFENDER_REDIS_URL = os.getenv('REDIS_URL')
+    NORECAPTCHA_SITE_KEY = os.environ.get('NORECAPTCHA_SITE_KEY')
+    NORECAPTCHA_SECRET_KEY = os.environ.get('NORECAPTCHA_SECRET_KEY')
+    sentry_sdk.init(
+        dsn=os.getenv('SENTRY_DNS'),
+        integrations=[DjangoIntegration()],
+        traces_sample_rate=1.0,
+        send_default_pii=True
+    )

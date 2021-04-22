@@ -43,31 +43,6 @@ class User(AbstractUser):
     def get_profile_pic_url(self):
         return self.profile_picture.url
 
-    def summarize(self):
-        data = {
-            'email': self.email,
-            'profile picture': self.get_profile_pic_url,
-            'is student': self.is_student,
-            'is employer': self.is_employer,
-            'slug': self.slug,
-            'dob': self.profile.dob,
-            'high school': self.profile.hs,
-            'high school address': self.profile.hs_addy,
-            'teacher or counselor email': self.profile.teacher_or_counselor_email,
-            'teacher or counselor name': self.profile.teacher_or_counselor_name,
-            'awards and achievements': self.profile.awards_achievements,
-            'work experience': self.profile.work_exp,
-            'volunteer experience': self.profile.volunteering_exp,
-            'extracurriculars': self.profile.extracurriculars,
-            'skills': self.profile.skills,
-            'leadership roles': self.profile.leadership_roles,
-            'link 1': self.profile.link1,
-            'link 2': self.profile.link2,
-            'link 3': self.profile.link3,
-            'link 4': self.profile.link4
-        }
-        return data
-
     def __str__(self):
         if self.is_employer:
             if self.employer_profile.company_name is not None:
@@ -80,7 +55,7 @@ class User(AbstractUser):
 
 class EmployerProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, related_name='employer_profile')
-    company_name = models.CharField(max_length=30, unique=False, blank=True)
+    company_name = models.CharField(max_length=30, unique=False, blank=False)
     company_website = models.URLField(blank=True)
 
     def archive_interview_request(self, listing, user):
@@ -123,6 +98,31 @@ class StudentProfile(models.Model):
 
     def archive_rejection(self, listing):
         listing.archive_student_rejection(self.user)
+
+    def summarize(self):
+        data = {
+            'email': self.user.email,
+            'profile picture': self.user.get_profile_pic_url,
+            'is student': self.user.is_student,
+            'is employer': self.user.is_employer,
+            'slug': self.user.slug,
+            'dob': self.dob,
+            'high school': self.hs,
+            'high school address': self.hs_addy,
+            'teacher or counselor email': self.teacher_or_counselor_email,
+            'teacher or counselor name': self.teacher_or_counselor_name,
+            'awards and achievements': self.awards_achievements,
+            'work experience': self.work_exp,
+            'volunteer experience': self.volunteering_exp,
+            'extracurriculars': self.extracurriculars,
+            'skills': self.skills,
+            'leadership roles': self.leadership_roles,
+            'link 1': self.link1,
+            'link 2': self.link2,
+            'link 3': self.link3,
+            'link 4': self.link4
+        }
+        return data
 
     def __str__(self):
         return f"{self.user.first_name}'s profile"

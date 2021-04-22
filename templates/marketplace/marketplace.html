@@ -61,7 +61,7 @@
         <div id="market-container">
             <section>
                 <div class="row justify-content-start mb-2">
-                    {% if user.is_employer or user.is_superuser %}
+                    {% if user.is_employer %}
                         <div class="col-sm-2">
                             <a href="{% url 'createlisting' %}">Create a listing</a>
                         </div>

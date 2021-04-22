@@ -1,0 +1,99 @@
+{% if student.get_full_name %}
+    <h3>Name</h3>
+    <p>{{ student.get_full_name }}</p>
+{% endif %}
+
+{% if student.profile.phone %}
+    <h3 class="mt-5">Phone Number</h3>
+    <p>{{ student.profile.phone }}</p>
+{% endif %}
+
+{% if student.email %}
+    <h3 class="mt-5">Email</h3>
+    <a href="mailto:{{ student.email }}">{{ student.email }}</a>
+{% endif %}
+
+{% if student.profile.dob %}
+    <h3 class="mt-5">Date of Birth</h3>
+    <p>{{ student.profile.dob }}</p>
+{% endif %}
+
+{% if student.profile.hs %}
+    <h3 class="mt-5">High School</h3>
+    <p>{{ student.profile.hs }}</p>
+{% endif %}
+
+{% if student.profile.hs_addy %}
+    <h3 class="mt-5">High School Address</h3>
+    <p>{{ student.profile.hs_addy }}</p>
+{% endif %}
+
+{% if student.profile.teacher_or_counselor_name %}
+    <h3 class="mt-5">Teacher or Counselor Name</h3>
+    <p>{{ student.profile.teacher_or_counselor_name }}</p>
+{% endif %}
+
+{% if student.profile.leadership_roles %}
+    <h3 class="mt-5">Teacher or Counselor Email</h3>
+    <p>{{ student.profile.teacher_or_counselor_email }}</p>
+{% endif %}
+
+{% if student.profile.awards_achievements %}
+    <h3 class="mt-5">Awards and Achievements</h3>
+    <p>{{ student.profile.awards_achievements }}</p>
+{% endif %}
+
+{% if student.profile.work_exp %}
+    <h3 class="mt-5">Work Experience</h3>
+    <p>{{ student.profile.work_exp }}</p>
+{% endif %}
+
+{% if student.profile.volunteering_exp %}
+    <h3 class="mt-5">Volunteering Experience</h3>
+    <p>{{ student.profile.volunteering_exp }}</p>
+{% endif %}
+
+{% if student.profile.extracurriculars %}
+    <h3 class="mt-5">Extracurriculars</h3>
+    <p>{{ student.profile.extracurriculars }}</p>
+{% endif %}
+
+{% if student.profile.skills %}
+    <h3 class="mt-5">Skills</h3>
+    <p>{{ student.profile.skills }}</p>
+{% endif %}
+
+{% if student.profile.leadership_roles %}
+    <h3 class="mt-5">Leadership Roles</h3>
+    <p>{{ student.profile.leadership_roles }}</p>
+{% endif %}
+
+<div class="container-fluid mt-5">
+    {% if student.profile.link1 %}
+    <div class="row">
+        <h5>Link 1: </h5>
+        <a href="{{ student.profile.link1 }}">{{ student.profile.link1 }}</a>
+    </div>
+    {% endif %}
+
+    {% if student.profile.link2 %}
+    <div class="row mt-3">
+        <h5>Link 2: </h5>
+        <a href="{{ student.profile.link2 }}">{{ student.profile.link2 }}</a>
+    </div>
+    {% endif %}
+
+    {% if student.profile.link3 %}
+    <div class="row mt-3">
+        <h5>Link 3: </h5>
+        <a href="{{ student.profile.link3 }}">{{ student.profile.link3 }}</a>
+    </div>
+    {% endif %}
+
+    {% if student.profile.link4 %}
+    <div class="row mt-3">
+        <h5>Link 4: </h5>
+        <a href="{{ student.profile.link4 }}">{{ student.profile.link4 }}</a>
+    </div>
+    {% endif %}
+</div>

@@ -1,0 +1,20 @@
+{% extends 'interniac-admin/interniac-admin.html' %}
+
+{% block content %}
+<div class="row justify-content-around">
+    {% for user in object_list %}
+        {% if not user.is_staff or not user.is_superuser %}
+            <div class="col-lg-4">
+                <img src="{{ user.profile_picture.url }}" alt="profile picture" />
+                <p>{{ user.get_full_name }}</p>
+                <p>{{ user.email }}</p>
+                <div class="row">
+                    <div class="col-5">
+                        <a class="neutral-cta-btn mat-btn" href="{% url 'user_info' slug=user.slug %}">View info</a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}
