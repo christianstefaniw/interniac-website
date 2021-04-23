@@ -1,19 +1,22 @@
 from django.contrib.auth.models import BaseUserManager
 
-'''
-Custom user manager
-Provides helper methods for user management
-'''
+
 class UserManager(BaseUserManager):
     '''
-    Helper method for creating a generic user
-
-    @param is_student: if the user is a student
-    @param is_employer: if the user is an emoloyer
-    @return: a ```User``` object
+    Custom user manager
+    Provides helper methods for user management
     '''
+    
     def create_user(self, email, first_name, last_name, password, is_student,
                     is_employer, profile_picture=None):
+
+        '''
+        Helper method for creating a generic user
+
+        @param is_student: if the user is a student
+        @param is_employer: if the user is an emoloyer
+        @return: new ```User``` object
+        '''
 
         user = self.model(email=self.normalize_email(email))
 
@@ -31,12 +34,13 @@ class UserManager(BaseUserManager):
         user.save()
         return user
 
-    '''
-    Helper method for creating a superuser user
 
-    @return: a ```User``` object
-    '''
     def create_superuser(self, email, password, first_name, last_name):
+        '''
+        Helper method for creating a superuser user
+
+        @return: new ```User``` object
+        '''
         user = self.create_user(
             email=email,
             first_name=first_name,

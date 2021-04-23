@@ -8,8 +8,12 @@ from cloudinary.models import CloudinaryField
 from accounts.managers import UserManager
 from connect_x.settings import DEBUG
 
-'''Custom User model'''
+
+
 class User(AbstractUser):
+    '''Custom User model'''
+
+
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
     objects = UserManager()
@@ -46,11 +50,17 @@ class User(AbstractUser):
         else:
             return self.email
 
-'''
-Profile for employer user, meant to contain extra data specific to employers.
-This model will be related to a ```User``` instance with the ```is_employer``` field set to True.
-'''
+
+
+
+
 class EmployerProfile(models.Model):
+    '''
+    Profile for employer user, meant to contain extra data specific to employers.
+    This model will be related to a ```User``` instance with the ```is_employer``` field set to True.
+    '''
+
+
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, primary_key=True, related_name='employer_profile')
     company_name = models.CharField(max_length=50, unique=False, blank=False)
@@ -74,11 +84,13 @@ class EmployerProfile(models.Model):
         return self.company_name
 
 
-'''
-Profile for student user, meant to contain extra data specific to students.
-This model will be related to a ```User``` instance with the ```is_student``` field set to True.
-'''
 class StudentProfile(models.Model):
+    '''
+    Profile for student user, meant to contain extra data specific to students.
+    This model will be related to a ```User``` instance with the ```is_student``` field set to True.
+    '''
+
+
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, primary_key=True, related_name='profile')
     phone = PhoneNumberField(blank=True, null=True, unique=True)
