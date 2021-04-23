@@ -14,8 +14,6 @@ This class provides helper functions for viewing and mutating an employer accoun
 
 @param request: the user's current request object
 '''
-
-
 class Employer(object):
     def __init__(self, request):
         self.request = request
@@ -26,7 +24,6 @@ class Employer(object):
 
     @returns: ```EmployerProfileForm``` with current user's profile data filled in
     '''
-
     def employer_profile(self) -> EmployerProfileForm:
         initial_data = model_to_dict(self.request.user.employer_profile)
         profile = EmployerProfileForm(
@@ -38,7 +35,6 @@ class Employer(object):
 
     @returns: ```UserForm``` with current user's data filled in
     '''
-
     def employer_user(self) -> UserForm:
         initial_data = model_to_dict(self.request.user)
         user_form = UserForm(
@@ -75,8 +71,6 @@ This class provides helper functions for viewing and mutating a student account
 
 @param request: the user's current request object
 '''
-
-
 class Student(object):
     def __init__(self, request):
         self.request = request
@@ -87,7 +81,6 @@ class Student(object):
 
     @returns: ```StudentProfileForm``` with current user's profile data filled in
     '''
-
     def student_profile(self) -> StudentProfileForm:
         current_data = StudentProfile.objects.get(user=self.request.user)
         profile = StudentProfileForm(initial=model_to_dict(current_data))
@@ -98,7 +91,6 @@ class Student(object):
 
     @returns: ```UserForm``` with current user's data filled in
     '''
-
     def student_user(self):
         email_picture = UserForm(
             initial=model_to_dict(self.request.user))

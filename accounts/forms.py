@@ -5,11 +5,8 @@ from .models import StudentProfile, User, EmployerProfile
 from helpers.profile_img_validation import validate_profile_img
 
 '''
-Student profile model as a form
-Can be viewed and mutated on students profile page 
+Student profile model as a form. May be viewed and mutated on students profile page.
 '''
-
-
 class StudentProfileForm(forms.ModelForm):
     class Meta:
         model = StudentProfile
@@ -38,11 +35,8 @@ class StudentProfileForm(forms.ModelForm):
 
 
 '''
-Employer profile model as a form
-Can be viewed and mutated on employers profile page
+Employer profile model as a form. May be viewed and mutated on employers profile page
 '''
-
-
 class EmployerProfileForm(forms.ModelForm):
     class Meta:
         model = EmployerProfile
@@ -50,12 +44,9 @@ class EmployerProfileForm(forms.ModelForm):
 
 
 '''
-General user model as a form
-Displays viewable and editable data applicable to employers and students
-Can be viewed and edited on current users profile page 
+General user model as a form. Displays viewable and editable data applicable to employers and students
+May be viewed and edited on current users profile page 
 '''
-
-
 class UserForm(forms.ModelForm):
     class Meta:
         model = User

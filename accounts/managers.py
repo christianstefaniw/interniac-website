@@ -4,8 +4,6 @@ from django.contrib.auth.models import BaseUserManager
 Custom user manager
 Provides helper methods for user management
 '''
-
-
 class UserManager(BaseUserManager):
     '''
     Helper method for creating a generic user
@@ -14,7 +12,6 @@ class UserManager(BaseUserManager):
     @param is_employer: if the user is an emoloyer
     @return: a ```User``` object
     '''
-
     def create_user(self, email, first_name, last_name, password, is_student,
                     is_employer, profile_picture=None):
 
@@ -39,7 +36,6 @@ class UserManager(BaseUserManager):
 
     @return: a ```User``` object
     '''
-
     def create_superuser(self, email, password, first_name, last_name):
         user = self.create_user(
             email=email,
