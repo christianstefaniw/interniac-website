@@ -4,7 +4,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.core.files.uploadedfile import InMemoryUploadedFile
 
-from accounts.models import User
+from accounts.models import User, EmployerProfile
 from helpers.profile_img_validation import validate_profile_img
 
 CHOICES = [('student', 'Student'),
@@ -43,6 +43,12 @@ class UserCreateForm(UserCreationForm):
         if type(pic) is InMemoryUploadedFile:
             return validate_profile_img(pic)
         return pic
+
+    def clean_company_name(self):
+        company_name = self.cleaned_data.get('company_name')
+        if EmployerProfile.objects.filter(company_name=company_name).count() > 0:
+            self.add_error('company_name', 'Company already exists')
+        return company_name
 
     def clean(self):
         cleaned_data = super(UserCreateForm, self).clean()

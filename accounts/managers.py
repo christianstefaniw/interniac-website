@@ -1,14 +1,22 @@
 from django.contrib.auth.models import BaseUserManager
 
+'''
+Custom user manager
+Provides helper methods for user management
+'''
+
 
 class UserManager(BaseUserManager):
+    '''
+    Helper method for creating a generic user
+
+    @param is_student: if the user is a student
+    @param is_employer: if the user is an emoloyer
+    @return: a ```User``` object
+    '''
+
     def create_user(self, email, first_name, last_name, password, is_student,
                     is_employer, profile_picture=None):
-
-        if not email:
-            raise ValueError("User must have an email")
-        if not password:
-            raise ValueError("User must have a password")
 
         user = self.model(email=self.normalize_email(email))
 
@@ -25,6 +33,12 @@ class UserManager(BaseUserManager):
 
         user.save()
         return user
+
+    '''
+    Helper method for creating a superuser user
+
+    @return: a ```User``` object
+    '''
 
     def create_superuser(self, email, password, first_name, last_name):
         user = self.create_user(

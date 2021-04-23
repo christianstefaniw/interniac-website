@@ -9,11 +9,18 @@ def create_profile(sender, instance, created, **kwargs):
     if created:
         if instance.is_student:
             StudentProfile.objects.create(user=instance)
-            instance.slug_student()
         elif instance.is_employer:
             EmployerProfile.objects.create(user=instance)
-            instance.slug_employer()
-        instance.save()
+
+@receiver(models.signals.post_save, sender=EmployerProfile)
+def slug_employer(sender, instance, created, **kwargs):
+    instance.slug_employer()
+    instance.user.save()
+
+@receiver(models.signals.post_save, sender=StudentProfile)
+def slug_student(sender, instance, **kwargs):
+    instance.slug_student()
+    instance.user.save()
 
 @receiver(models.signals.post_delete, sender=EmployerProfile)
 def delete_user(sender, instance, **kwargs):

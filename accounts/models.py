@@ -8,6 +8,9 @@ from cloudinary.models import CloudinaryField
 from accounts.managers import UserManager
 from connect_x.settings import DEBUG
 
+'''Custom User model'''
+
+
 class User(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
@@ -17,9 +20,10 @@ class User(AbstractUser):
     email = models.EmailField(max_length=256, unique=True, blank=False)
     if DEBUG:
         profile_picture = models.ImageField(upload_to='profile_pictures', default='profile_pictures/default.png',
-                                        null=True, blank=True)
+                                            null=True, blank=True)
     else:
-        profile_picture = CloudinaryField('Profile picture', default='default_aze1tf.png')
+        profile_picture = CloudinaryField(
+            'Profile picture', default='default_aze1tf.png')
     is_student = models.BooleanField(default=False)
     is_employer = models.BooleanField(default=False)
     slug = models.SlugField(max_length=256, unique=False, blank=True)
@@ -27,17 +31,9 @@ class User(AbstractUser):
     def get_absolute_url(self):
         return reverse('profile')
 
-    def slug_employer(self):
-        self.slug = f"{self.employer_profile.company_name}"
-        unique_slugify(self, self.slug)
-
     @property
     def get_full_name(self):
         return f"{self.first_name} {self.last_name}"
-
-    def slug_student(self):
-        self.slug = self.get_full_name
-        unique_slugify(self, self.slug)
 
     @property
     def get_profile_pic_url(self):
@@ -54,9 +50,15 @@ class User(AbstractUser):
 
 
 class EmployerProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, related_name='employer_profile')
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, primary_key=True, related_name='employer_profile')
     company_name = models.CharField(max_length=50, unique=False, blank=False)
     company_website = models.URLField(blank=True)
+
+    def slug_employer(self):
+        '''Unique slugify related ```User``` instance with company's name'''
+        self.user.slug = f"{self.company_name}"
+        unique_slugify(self.user, self.user.slug)
 
     def archive_interview_request(self, listing, user):
         listing.employer_interview_requests.remove(user)
@@ -72,13 +74,15 @@ class EmployerProfile(models.Model):
 
 
 class StudentProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, related_name='profile')
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, primary_key=True, related_name='profile')
     phone = PhoneNumberField(blank=True, null=True, unique=True)
     dob = models.DateField(null=True, blank=True)
     hs = models.CharField(max_length=100, null=True, blank=True)
     hs_addy = models.CharField(max_length=100, null=True, blank=True)
     teacher_or_counselor_email = models.EmailField(null=True, blank=True)
-    teacher_or_counselor_name = models.CharField(max_length=100, null=True, blank=True)
+    teacher_or_counselor_name = models.CharField(
+        max_length=100, null=True, blank=True)
     awards_achievements = models.TextField(null=True, blank=True)
     work_exp = models.TextField(null=True, blank=True)
     volunteering_exp = models.TextField(null=True, blank=True)
@@ -89,6 +93,11 @@ class StudentProfile(models.Model):
     link2 = models.URLField(null=True, blank=True)
     link3 = models.URLField(null=True, blank=True)
     link4 = models.URLField(null=True, blank=True)
+
+    def slug_student(self):
+        '''Unique slugify related ```User``` instance with student's full name'''
+        self.user.slug = self.user.get_full_name
+        unique_slugify(self.user, self.user.slug)
 
     def archive_interview_request(self, listing):
         listing.archive_interview_request(self.user)

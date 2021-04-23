@@ -4,6 +4,12 @@ from django.core.files.uploadedfile import InMemoryUploadedFile
 from .models import StudentProfile, User, EmployerProfile
 from helpers.profile_img_validation import validate_profile_img
 
+'''
+Student profile model as a form
+Can be viewed and mutated on students profile page 
+'''
+
+
 class StudentProfileForm(forms.ModelForm):
     class Meta:
         model = StudentProfile
@@ -31,19 +37,10 @@ class StudentProfileForm(forms.ModelForm):
         }
 
 
-class StudentUserForm(forms.ModelForm):
-    class Meta:
-        model = User
-        widgets = {
-            'profile_picture': forms.FileInput
-        }
-        fields = ['email', 'profile_picture', 'first_name', 'last_name']
-
-    def clean_profile_picture(self):
-        pic = self.cleaned_data['profile_picture']
-        if type(pic) is InMemoryUploadedFile:
-            return validate_profile_img(pic)
-        return pic
+'''
+Employer profile model as a form
+Can be viewed and mutated on employers profile page
+'''
 
 
 class EmployerProfileForm(forms.ModelForm):
@@ -52,7 +49,14 @@ class EmployerProfileForm(forms.ModelForm):
         exclude = ['user']
 
 
-class EmployerUserForm(forms.ModelForm):
+'''
+General user model as a form
+Displays viewable and editable data applicable to employers and students
+Can be viewed and edited on current users profile page 
+'''
+
+
+class UserForm(forms.ModelForm):
     class Meta:
         model = User
         widgets = {
@@ -61,7 +65,12 @@ class EmployerUserForm(forms.ModelForm):
         fields = ['email', 'profile_picture', 'first_name', 'last_name']
 
     def clean_profile_picture(self):
+        '''
+        Checks if the total size of the uploaded profile picture is < 2,073,600px (1920x1080)
+        Only validates if a new picture has been uploaded
+        '''
         pic = self.cleaned_data['profile_picture']
+        # check if new image was uploaded
         if type(pic) is InMemoryUploadedFile:
             return validate_profile_img(pic)
         return pic

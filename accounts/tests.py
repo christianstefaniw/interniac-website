@@ -40,13 +40,25 @@ class UserTestCase(TestCase, InitAccountsMixin):
                           is_student=True, is_employer=False)
         self.assertEqual(256, User._meta.get_field('email').max_length)
 
-    def test_slug(self):
+    def test_slug_student(self):
         new_student = User.objects.create_user(email='email@gmail.com', first_name='first', last_name='last',
                                                password='password',
                                                is_student=True, is_employer=False)
         super(UserTestCase, self).student_profile(new_student.id, '+12125552369')
-        new_student.slug_student()
+        new_student.profile.slug_student()
         self.assertNotEqual(self.student.slug, new_student.slug)
+        self.assertEqual(new_student.slug, 'first-last-2')
+        self.assertEqual(256, User._meta.get_field('slug').max_length)
+
+    def test_slug_employer(self):
+        new_employer = User.objects.create_user(email='email@gmail.com', first_name='first', last_name='last',
+                                               password='password',
+                                               is_student=False, is_employer=True)
+        new_employer.employer_profile.company_name = 'some company'
+        new_employer.save()
+        new_employer.employer_profile.slug_employer()
+        self.assertNotEqual(self.employer.slug, new_employer.slug)
+        self.assertEqual(new_employer.slug, 'some-company-2')
         self.assertEqual(256, User._meta.get_field('slug').max_length)
 
     def test_existing_email(self):

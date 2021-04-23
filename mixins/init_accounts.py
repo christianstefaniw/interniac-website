@@ -1,6 +1,6 @@
 from datetime import date
 
-from accounts.models import User, StudentProfile
+from accounts.models import User
 
 
 class InitAccountsMixin(object):
@@ -28,16 +28,16 @@ class InitAccountsMixin(object):
     def employer_profile(employer_id) -> None:
         employer = User.objects.get(id=employer_id)
         employer_profile = employer.employer_profile
-        
         employer_profile.company_name = 'some company'
         employer_profile.company_website = 'http://www.google.com'
         employer_profile.full_clean()
+        employer.save()
         employer_profile.save()
-
+        
     @staticmethod
     def student_profile(student_id, phone) -> None:
         student = User.objects.get(id=student_id)
-        student_profile = StudentProfile.objects.get(user=student)
+        student_profile = student.profile
         student_profile.phone = phone
         student_profile.dob = date.today()
         student_profile.hs = 'humberside'
