@@ -3,7 +3,7 @@ from django.db import models
 
 from .models import User, StudentProfile, EmployerProfile
 
-
+'''Creates and attached a profile to a newly created user instance'''
 @receiver(models.signals.post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
     if created:
@@ -12,13 +12,21 @@ def create_profile(sender, instance, created, **kwargs):
         elif instance.is_employer:
             EmployerProfile.objects.create(user=instance)
 
+'''Slugifies a'''
 @receiver(models.signals.post_save, sender=EmployerProfile)
 def slug_employer(sender, instance, created, **kwargs):
+    # TODO make it so instance doesn't reslug when dependent fields aren't updated
+    if created:
+        return
     instance.slug_employer()
     instance.user.save()
 
 @receiver(models.signals.post_save, sender=StudentProfile)
-def slug_student(sender, instance, **kwargs):
+def slug_student(sender, instance, created, **kwargs):
+    # TODO make it so instance doesn't reslug when dependent fields aren't updated
+    if created:
+        return
+    
     instance.slug_student()
     instance.user.save()
 

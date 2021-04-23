@@ -9,8 +9,6 @@ from accounts.managers import UserManager
 from connect_x.settings import DEBUG
 
 '''Custom User model'''
-
-
 class User(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
@@ -48,7 +46,10 @@ class User(AbstractUser):
         else:
             return self.email
 
-
+'''
+Profile for employer user, meant to contain extra data specific to employers.
+This model will be related to a ```User``` instance with the ```is_employer``` field set to True.
+'''
 class EmployerProfile(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, primary_key=True, related_name='employer_profile')
@@ -73,6 +74,10 @@ class EmployerProfile(models.Model):
         return self.company_name
 
 
+'''
+Profile for student user, meant to contain extra data specific to students.
+This model will be related to a ```User``` instance with the ```is_student``` field set to True.
+'''
 class StudentProfile(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, primary_key=True, related_name='profile')
@@ -100,12 +105,27 @@ class StudentProfile(models.Model):
         unique_slugify(self.user, self.user.slug)
 
     def archive_interview_request(self, listing):
+        '''
+        Archive an interview request for a listing specified for this student
+
+        @param listing: the listing that this student was requested an interview for
+        '''
         listing.archive_interview_request(self.user)
 
     def archive_acceptance(self, listing):
+        '''
+        Archive an acceptance for a listing specified for this user
+
+        @param listing: the listing that this student was accepted to
+        '''
         listing.archive_student_acceptance(self.user)
 
     def archive_rejection(self, listing):
+        '''
+        Archive a rejection for a listing specified for this user
+
+        @param listing: the listing that this student was accepted to
+        '''
         listing.archive_student_rejection(self.user)
 
     def summarize(self):
