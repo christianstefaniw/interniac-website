@@ -19,8 +19,6 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # DEBUG = True
 DEBUG = False
 
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
 
 ALLOWED_HOSTS = ['www.interniac.org',
                  'www.interniac.herokuapp.com', '127.0.0.1']
