@@ -57,9 +57,8 @@ class User(AbstractUser):
 class EmployerProfile(models.Model):
     '''
     Profile for employer user, meant to contain extra data specific to employers.
-    This model will be related to a ```User``` instance with the ```is_employer``` field set to True.
+    This model will be related to a ```User``` instance if the ```is_employer``` field set to True.
     '''
-
 
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, primary_key=True, related_name='employer_profile')
@@ -68,6 +67,7 @@ class EmployerProfile(models.Model):
 
     def slug_employer(self):
         '''Unique slugify related ```User``` instance with company's name'''
+        
         self.user.slug = f"{self.company_name}"
         unique_slugify(self.user, self.user.slug)
 
@@ -87,9 +87,8 @@ class EmployerProfile(models.Model):
 class StudentProfile(models.Model):
     '''
     Profile for student user, meant to contain extra data specific to students.
-    This model will be related to a ```User``` instance with the ```is_student``` field set to True.
+    This model will be related to a ```User``` instance if the ```is_student``` field set to True.
     '''
-
 
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, primary_key=True, related_name='profile')
@@ -113,6 +112,7 @@ class StudentProfile(models.Model):
 
     def slug_student(self):
         '''Unique slugify related ```User``` instance with student's full name'''
+
         self.user.slug = self.user.get_full_name
         unique_slugify(self.user, self.user.slug)
 
@@ -122,6 +122,7 @@ class StudentProfile(models.Model):
 
         @param listing: the listing that this student was requested an interview for
         '''
+
         listing.archive_interview_request(self.user)
 
     def archive_acceptance(self, listing):
@@ -130,6 +131,7 @@ class StudentProfile(models.Model):
 
         @param listing: the listing that this student was accepted to
         '''
+
         listing.archive_student_acceptance(self.user)
 
     def archive_rejection(self, listing):
@@ -138,6 +140,7 @@ class StudentProfile(models.Model):
 
         @param listing: the listing that this student was accepted to
         '''
+        
         listing.archive_student_rejection(self.user)
 
     def summarize(self):
