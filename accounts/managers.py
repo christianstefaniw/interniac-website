@@ -41,6 +41,7 @@ class UserManager(BaseUserManager):
 
         @return: new ```User``` object
         '''
+        
         user = self.create_user(
             email=email,
             first_name=first_name,

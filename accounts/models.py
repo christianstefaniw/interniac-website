@@ -13,7 +13,6 @@ from connect_x.settings import DEBUG
 class User(AbstractUser):
     '''Custom User model'''
 
-
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
     objects = UserManager()
@@ -140,7 +139,7 @@ class StudentProfile(models.Model):
 
         @param listing: the listing that this student was accepted to
         '''
-        
+
         listing.archive_student_rejection(self.user)
 
     def summarize(self):

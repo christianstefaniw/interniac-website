@@ -11,7 +11,7 @@ from accounts.models import EmployerProfile, User, StudentProfile
 
 class Employer(object):
     '''
-    This class provides helper functions for viewing and mutating an employer account
+    This class provides helper methods for viewing and mutating an employer account
     '''
 
     def __init__(self, request):
@@ -77,13 +77,14 @@ class Employer(object):
 
 class Student(object):
     '''
-    This class provides helper functions for viewing and mutating a student account
+    This class provides helper methods for viewing and mutating a student account
     '''
 
     def __init__(self, request):
         '''
         @param request: the user's current request object
         '''
+
         self.request = request
 
     def student_profile(self) -> StudentProfileForm:
@@ -106,6 +107,7 @@ class Student(object):
 
         @returns: ```UserForm``` with current user's data filled in
         '''
+
         email_picture = UserForm(
             initial=model_to_dict(self.request.user))
         return email_picture
@@ -120,6 +122,7 @@ class Student(object):
         @returns: validated ```UserForm``` and ```ProfileForm``` upon failed validation
         or ```None``` upon successful validation
         '''
+
         profile = StudentProfile.objects.get(user=request.user)
         profile_form = StudentProfileForm(request.POST, instance=profile)
         user = User.objects.get(email=request.user.email)
