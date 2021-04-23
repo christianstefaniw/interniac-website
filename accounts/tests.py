@@ -9,6 +9,10 @@ from .models import *
 
 
 class UserTestCase(TestCase, InitAccountsMixin):
+    '''
+    I probably won't get to documenting tests anytime soon tbh.
+    The method names are pretty self explanatory. 
+    '''
 
     @classmethod
     def setUpTestData(cls):

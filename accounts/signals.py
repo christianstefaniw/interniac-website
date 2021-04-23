@@ -26,7 +26,7 @@ def slug_employer(sender, instance, created, **kwargs):
 @receiver(models.signals.post_save, sender=StudentProfile)
 def slug_student(sender, instance, created, **kwargs):
     '''Signal receiver that slugifies a user student instance'''
-    
+
     # TODO make it so instance doesn't reslug when dependent fields aren't updated
     if created:
         return
@@ -36,16 +36,19 @@ def slug_student(sender, instance, created, **kwargs):
 
 @receiver(models.signals.post_delete, sender=EmployerProfile)
 def delete_user(sender, instance, **kwargs):
+    '''delete related user instance when employer profile instance is deleted'''
     instance.user.delete()
 
 
 @receiver(models.signals.post_delete, sender=StudentProfile)
 def delete_user(sender, instance, **kwargs):
+    '''delete related user instance when student profile instance is deleted'''
     instance.user.delete()
 
 
 @receiver(models.signals.pre_delete, sender=User)
 def delete_user(sender, instance, **kwargs):
+    '''delete related profile instance when user instance is deleted'''
     if instance.is_student:
         instance.profile.delete()
     elif instance.is_employer:
