@@ -17,19 +17,12 @@ def create_profile(sender, instance, created, **kwargs):
 def slug_employer(sender, instance, created, **kwargs):
     '''Signal receiver that slugifies a user employer instance'''
 
-    # TODO make it so instance doesn't reslug when dependent fields aren't updated
-    if created:
-        return
     instance.slug_employer()
     instance.user.save()
 
 @receiver(models.signals.post_save, sender=StudentProfile)
 def slug_student(sender, instance, created, **kwargs):
-    '''Signal receiver that slugifies a user student instance'''
-
-    # TODO make it so instance doesn't reslug when dependent fields aren't updated
-    if created:
-        return
+    '''Signal receiver that slugifies a user student instance'''    
     
     instance.slug_student()
     instance.user.save()
