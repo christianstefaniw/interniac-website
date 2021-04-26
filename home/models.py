@@ -1,8 +1,6 @@
-import os
 from cloudinary.models import CloudinaryField
 
 from django.db import models
-from django.dispatch import receiver
 
 from connect_x.settings import DEBUG
 

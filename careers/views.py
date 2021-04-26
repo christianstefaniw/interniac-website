@@ -1,6 +1,5 @@
 from django.shortcuts import redirect
 from django.views.generic import UpdateView, ListView
-from django.core.exceptions import PermissionDenied
 
 from .models import Career
 from mixins.admin_required import AdminRequiredMixin

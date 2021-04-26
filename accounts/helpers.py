@@ -1,9 +1,5 @@
-from PIL import Image
-
 from django.contrib.auth import login
 from django.forms import model_to_dict
-from django.shortcuts import redirect
-from django import forms
 
 from accounts.forms import EmployerProfileForm, StudentProfileForm, UserForm
 from accounts.models import EmployerProfile, User, StudentProfile
