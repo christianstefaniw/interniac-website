@@ -2,7 +2,15 @@ import os
 
 from helpers.email import send_email, send_email_thread
 
-__all__ = ['RequestInterview', 'RejectStudent', 'AcceptStudent', 'ConfirmAcceptance', 'DeclineAcceptance', 'Applied']
+__all__ = ['RequestInterview', 'RejectStudent', 'AcceptStudent',
+           'ConfirmAcceptance', 'DeclineAcceptance', 'Applied']
+
+"""
+Helper classes for sending emails after certian actions for the applications app
+Currently we support the following 6 helper classes:
+
+1. **filter_from_notif** - filter unread notifications by a certian listing
+"""
 
 
 class RequestInterview:
@@ -25,6 +33,7 @@ From, the Interniac Team
                    to=[email], subject=f"Next steps for {listing.title}",
                    reply_to=[listing.company.email])
 
+
 class RejectStudent:
     @staticmethod
     def reject_student_msg(company, title) -> str:
@@ -40,7 +49,8 @@ From, the Interniac Team
     def reject_student_email(student, listing):
         email = student.email
 
-        message = RejectStudent.reject_student_msg(listing.company, listing.title)
+        message = RejectStudent.reject_student_msg(
+            listing.company, listing.title)
 
         send_email(body=message, from_email=os.environ.get("EMAIL"),
                    to=[email], subject=f"Response for {listing.title}",
@@ -60,11 +70,14 @@ From, the Interniac Team
 
     @staticmethod
     def accept_student_email(student, listing):
-        message = AcceptStudent.accept_student_msg(listing.company, listing.title)
+        message = AcceptStudent.accept_student_msg(
+            listing.company, listing.title)
 
         send_email(body=message, from_email=os.environ.get("EMAIL"),
-                   to=[student.email], subject=f"Congratulations! ({listing.title})",
+                   to=[
+                       student.email], subject=f"Congratulations! ({listing.title})",
                    reply_to=[listing.company.email])
+
 
 class ConfirmAcceptance:
     @staticmethod
@@ -77,12 +90,14 @@ From, the Interniac Team
 
     @staticmethod
     def confirmed_acceptance_email(student, listing):
-        message = ConfirmAcceptance.confirmed_message(f'{student.first_name} {student.last_name}', listing.title)
+        message = ConfirmAcceptance.confirmed_message(
+            f'{student.first_name} {student.last_name}', listing.title)
 
         send_email(body=message, from_email=os.environ.get("EMAIL"),
                    to=[listing.company.email], subject=f"Student Confirmed!",
                    reply_to=[student.email]
                    )
+
 
 class DeclineAcceptance:
     @staticmethod
@@ -95,12 +110,14 @@ From, the Interniac Team
 
     @staticmethod
     def declined_acceptance_email(student, listing):
-        message = DeclineAcceptance.declined_message(f'{student.first_name} {student.last_name}', listing.title)
+        message = DeclineAcceptance.declined_message(
+            f'{student.first_name} {student.last_name}', listing.title)
 
         send_email(body=message, from_email=os.environ.get("EMAIL"),
                    to=[listing.company.email], subject=f"Student Declined",
                    reply_to=[student.email]
                    )
+
 
 class Applied:
     @staticmethod
@@ -109,6 +126,7 @@ class Applied:
 {student_name} has applied for {title}
 From, the Interniac Team
                         '''
+
     @staticmethod
     def applied_email(student, listing):
         name = f'{student.first_name} {student.last_name}'

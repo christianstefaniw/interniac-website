@@ -8,7 +8,7 @@ from django.core.exceptions import PermissionDenied
 
 from .forms import CreateListingForm, Filter
 from .models import Listing, Career
-
+from helpers.paginate import paginate
 
 __all__ = ['Marketplace', 'CreateListing', 'FilterListings', 'ViewListing', 'delete_listing', 'EditListing']
 
@@ -26,17 +26,7 @@ class Marketplace(LoginRequiredMixin, ListView):
         if not context.get('is_paginated', False):
             return context
 
-        paginator = context.get('paginator')
-        num_pages = paginator.num_pages
-        current_page = context.get('page_obj')
-        page_no = current_page.number
-
-        if num_pages <= 15 or page_no <= 6:
-            pages = [x for x in range(1, min(num_pages + 1, 16))]
-        elif page_no > num_pages - 6:
-            pages = [x for x in range(num_pages - 14, num_pages + 1)]
-        else:
-            pages = [x for x in range(page_no - 5, page_no + 6)]
+        pages = paginate(context)
 
         context.update({'pages': pages})
         return context

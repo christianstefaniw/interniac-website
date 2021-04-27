@@ -8,10 +8,18 @@ from cloudinary.models import CloudinaryField
 from accounts.managers import UserManager
 from connect_x.settings import DEBUG
 
+"""
+Models for the accounts application  
+Currently we support the following 3 models:
 
+1. **User** - custum user model
+2. **EmployerProfile** - additional account info for employer user
+3. **StudentProfile** - additional account info for student user
+
+"""
 
 class User(AbstractUser):
-    '''Custom User model'''
+    """Custom User model, inherits from the basic user model"""
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
@@ -50,14 +58,11 @@ class User(AbstractUser):
             return self.email
 
 
-
-
-
 class EmployerProfile(models.Model):
-    '''
-    Profile for employer user, meant to contain extra data specific to employers.
+    """
+    Profile for employer user, meant to contain extra data specific to employers.  
     This model will be related to a ```User``` instance if the ```is_employer``` field set to True.
-    '''
+    """
 
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, primary_key=True, related_name='employer_profile')
@@ -65,8 +70,8 @@ class EmployerProfile(models.Model):
     company_website = models.URLField(blank=True)
 
     def slug_employer(self):
-        '''Unique slugify related ```User``` instance with company's name'''
-        
+        """Unique slugify related ```User``` instance with company's name"""
+
         self.user.slug = f"{self.company_name}"
         unique_slugify(self.user, self.user.slug)
 
@@ -84,10 +89,10 @@ class EmployerProfile(models.Model):
 
 
 class StudentProfile(models.Model):
-    '''
-    Profile for student user, meant to contain extra data specific to students.
+    """
+    Profile for student user, meant to contain extra data specific to students.  
     This model will be related to a ```User``` instance if the ```is_student``` field set to True.
-    '''
+    """
 
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, primary_key=True, related_name='profile')
@@ -110,35 +115,38 @@ class StudentProfile(models.Model):
     link4 = models.URLField(null=True, blank=True)
 
     def slug_student(self):
-        '''Unique slugify related ```User``` instance with student's full name'''
+        """Unique slugify related ```User``` instance with student's full name"""
 
         self.user.slug = self.user.get_full_name
         unique_slugify(self.user, self.user.slug)
 
     def archive_interview_request(self, listing):
-        '''
+        """
         Archive an interview request for a listing specified for this student
 
+        @type listing: ```Listing```  
         @param listing: the listing that this student was requested an interview for
-        '''
+        """
 
         listing.archive_interview_request(self.user)
 
     def archive_acceptance(self, listing):
-        '''
+        """
         Archive an acceptance for a listing specified for this user
 
+        @type listing: ```Listing```  
         @param listing: the listing that this student was accepted to
-        '''
+        """
 
         listing.archive_student_acceptance(self.user)
 
     def archive_rejection(self, listing):
-        '''
+        """
         Archive a rejection for a listing specified for this user
 
+        @type listing: ```Listing```  
         @param listing: the listing that this student was accepted to
-        '''
+        """
 
         listing.archive_student_rejection(self.user)
 

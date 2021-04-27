@@ -7,12 +7,15 @@ from django.core.exceptions import ObjectDoesNotExist
 from mixins.init_accounts import InitAccountsMixin
 from .models import *
 
+"""
+Tests for the accounts application
+"""
 
 class UserTestCase(TestCase, InitAccountsMixin):
-    '''
-    I probably won't get to documenting tests anytime soon tbh.
+    """
+    I probably won't get to documenting tests anytime soon tbh.  
     The method names are pretty self explanatory. 
-    '''
+    """
 
     @classmethod
     def setUpTestData(cls):
