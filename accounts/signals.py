@@ -25,6 +25,7 @@ def create_profile(sender, instance, created, **kwargs):
     if created:
         if instance.is_student:
             StudentProfile.objects.create(user=instance)
+            instance.save()
         elif instance.is_employer:
             EmployerProfile.objects.create(user=instance)
 
@@ -56,11 +57,3 @@ def delete_student_user(sender, instance, **kwargs):
     """Delete related user instance when student profile instance is deleted"""
     instance.user.delete()
 
-
-@receiver(models.signals.pre_delete, sender=User)
-def delete_profile(sender, instance, **kwargs):
-    """Delete related profile instance when user instance is deleted"""
-    if instance.is_student:
-        instance.profile.delete()
-    elif instance.is_employer:
-        instance.employer_profile.delete()
