@@ -2,20 +2,36 @@
 
 {% block content %}
 <section class="mt-5">
+    <!--<div class="dropdown career-nav">
+
+        <div class="bg-white ml-3 border">
+            <a class="dropdown-item" href="#">test</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" href="#">test</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" href="#">test</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+    </div>
+-->
     <div class="container careers">
         {% for career in object_list %}
-            <div class="mb-5">
-                {% autoescape off %}
-                    {{ career.content }}
-                {% endautoescape %}
-                {% if user.is_superuser or user.is_staff %}
-                    <div>
-                        <a class="danger-cta-btn mb-2 mat-btn" onclick="return confirm('Are you sure?');" href="{% url 'delete_career' career_id=career.id %}">Delete</a>
-                        <a class="neutral-cta-btn  mat-btn" href="{% url 'edit_career' pk=career.id %}">Edit</a>
-                    </div>
-                {% endif %}
-
+        <div class="mb-5">
+            {% autoescape off %}
+            {{ career.content|linebreaks }}
+            {% endautoescape %}
+            {% if user.is_superuser or user.is_staff %}
+            <div>
+                <a class="danger-cta-btn mb-2 mat-btn" onclick="return confirm('Are you sure?');"
+                    href="{% url 'delete_career' career_id=career.id %}">Delete</a>
+                <a class="neutral-cta-btn  mat-btn" href="{% url 'edit_career' pk=career.id %}">Edit</a>
             </div>
+            {% endif %}
+
+        </div>
 
         {% endfor %}
     </div>

@@ -7,6 +7,7 @@ from decorators.admin_required import admin_required
 
 class CareersPage(ListView):
     template_name = 'careers/careers.html'
+    ordering = ['-posted']
     model = Career
 
 

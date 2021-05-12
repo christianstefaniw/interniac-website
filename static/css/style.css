@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700;800&display=swap");
-
 /*
 GENERAL
  */
+
 :root {
     --primary-color: #040456;
     --secondary-color: #3dadff;
@@ -17,7 +17,6 @@ GENERAL
     --light-outer-shadow: 1px 2px 4px lightgrey;
 }
 
-
 .light-outer-shadow {
     box-shadow: var(--light-outer-shadow);
 }
@@ -26,13 +25,12 @@ GENERAL
     background-color: var(--bootstrap-bg);
 }
 
-input[type="checkbox"],
-input[type="radio"] {
+input[type="checkbox"], input[type="radio"] {
     width: auto;
     box-shadow: none;
 }
 
-.boldest{
+.boldest {
     font-weight: 800;
 }
 
@@ -135,9 +133,7 @@ p {
     background-color: var(--primary-color);
 }
 
-.btn-outline-primary:not(:disabled):not(.disabled):active,
-.btn-outline-primary:not(:disabled):not(.disabled).active,
-.show > .btn-outline-primary.dropdown-toggle {
+.btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active, .show>.btn-outline-primary.dropdown-toggle {
     color: #fff;
     background-color: var(--primary-color);
 }
@@ -159,6 +155,7 @@ p {
 .fas {
     transition: color 0.5s ease;
 }
+
 ul.pagination {
     position: relative;
     background: #fff;
@@ -189,13 +186,12 @@ ul.pagination li a {
     border-radius: 50%;
 }
 
-ul.pagination li.pageNumber:hover a,
-ul.pagination li.pageNumber.active a {
+ul.pagination li.pageNumber:hover a, ul.pagination li.pageNumber.active a {
     background: #383838;
     color: #fff;
 }
 
-ul.pagination li.active{
+ul.pagination li.active {
     border: 1px solid black;
     border-radius: 20%;
     padding: 0 1.3rem;
@@ -213,9 +209,7 @@ ul.pagination li:last-child {
     font-size: 20px;
 }
 
-input,
-textarea,
-select {
+input, textarea, select {
     outline: none;
     display: block;
     width: 100%;
@@ -246,7 +240,7 @@ input[type="checkbox"]:hover {
     margin-left: 1.5rem;
 }
 
-nav > div > ul > li > a {
+nav>div>ul>li>a {
     color: var(--primary-color) !important;
 }
 
@@ -345,14 +339,16 @@ nav > div > ul > li > a {
 }
 
 /* ERRORS */
-.errorlist > li {
+
+.errorlist>li {
     color: #dc3545;
 }
 
 /* END ERRORS */
 
 /* REGISTRATION */
-#registration-form > div {
+
+#registration-form>div {
     margin-top: 1.5rem;
 }
 
@@ -378,6 +374,7 @@ END IMAGES
  */
 
 /* DECORATIONS */
+
 .dot {
     animation: MoveUpDown 2s linear infinite;
     position: relative;
@@ -396,8 +393,7 @@ END IMAGES
 }
 
 @keyframes MoveUpDown {
-    0%,
-    100% {
+    0%, 100% {
         bottom: 0;
     }
     50% {
@@ -520,6 +516,7 @@ END IMAGES
 /* END 404 */
 
 /* ABOUT */
+
 #offers {
     margin-top: 7rem;
     border-radius: 0.3rem;
@@ -571,6 +568,7 @@ END FOOTER
  */
 
 /* MARKETPLACE */
+
 #market-container {
     width: 100%;
     padding-right: 15px;
@@ -652,7 +650,8 @@ ul {
 /* END MARKETPLACE */
 
 /* CREATE LISTING */
-#create-listing > p:not(:first-child) {
+
+#create-listing>p:not(:first-child) {
     margin-top: 1rem;
 }
 
@@ -660,11 +659,11 @@ ul {
 
 /* LOGIN */
 
-#login > p > input {
+#login>p>input {
     padding: 0.9rem;
 }
 
-#login > p:not(:first-child) {
+#login>p:not(:first-child) {
     margin-top: 1rem;
 }
 
@@ -681,6 +680,7 @@ ul {
 /* END PROFILE */
 
 /* HOME */
+
 .home-container {
     width: 100%;
     padding-right: 15px;
@@ -758,21 +758,16 @@ CONTACT FORM
 }
 
 @keyframes shake {
-    10%,
-    90% {
+    10%, 90% {
         transform: translate3d(-1px, 0, 0) rotateZ(-90deg);
     }
-    20%,
-    80% {
+    20%, 80% {
         transform: translate3d(1px, 0, 0) rotateZ(-90deg);
     }
-    30%,
-    50%,
-    70% {
+    30%, 50%, 70% {
         transform: translate3d(-1px, 0, 0) rotateZ(-90deg);
     }
-    40%,
-    60% {
+    40%, 60% {
         transform: translate3d(1px, 0, 0) rotateZ(-90deg);
     }
 }
@@ -796,14 +791,13 @@ CONTACT FORM
     font-weight: bolder;
 }
 
-#contact > p > input,
-#contact > p > textarea {
+#contact>p>input, #contact>p>textarea {
     background-color: var(--form-input-bg);
     border-radius: 30px;
     border: none;
 }
 
-#contact > p:not(:first-child) {
+#contact>p:not(:first-child) {
     margin-top: 1rem;
 }
 
@@ -904,11 +898,20 @@ END LANDING PAGE
 /* END ANIMATIONS */
 
 /* CAREERS */
-.careers ul{
+
+.careers ul {
     list-style-type: initial !important;
     padding-left: 2.5em !important;
 }
 
+.career-nav{
+    position: fixed;
+}
+
+.career-nav a{
+    margin-right: 3rem;
+    padding: 0.5rem 0.2rem;
+}
 
 /* END CAREERS */
 
@@ -918,7 +921,6 @@ END LANDING PAGE
     .home-container {
         max-width: 1500px;
     }
-
     #market-container {
         max-width: 1500px;
     }
@@ -928,9 +930,13 @@ END LANDING PAGE
     .home-container {
         max-width: 1300px;
     }
-
     #market-container {
         max-width: 1300px;
+    }
+
+    .career-nav{
+        position: relative;
+        margin-bottom: 4rem;
     }
 }
 
@@ -944,28 +950,21 @@ END LANDING PAGE
     .mtb-md {
         margin: 1rem 0;
     }
-
-    input,
-    textarea {
+    input, textarea {
         width: 100%;
     }
-
     #about-section {
         margin-top: 10rem !important;
     }
-
     #msg-img {
         display: none;
     }
-
     #id_email_signup {
         margin-bottom: 1rem;
     }
-
     .event-card-container {
         margin-bottom: 3rem;
     }
-
     .stat:hover {
         cursor: pointer;
         margin: 1.5rem 0;
