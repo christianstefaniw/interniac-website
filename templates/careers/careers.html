@@ -21,7 +21,7 @@
         {% for career in object_list %}
         <div class="mb-5">
             {% autoescape off %}
-            {{ career.content|linebreaks }}
+            {{ career.content }}
             {% endautoescape %}
             {% if user.is_superuser or user.is_staff %}
             <div>
