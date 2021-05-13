@@ -10,4 +10,4 @@ class Career(models.Model):
         return reverse('careers')
 
     def __str__(self):
-        return self.id
+        return str(self.id)
