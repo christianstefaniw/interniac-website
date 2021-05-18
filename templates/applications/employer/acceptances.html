@@ -1,7 +1,7 @@
 <div class="row justify-content-around">
     {% for listing in user.listing.all %}
         {% if listing.employer_acceptances.all %}
-            <div class="col-lg-3 mr-2 ml-2 bg-white p-5 br-10 light-outer-shadow">
+            <div class="col-lg-3 mr-2 ml-2 text-break bg-white p-5 br-10 light-outer-shadow">
                 <a class="primary mb-2" href="{% url 'all_acceptances' slug=listing.slug %}"><h2>{{ listing.title }}</h2></a>
                 {% for student in listing.employer_acceptances.all|slice:":3" %}
                     <div class="{% if not listing.employer_acceptances.all.count == 1 %}mb-5{% endif %}">
