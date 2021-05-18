@@ -34,7 +34,7 @@
                                 <p class="text-success m-0">Accepted</p>
                             {% elif user in listing.interview_requests.all %}
                                 <p class="text-info m-0">Interview requested</p>
-                            {% elif user in listing.awaiting_confirm_acceptance %}
+                            {% elif user in listing.awaiting_confirm_acceptance.all %}
                                 <p class="text-info m-0">Awaiting confirmation</p>
                             {% elif listing.application_url %}
                                 <p></p>
