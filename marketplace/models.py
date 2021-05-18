@@ -32,6 +32,9 @@ class Listing(models.Model):
     application_deadline = models.DateTimeField()
     description = models.TextField()
 
+    # students that have been accepted, rejected and requested
+    # visible on the employer's account
+    # needed in order to archive accepted/rejected student without affecting other accounts viewing the same field
     employer_acceptances = models.ManyToManyField(
         'accounts.User', related_name='employer_acceptances', blank=True)
     employer_rejections = models.ManyToManyField(
@@ -39,15 +42,19 @@ class Listing(models.Model):
     employer_interview_requests = models.ManyToManyField('accounts.User', related_name='employer_interview_requests',
                                                          blank=True)
 
+    # students that have been accepted, rejected and requested
+    # visible on the student's account
+    # needed in order to archive the students acceptance/rejection/request without affecting other accounts viewing the same field
     student_acceptances = models.ManyToManyField(
         'accounts.User', related_name='student_acceptances', blank=True)
     student_rejections = models.ManyToManyField(
         'accounts.User', related_name='student_rejections', blank=True)
     student_interview_requests = models.ManyToManyField('accounts.User', related_name='student_interview_requests',
                                                         blank=True)
-
-    applications = models.ManyToManyField(
-        'accounts.User', related_name='applications', blank=True)
+                                                        
+    # constant acceptances, rejections and requests
+    # these are not viewed on any account
+    # needed in order to create status updates
     acceptances = models.ManyToManyField(
         'accounts.User', related_name='listing_acceptances', blank=True)
     rejections = models.ManyToManyField(
@@ -55,10 +62,14 @@ class Listing(models.Model):
     interview_requests = models.ManyToManyField(
         'accounts.User', related_name='interviews', blank=True)
 
+    # if all of the above was one group of fields, users would be affected by another users actions so
+    # the state of a users application is kept in an isolated group
+
     awaiting_confirm_acceptance = models.ManyToManyField(
         'accounts.User', related_name='awaiting_confirm_acceptance', blank=True
     )
-
+    applications = models.ManyToManyField(
+        'accounts.User', related_name='applications', blank=True)
 
     application_url = models.URLField(blank=True, null=True)
     posted = models.DateField(default=timezone.now, blank=True)
