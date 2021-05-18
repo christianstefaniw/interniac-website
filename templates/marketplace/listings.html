@@ -1,56 +1,58 @@
 <div class="row mt-5">
     {% for listing in object_list %}
-    <div class="col-md-4 mb-5">
+    <div class="col-xl-4 mb-5">
         <div class="listing-card">
-            <div class="row mb-4">
-                <div class="col-lg-9 ml-2 mt-2 mb-5" style="word-wrap: break-word;">
-                    <h3 class="mb-4 font-weight-bold">{{ listing.title }}</h3>
-                    <h5 class="mb-4 font-weight-bold primary" style="line-height: 0">
-                        {{listing.company.employer_profile.company_name }}</h5>
-                    {% if listing.type == "Paid" %}
-                    <p><i data-toggle="tooltip" title="paid" class="fas fa-dollar-sign"></i>
-                        {% else %}
-                        unpaid
-                        {% endif %}
-                        -
-                        {% if listing.where == 'In-Person' %}
-                        <i data-toggle="tooltip" title="in-person" class="fas fa-building"></i>
-                        {% else %}
-                        <i data-toggle="tooltip" title="virtual" class="fas fa-desktop"></i>
-                        {% endif %}
-                    </p>
-                    <p>Date posted: {{ listing.posted }}</p>
+            <div class="container">
+                <div class="row mb-4">
+                    <div class="col-md-9 ml-2 mt-2 mb-5" style="word-wrap: break-word;">
+                        <h3 class="mb-4 font-weight-bold">{{ listing.title }}</h3>
+                        <h5 class="mb-4 font-weight-bold primary">
+                            {{listing.company.employer_profile.company_name }}</h5>
+                        {% if listing.type == "Paid" %}
+                        <p><i data-toggle="tooltip" title="paid" class="fas fa-dollar-sign"></i>
+                            {% else %}
+                            unpaid
+                            {% endif %}
+                            -
+                            {% if listing.where == 'In-Person' %}
+                            <i data-toggle="tooltip" title="in-person" class="fas fa-building"></i>
+                            {% else %}
+                            <i data-toggle="tooltip" title="virtual" class="fas fa-desktop"></i>
+                            {% endif %}
+                        </p>
+                        <p>Date posted: {{ listing.posted }}</p>
+                    </div>
                 </div>
             </div>
-            <div class="container-fluid bottom pb-2">
+            <div class="container-fluid pb-2">
                 <div class="row justify-content-around">
                     {% if user.is_student %}
-                    <div class="col-md-4">
-                        {% if user in listing.rejections.all %}
-                            <p class="text-danger m-0">Rejected</p>
-                        {% elif user in listing.acceptances.all %}
-                            <p class="text-success m-0">Accepted</p>
-                        {% elif user in listing.interview_requests.all %}
-                            <p class="text-info m-0">Interview requested</p>
-                        {% elif user in listing.awaiting_confirm_acceptance %}
-                            <p class="text-info m-0">Awaiting confirmation</p>
-                        {% elif listing.application_url %}
-                            <p></p>
-                        {% else %}
-                            {% if listing in user.applications.all %}
-                            <button class="apply-unapply-btn" onclick="unapply({{ listing.id }}, this)">
-                                Unapply
-                            </button>
+                        <div class="col-xl-7">
+                            {% if user in listing.rejections.all %}
+                                <p class="text-danger m-0">Rejected</p>
+                            {% elif user in listing.acceptances.all %}
+                                <p class="text-success m-0">Accepted</p>
+                            {% elif user in listing.interview_requests.all %}
+                                <p class="text-info m-0">Interview requested</p>
+                            {% elif user in listing.awaiting_confirm_acceptance %}
+                                <p class="text-info m-0">Awaiting confirmation</p>
+                            {% elif listing.application_url %}
+                                <p></p>
                             {% else %}
-                            <button class="apply-unapply-btn" onclick="apply({{ listing.id }}, this)">
-                                Apply
-                            </button>
+                                {% if listing in user.applications.all %}
+                                    <button class="apply-unapply-btn" onclick="unapply({{ listing.id }}, this)">
+                                        Unapply
+                                    </button>
+                                {% else %}
+                                    <button class="apply-unapply-btn" onclick="apply({{ listing.id }}, this)">
+                                        Apply
+                                    </button>
+                                {% endif %}
                             {% endif %}
-                        {% endif %}
-                    </div>
+                        </div>
                     {% endif %}
-                    <div class="col-md-2">
-                        <a class="view mr-2" href="{{ listing.get_absolute_url }}">View</a>
+                    <div class="col-xl-2 p-0 text-center">
+                        <a class="view" href="{{ listing.get_absolute_url }}">View</a>
                     </div>
                 </div>
             </div>

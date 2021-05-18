@@ -71,9 +71,11 @@
             <section>
                 <div class="row">
                     <div class="col-md-4">
-                        <button class="btn btn-outline-primary mb-4" style="padding: 5px" id="show-hide-btn" onclick="showFilters()">Hide Filters</button>
-                        <div id="filters-container" style="display: block;">
-                            {% include 'marketplace/filters.html' %}
+                        <div class="ml-3">
+                            <button class="btn btn-outline-primary mb-4" style="padding: 5px" id="show-hide-btn" onclick="showFilters()">Hide Filters</button>
+                            <div id="filters-container" style="display: block;">
+                                {% include 'marketplace/filters.html' %}
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-8">

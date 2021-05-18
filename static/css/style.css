@@ -611,6 +611,9 @@ ul {
     border-radius: 10px;
     border: 1px solid lightgrey;
     box-shadow: var(--light-outer-shadow);
+    display: flex;
+    flex-direction: column !important;
+    justify-content: space-between;
 }
 
 .btn-secondary {
@@ -622,15 +625,11 @@ ul {
     box-shadow: 0 0 0 0.1rem var(--primary-color);
 }
 
-.view:hover {
-    text-decoration: none;
-}
-
 .apply-unapply-btn {
     transition: background-color 0.5s ease;
     cursor: pointer;
     display: block;
-    width: 100%;
+    min-width: 100%;
     padding: 4px;
     border-radius: 10px;
     border: 1px solid black;
@@ -904,11 +903,11 @@ END LANDING PAGE
     padding-left: 2.5em !important;
 }
 
-.career-nav{
+.career-nav {
     position: fixed;
 }
 
-.career-nav a{
+.career-nav a {
     margin-right: 3rem;
     padding: 0.5rem 0.2rem;
 }
@@ -933,8 +932,7 @@ END LANDING PAGE
     #market-container {
         max-width: 1300px;
     }
-
-    .career-nav{
+    .career-nav {
         position: relative;
         margin-bottom: 4rem;
     }
