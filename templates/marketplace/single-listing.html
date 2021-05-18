@@ -110,14 +110,20 @@
 
                     <div class="mt-5 mb-5">
                         {% if user.is_student and not object.application_url %}
-                            {% if listing not in object.rejections.all and listing not in object.acceptances.all %}
-                                {% if listing in user.applications.all %}
-                                    <a class="danger-cta-btn  mat-btn"
-                                    href="{% url 'unapply' listing_id=listing.id %}?redirect=success">Unapply</a>
-                                {% else %}
-                                    <a class="success-cta-btn  mat-btn mt-5 mb-5"
-                                    href="{% url 'apply' listing_id=listing.id %}?redirect=success">Apply</a>
-                                {% endif %}
+                            {% if listing in user.applications.all %}
+                                <a class="danger-cta-btn  mat-btn"
+                                href="{% url 'unapply' listing_id=listing.id %}?redirect=success">Unapply</a>
+                            {% elif user in listing.rejections.all %}
+                                <p class="text-danger m-0">Rejected</p>
+                            {% elif user in listing.acceptances.all %}
+                                <p class="text-success m-0">Accepted</p>
+                            {% elif user in listing.interview_requests.all %}
+                                <p class="text-info m-0">Interview requested</p>
+                            {% elif user in listing.awaiting_confirm_acceptance.all %}
+                                <p class="text-info m-0">Awaiting confirmation</p>
+                            {% elif listing not in user.applications.all %}
+                                <a class="success-cta-btn  mat-btn mt-5 mb-5"
+                                href="{% url 'apply' listing_id=listing.id %}?redirect=success">Apply</a>
                             {% endif %}
                         {% endif %}
                     </div>
