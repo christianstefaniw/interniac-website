@@ -8,8 +8,8 @@ from accounts.models import EmployerProfile, User, StudentProfile
 Helper classes for the accounts application  
 Currently we support the following 2 helper classes:
 
-1. **Employer** - retreiving and saving employer account
-2. **Student** - retreiving and saving student account
+1. **```Employer```** - retreiving and saving employer account
+2. **```Student```** - retreiving and saving student account
 
 """
 

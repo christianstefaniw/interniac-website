@@ -12,9 +12,9 @@ from connect_x.settings import DEBUG
 Models for the accounts application  
 Currently we support the following 3 models:
 
-1. **User** - custum user model
-2. **EmployerProfile** - additional account info for employer user
-3. **StudentProfile** - additional account info for student user
+1. **```User```** - custum user model
+2. **```EmployerProfile```** - additional account info for employer user
+3. **```StudentProfile```** - additional account info for student user
 
 """
 

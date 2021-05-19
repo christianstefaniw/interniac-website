@@ -4,7 +4,7 @@ from django.contrib.auth.models import BaseUserManager
 UserManager for the accounts application  
 Currently we support the following user manager:
 
-1. **UserManager** - implements helper methods for creating custom users and super users
+1. ```**UserManager**``` - implements helper methods for creating custom users and super users
 
 """
 

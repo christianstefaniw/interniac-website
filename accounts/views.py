@@ -10,9 +10,9 @@ from mixins.employer_required import EmployerRequiredMixin
 Views for the accounts app  
 Currently we support the following 3 views:
 
-1. **Profile** - view current user's account
-1. **Listings** - view current user's posted listings (only for employers)
-1. **delete_user** - delete the current user
+1. **```Profile```** - view current user's account
+2. **```Listings```** - view current user's posted listings (only for employers)
+3. **```delete_user```** - delete the current user
 
 """
 
@@ -70,7 +70,7 @@ class Profile(LoginRequiredMixin, TemplateView):
 
         if self.request.user.is_employer:
             employer = Employer(self.request)
-             # Check if validated forms have been passed into the ```get_context_data``` method
+            # Check if validated forms have been passed into the ```get_context_data``` method
             if kwargs.get('profile_form') and kwargs.get('user_form'):
                 context['employer_profile_form'] = kwargs.get('profile_form')
                 context['employer_user_form'] = kwargs.get('user_form')

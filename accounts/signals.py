@@ -8,12 +8,12 @@ from .models import User, StudentProfile, EmployerProfile
 Signals for the accounts application  
 Currently we support the following 6 signals:
 
-1. **create_profile** - creates profile for a certian user
-2. **slug_employer** - slugifies a employer user
-3. **slug_student** - slugifies a student user
-4. **delete_employer_user** - delete related user upon employer profile delete
-5. **delete_student_user** - delete related user upon student profile delete
-6. **delete_profile** - delete related profile upon user delete
+1. **```create_profile```** - creates profile for a certian user
+2. **```slug_employer```** - slugifies a employer user
+3. **```slug_student```** - slugifies a student user
+4. **```delete_employer_user```** - delete related user upon employer profile delete
+5. **```delete_student_user```** - delete related user upon student profile delete
+6. **```delete_profile```** - delete related profile upon user delete
 
 """
 
