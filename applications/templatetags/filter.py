@@ -15,9 +15,9 @@ def filter_from_notif(listing, user):
     """
     filters the current user's unread notifications by a certian listing  
 
-    @type listing - ```Listing```  
+    @type listing - `Listing`  
     @param listing - listing to show notifications for  
-    @type user: ```User``  
+    @type user: `User``  
     @param user - the current user
     """
     notifs = user.notifications.unread()

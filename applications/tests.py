@@ -10,6 +10,10 @@ from mixins.init_accounts import InitAccountsMixin
 
 
 class ApplicationsTestCase(TestCase, InitAccountsMixin):
+    """
+    Prolly not gonna document these for a while.  
+    Method names are pretty self explanitory imo tho.
+    """
 
     @classmethod
     def setUpTestData(cls):

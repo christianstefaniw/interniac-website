@@ -8,9 +8,9 @@ from helpers.profile_img_validation import validate_profile_img
 All the forms for the accounts application  
 Currently we support the following 3 forms:
 
-1. **```StudentProfileForm```** - for viewing and mutating student profile data
-2. **```EmployerProfileForm```** - for viewing and mutating employer profile data
-3. **```UserForm```** - for viewing and mutating general user data
+1. **`StudentProfileForm`** - for viewing and mutating student profile data
+2. **`EmployerProfileForm`** - for viewing and mutating employer profile data
+3. **`UserForm`** - for viewing and mutating general user data
 
 """
 

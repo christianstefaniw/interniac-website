@@ -3,6 +3,12 @@ from django import forms
 
 
 def validate_profile_img(image):
+    """
+    This method checks if a a profile picture is a valid size
+
+    @param image: description of the profile picture
+    @type image: `InMemoryUploadedFile`
+    """
     if not image:
         return image
     pil_img = Image.open(image)

@@ -1,4 +1,10 @@
 def paginate(context):
+    """
+    This function returns the number of pages should be displayed in the paginated menu
+
+    @param context: the information being passed to the html page
+    @type context: `dict`
+    """
     paginator = context.get('paginator')
     num_pages = paginator.num_pages
     current_page = context.get('page_obj')

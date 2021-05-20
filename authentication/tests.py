@@ -8,6 +8,9 @@ from accounts.models import User, StudentProfile, EmployerProfile
 
 
 class AuthenticationTestCase(TestCase, DefenderTestCaseMixin):
+    """
+    Probably wont get to documenting these, the method names are pretty self explanitory I think
+    """
 
     @staticmethod
     def student_registration_data():

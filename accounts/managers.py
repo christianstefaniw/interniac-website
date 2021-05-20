@@ -4,7 +4,7 @@ from django.contrib.auth.models import BaseUserManager
 UserManager for the accounts application  
 Currently we support the following user manager:
 
-1. ```**UserManager**``` - implements helper methods for creating custom users and super users
+1. `**UserManager**` - implements helper methods for creating custom users and super users
 
 """
 
@@ -20,12 +20,12 @@ class UserManager(BaseUserManager):
         """
         Helper method for creating a generic user
 
-        @type is_student: ```bool```  
+        @type is_student: `bool`  
         @param is_student: if the user is a student  
-        @type is_employer: ```bool```  
+        @type is_employer: `bool`  
         @param is_employer: if the user is an emoloyer  
-        @rtpe: ```User```  
-        @return: new ```User``` object
+        @rtpe: `User`  
+        @return: new `User` object
         """
 
         user = self.model(email=self.normalize_email(email))
@@ -48,8 +48,8 @@ class UserManager(BaseUserManager):
         """
         Helper method for creating a superuser user
 
-        @rtype: ```User```  
-        @return: new ```User``` object
+        @rtype: `User`  
+        @return: new `User` object
         """
 
         user = self.create_user(

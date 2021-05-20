@@ -2,22 +2,26 @@ import os
 
 from helpers.email import send_email, send_email_thread
 
-__all__ = ['RequestInterview', 'RejectStudent', 'AcceptStudent',
-           'ConfirmAcceptance', 'DeclineAcceptance', 'Applied']
 
 """
 Helper classes for sending emails after certian actions for the applications app
 Currently we support the following 6 helper classes:
 
-1. **filter_from_notif** - filter unread notifications by a certian listing
+1. **`RequestInterview`** - implements helper methods for emailing an applicant about an interview request
+2. **`RejectStudent`** - implements helper methods for emailing an applicant about a rejection
+3. **`AcceptStudent`** - implements helper methods for emailing an applicant about an acceptance
+4. **`ConfirmAcceptance`** - implements helper methods for emailing an employer about a confrimed acceptance
+5. **`DeclineAcceptance`** - implements helper methods for emailing an employer about a declined acceptance
+6. **`Applied`** - implements helper methods for emailing an employer about a new application
 """
 
 
 class RequestInterview:
+
     @staticmethod
-    def request_interview_msg(company) -> str:
+    def request_interview_msg(company, title) -> str:
         return f'''
-Congratulations, you have moved onto the next stage of the recruitment process for {company.employer_profile.company_name}.
+Congratulations, you have moved onto the next stage of the recruitment process for {title}.
 {company.employer_profile.company_name} will schedule an interview with you shortly, if you have any questions please email 
 {company.email} or reply to this email.
 
@@ -25,9 +29,10 @@ From, the Interniac Team
                                 '''
 
     @staticmethod
-    def request_interview_email(student, listing):
+    def request_interview_email(student, listing) -> None:
         email = student.email
-        message = RequestInterview.request_interview_msg(listing.company)
+        message = RequestInterview.request_interview_msg(
+            listing.company, listing.title)
 
         send_email(body=message, from_email=os.environ.get("EMAIL"),
                    to=[email], subject=f"Next steps for {listing.title}",
@@ -35,6 +40,7 @@ From, the Interniac Team
 
 
 class RejectStudent:
+
     @staticmethod
     def reject_student_msg(company, title) -> str:
         return f'''
@@ -80,6 +86,7 @@ From, the Interniac Team
 
 
 class ConfirmAcceptance:
+
     @staticmethod
     def confirmed_message(student_name, title) -> str:
         return f'''
@@ -100,6 +107,7 @@ From, the Interniac Team
 
 
 class DeclineAcceptance:
+
     @staticmethod
     def declined_message(student_name, title) -> str:
         return f'''
@@ -120,6 +128,7 @@ From, the Interniac Team
 
 
 class Applied:
+
     @staticmethod
     def applied_msg(student_name, title) -> str:
         return f'''

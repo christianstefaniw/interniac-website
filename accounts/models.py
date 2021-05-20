@@ -12,9 +12,9 @@ from connect_x.settings import DEBUG
 Models for the accounts application  
 Currently we support the following 3 models:
 
-1. **```User```** - custum user model
-2. **```EmployerProfile```** - additional account info for employer user
-3. **```StudentProfile```** - additional account info for student user
+1. **`User`** - custum user model
+2. **`EmployerProfile`** - additional account info for employer user
+3. **`StudentProfile`** - additional account info for student user
 
 """
 
@@ -61,7 +61,7 @@ class User(AbstractUser):
 class EmployerProfile(models.Model):
     """
     Profile for employer user, meant to contain extra data specific to employers.  
-    This model will be related to a ```User``` instance if the ```is_employer``` field set to True.
+    This model will be related to a `User` instance if the `is_employer` field set to True.
     """
 
     user = models.OneToOneField(
@@ -70,7 +70,7 @@ class EmployerProfile(models.Model):
     company_website = models.URLField(blank=True)
 
     def slug_employer(self):
-        """Unique slugify related ```User``` instance with company's name"""
+        """Unique slugify related `User` instance with company's name"""
 
         self.user.slug = f"{self.company_name}"
         unique_slugify(self.user, self.user.slug)
@@ -91,7 +91,7 @@ class EmployerProfile(models.Model):
 class StudentProfile(models.Model):
     """
     Profile for student user, meant to contain extra data specific to students.  
-    This model will be related to a ```User``` instance if the ```is_student``` field set to True.
+    This model will be related to a `User` instance if the `is_student` field set to True.
     """
 
     user = models.OneToOneField(
@@ -115,7 +115,7 @@ class StudentProfile(models.Model):
     link4 = models.URLField(null=True, blank=True)
 
     def slug_student(self):
-        """Unique slugify related ```User``` instance with student's full name"""
+        """Unique slugify related `User` instance with student's full name"""
 
         self.user.slug = self.user.get_full_name
         unique_slugify(self.user, self.user.slug)
@@ -124,7 +124,7 @@ class StudentProfile(models.Model):
         """
         Archive an interview request for a listing specified for this student
 
-        @type listing: ```Listing```  
+        @type listing: `Listing`  
         @param listing: the listing that this student was requested an interview for
         """
 
@@ -134,7 +134,7 @@ class StudentProfile(models.Model):
         """
         Archive an acceptance for a listing specified for this user
 
-        @type listing: ```Listing```  
+        @type listing: `Listing`  
         @param listing: the listing that this student was accepted to
         """
 
@@ -144,7 +144,7 @@ class StudentProfile(models.Model):
         """
         Archive a rejection for a listing specified for this user
 
-        @type listing: ```Listing```  
+        @type listing: `Listing`  
         @param listing: the listing that this student was accepted to
         """
 

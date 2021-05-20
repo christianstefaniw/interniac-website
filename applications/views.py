@@ -23,7 +23,7 @@ def apply_and_email(request, listing_id):
     listing owner that the user applied  
 
     @param listing_id: the id of the listing that the user wants to apply for  
-    @type listing_id: int  
+    @type listing_id: `int`  
     """
     listing = Listing.objects.get(id=listing_id)
     listing.apply(request.user)
@@ -45,7 +45,7 @@ def unapply(request, listing_id):
     This function based view unapplies the current user from the selected listing  
 
     @param listing_id: the id of the listing that the user wants to unapply to  
-    @type param: ```int```  
+    @type param: `int`  
     """
     listing = Listing.objects.get(id=listing_id)
     listing.unapply(request.user)
@@ -65,9 +65,9 @@ def accept_and_email(request, listing_id, student_id):
     This function based view accepts an application and emails the applicant that they were accepted  
 
     @param listing_id: the id of the listing that the applicant applied to  
-    @type listing_id: ```int```  
+    @type listing_id: `int`  
     @param student_id: the id of the user that is being accepted  
-    @type student_id: ```int```  
+    @type student_id: `int`  
     """
     listing = Listing.objects.get(id=listing_id)
 
@@ -87,9 +87,9 @@ def reject_and_email(request, listing_id, student_id):
     This function based view rejects an application and emails the applicant that they were rejected  
 
     @param listing_id: the id of the listing that the applicant applied to  
-    @type listing_id: ```int```  
+    @type listing_id: `int`  
     @param student_id: the id of the user that is being accepted  
-    @type student_id: ```int```  
+    @type student_id: `int`  
     """
     listing = Listing.objects.get(id=listing_id)
 
@@ -110,9 +110,9 @@ def request_interview_and_email(request, listing_id, student_id):
     sends the applicant an email that an interview was requested  
 
     @param listing_id: the id of the listing that the applicant applied to  
-    @type listing_id: ```int```  
+    @type listing_id: `int`  
     @param student_id: the id of the user that is being requested  
-    @type student_id: ```int```  
+    @type student_id: `int`  
     """
     listing = Listing.objects.get(id=listing_id)
 
@@ -131,16 +131,16 @@ class SingleApplication(LoginRequiredMixin, TemplateView):
     This class based view allows the listing owner to view an applicants application  
 
     @kwarg listing_slug: slug id for the selected listing  
-    @type listing_slug: ```slug```  
+    @type listing_slug: `slug`  
     @kwarg user_slug: the slug id for the applicants account  
-    @type user_slug: ```slug```  
-    """ 
+    @type user_slug: `slug`  
+    """
 
     template_name = 'applications/employer/single-application.html'
 
     def get(self, *args, **kwargs):
         """
-        This method overrides the ```TemplateView``` get method, this validates that the current user is the owner of the requested listing  
+        This method overrides the `TemplateView` get method. It validates that the current user is the owner of the requested listing  
         """
         if self.request.user != self.get_listing().company:
             raise PermissionDenied
@@ -148,7 +148,7 @@ class SingleApplication(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         """
-        This method overrides the default ```TemplateView``` ```get_context_data``` method to provide
+        This method overrides the default `TemplateView` `get_context_data` method to provide
         additional information (context) to the template  
         """
         context = super().get_context_data()
@@ -160,7 +160,7 @@ class SingleApplication(LoginRequiredMixin, TemplateView):
         """
         This method retrieves the applicants account  
 
-        @returns ```User``` object  
+        @returns `User` object  
         """
         return User.objects.get(slug=self.kwargs['user_slug'])
 
@@ -168,7 +168,7 @@ class SingleApplication(LoginRequiredMixin, TemplateView):
         """
         This method retrieves the listing that the applicant applied to   
 
-        @returns ```Listing``` object  
+        @returns `Listing` object  
         """
         return Listing.objects.get(slug=self.kwargs['listing_slug'])
 
@@ -181,11 +181,11 @@ class AllApplications(EmployerRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         """
-        This method overrides the default ```TemplateView``` ```get_context_data``` method to provide 
+        This method overrides the default `TemplateView` `get_context_data` method to provide 
         additional information (context) to the template  
 
         @kwarg slug: the slug identifer for a listing  
-        @type slug: ```slug```   
+        @type slug: `slug`   
         """
 
         context = super(AllApplications, self).get_context_data(**kwargs)
@@ -198,14 +198,14 @@ class AllAcceptances(EmployerRequiredMixin, TemplateView):
     This class based view renders all of the acceptances for a selected listing  
 
     @kwarg slug: the slug identifer for a listing  
-    @type slug: ```slug```  
+    @type slug: `slug`  
     """
 
     template_name = 'applications/employer/all/all-acceptances.html'
 
     def get_context_data(self, **kwargs):
         """
-        This method overrides the default ```TemplateView``` ```get_context_data``` method to provide additional 
+        This method overrides the default `TemplateView` `get_context_data` method to provide additional 
         information (context) to the template  
         """
         context = super(AllAcceptances, self).get_context_data(**kwargs)
@@ -218,14 +218,14 @@ class AllRejections(EmployerRequiredMixin, TemplateView):
     This class based view renders all of the rejections for a selected listing  
 
     @kwarg slug: the slug identifer for a listing  
-    @type slug: ```slug```  
+    @type slug: `slug`  
     """
 
     template_name = 'applications/employer/all/all-rejections.html'
 
     def get_context_data(self, **kwargs):
         """
-        This method overrides the default ```TemplateView``` ```get_context_data``` method to provide additional 
+        This method overrides the default `TemplateView` `get_context_data` method to provide additional 
         information (context) to the template  
         """
         context = super(AllRejections, self).get_context_data(**kwargs)
@@ -238,14 +238,14 @@ class AllInterviewRequests(EmployerRequiredMixin, TemplateView):
     This class based view renders all of the interview requests for a selected listing  
 
     @kwarg slug: the slug identifer for a listing  
-    @type slug: ```slug```  
+    @type slug: `slug`  
     """
 
     template_name = 'applications/employer/all/all-interviewrequests.html'
 
     def get_context_data(self, **kwargs):
         """
-        This method overrides the default ```TemplateView``` ```get_context_data``` method to provide additional 
+        This method overrides the default `TemplateView` `get_context_data` method to provide additional 
         information (context) to the template  
         """
         context = super(AllInterviewRequests, self).get_context_data(**kwargs)
@@ -258,14 +258,14 @@ class AllAwaitingConfirm(EmployerRequiredMixin, TemplateView):
     This class based view renders all of the acceptances awaiting confirmation from the applicant  
 
     @kwarg slug: the slug identifer for a listing  
-    @type slug: ```slug```  
+    @type slug: `slug`  
     """
 
     template_name = 'applications/employer/all/all-awaiting-confirm.html'
 
     def get_context_data(self, **kwargs):
         """
-        This method overrides the default ```TemplateView``` ```get_context_data``` method to provide additional 
+        This method overrides the default `TemplateView` `get_context_data` method to provide additional 
         information (context) to the template  
         """
         context = super(AllAwaitingConfirm, self).get_context_data(**kwargs)
@@ -307,18 +307,19 @@ class AwaitingConfirm(TemplateView):
 
 class ArchiveAcceptance(LoginRequiredMixin, RedirectView):
     """
-    This class based view archives an acceptance and redirects to the ```acceptances``` url  
+    This class based view archives an acceptance and redirects to the `acceptances` url  
 
     @kwarg listing_id: the id of the listing that the user was accepted for  
-    @type listing_id: ```int```  
+    @type listing_id: `int`  
     @kwarg student_id: the id of the student that was accepted  
+    @type student_id: `int`
     """
 
     url = reverse_lazy('acceptances')
 
     def get_redirect_url(self, *args, **kwargs):
         """
-        This method overrides the ```RedirectView``` ```get_redirect_url``` method.  
+        This method overrides the `RedirectView` `get_redirect_url` method.  
         This method also archives an acceptance with slightly different functionality depending on if the current user if an employer or student.  
         """
         listing = Listing.objects.get(id=self.kwargs.get('listing_id'))
@@ -340,10 +341,10 @@ class ArchiveAcceptance(LoginRequiredMixin, RedirectView):
 
 class ArchiveInterviewRequest(LoginRequiredMixin, RedirectView):
     """
-    This class based view archives an interview request and redirects to the ```interview_requests``` url  
+    This class based view archives an interview request and redirects to the `interview_requests` url  
 
     @kwarg listing_id: the id of the listing that the user was requested for  
-    @type listing_id: ```int```  
+    @type listing_id: `int`  
     @kwarg student_id: the id of the student that was requested  
     """
 
@@ -351,7 +352,7 @@ class ArchiveInterviewRequest(LoginRequiredMixin, RedirectView):
 
     def get_redirect_url(self, *args, **kwargs):
         """
-        This method overrides the ```RedirectView``` ```get_redirect_url``` method. 
+        This method overrides the `RedirectView` `get_redirect_url` method. 
         This method also archives an intervew request with slightly different functionality depending on if the current user if an employer or student.  
         """
         listing = Listing.objects.get(id=self.kwargs.get('listing_id'))
@@ -370,10 +371,10 @@ class ArchiveInterviewRequest(LoginRequiredMixin, RedirectView):
 
 class ArchiveRejection(LoginRequiredMixin, RedirectView):
     """
-    This class based view archives a rejection and redirects to the ```interview_requests``` url  
+    This class based view archives a rejection and redirects to the `interview_requests` url  
 
     @kwarg listing_id: the id of the listing that the user was rejected for  
-    @type listing_id: ```int```  
+    @type listing_id: `int`  
     @kwarg student_id: the id of the student that was rejected  
     """
 
@@ -381,7 +382,7 @@ class ArchiveRejection(LoginRequiredMixin, RedirectView):
 
     def get_redirect_url(self, *args, **kwargs):
         """
-        This method overrides the ```RedirectView``` ```get_redirect_url``` method.  
+        This method overrides the `RedirectView` `get_redirect_url` method.  
         This method also archives a rejection with slightly different functionality depending on if the current user if an employer or student  
         """
         listing = Listing.objects.get(id=self.kwargs.get('listing_id'))
@@ -403,14 +404,14 @@ class DeclineAcceptanceAndEmail(RedirectView, StudentRequiredMixin):
     This class based view declines an acceptance and emails the user that accepted them that they declined  
 
     @kwarg listing_id: the id of the listing that the student was accepted to  
-    @type listing_id: ```int```  
+    @type listing_id: `int`  
     """
 
     url = reverse_lazy('awaiting_confirm')
 
     def get_redirect_url(self, *args, **kwargs):
         """
-        This method overrides the ```RedirectView``` ```get_redirect_url``` method.  
+        This method overrides the `RedirectView` `get_redirect_url` method.  
         This method also declines the acceptance and emails the employer  
         """
         listing = Listing.objects.get(id=self.kwargs.get('listing_id'))
@@ -427,7 +428,7 @@ class ConfirmAcceptanceAndEmail(RedirectView, StudentRequiredMixin):
     This class based view confirms an acceptance and emails the user that accepted them that they confirmed  
 
     @kwarg listing_id: the id of the listing that the student was accepted to  
-    @type listing_id: ```int```  
+    @type listing_id: `int`  
     """
 
     url = reverse_lazy('awaiting_confirm')
@@ -455,10 +456,10 @@ class Applications(LoginRequiredMixin, TemplateView):
 def clear_application_notifications(request, slug):
     """
     This function based view clears all of an employers application
-    notifications for a certian listing and redirects to the ```applications``` url.  
+    notifications for a certian listing and redirects to the `applications` url.  
 
     @param slug: the slug identifier for the selected listing  
-    @type slug: ```slug```  
+    @type slug: `slug`  
     """
     listing = Listing.objects.get(slug=slug)
     notifs = request.user.notifications.unread()
