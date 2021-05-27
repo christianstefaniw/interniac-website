@@ -1,7 +1,7 @@
 language: python
 
 python: 
-  - "3.9.4"
+  - "3.9"
 
 install:
   - pip install -r requirements.txt
@@ -10,4 +10,4 @@ script:
   - python -m coverage run --source='.' manage.py test .
 
 after_success:
-  - codecov
+  - bash <(curl -s https://codecov.io/bash) -f .coverage
