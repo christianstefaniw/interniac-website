@@ -1,21 +1,14 @@
 language: python
 
-os:
-  - linux
-
 python: 
-  - "3.9"
-
-before_install:
-  - sudo apt-get update
-  - sudo apt-get install python3
+  - "3.9.4"
 
 install:
   - pip install -r requirements.txt
+  - pip install codecov
 
 script:
   - coverage run --source='.' manage.py test .
-  - python manage.py test
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash) -f .coverage
+  - bash <(curl -s https://codecov.io/bash)
