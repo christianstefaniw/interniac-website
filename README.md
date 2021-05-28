@@ -15,3 +15,12 @@
     </a>
 </div>
 
+<div align="center">
+    <a href="https://codecov.io/gh/Interniac/interniac-website">
+        <img src="https://codecov.io/gh/Interniac/interniac-website/branch/master/graph/badge.svg?token=AN189HSGXH"/>
+    </a>
+    <a href="https://travis-ci.com/Interniac/interniac-website.svg?branch=master">
+        <img src="https://travis-ci.com/Interniac/interniac-website.svg?branch=master" />
+    </a>
+</div>
+
