@@ -75,6 +75,8 @@ class Listing(models.Model):
     posted = models.DateField(default=timezone.now, blank=True)
     slug = models.SlugField(max_length=50, unique=False, blank=True)
 
+    already_applied = models.ManyToManyField('accounts.User', related_name='already_applied', blank=True)
+
     @property
     def summarize(self):
         data = {
@@ -98,8 +100,14 @@ class Listing(models.Model):
     def get_absolute_url(self):
         return reverse('listing', kwargs={'slug': self.slug})
 
-    def apply(self, student):        
+    def has_student_already_applied(self, student) -> bool:
+        return student in self.already_applied.all()
+
+    def apply(self, student):
         self.add_application(student)
+        if not self.has_student_already_applied(student):
+            self.already_applied.add(student)
+            
         if self.company.notifications.unread().filter(actor_object_id=self.id).filter(action_object_object_id=student.id).count() != 0:
             return
 

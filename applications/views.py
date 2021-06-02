@@ -26,8 +26,11 @@ def apply_and_email(request, listing_id):
     @type listing_id: `int`  
     """
     listing = Listing.objects.get(id=listing_id)
+
+    if not listing.has_student_already_applied(request.user):
+        Applied.applied_email(request.user, listing)
+
     listing.apply(request.user)
-    Applied.applied_email(request.user, listing)
     redirect_where = request.GET.get('redirect')
     if redirect_where == 'profile':
         return redirect(request.user)
