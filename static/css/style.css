@@ -5,6 +5,7 @@ GENERAL
 
 :root {
     --primary-color: #040456;
+    --primary-light: #161679;
     --secondary-color: #3dadff;
     --bg-color-primary: #58b895;
     --bg-color-secondary: #8beaff;
@@ -630,21 +631,22 @@ ul {
     cursor: pointer;
     display: block;
     min-width: 100%;
-    padding: 4px;
-    border-radius: 10px;
-    border: 1px solid black;
+    padding: 0.5rem;
+    color: #ffffff;
+    border: none;
     outline: none !important;
-    background-color: #efefef;
+    background-color: var(--primary-color);
+}
+
+.apply-unapply-btn:hover{
+    transition: background-color 0.5s ease;
+    background-color: var(--primary-light);
 }
 
 .break {
     word-wrap: break-word;
 }
 
-.apply-unapply-btn:hover {
-    transition: background-color 0.5s ease;
-    background-color: #e2dcdc;
-}
 
 /* END MARKETPLACE */
 
