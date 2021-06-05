@@ -14,17 +14,17 @@ class Filter(forms.Form):
         ('virtual', 'virtual'),
         ('in-person', 'in-person')
     ]
-    WHERE_AND_EMPTY = [('', 'all')] + FILTERS_WHERE
-    TYPES_AND_EMPTY = [('', 'all')] + FILTERS_TYPE
+    WHERE_AND_EMPTY = [('', '---------')] + FILTERS_WHERE
+    TYPES_AND_EMPTY = [('', '---------')] + FILTERS_TYPE
 
     type = forms.ChoiceField(choices=TYPES_AND_EMPTY,
-                             widget=forms.CheckboxSelectMultiple)
+                             )
     where = forms.ChoiceField(choices=WHERE_AND_EMPTY,
-                              widget=forms.CheckboxSelectMultiple)
+                              )
     career = forms.ModelChoiceField(
-        queryset=Career.objects.all(), widget=forms.CheckboxSelectMultiple)
+        queryset=Career.objects.all(), )
     company = forms.ModelChoiceField(
-        queryset=EmployerProfile.objects.all(), widget=forms.CheckboxSelectMultiple)
+        queryset=EmployerProfile.objects.all())
 
 
 class CreateListingForm(forms.ModelForm):

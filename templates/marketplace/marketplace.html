@@ -60,18 +60,15 @@
 
         <div id="market-container">
             <section>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="ml-3">
-                            {% if user.is_employer %}
-                                <div class="mb-3">
-                                    <a href="{% url 'createlisting' %}">Create a listing</a>
-                                </div>
-                            {% endif %}
-                            <button class="btn btn-outline-primary mb-3" style="padding: 5px" id="show-hide-btn" onclick="showFilters()">Hide Filters</button>
-                            <div id="filters-container" style="display: block;">
-                                {% include 'marketplace/filters.html' %}
+                <div class="row justify-content-around">
+                    <div class="col-md-3 mb-5">
+                        {% if user.is_employer %}
+                            <div class="mb-3">
+                                <a href="{% url 'createlisting' %}">Create a listing</a>
                             </div>
+                        {% endif %}
+                        <div id="filters-container" class="d-block mt-5">
+                            {% include 'marketplace/filters.html' %}
                         </div>
                     </div>
                     <div class="col-md-8">

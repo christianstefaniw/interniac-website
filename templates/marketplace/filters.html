@@ -1,20 +1,35 @@
 <form name="filters" method="get" id="filters" action="{% url 'filter' %}">
-    {{ filters.type.label_tag }}
-    {{ filters.type }}
+    <div>
+        {{ filters.type.label_tag }}
+        {{ filters.type }}
+    </div>
+
+    <div class="mt-4">
+        {{ filters.where.label_tag }}
+        {{ filters.where }}
+    </div>
+
+    <div class="mt-4">
+        {% if filters.career %}
+            {{ filters.career.label_tag }}
+            {{ filters.career }}
+        {% endif %}
+    </div>
+
+    <div class="mt-4">
+        {% if filters.company %}
+            {{ filters.company.label_tag }}
+            {{ filters.company }}
+        {% endif %}
+    </div>
+    
 
 
-    {{ filters.where.label_tag }}
-    {{ filters.where }}
+    
 
-    {% if filters.career %}
-        {{ filters.career.label_tag }}
-        {{ filters.career }}
-    {% endif %}
+    
 
-    {% if filters.company %}
-        {{ filters.company.label_tag }}
-        {{ filters.company }}
-    {% endif %}
+    
 </form>
 
 
@@ -23,7 +38,7 @@
     let filtersForm = $('#filters');
     let filters;
 
-    $('form ul li input').change(function () {
+    $('form select').change(function () {
         filter()
     })
 

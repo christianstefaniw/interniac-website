@@ -67,7 +67,8 @@ class FilterListings(LoginRequiredMixin, ListView):
                 query = query & Q(where__istartswith=params.getlist('where')[i])
         if params.getlist('career'):
             for i in range(len(params.getlist('career'))):
-                query = query & Q(career_id=int(params.getlist('career')[i]))
+                if params.getlist('career')[i].isdigit():
+                    query = query & Q(career_id=int(params.getlist('career')[i]))
         if params.get('search'):
             query = query & Q(title__icontains=params.get('search')) | Q(description__icontains=params.get('search'))
         if params.get('company'):
