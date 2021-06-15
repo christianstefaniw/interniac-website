@@ -104,8 +104,9 @@
                     {% endif %}
 
                     {% if object.application_url %}
-                        <h4 class="mt-5">Application URL</h4>
-                        <a href="{{ object.application_url }}">{{ object.application_url }}</a>
+                        <h4 class="mt-5 mb-3">Apply on Company Site </h4>
+                        <a class="success-cta-btn  mat-btn" target="_blank" rel="noopener"
+                                href="{{ object.application_url }}">Apply</a>
                     {% endif %}
 
                     <div class="mt-5 mb-5">

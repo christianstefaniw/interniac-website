@@ -36,7 +36,8 @@
                             {% elif user in listing.awaiting_confirm_acceptance.all %}
                                 <p class="text-info m-0">Awaiting confirmation</p>
                             {% elif listing.application_url %}
-                                <p></p>
+                                <a class="apply-unapply-btn text-center" target="_blank" rel="noopener"
+                                    href="{{ listing.application_url }}">Apply</a>
                             {% else %}
                                 {% if listing in user.applications.all %}
                                     <button class="apply-unapply-btn" onclick="unapply({{ listing.id }}, this)">

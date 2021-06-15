@@ -639,6 +639,7 @@ ul {
 }
 
 .apply-unapply-btn:hover{
+    color: #ffffff;
     transition: background-color 0.5s ease;
     background-color: var(--primary-light);
 }
