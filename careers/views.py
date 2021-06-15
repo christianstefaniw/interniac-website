@@ -17,7 +17,7 @@ Currently we support the following views:
 
 class CareersPage(ListView):
     template_name = 'careers/careers.html'
-    ordering = ['-posted']
+    ordering = ['posted']
     model = Career
 
 
