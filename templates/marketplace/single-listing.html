@@ -59,48 +59,48 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-9 text-break" style="overflow-wrap: break-word;">
-                    <h1>{{ object.title }}</h1>
+                    <h1>{{ object.title|linebreaks }}</h1>
 
                     <h4 class="mt-5">Company</h4>
-                    <p>{{ object.company.employer_profile.company_name }}</p>
+                    <p>{{ object.company.employer_profile.company_name|linebreaks }}</p>
 
                     <h4 class="mt-5">Type</h4>
-                    <p>{{ object.type }}</p>
+                    <p>{{ object.type|linebreaks }}</p>
 
                     {% if object.type == 'Paid' %}
                     <h4 class="mt-5">Pay</h4>
-                    <p>${{ object.pay }}</p>
+                    <p>${{ object.pay|linebreaks }}</p>
                     {% endif %}
 
                     <h4 class="mt-5">Where</h4>
-                    <p>{{ object.where }}</p>
+                    <p>{{ object.where|linebreaks }}</p>
 
                     {% if object.where == 'In-Person' %}
                         <h4 class="mt-5">Location</h4>
-                        <p>{{ object.location }}</p>
+                        <p>{{ object.location|linebreaks }}</p>
                     {% endif %}
 
                     <h4 class="mt-5">Career</h4>
-                    <p>{{ object.career }}</p>
+                    <p>{{ object.career|linebreaks }}</p>
 
                     <h4 class="mt-5">Time commitment</h4>
-                    <p>{{ object.time_commitment }}</p>
+                    <p>{{ object.time_commitment|linebreaks }}</p>
 
                     <h4 class="mt-5">Application deadline</h4>
-                    <p>{{ object.application_deadline }}</p>
+                    <p>{{ object.application_deadline|linebreaks }}</p>
 
                     <h4 class="mt-5">Description</h4>
-                    <p>{{ object.description }}</p>
+                    <p>{{ object.description|linebreaks }}</p>
 
                     <div>
                         <h4 class="mt-5">Email</h4>
-                        <a href="mailto:{{ object.company.email }}">{{ object.company.email }}</a>
+                        <a href="mailto:{{ object.company.email }}">{{ object.company.email|linebreaks }}</a>
                     </div>
 
 
                     {% if object.company.employer_profile.company_website %}
                         <h4 class="mt-5">{{ object.company.employer_profile.company_name }}'s Website</h4>
-                        <a href="{{ object.company.employer_profile.company_website }}">{{ object.company.employer_profile.company_website }}</a>
+                        <a href="{{ object.company.employer_profile.company_website }}">{{ object.company.employer_profile.company_website|linebreaks }}</a>
                     {% endif %}
 
                     {% if object.application_url %}
