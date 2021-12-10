@@ -2,143 +2,147 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        {% include 'boilerplate/bootstrap.html' %}
-        <link rel="stylesheet" href="{% static "css/style.css" %}"/>
-        <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logos/logo-small-transparent.png' %}"/>
-        <script src="https://kit.fontawesome.com/a76f8913d2.js" crossorigin="anonymous"></script>
-        <title>Interniac</title>
-    </head>
-    <body>
-        <section id="nav">
-            <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand" href="{% url 'home' %}">
-                    <img width=200 height="50" src="{% static "assets/images/logos/logo-transparent.png" %}" alt="logo"/>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'home' %}">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'careers' %}">Careers</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'aboutus' %}">About Us</a>
-                        </li>
-                        {% if user.is_authenticated %}
-                            <li class="nav-item nav-item-active">
-                                <a class="nav-link" href="{% url 'marketplace' %}">Marketplace</a>
-                            </li>
-                        {% endif %}
-                        <li class="nav-item">
-                            {% if user.is_authenticated %}
-                                <a class="nav-link" href="{{ user.get_absolute_url }}">Account</a>
-                            {% else %}
-                                <a class="nav-link" href="{% url 'login' %}">Login</a>
-                            {% endif %}
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </section>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include 'boilerplate/bootstrap.html' %}
+    <link rel="stylesheet" href="{% static " css/style.css" %}" />
+    <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logos/logo-small-transparent.png' %}" />
+    <script src="https://kit.fontawesome.com/a76f8913d2.js" crossorigin="anonymous"></script>
+    <title>Interniac</title>
+</head>
 
-        <div class="mb-2 ml-2">
-            <a href="{{ request.META.HTTP_REFERER }}">
-                <i class="fas fa-arrow-circle-left fa-2x"></i>
+<body>
+    <section id="nav">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img width=200 height="50" src="{% static " assets/images/logos/logo-transparent.png" %}" alt="logo" />
             </a>
-        </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-9 text-break" style="overflow-wrap: break-word;">
-                    <h1>{{ object.title|linebreaks }}</h1>
-
-                    <h4 class="mt-5">Company</h4>
-                    <p>{{ object.company.employer_profile.company_name|linebreaks }}</p>
-
-                    <h4 class="mt-5">Type</h4>
-                    <p>{{ object.type|linebreaks }}</p>
-
-                    {% if object.type == 'Paid' %}
-                    <h4 class="mt-5">Pay</h4>
-                    <p>${{ object.pay|linebreaks }}</p>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'careers' %}">Careers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'aboutus' %}">About Us</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item nav-item-active">
+                        <a class="nav-link" href="{% url 'marketplace' %}">Marketplace</a>
+                    </li>
                     {% endif %}
-
-                    <h4 class="mt-5">Where</h4>
-                    <p>{{ object.where|linebreaks }}</p>
-
-                    {% if object.where == 'In-Person' %}
-                        <h4 class="mt-5">Location</h4>
-                        <p>{{ object.location|linebreaks }}</p>
-                    {% endif %}
-
-                    <h4 class="mt-5">Career</h4>
-                    <p>{{ object.career|linebreaks }}</p>
-
-                    <h4 class="mt-5">Time commitment</h4>
-                    <p>{{ object.time_commitment|linebreaks }}</p>
-
-                    <h4 class="mt-5">Application deadline</h4>
-                    <p>{{ object.application_deadline|linebreaks }}</p>
-
-                    <h4 class="mt-5">Description</h4>
-                    <p>{{ object.description|linebreaks }}</p>
-
-                    <div>
-                        <h4 class="mt-5">Email</h4>
-                        <a href="mailto:{{ object.company.email }}">{{ object.company.email|linebreaks }}</a>
-                    </div>
-
-
-                    {% if object.company.employer_profile.company_website %}
-                        <h4 class="mt-5">{{ object.company.employer_profile.company_name }}'s Website</h4>
-                        <a href="{{ object.company.employer_profile.company_website }}">{{ object.company.employer_profile.company_website|linebreaks }}</a>
-                    {% endif %}
-
-                    {% if object.application_url %}
-                        <h4 class="mt-5 mb-3">Apply on Company Site </h4>
-                        <a class="success-cta-btn  mat-btn" target="_blank" rel="noopener"
-                                href="{{ object.application_url }}">Apply</a>
-                    {% endif %}
-
-                    <div class="mt-5 mb-5">
-                        {% if user.is_student and not object.application_url %}
-                            {% if listing in user.applications.all %}
-                                <a class="danger-cta-btn  mat-btn"
-                                href="{% url 'unapply' listing_id=listing.id %}?redirect=success">Unapply</a>
-                            {% elif user in listing.rejections.all %}
-                                <p class="text-danger m-0">Rejected</p>
-                            {% elif user in listing.acceptances.all %}
-                                <p class="text-success m-0">Accepted</p>
-                            {% elif user in listing.interview_requests.all %}
-                                <p class="text-info m-0">Interview requested</p>
-                            {% elif user in listing.awaiting_confirm_acceptance.all %}
-                                <p class="text-info m-0">Awaiting confirmation</p>
-                            {% elif listing not in user.applications.all %}
-                                <a class="success-cta-btn  mat-btn mt-5 mb-5"
-                                href="{% url 'apply' listing_id=listing.id %}?redirect=success">Apply</a>
-                            {% endif %}
+                    <li class="nav-item">
+                        {% if user.is_authenticated %}
+                        <a class="nav-link" href="{{ user.get_absolute_url }}">Account</a>
+                        {% else %}
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
                         {% endif %}
-                    </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </section>
 
+    <div class="mb-2 ml-2">
+        <a href="{{ request.META.HTTP_REFERER }}">
+            <i class="fas fa-arrow-circle-left fa-2x"></i>
+        </a>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 text-break" style="overflow-wrap: break-word;">
+                <h1>{{ object.title|linebreaks }}</h1>
+
+                <h4 class="mt-5">Company</h4>
+                <p>{{ object.company.employer_profile.company_name|linebreaks }}</p>
+
+                <h4 class="mt-5">Type</h4>
+                <p>{{ object.type|linebreaks }}</p>
+
+                {% if object.type == 'Paid' %}
+                <h4 class="mt-5">Pay</h4>
+                <p>{{ object.pay }}</p>
+                {% endif %}
+
+                <h4 class="mt-5">Where</h4>
+                <p>{{ object.where|linebreaks }}</p>
+
+                {% if object.where == 'In-Person' %}
+                <h4 class="mt-5">Location</h4>
+                <p>{{ object.location|linebreaks }}</p>
+                {% endif %}
+
+                <h4 class="mt-5">Career</h4>
+                <p>{{ object.career|linebreaks }}</p>
+
+                <h4 class="mt-5">Time commitment</h4>
+                <p>{{ object.time_commitment|linebreaks }}</p>
+
+                <h4 class="mt-5">Application deadline</h4>
+                <p>{{ object.application_deadline|date:'Y-m-d H:i'|linebreaks }}</p>
+
+                <h4 class="mt-5">Description</h4>
+                <p>{{ object.description|linebreaks }}</p>
+
+                <div>
+                    <h4 class="mt-5">Email</h4>
+                    <a href="mailto:{{ object.company.email }}">{{ object.company.email|linebreaks }}</a>
                 </div>
-                <div class="col-lg-3">
-                    <div class="inner-shadow img-box">
-                        <img class="outer-shadow img-fluid" src="{{ listing.company.profile_picture.url }}"
-                             alt="profile picture"/>
-                    </div>
+
+
+                {% if object.company.employer_profile.company_website %}
+                <h4 class="mt-5">{{ object.company.employer_profile.company_name }}'s Website</h4>
+                <a href="{{ object.company.employer_profile.company_website }}">{{
+                    object.company.employer_profile.company_website|linebreaks }}</a>
+                {% endif %}
+
+                {% if object.application_url %}
+                <h4 class="mt-5 mb-3">Apply on Company Site </h4>
+                <a class="success-cta-btn  mat-btn" target="_blank" rel="noopener"
+                    href="{{ object.application_url }}">Apply</a>
+                {% endif %}
+
+                <div class="mt-5 mb-5">
+                    {% if user.is_student and not object.application_url %}
+                    {% if listing in user.applications.all %}
+                    <a class="danger-cta-btn  mat-btn"
+                        href="{% url 'unapply' listing_id=listing.id %}?redirect=success">Unapply</a>
+                    {% elif user in listing.rejections.all %}
+                    <p class="text-danger m-0">Rejected</p>
+                    {% elif user in listing.acceptances.all %}
+                    <p class="text-success m-0">Accepted</p>
+                    {% elif user in listing.interview_requests.all %}
+                    <p class="text-info m-0">Interview requested</p>
+                    {% elif user in listing.awaiting_confirm_acceptance.all %}
+                    <p class="text-info m-0">Awaiting confirmation</p>
+                    {% elif listing not in user.applications.all %}
+                    <a class="success-cta-btn  mat-btn mt-5 mb-5"
+                        href="{% url 'apply' listing_id=listing.id %}?redirect=success">Apply</a>
+                    {% endif %}
+                    {% endif %}
+                </div>
+
+            </div>
+            <div class="col-lg-3">
+                <div class="inner-shadow img-box">
+                    <img class="outer-shadow img-fluid" src="{{ listing.company.profile_picture.url }}"
+                        alt="profile picture" />
                 </div>
             </div>
-
         </div>
-        <script src="{% static 'js/script.js' %}"></script>
-    </body>
+
+    </div>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
 </html>
