@@ -71,7 +71,7 @@
 
                 {% if object.type == 'Paid' %}
                 <h4 class="mt-5">Pay</h4>
-                <p>{{ object.pay }}</p>
+                <p>{{ object.pay|linebreaks }}</p>
                 {% endif %}
 
                 <h4 class="mt-5">Where</h4>
@@ -102,8 +102,8 @@
 
                 {% if object.company.employer_profile.company_website %}
                 <h4 class="mt-5">{{ object.company.employer_profile.company_name }}'s Website</h4>
-                <a href="{{ object.company.employer_profile.company_website }}">{{
-                    object.company.employer_profile.company_website|linebreaks }}</a>
+                <a href="{{ object.company.employer_profile.company_website }}">{{object.company.employer_profile.company_website|linebreaks
+                    }}</a>
                 {% endif %}
 
                 {% if object.application_url %}
