@@ -46,6 +46,11 @@
     </a>
 </div>
 
+<div align='left' style='margin-top: 5rem'>
+    <b><h2>Read the Docs</h2></b>
+    <a href="https://interniac-docs.netlify.app/">View the Interniac docs here</a>
+</div>
+
 <div align="left" style='margin-top: 5rem'>
     <b><h2>Purpose of Project</h2></b>
         Given how competitive University admissions are and how often the average University student changes majors due to career confusion, getting a high school internship is more valuable than ever before. However, pre-university work experience is difficult to come by and oftentimes opportunities are given to students who have strong networks (either through a parent or their school). Today, there is no platform through which high school students all over the country can find an internship on their own. We aim to build a platform that supports high schoolers attending public schools and empowers businesses in hiring bright students. Interniac fills the gap in our education system by simplifying the process for employers to start internship programs and source candidates who are eager to gain valuable out-of-the-classroom work experience. <br> <br>
