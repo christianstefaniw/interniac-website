@@ -6,7 +6,7 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
-from connect_x.views import num_employers, num_students, success, error, terms_and_conditions
+from connect_x.views import success, error, terms_and_conditions
 from home import urls as home_urls
 from authentication import urls as auth_urls
 from accounts import urls as accounts_urls
@@ -15,6 +15,7 @@ from applications import urls as application_urls
 from careers import urls as careers_urls
 from aboutus import urls as aboutus_urls
 from interniac_admin import urls as interniac_admin_urls
+from stats import urls as stats_urls
 
 urlpatterns = [
     path('', include(home_urls)),
@@ -32,8 +33,7 @@ urlpatterns = [
     path('auth/', include(auth_urls)),
     path('marketplace/', include(marketplace_urls)),
     path('applications/', include(application_urls)),
-    path('num-students/', num_students),
-    path('num-employers', num_employers)
+    path('stats/', include(stats_urls))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler500 = 'connect_x.views.error_500'

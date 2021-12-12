@@ -1,7 +1,5 @@
 from django.shortcuts import render
 
-from accounts.models import User
-
 
 def success(request):
     return render(request, 'success-error/success-general.html')
@@ -21,11 +19,3 @@ def error_500(request):
 
 def terms_and_conditions(request):
     return render(request, 'terms_and_conditions.html')
-
-
-def num_students(request):
-    return User.objects.filter(is_student=True).count()
-
-
-def num_employers(request):
-    return User.objects.filter(is_employer=True).count()

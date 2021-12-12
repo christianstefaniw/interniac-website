@@ -1,11 +1,8 @@
-SHELL := /bin/bash
+SHELL:=/bin/bash
 
 .PHONY: venv
 
 all: run
-
-venv:
-	source ./venv/bin/activate
 
 run:
 	python manage.py runserver
@@ -20,8 +17,9 @@ migrate:
 test:
 	python manage.py test --debug-mode
 
-install:
+init-venv:
 	pip install virtualenv
 	virtualenv venv
-	source ./venv/bin/activate
+
+install-reqs:
 	pip install -r requirements.txt
