@@ -1,10 +1,14 @@
 <div align="center">
-    <h1>👷🏿Interniac's Official Website👷‍♀️</h1>
-    <a href='https://www.interniac.org'>https://interniac.org</a>
+    <h1>
+    👷🏿Interniac's Official Website👷‍♀️ <br>
+        <a href='https://www.interniac.org'>https://interniac.org</a>
+
+    </h1>
 </div>
 
 <div align='center'>    
         <img src="https://www.interniac.org/static/assets/images/logos/logo-transparent.a2623b276c16.png" />
+            <a href='https://www.interniac.org'>https://interniac.org</a>
     </div>
 
 <div align="center">
