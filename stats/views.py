@@ -8,7 +8,7 @@ def num_students(request):
         'label': 'students',
         'color': 'green',
         'schemaVersion': 1,
-        'message': User.objects.filter(is_student=True).count()
+        'message': str(User.objects.filter(is_student=True).count())
     }
     return JsonResponse(response_data)
 
@@ -18,6 +18,6 @@ def num_employers(request):
         'label': 'employers',
         'color': 'yellowgreen',
         'schemaVersion': 1,
-        'message': User.objects.filter(is_employer=True).count()
+        'message': str(User.objects.filter(is_employer=True).count())
     }
     return JsonResponse(response_data)
