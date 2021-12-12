@@ -1,13 +1,17 @@
-from django.http.response import HttpResponse
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import JsonResponse
 
 from accounts.models import User
 
 
 def num_students(request):
-    return HttpResponse(User.objects.filter(is_student=True).count())
+    response_data = {
+        'message': User.objects.filter(is_student=True).count()
+    }
+    return JsonResponse(response_data)
 
 
 def num_employers(requst):
-    return HttpResponse(User.objects.filter(is_employer=True).count())
+    response_data = {
+        'message': User.objects.filter(is_employer=True).count()
+    }
+    return JsonResponse(response_data)
