@@ -7,7 +7,6 @@
 
 <div align='center'>    
         <img src="https://www.interniac.org/static/assets/images/logos/logo-transparent.a2623b276c16.png" />
-            <a href='https://www.interniac.org'>https://interniac.org</a>
     </div>
 
 <div align="center">
