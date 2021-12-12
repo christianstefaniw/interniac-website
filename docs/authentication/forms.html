@@ -1,108 +1,123 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta http-equiv="content-type" content="text/html;charset=utf-8">
   <title>forms.py</title>
   <link rel="stylesheet" href="../pycco.css">
 </head>
+
 <body>
-<div id='container'>
-  <div id="background"></div>
-  <div class='section'>
-    <div class='docs'><h1>forms.py</h1></div>
-  </div>
-  <div class='clearall'>
-  <div class='section' id='section-0'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-0'>#</a>
+  <div id='container'>
+    <div id="background"></div>
+    <div class='section'>
+      <div class='docs'>
+        <h1>forms.py</h1>
       </div>
-      <p>Forms for the authentication app<br />
-Currently we support the following form:</p>
-<ol>
-<li><strong><code>UserCreateForm</code></strong> - Form for creating an account</li>
-</ol>
     </div>
-    <div class='code'>
-      <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nocaptcha_recaptcha</span> <span class="kn">import</span> <span class="n">NoReCaptchaField</span>
+    <div class='clearall'>
+      <div class='section' id='section-0'>
+        <div class='docs'>
+          <div class='octowrap'>
+            <a class='octothorpe' href='#section-0'>#</a>
+          </div>
+          <p>Forms for the authentication app<br />
+            Currently we support the following form:</p>
+          <ol>
+            <li><strong><code>UserCreateForm</code></strong> - Form for creating an account</li>
+          </ol>
+        </div>
+        <div class='code'>
+          <div class="highlight">
+            <pre><span></span><span class="kn">from</span> <span class="nn">nocaptcha_recaptcha</span> <span class="kn">import</span> <span class="n">NoReCaptchaField</span>
 
 <span class="kn">from</span> <span class="nn">django</span> <span class="kn">import</span> <span class="n">forms</span>
 <span class="kn">from</span> <span class="nn">django.contrib.auth.forms</span> <span class="kn">import</span> <span class="n">UserCreationForm</span>
 <span class="kn">from</span> <span class="nn">django.core.files.uploadedfile</span> <span class="kn">import</span> <span class="n">InMemoryUploadedFile</span>
 
 <span class="kn">from</span> <span class="nn">accounts.models</span> <span class="kn">import</span> <span class="n">User</span><span class="p">,</span> <span class="n">EmployerProfile</span>
-<span class="kn">from</span> <span class="nn">helpers.profile_img_validation</span> <span class="kn">import</span> <span class="n">validate_profile_img</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-1'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-1'>#</a>
+<span class="kn">from</span> <span class="nn">helpers.profile_img_validation</span> <span class="kn">import</span> <span class="n">validate_profile_img</span></pre>
+          </div>
+        </div>
       </div>
-      
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre><span class="n">ACCOUNT_TYPES</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;student&#39;</span><span class="p">,</span> <span class="s1">&#39;Student&#39;</span><span class="p">),</span>
-                 <span class="p">(</span><span class="s1">&#39;employer&#39;</span><span class="p">,</span> <span class="s1">&#39;Employer&#39;</span><span class="p">)]</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-2'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-2'>#</a>
+      <div class='clearall'></div>
+      <div class='section' id='section-1'>
+        <div class='docs'>
+          <div class='octowrap'>
+            <a class='octothorpe' href='#section-1'>#</a>
+          </div>
+
+        </div>
+        <div class='code'>
+          <div class="highlight">
+            <pre><span class="n">ACCOUNT_TYPES</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;student&#39;</span><span class="p">,</span> <span class="s1">&#39;Student&#39;</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">&#39;employer&#39;</span><span class="p">,</span> <span class="s1">&#39;Employer&#39;</span><span class="p">)]</span></pre>
+          </div>
+        </div>
       </div>
-      
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre><span class="k">class</span> <span class="nc">UserCreateForm</span><span class="p">(</span><span class="n">UserCreationForm</span><span class="p">):</span>
+      <div class='clearall'></div>
+      <div class='section' id='section-2'>
+        <div class='docs'>
+          <div class='octowrap'>
+            <a class='octothorpe' href='#section-2'>#</a>
+          </div>
+
+        </div>
+        <div class='code'>
+          <div class="highlight">
+            <pre><span class="k">class</span> <span class="nc">UserCreateForm</span><span class="p">(</span><span class="n">UserCreationForm</span><span class="p">):</span>
     <span class="n">company_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;register-input&#39;</span><span class="p">}),</span>
                                    <span class="n">help_text</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="n">student_employer</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span><span class="n">choices</span><span class="o">=</span><span class="n">ACCOUNT_TYPES</span><span class="p">,</span>
                                          <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">RadioSelect</span><span class="p">,</span>
                                          <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Student or employer&#39;</span><span class="p">)</span>
-    <span class="n">captcha</span> <span class="o">=</span> <span class="n">NoReCaptchaField</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-3'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-3'>#</a>
+    <span class="n">captcha</span> <span class="o">=</span> <span class="n">NoReCaptchaField</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></pre>
+          </div>
+        </div>
       </div>
-      
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+      <div class='clearall'></div>
+      <div class='section' id='section-3'>
+        <div class='docs'>
+          <div class='octowrap'>
+            <a class='octothorpe' href='#section-3'>#</a>
+          </div>
+
+        </div>
+        <div class='code'>
+          <div class="highlight">
+            <pre>    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">User</span>
         <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;first_name&#39;</span><span class="p">,</span> <span class="s1">&#39;last_name&#39;</span><span class="p">,</span> <span class="s1">&#39;password1&#39;</span><span class="p">,</span> <span class="s1">&#39;password2&#39;</span><span class="p">,</span> <span class="s1">&#39;profile_picture&#39;</span><span class="p">,</span>
-                  <span class="s1">&#39;student_employer&#39;</span><span class="p">)</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-4'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-4'>#</a>
+                  <span class="s1">&#39;student_employer&#39;</span><span class="p">)</span></pre>
+          </div>
+        </div>
       </div>
-      <p>This method overrides the <code>UserCreationForm</code> <code>save</code> method. 
-It preforms actions on the new user instance based on if it&rsquo;s a student or employer account</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">commit</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-5'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-5'>#</a>
+      <div class='clearall'></div>
+      <div class='section' id='section-4'>
+        <div class='docs'>
+          <div class='octowrap'>
+            <a class='octothorpe' href='#section-4'>#</a>
+          </div>
+          <p>This method overrides the <code>UserCreationForm</code> <code>save</code> method.
+            It preforms actions on the new user instance based on if it&rsquo;s a student or employer account</p>
+        </div>
+        <div class='code'>
+          <div class="highlight">
+            <pre>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">commit</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span></pre>
+          </div>
+        </div>
       </div>
-      
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>        <span class="n">user</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">UserCreateForm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">commit</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+      <div class='clearall'></div>
+      <div class='section' id='section-5'>
+        <div class='docs'>
+          <div class='octowrap'>
+            <a class='octothorpe' href='#section-5'>#</a>
+          </div>
+
+        </div>
+        <div class='code'>
+          <div class="highlight">
+            <pre>        <span class="n">user</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">UserCreateForm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">commit</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;student_employer&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;employer&#39;</span><span class="p">:</span>
             <span class="n">user</span><span class="o">.</span><span class="n">is_employer</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="n">user</span><span class="o">.</span><span class="n">is_student</span> <span class="o">=</span> <span class="kc">False</span>
@@ -114,115 +129,131 @@ It preforms actions on the new user instance based on if it&rsquo;s a student or
             <span class="n">user</span><span class="o">.</span><span class="n">employer_profile</span><span class="o">.</span><span class="n">company_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
                 <span class="s1">&#39;company_name&#39;</span><span class="p">)</span>
             <span class="n">user</span><span class="o">.</span><span class="n">employer_profile</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">user</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-6'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-6'>#</a>
+        <span class="k">return</span> <span class="n">user</span></pre>
+          </div>
+        </div>
       </div>
-      <p>This method validates that the uploaded profile picture is an acceptable size.<br />
-x &lt;= 1080 and y &lt;= 1920</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">clean_profile_picture</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-7'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-7'>#</a>
+      <div class='clearall'></div>
+      <div class='section' id='section-6'>
+        <div class='docs'>
+          <div class='octowrap'>
+            <a class='octothorpe' href='#section-6'>#</a>
+          </div>
+          <p>This method validates that the uploaded profile picture is an acceptable size.<br />
+            x &lt;= 1080 and y &lt;= 1920</p>
+        </div>
+        <div class='code'>
+          <div class="highlight">
+            <pre>    <span class="k">def</span> <span class="nf">clean_profile_picture</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre>
+          </div>
+        </div>
       </div>
-      
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>        <span class="n">pic</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">&#39;profile_picture&#39;</span><span class="p">]</span>
+      <div class='clearall'></div>
+      <div class='section' id='section-7'>
+        <div class='docs'>
+          <div class='octowrap'>
+            <a class='octothorpe' href='#section-7'>#</a>
+          </div>
+
+        </div>
+        <div class='code'>
+          <div class="highlight">
+            <pre>        <span class="n">pic</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">&#39;profile_picture&#39;</span><span class="p">]</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">pic</span><span class="p">)</span> <span class="ow">is</span> <span class="n">InMemoryUploadedFile</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">validate_profile_img</span><span class="p">(</span><span class="n">pic</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">pic</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-8'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-8'>#</a>
+        <span class="k">return</span> <span class="n">pic</span></pre>
+          </div>
+        </div>
       </div>
-      <p>This method validates that the selected company name does not already exist</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">clean_company_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-9'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-9'>#</a>
+      <div class='clearall'></div>
+      <div class='section' id='section-8'>
+        <div class='docs'>
+          <div class='octowrap'>
+            <a class='octothorpe' href='#section-8'>#</a>
+          </div>
+          <p>This method validates that the selected company name does not already exist</p>
+        </div>
+        <div class='code'>
+          <div class="highlight">
+            <pre>    <span class="k">def</span> <span class="nf">clean_company_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre>
+          </div>
+        </div>
       </div>
-      
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>        <span class="n">company_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;company_name&#39;</span><span class="p">)</span>
+      <div class='clearall'></div>
+      <div class='section' id='section-9'>
+        <div class='docs'>
+          <div class='octowrap'>
+            <a class='octothorpe' href='#section-9'>#</a>
+          </div>
+
+        </div>
+        <div class='code'>
+          <div class="highlight">
+            <pre>        <span class="n">company_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;company_name&#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">EmployerProfile</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">company_name</span><span class="o">=</span><span class="n">company_name</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">add_error</span><span class="p">(</span><span class="s1">&#39;company_name&#39;</span><span class="p">,</span> <span class="s1">&#39;Company already exists&#39;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">company_name</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-10'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-10'>#</a>
+        <span class="k">return</span> <span class="n">company_name</span></pre>
+          </div>
+        </div>
       </div>
-      <p>Validate that no one messed with the html code</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">clean</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-11'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-11'>#</a>
+      <div class='clearall'></div>
+      <div class='section' id='section-10'>
+        <div class='docs'>
+          <div class='octowrap'>
+            <a class='octothorpe' href='#section-10'>#</a>
+          </div>
+          <p>Validate that no one messed with the html code</p>
+        </div>
+        <div class='code'>
+          <div class="highlight">
+            <pre>    <span class="k">def</span> <span class="nf">clean</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre>
+          </div>
+        </div>
       </div>
-      
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>        <span class="n">cleaned_data</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">UserCreateForm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">clean</span><span class="p">()</span>
+      <div class='clearall'></div>
+      <div class='section' id='section-11'>
+        <div class='docs'>
+          <div class='octowrap'>
+            <a class='octothorpe' href='#section-11'>#</a>
+          </div>
+
+        </div>
+        <div class='code'>
+          <div class="highlight">
+            <pre>        <span class="n">cleaned_data</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">UserCreateForm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">clean</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;student_employer&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;employer&#39;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;company_name&#39;</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">add_error</span><span class="p">(</span><span class="s1">&#39;company_name&#39;</span><span class="p">,</span> <span class="s1">&#39;Enter your companies name&#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;student_employer&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;student&#39;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;company_name&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">add_error</span><span class="p">(</span><span class="s1">&#39;student_employer&#39;</span><span class="p">,</span> <span class="s1">&#39;Student can</span><span class="se">\&#39;</span><span class="s1">t have a company&#39;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">cleaned_data</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-12'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-12'>#</a>
+        <span class="k">return</span> <span class="n">cleaned_data</span></pre>
+          </div>
+        </div>
       </div>
-      <p>This method sets custom labels and help text for certian form fields</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-13'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-13'>#</a>
+      <div class='clearall'></div>
+      <div class='section' id='section-12'>
+        <div class='docs'>
+          <div class='octowrap'>
+            <a class='octothorpe' href='#section-12'>#</a>
+          </div>
+          <p>This method sets custom labels and help text for certian form fields</p>
+        </div>
+        <div class='code'>
+          <div class="highlight">
+            <pre>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span></pre>
+          </div>
+        </div>
       </div>
-      
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>        <span class="nb">super</span><span class="p">(</span><span class="n">UserCreateForm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+      <div class='clearall'></div>
+      <div class='section' id='section-13'>
+        <div class='docs'>
+          <div class='octowrap'>
+            <a class='octothorpe' href='#section-13'>#</a>
+          </div>
+
+        </div>
+        <div class='code'>
+          <div class="highlight">
+            <pre>        <span class="nb">super</span><span class="p">(</span><span class="n">UserCreateForm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">field_name</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;first_name&#39;</span><span class="p">,</span> <span class="s1">&#39;last_name&#39;</span><span class="p">,</span> <span class="s1">&#39;password1&#39;</span><span class="p">,</span> <span class="s1">&#39;password2&#39;</span><span class="p">,</span>
                            <span class="s1">&#39;profile_picture&#39;</span><span class="p">):</span>
 
@@ -234,9 +265,10 @@ x &lt;= 1080 and y &lt;= 1920</p>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="n">field_name</span><span class="p">]</span><span class="o">.</span><span class="n">help_text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 
-</pre></div>
+</pre>
+          </div>
+        </div>
+      </div>
+      <div class='clearall'></div>
     </div>
-  </div>
-  <div class='clearall'></div>
-</div>
 </body>
