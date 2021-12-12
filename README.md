@@ -1,10 +1,11 @@
 <div align="center">
     <h1>👷🏿Interniac's Official Website👷‍♀️</h1>
+    <a href='https://www.interniac.org'>https://interniac.org</a>
 </div>
 
 <div align='center'>    
         <img src="https://www.interniac.org/static/assets/images/logos/logo-transparent.a2623b276c16.png" />
-        </div>
+    </div>
 
 <div align="center">
         <a href="https://www.python.org/downloads/release/python-394/">
