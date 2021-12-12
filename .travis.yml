@@ -4,7 +4,8 @@ python:
   - "3.9"
 
 env:
-  - SECRET_KEY=c38b65a57ac1bc32139009fb5139e2abe9d914cc3b16c01a3b DEBUG=True
+  - SECRET_KEY=c38b65a57ac1bc32139009fb5139e2abe9d914cc3b16c01a3b
+  - DEBUG=True
 
 service:
   - redis-server

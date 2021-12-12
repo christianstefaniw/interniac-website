@@ -1,7 +1,11 @@
+SHELL := /bin/bash
+
 .PHONY: venv
 
+all: run
+
 venv:
-	source venv/bin/activate
+	source ./venv/bin/activate
 
 run:
 	python manage.py runserver
@@ -9,15 +13,15 @@ run:
 redis:
 	redis-server
 
-make-migrate:
+migrate:
 	python manage.py makemigrations
 	python manage.py migrate
 
 test:
 	python manage.py test --debug-mode
 
-cov:
-	python -m coverage run --source='.' --omit 'venv/*' manage.py test .
-
-cov-report:
-	python -m coverage report
+install:
+	pip install virtualenv
+	virtualenv venv
+	source ./venv/bin/activate
+	pip install -r requirements.txt
