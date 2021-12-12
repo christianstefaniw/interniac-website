@@ -100,7 +100,7 @@ def reject_and_email(request, listing_id, student_id):
         raise PermissionDenied
 
     student = User.objects.get(id=student_id)
-    listing.reject(student_id)
+    listing.reject(student)
     RejectStudent.reject_student_email(student, listing)
     return render(request, 'success-error/success-rejected-student.html',
                   context={'first': student.first_name, 'last': student.last_name, 'listing_title': listing.title})
@@ -123,7 +123,7 @@ def request_interview_and_email(request, listing_id, student_id):
         raise PermissionDenied
 
     student = User.objects.get(id=student_id)
-    listing.request_interview(student_id)
+    listing.request_interview(student)
     RequestInterview.request_interview_email(student, listing)
     return render(request, 'success-error/success-requested-interview.html',
                   context={'first': student.first_name, 'last': student.last_name, 'listing_title': listing.title})

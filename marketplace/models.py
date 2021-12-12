@@ -51,7 +51,7 @@ class Listing(models.Model):
         'accounts.User', related_name='student_rejections', blank=True)
     student_interview_requests = models.ManyToManyField('accounts.User', related_name='student_interview_requests',
                                                         blank=True)
-                                                        
+
     # constant acceptances, rejections and requests
     # these are not viewed on any account
     # needed in order to create status updates
@@ -75,7 +75,8 @@ class Listing(models.Model):
     posted = models.DateField(default=timezone.now, blank=True)
     slug = models.SlugField(max_length=50, unique=False, blank=True)
 
-    already_applied = models.ManyToManyField('accounts.User', related_name='already_applied', blank=True)
+    already_applied = models.ManyToManyField(
+        'accounts.User', related_name='already_applied', blank=True)
 
     @property
     def summarize(self):
@@ -107,11 +108,12 @@ class Listing(models.Model):
         self.add_application(student)
         if not self.has_student_already_applied(student):
             self.already_applied.add(student)
-            
+
         if self.company.notifications.unread().filter(actor_object_id=self.id).filter(action_object_object_id=student.id).count() != 0:
             return
 
-        notify.send(recipient=self.company, verb='someone applied!', actor=self, sender=self, action_object=student)
+        notify.send(recipient=self.company, verb='someone applied!',
+                    actor=self, sender=self, action_object=student)
 
     def unapply(self, student):
         self.remove_application(student)
@@ -162,28 +164,25 @@ class Listing(models.Model):
         self.acceptances.add(student)
         self.employer_acceptances.add(student)
         self.student_acceptances.add(student)
-        
+
     def accept(self, student):
         self.applications.remove(student)
         self.awaiting_confirm_acceptance.add(student)
         self.remove_from_interview(student)
 
-    def reject(self, student_id):
-        user = get_user_model().objects.get(id=student_id)
+    def reject(self, student):
 
-        self.applications.remove(user)
-        self.rejections.add(user)
-        self.employer_rejections.add(user)
-        self.student_rejections.add(user)
+        self.applications.remove(student)
+        self.rejections.add(student)
+        self.employer_rejections.add(student)
+        self.student_rejections.add(student)
 
-        self.remove_from_interview(user.id)
+        self.remove_from_interview(student)
 
-    def request_interview(self, student_id):
-        user = get_user_model().objects.get(id=student_id)
-
-        self.interview_requests.add(user)
-        self.employer_interview_requests.add(user)
-        self.student_interview_requests.add(user)
+    def request_interview(self, student):
+        self.interview_requests.add(student)
+        self.employer_interview_requests.add(student)
+        self.student_interview_requests.add(student)
 
     def __str__(self):
         return self.title
