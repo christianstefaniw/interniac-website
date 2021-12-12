@@ -1,10 +1,12 @@
 <div align="center">
     <h1>👷🏿Interniac's Official Website👷‍♀️</h1>
-    <hr style="background-color: #000" />
 </div>
 
-<div align="center">
+<div align='center'>    
         <img src="https://www.interniac.org/static/assets/images/logos/logo-transparent.a2623b276c16.png" />
+        </div>
+
+<div align="center">
         <a href="https://www.python.org/downloads/release/python-394/">
             <img src="https://img.shields.io/badge/python-3.9.4-blue.svg" alt="Python 3.9.4" />
         </a>
