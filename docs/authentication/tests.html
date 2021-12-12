@@ -1,68 +1,78 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta http-equiv="content-type" content="text/html;charset=utf-8">
   <title>tests.py</title>
   <link rel="stylesheet" href="../pycco.css">
 </head>
+
 <body>
-<div id='container'>
-  <div id="background"></div>
-  <div class='section'>
-    <div class='docs'><h1>tests.py</h1></div>
-  </div>
-  <div class='clearall'>
-  <div class='section' id='section-0'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-0'>#</a>
+  <div id='container'>
+    <div id="background"></div>
+    <div class='section'>
+      <div class='docs'>
+        <h1>tests.py</h1>
       </div>
-      
     </div>
-    <div class='code'>
-      <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">http</span> <span class="kn">import</span> <span class="n">HTTPStatus</span>
+    <div class='clearall'>
+      <div class='section' id='section-0'>
+        <div class='docs'>
+          <div class='octowrap'>
+            <a class='octothorpe' href='#section-0'>#</a>
+          </div>
+
+        </div>
+        <div class='code'>
+          <div class="highlight">
+            <pre><span></span><span class="kn">from</span> <span class="nn">http</span> <span class="kn">import</span> <span class="n">HTTPStatus</span>
 <span class="kn">from</span> <span class="nn">defender.test</span> <span class="kn">import</span> <span class="n">DefenderTestCaseMixin</span>
 
 <span class="kn">from</span> <span class="nn">django.test</span> <span class="kn">import</span> <span class="n">TestCase</span>
 <span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">reverse</span>
 
-<span class="kn">from</span> <span class="nn">accounts.models</span> <span class="kn">import</span> <span class="n">User</span><span class="p">,</span> <span class="n">StudentProfile</span><span class="p">,</span> <span class="n">EmployerProfile</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-1'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-1'>#</a>
+<span class="kn">from</span> <span class="nn">accounts.models</span> <span class="kn">import</span> <span class="n">User</span><span class="p">,</span> <span class="n">StudentProfile</span><span class="p">,</span> <span class="n">EmployerProfile</span></pre>
+          </div>
+        </div>
       </div>
-      <p>Probably wont get to documenting these, the method names are pretty self explanitory I think</p>
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre><span class="k">class</span> <span class="nc">AuthenticationTestCase</span><span class="p">(</span><span class="n">TestCase</span><span class="p">,</span> <span class="n">DefenderTestCaseMixin</span><span class="p">):</span></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-2'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-2'>#</a>
+      <div class='clearall'></div>
+      <div class='section' id='section-1'>
+        <div class='docs'>
+          <div class='octowrap'>
+            <a class='octothorpe' href='#section-1'>#</a>
+          </div>
+        </div>
+        <div class='code'>
+          <div class="highlight">
+            <pre><span class="k">class</span> <span class="nc">AuthenticationTestCase</span><span class="p">(</span><span class="n">TestCase</span><span class="p">,</span> <span class="n">DefenderTestCaseMixin</span><span class="p">):</span></pre>
+          </div>
+        </div>
       </div>
-      
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre></pre></div>
-    </div>
-  </div>
-  <div class='clearall'></div>
-  <div class='section' id='section-3'>
-    <div class='docs'>
-      <div class='octowrap'>
-        <a class='octothorpe' href='#section-3'>#</a>
+      <div class='clearall'></div>
+      <div class='section' id='section-2'>
+        <div class='docs'>
+          <div class='octowrap'>
+            <a class='octothorpe' href='#section-2'>#</a>
+          </div>
+
+        </div>
+        <div class='code'>
+          <div class="highlight">
+            <pre></pre>
+          </div>
+        </div>
       </div>
-      
-    </div>
-    <div class='code'>
-      <div class="highlight"><pre>    <span class="nd">@staticmethod</span>
+      <div class='clearall'></div>
+      <div class='section' id='section-3'>
+        <div class='docs'>
+          <div class='octowrap'>
+            <a class='octothorpe' href='#section-3'>#</a>
+          </div>
+
+        </div>
+        <div class='code'>
+          <div class="highlight">
+            <pre>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">student_registration_data</span><span class="p">():</span>
         <span class="k">return</span> <span class="p">{</span>
             <span class="s1">&#39;email&#39;</span><span class="p">:</span> <span class="s1">&#39;student@gmail.com&#39;</span><span class="p">,</span>
@@ -195,9 +205,10 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">context</span><span class="p">[</span><span class="s1">&#39;form&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">errors</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">])</span>
 
-</pre></div>
+</pre>
+          </div>
+        </div>
+      </div>
+      <div class='clearall'></div>
     </div>
-  </div>
-  <div class='clearall'></div>
-</div>
 </body>
