@@ -54,7 +54,7 @@
 
 <div align="left" style='margin-top: 5rem'>
     <b><h2>Installation Instructions</h2></b>
-        <p style='font-size: 6px'><i>contact repo owner for env file</i></p>
+        <p style='font-size: 2px'><i>contact repo owner for env file</i></p>
     <u>Linux</u>
     <ol>
         <li><code>git clone https://github.com/Interniac/interniac-website.git </code></li>
