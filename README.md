@@ -54,7 +54,7 @@
 
 <div align="left" style='margin-top: 5rem'>
     <b><h2>Installation Instructions</h2></b>
-        <p style='font-size: 2px'><i>contact repo owner for env file</i></p>
+    <p style='font-size: 2px'><i>contact repo owner for env file</i></p>
     <u>Linux</u>
     <ol>
         <li><code>git clone https://github.com/Interniac/interniac-website.git </code></li>
@@ -85,4 +85,11 @@
         <li><code>python manage.py runserver</code></li>
         <li><code>open http://localhost:8000</code></li>
             </ol>
+</div>
+
+<div align="left" style='margin-top: 5rem'>
+<b><h2>Contributors</h2></b>
+<a href="https://github.com/Interniac/interniac-website/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Interniac/interniac-website" />
+</a>
 </div>

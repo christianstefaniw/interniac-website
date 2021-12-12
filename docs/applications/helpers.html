@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>helpers.py</title>
+  <link rel="stylesheet" href="../pycco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  <div class='section'>
+    <div class='docs'><h1>helpers.py</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      <p>Helper classes for sending emails after certian actions for the applications app
+Currently we support the following 6 helper classes:</p>
+<ol>
+<li><strong><code>RequestInterview</code></strong> - implements helper methods for emailing an applicant about an interview request</li>
+<li><strong><code>RejectStudent</code></strong> - implements helper methods for emailing an applicant about a rejection</li>
+<li><strong><code>AcceptStudent</code></strong> - implements helper methods for emailing an applicant about an acceptance</li>
+<li><strong><code>ConfirmAcceptance</code></strong> - implements helper methods for emailing an employer about a confrimed acceptance</li>
+<li><strong><code>DeclineAcceptance</code></strong> - implements helper methods for emailing an employer about a declined acceptance</li>
+<li><strong><code>Applied</code></strong> - implements helper methods for emailing an employer about a new application</li>
+</ol>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">helpers.email</span> <span class="kn">import</span> <span class="n">send_email</span><span class="p">,</span> <span class="n">send_email_thread</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">class</span> <span class="nc">RequestInterview</span><span class="p">:</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-3'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-3'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">request_interview_msg</span><span class="p">(</span><span class="n">company</span><span class="p">,</span> <span class="n">title</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">Congratulations, you have moved onto the next stage of the recruitment process for </span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s1">.</span>
+<span class="si">{</span><span class="n">company</span><span class="o">.</span><span class="n">employer_profile</span><span class="o">.</span><span class="n">company_name</span><span class="si">}</span><span class="s1"> will schedule an interview with you shortly, if you have any questions please email </span>
+<span class="si">{</span><span class="n">company</span><span class="o">.</span><span class="n">email</span><span class="si">}</span><span class="s1"> or reply to this email.</span>
+
+<span class="s1">From, the Interniac Team</span>
+<span class="s1">                                &#39;&#39;&#39;</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">request_interview_email</span><span class="p">(</span><span class="n">student</span><span class="p">,</span> <span class="n">listing</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">email</span> <span class="o">=</span> <span class="n">student</span><span class="o">.</span><span class="n">email</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="n">RequestInterview</span><span class="o">.</span><span class="n">request_interview_msg</span><span class="p">(</span>
+            <span class="n">listing</span><span class="o">.</span><span class="n">company</span><span class="p">,</span> <span class="n">listing</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+
+        <span class="n">send_email</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="n">message</span><span class="p">,</span> <span class="n">from_email</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;EMAIL&quot;</span><span class="p">),</span>
+                   <span class="n">to</span><span class="o">=</span><span class="p">[</span><span class="n">email</span><span class="p">],</span> <span class="n">subject</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Next steps for </span><span class="si">{</span><span class="n">listing</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                   <span class="n">reply_to</span><span class="o">=</span><span class="p">[</span><span class="n">listing</span><span class="o">.</span><span class="n">company</span><span class="o">.</span><span class="n">email</span><span class="p">])</span>
+
+
+<span class="k">class</span> <span class="nc">RejectStudent</span><span class="p">:</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">reject_student_msg</span><span class="p">(</span><span class="n">company</span><span class="p">,</span> <span class="n">title</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">We are sorry to inform you that you have not been selected for the </span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s1"> internship from </span><span class="si">{</span><span class="n">company</span><span class="si">}</span><span class="s1">.</span>
+<span class="s1">If you have any questions for </span><span class="si">{</span><span class="n">company</span><span class="si">}</span><span class="s1">, email them at </span><span class="si">{</span><span class="n">company</span><span class="o">.</span><span class="n">email</span><span class="si">}</span><span class="s1"> or reply to this message.</span>
+<span class="s1">Check out other internship opprotunities on our website!</span>
+
+<span class="s1">From, the Interniac Team</span>
+<span class="s1">                        &#39;&#39;&#39;</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">reject_student_email</span><span class="p">(</span><span class="n">student</span><span class="p">,</span> <span class="n">listing</span><span class="p">):</span>
+        <span class="n">email</span> <span class="o">=</span> <span class="n">student</span><span class="o">.</span><span class="n">email</span>
+
+        <span class="n">message</span> <span class="o">=</span> <span class="n">RejectStudent</span><span class="o">.</span><span class="n">reject_student_msg</span><span class="p">(</span>
+            <span class="n">listing</span><span class="o">.</span><span class="n">company</span><span class="p">,</span> <span class="n">listing</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+
+        <span class="n">send_email</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="n">message</span><span class="p">,</span> <span class="n">from_email</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;EMAIL&quot;</span><span class="p">),</span>
+                   <span class="n">to</span><span class="o">=</span><span class="p">[</span><span class="n">email</span><span class="p">],</span> <span class="n">subject</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Response for </span><span class="si">{</span><span class="n">listing</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                   <span class="n">reply_to</span><span class="o">=</span><span class="p">[</span><span class="n">listing</span><span class="o">.</span><span class="n">company</span><span class="o">.</span><span class="n">email</span><span class="p">])</span>
+
+
+<span class="k">class</span> <span class="nc">AcceptStudent</span><span class="p">:</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">accept_student_msg</span><span class="p">(</span><span class="n">company</span><span class="p">,</span> <span class="n">title</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">Congratulations! You have been accepted to the </span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s1"> internship from </span><span class="si">{</span><span class="n">company</span><span class="si">}</span><span class="s1">! </span>
+<span class="s1">If you have any questions for </span><span class="si">{</span><span class="n">company</span><span class="si">}</span><span class="s1">, email them at </span><span class="si">{</span><span class="n">company</span><span class="o">.</span><span class="n">email</span><span class="si">}</span><span class="s1"> or reply to this message. Please confirm that you still want this internship on the Interniac website.</span>
+<span class="s1">Good luck! </span>
+
+<span class="s1">From, the Interniac Team</span>
+<span class="s1">                    &#39;&#39;&#39;</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">accept_student_email</span><span class="p">(</span><span class="n">student</span><span class="p">,</span> <span class="n">listing</span><span class="p">):</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="n">AcceptStudent</span><span class="o">.</span><span class="n">accept_student_msg</span><span class="p">(</span>
+            <span class="n">listing</span><span class="o">.</span><span class="n">company</span><span class="p">,</span> <span class="n">listing</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+
+        <span class="n">send_email</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="n">message</span><span class="p">,</span> <span class="n">from_email</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;EMAIL&quot;</span><span class="p">),</span>
+                   <span class="n">to</span><span class="o">=</span><span class="p">[</span>
+                       <span class="n">student</span><span class="o">.</span><span class="n">email</span><span class="p">],</span> <span class="n">subject</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Congratulations! (</span><span class="si">{</span><span class="n">listing</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
+                   <span class="n">reply_to</span><span class="o">=</span><span class="p">[</span><span class="n">listing</span><span class="o">.</span><span class="n">company</span><span class="o">.</span><span class="n">email</span><span class="p">])</span>
+
+
+<span class="k">class</span> <span class="nc">ConfirmAcceptance</span><span class="p">:</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">confirmed_message</span><span class="p">(</span><span class="n">student_name</span><span class="p">,</span> <span class="n">title</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="si">{</span><span class="n">student_name</span><span class="si">}</span><span class="s1"> has accepted your offer for the </span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s1"> internship!</span>
+
+<span class="s1">From, the Interniac Team</span>
+<span class="s1">        &#39;&#39;&#39;</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">confirmed_acceptance_email</span><span class="p">(</span><span class="n">student</span><span class="p">,</span> <span class="n">listing</span><span class="p">):</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="n">ConfirmAcceptance</span><span class="o">.</span><span class="n">confirmed_message</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">student</span><span class="o">.</span><span class="n">first_name</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">student</span><span class="o">.</span><span class="n">last_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">listing</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+
+        <span class="n">send_email</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="n">message</span><span class="p">,</span> <span class="n">from_email</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;EMAIL&quot;</span><span class="p">),</span>
+                   <span class="n">to</span><span class="o">=</span><span class="p">[</span><span class="n">listing</span><span class="o">.</span><span class="n">company</span><span class="o">.</span><span class="n">email</span><span class="p">],</span> <span class="n">subject</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Student Confirmed!&quot;</span><span class="p">,</span>
+                   <span class="n">reply_to</span><span class="o">=</span><span class="p">[</span><span class="n">student</span><span class="o">.</span><span class="n">email</span><span class="p">]</span>
+                   <span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">DeclineAcceptance</span><span class="p">:</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">declined_message</span><span class="p">(</span><span class="n">student_name</span><span class="p">,</span> <span class="n">title</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="si">{</span><span class="n">student_name</span><span class="si">}</span><span class="s1"> has declined your offer for the </span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s1"> internship.</span>
+
+<span class="s1">From, the Interniac Team</span>
+<span class="s1">        &#39;&#39;&#39;</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">declined_acceptance_email</span><span class="p">(</span><span class="n">student</span><span class="p">,</span> <span class="n">listing</span><span class="p">):</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="n">DeclineAcceptance</span><span class="o">.</span><span class="n">declined_message</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">student</span><span class="o">.</span><span class="n">first_name</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">student</span><span class="o">.</span><span class="n">last_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">listing</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+
+        <span class="n">send_email</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="n">message</span><span class="p">,</span> <span class="n">from_email</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;EMAIL&quot;</span><span class="p">),</span>
+                   <span class="n">to</span><span class="o">=</span><span class="p">[</span><span class="n">listing</span><span class="o">.</span><span class="n">company</span><span class="o">.</span><span class="n">email</span><span class="p">],</span> <span class="n">subject</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Student Declined&quot;</span><span class="p">,</span>
+                   <span class="n">reply_to</span><span class="o">=</span><span class="p">[</span><span class="n">student</span><span class="o">.</span><span class="n">email</span><span class="p">]</span>
+                   <span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Applied</span><span class="p">:</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">applied_msg</span><span class="p">(</span><span class="n">student_name</span><span class="p">,</span> <span class="n">title</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="si">{</span><span class="n">student_name</span><span class="si">}</span><span class="s1"> has applied for </span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s1"></span>
+<span class="s1">From, the Interniac Team</span>
+<span class="s1">                        &#39;&#39;&#39;</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">applied_email</span><span class="p">(</span><span class="n">student</span><span class="p">,</span> <span class="n">listing</span><span class="p">):</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">student</span><span class="o">.</span><span class="n">first_name</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">student</span><span class="o">.</span><span class="n">last_name</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="n">Applied</span><span class="o">.</span><span class="n">applied_msg</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">listing</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+
+        <span class="n">send_email_thread</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="n">message</span><span class="p">,</span> <span class="n">from_email</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;EMAIL&quot;</span><span class="p">),</span> <span class="n">to</span><span class="o">=</span><span class="p">[</span><span class="n">listing</span><span class="o">.</span><span class="n">company</span><span class="o">.</span><span class="n">email</span><span class="p">],</span>
+                          <span class="n">subject</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;New Application (</span><span class="si">{</span><span class="n">listing</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
+                          <span class="n">reply_to</span><span class="o">=</span><span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;EMAIL&quot;</span><span class="p">)])</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>

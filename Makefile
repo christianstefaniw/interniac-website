@@ -23,3 +23,8 @@ init-venv:
 
 install-reqs:
 	pip install -r requirements.txt
+
+docs:
+	pycco accounts/*.py -p
+	pycco applications/*.py -p
+	pycco authentication/*.py -p

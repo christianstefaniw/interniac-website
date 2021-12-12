@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>forms.py</title>
+  <link rel="stylesheet" href="../pycco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  <div class='section'>
+    <div class='docs'><h1>forms.py</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      <p>All the forms for the accounts application<br />
+Currently we support the following 3 forms:</p>
+<ol>
+<li><strong><code>StudentProfileForm</code></strong> - for viewing and mutating student profile data</li>
+<li><strong><code>EmployerProfileForm</code></strong> - for viewing and mutating employer profile data</li>
+<li><strong><code>UserForm</code></strong> - for viewing and mutating general user data</li>
+</ol>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django</span> <span class="kn">import</span> <span class="n">forms</span>
+<span class="kn">from</span> <span class="nn">django.core.files.uploadedfile</span> <span class="kn">import</span> <span class="n">InMemoryUploadedFile</span>
+
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">StudentProfile</span><span class="p">,</span> <span class="n">User</span><span class="p">,</span> <span class="n">EmployerProfile</span>
+<span class="kn">from</span> <span class="nn">helpers.profile_img_validation</span> <span class="kn">import</span> <span class="n">validate_profile_img</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+      <p>Student profile model as a form. May be viewed and mutated on students profile page.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">class</span> <span class="nc">StudentProfileForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">ModelForm</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-3'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-3'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-4'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-4'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">StudentProfile</span>
+        <span class="n">exclude</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">]</span>
+        <span class="n">widgets</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;dob&#39;</span><span class="p">:</span> <span class="n">forms</span><span class="o">.</span><span class="n">DateInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;date&#39;</span><span class="p">})</span>
+        <span class="p">}</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;phone&#39;</span><span class="p">:</span> <span class="s1">&#39;Phone Number&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;dob&#39;</span><span class="p">:</span> <span class="s1">&#39;Date of Birth&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;hs&#39;</span><span class="p">:</span> <span class="s1">&#39;High School Name&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;hs_addy&#39;</span><span class="p">:</span> <span class="s1">&#39;High School Address&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;teacher_or_counselor_email&#39;</span><span class="p">:</span> <span class="s1">&#39;Teacher or Counselor Email&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;teacher_or_counselor_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Teacher or Counselor Name&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;awards_achievements&#39;</span><span class="p">:</span> <span class="s1">&#39;Awards and Achievements&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;work_exp&#39;</span><span class="p">:</span> <span class="s1">&#39;Word Experience&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;volunteering_exp&#39;</span><span class="p">:</span> <span class="s1">&#39;Volunteering Experience&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;extracurriculars&#39;</span><span class="p">:</span> <span class="s1">&#39;Extracurricular Activities&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;skills&#39;</span><span class="p">:</span> <span class="s1">&#39;Skills&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;leadership_roles&#39;</span><span class="p">:</span> <span class="s1">&#39;Leadership Roles&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;link1&#39;</span><span class="p">:</span> <span class="s1">&#39;Link 1&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;link2&#39;</span><span class="p">:</span> <span class="s1">&#39;Link 2&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;link3&#39;</span><span class="p">:</span> <span class="s1">&#39;Link 3&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;link4&#39;</span><span class="p">:</span> <span class="s1">&#39;Link 4&#39;</span>
+        <span class="p">}</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-5'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-5'>#</a>
+      </div>
+      <p>Employer profile model as a form. May be viewed and mutated on employers profile page</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">class</span> <span class="nc">EmployerProfileForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">ModelForm</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-6'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-6'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-7'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-7'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">EmployerProfile</span>
+        <span class="n">exclude</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-8'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-8'>#</a>
+      </div>
+      <p>General user model as a form. Displays viewable and editable data applicable to employers and students.<br />
+May be viewed and edited on current users profile page </p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">class</span> <span class="nc">UserForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">ModelForm</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-9'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-9'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-10'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-10'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">User</span>
+        <span class="n">widgets</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;profile_picture&#39;</span><span class="p">:</span> <span class="n">forms</span><span class="o">.</span><span class="n">FileInput</span>
+        <span class="p">}</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;profile_picture&#39;</span><span class="p">,</span> <span class="s1">&#39;first_name&#39;</span><span class="p">,</span> <span class="s1">&#39;last_name&#39;</span><span class="p">]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-11'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-11'>#</a>
+      </div>
+      <p>Checks if the total size of the uploaded profile picture is &lt; 2,073,600px (1920x1080)<br />
+Only validates if a new picture has been uploaded</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">clean_profile_picture</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-12'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-12'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="n">pic</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">&#39;profile_picture&#39;</span><span class="p">]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-13'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-13'>#</a>
+      </div>
+      <p>check if new image was uploaded</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">pic</span><span class="p">)</span> <span class="ow">is</span> <span class="n">InMemoryUploadedFile</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">validate_profile_img</span><span class="p">(</span><span class="n">pic</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">pic</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>
