@@ -52,7 +52,7 @@
 <div align="left" style='margin-top: 5rem'>
     <b><h2>Installation Instructions</h2></b>
     <p style='font-size: 2px'><i>contact repo owner for env file</i></p>
-    <u>Mac/Linux</u>
+    <h5>Mac/Linux</h5>
     <ol>
         <li><code>git clone https://github.com/Interniac/interniac-website.git </code></li>
         <li><code>cd interniac-website</code></li>
@@ -60,7 +60,7 @@
         <li><code>source ./venv/bin/activate</code></li>
         <li><code>make install-reqs</code></li>
     </ol>
-    <u>Windows</u>
+    <h5>Windows</h5>
         <ol>
         <li><code>git clone https://github.com/Interniac/interniac-website.git </code></li>
         <li><code>cd interniac-website</code></li>
