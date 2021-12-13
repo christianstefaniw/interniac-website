@@ -52,10 +52,10 @@
 <div align="left" style='margin-top: 5rem'>
     <b><h2>Installation Instructions</h2></b>
     <p style='font-size: 2px'><i>contact repo owner for env file</i></p>
-    <u>Linux</u>
+    <u>Mac/Linux</u>
     <ol>
         <li><code>git clone https://github.com/Interniac/interniac-website.git </code></li>
-            <li><code>cd interniac-website</code></li>
+        <li><code>cd interniac-website</code></li>
         <li><code>make init-venv</code></li>
         <li><code>source ./venv/bin/activate</code></li>
         <li><code>make install-reqs</code></li>
@@ -66,7 +66,7 @@
         <li><code>cd interniac-website</code></li>
         <li><code>pip install virtualenv</code></li>
         <li><code>virtualenv venv</code></li>
-        <li><code>source ./venv/bin/activate</code></li>
+        <li><code>./venv/bin/activate.bat</code></li>
         <li><code>pip install -r requirements.txt</code></li>
             </ol>
 </div>
