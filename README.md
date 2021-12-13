@@ -19,9 +19,7 @@
         <a href="https://github.com/Interniac/interniac-website/graphs/commit-activity">
             <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="yes" />
         </a>
-        <a href="https://img.shields.io/tokei/lines/github/Interniac/interniac-website">
-            <img src="https://img.shields.io/tokei/lines/github/Interniac/interniac-website">
-        </a>
+        <a href="https://lgtm.com/projects/g/Interniac/interniac-website/context:python"><img alt="Language grade: Python" src="https://img.shields.io/lgtm/grade/python/g/Interniac/interniac-website.svg?logo=lgtm&logoWidth=18"/></a>
     </a>
 </div>
 
