@@ -1,6 +1,6 @@
 <div align="center">
     <h1>
-    🔨 Interniac's Official Website 🔨 <br>
+    🔨  Interniac's Official Website  🔨 <br>
         <a href='https://www.interniac.org'>https://interniac.org</a>
     </h1>
 </div>
@@ -59,8 +59,6 @@
         <li><code>make init-venv</code></li>
         <li><code>source ./venv/bin/activate</code></li>
         <li><code>make install-reqs</code></li>
-        <li><code>make</code></li>
-        <li><code>open http://localhost:8000</code></li>
     </ol>
     <u>Windows</u>
         <ol>
@@ -70,17 +68,14 @@
         <li><code>virtualenv venv</code></li>
         <li><code>source ./venv/bin/activate</code></li>
         <li><code>pip install -r requirements.txt</code></li>
-        <li><code>python manage.py runserver</code></li>
-        <li><code>open http://localhost:8000</code></li>
             </ol>
 </div>
 
 <div align="left" style='margin-top: 5rem'>
     <b><h2>Run Instructions</h2></b>
     <ol>
-        <li><code>Follow installation instructions above</code></li>
-        <li><code>python manage.py runserver</code></li>
-        <li><code>open http://localhost:8000</code></li>
+        <li><code>python manage.py runserver</code> or <code>make</code></li>
+        <li>open http://localhost:8000</li>
             </ol>
 </div>
 
