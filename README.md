@@ -1,6 +1,6 @@
 <div align="center">
     <h1>
-    🔨Interniac's Official Website🔨 <br>
+    🔨 Interniac's Official Website 🔨 <br>
         <a href='https://www.interniac.org'>https://interniac.org</a>
     </h1>
 </div>
