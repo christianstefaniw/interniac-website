@@ -38,12 +38,6 @@
     </a>
 </div>
 
-<div align="center">
-    <a href="https://www.interniac.org">
-        <img src="https://img.shields.io/website?down_color=red&down_message=down&up_color=green&up_message=up&url=https%3A%2F%2Finterniac.org">
-    </a>
-</div>
-
 <div align='left' style='margin-top: 5rem'>
     <b><h2>Read the Docs</h2></b>
     <a href="https://interniac-docs.netlify.app/">View the Interniac docs here</a>
