@@ -86,7 +86,9 @@
 
 <div align="left" style='margin-top: 5rem'>
 <b><h2>Contributors</h2></b>
-<a style='color: #000' src="https://github.com/christianstefaniw"> 
-<img src="https://avatars.githubusercontent.com/u/67922410?v=4" width="100px;"/><br /><sub><b>Christian Stefaniw</b></sub>
+<a style='color: #000' href="https://github.com/christianstefaniw"> 
+    <div>
+    <img src="https://avatars.githubusercontent.com/u/67922410?v=4" width="100px;"/><br /><sub><b>Christian Stefaniw</b></sub>
+    </div>
 </a>
 </div>
