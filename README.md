@@ -76,11 +76,13 @@
     <b><h2>Run Instructions</h2></b>
     <h5>Mac/Linux</h5>
     <ol>
+        <li><code>source ./venv/bin/activate</code></li>
         <li><code>make redis</code></li>
-        <li><code>make test</code></li>
+        <li><code>make</code></li>
             </ol>
     <h5>Windows</h5>
     <ol>
+        <li><code>./venv/bin/activate.bat</code></li>
         <li><code>redis-server</code></li>
         <li><code>python manage.py runserver</code></li>
             </ol>
@@ -90,15 +92,15 @@
     <b><h2>Run Tests</h2></b>
     <h5>Mac/Linux</h5>
     <ol>
+        <li><code>source ./venv/bin/activate</code></li>
         <li><code>make redis</code></li>
         <li><code>make test</code></li>
-        <li>open http://localhost:8000</li>
             </ol>
     <h5>Windows</h5>
     <ol>
+        <li><code>./venv/bin/activate.bat</code></li>
         <li><code>redis-server</code></li>
         <li><code>python manage.py test --debug-mode</code></li>
-        <li>open http://localhost:8000</li>
             </ol>
 </div>
 
