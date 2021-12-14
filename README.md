@@ -52,55 +52,34 @@
 <div align="left" style='margin-top: 5rem'>
     <b><h2>Installation Instructions</h2></b>
     <p style='font-size: 2px'><i>contact repo owner for env file</i></p>
-    <p>Make sure you have Redis cli installed - <a href="https://redis.io/topics/quickstart">Mac/Linux</a>, <a href="https://redis.com/blog/redis-on-windows-10/">Windows</a> </p>
-    <h5>Mac/Linux</h5>
+    <p>Ensure you have the Redis CLI installed - <a href="https://redis.io/topics/quickstart">Mac/Linux</a>, <a href="https://redis.com/blog/redis-on-windows-10/">Windows</a> </p>
+    <p>Ensure you have Make installed - <a href="https://ftp.gnu.org/gnu/make/">Mac/Linux</a>, <a href="http://gnuwin32.sourceforge.net/packages/make.htm">Windows</a> </p>
     <ol>
         <li><code>git clone https://github.com/Interniac/interniac-website.git </code></li>
         <li><code>cd interniac-website</code></li>
         <li><code>make init-venv</code></li>
-        <li><code>source ./venv/bin/activate</code></li>
+        <li><code>source ./venv/bin/activate</code> (Mac/Linux)</li>
+        <li><code>./venv/bin/activate.bat</code> (Windows)</li>
         <li><code>make install-reqs</code></li>
     </ol>
-    <h5>Windows</h5>
-        <ol>
-        <li><code>git clone https://github.com/Interniac/interniac-website.git </code></li>
-        <li><code>cd interniac-website</code></li>
-        <li><code>pip install virtualenv</code></li>
-        <li><code>virtualenv venv</code></li>
-        <li><code>./venv/bin/activate.bat</code></li>
-        <li><code>pip install -r requirements.txt</code></li>
-            </ol>
 </div>
 
 <div align="left" style='margin-top: 5rem'>
     <b><h2>Run Instructions</h2></b>
-    <h5>Mac/Linux</h5>
     <ol>
-        <li><code>source ./venv/bin/activate</code></li>
-        <li><code>make redis</code></li>
+    <li><code>source ./venv/bin/activate</code> (Mac/Linux)</li>
+        <li><code>./venv/bin/activate.bat</code> (Windows)</li>        <li><code>make redis</code></li>
         <li><code>make</code></li>
-            </ol>
-    <h5>Windows</h5>
-    <ol>
-        <li><code>./venv/bin/activate.bat</code></li>
-        <li><code>redis-server</code></li>
-        <li><code>python manage.py runserver</code></li>
             </ol>
 </div>
 
 <div align="left" style='margin-top: 5rem'>
     <b><h2>Run Tests</h2></b>
-    <h5>Mac/Linux</h5>
     <ol>
-        <li><code>source ./venv/bin/activate</code></li>
+        <li><code>source ./venv/bin/activate</code> (Mac/Linux)</li>
+        <li><code>./venv/bin/activate.bat</code> (Windows)</li>
         <li><code>make redis</code></li>
         <li><code>make test</code></li>
-            </ol>
-    <h5>Windows</h5>
-    <ol>
-        <li><code>./venv/bin/activate.bat</code></li>
-        <li><code>redis-server</code></li>
-        <li><code>python manage.py test --debug-mode</code></li>
             </ol>
 </div>
 
