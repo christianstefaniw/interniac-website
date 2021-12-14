@@ -52,6 +52,7 @@
 <div align="left" style='margin-top: 5rem'>
     <b><h2>Installation Instructions</h2></b>
     <p style='font-size: 2px'><i>contact repo owner for env file</i></p>
+    <p>Make sure you have Redis cli installed - <a href="https://redis.io/topics/quickstart">Mac/Linux</a>, <a href="https://redis.com/blog/redis-on-windows-10/">Windows</a> </p>
     <h5>Mac/Linux</h5>
     <ol>
         <li><code>git clone https://github.com/Interniac/interniac-website.git </code></li>
@@ -73,8 +74,30 @@
 
 <div align="left" style='margin-top: 5rem'>
     <b><h2>Run Instructions</h2></b>
+    <h5>Mac/Linux</h5>
     <ol>
-        <li><code>python manage.py runserver</code> or <code>make</code></li>
+        <li><code>make redis</code></li>
+        <li><code>make test</code></li>
+            </ol>
+    <h5>Windows</h5>
+    <ol>
+        <li><code>redis-server</code></li>
+        <li><code>python manage.py runserver</code></li>
+            </ol>
+</div>
+
+<div align="left" style='margin-top: 5rem'>
+    <b><h2>Run Tests</h2></b>
+    <h5>Mac/Linux</h5>
+    <ol>
+        <li><code>make redis</code></li>
+        <li><code>make</code></li>
+        <li>open http://localhost:8000</li>
+            </ol>
+    <h5>Windows</h5>
+    <ol>
+        <li><code>redis-server</code></li>
+        <li><code>python manage.py test --debug-mode</code></li>
         <li>open http://localhost:8000</li>
             </ol>
 </div>
