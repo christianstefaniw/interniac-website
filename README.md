@@ -91,7 +91,7 @@
     <h5>Mac/Linux</h5>
     <ol>
         <li><code>make redis</code></li>
-        <li><code>make</code></li>
+        <li><code>make test</code></li>
         <li>open http://localhost:8000</li>
             </ol>
     <h5>Windows</h5>
