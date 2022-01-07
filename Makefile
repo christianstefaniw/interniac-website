@@ -18,8 +18,8 @@ test:
 	python manage.py test --debug-mode
 
 init-venv:
-	pip install virtualenv
-	virtualenv venv
+	pip3 install virtualenv
+	python3 -m venv venv
 
 install-reqs:
 	pip install -r requirements.txt
