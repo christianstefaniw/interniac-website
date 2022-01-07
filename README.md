@@ -10,9 +10,7 @@
     </div>
 
 <div align="center">
-        <a href="https://www.python.org/downloads/release/python-394/">
-            <img src="https://img.shields.io/badge/python-3.9.4-blue.svg" alt="Python 3.9.4" />
-        </a>
+        <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/christianstefaniw/interniac-website?style=social">
         <a href="https://github.com/christianstefaniw/interniac-website/releases/">
             <img src="https://img.shields.io/github/release/christianstefaniw/interniac-website.svg" alt="1.0.1" />
         </a>
