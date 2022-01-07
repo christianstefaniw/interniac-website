@@ -52,7 +52,7 @@
 <div align="left" style='margin-top: 5rem'>
     <b><h2>Installation Instructions</h2></b>
     <p style='font-size: 2px'><i>contact repo owner for env file</i></p>
-    <p>Ensure you have the Redis CLI installed - <a href="https://phoenixnap.com/kb/install-redis-on-mac">Mac</a> <a href="https://redis.io/topics/quickstart">Linux</a>, <a href="https://redis.com/blog/redis-on-windows-10/">Windows</a> </p>
+    <p>Ensure you have the Redis CLI installed - <a href="https://phoenixnap.com/kb/install-redis-on-mac">Mac</a>, <a href="https://redis.io/topics/quickstart">Linux</a>, <a href="https://redis.com/blog/redis-on-windows-10/">Windows</a> </p>
     <p>Ensure you have Make installed - <a href="https://ftp.gnu.org/gnu/make/">Mac/Linux</a>, <a href="http://gnuwin32.sourceforge.net/packages/make.htm">Windows</a> </p>
     <p>Ensure you have Python installed - <a href="https://www.python.org/downloads/">Mac/Linux</a>, <a href="https://www.python.org/downloads/windows/">Windows</a>
     <ol>
