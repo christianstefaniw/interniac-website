@@ -62,6 +62,8 @@
         <li><code>source ./venv/bin/activate</code> (Mac/Linux)</li>
         <li><code>./venv/bin/activate.bat</code> (Windows)</li>
         <li><code>make install-reqs</code></li>
+        <li><code>python manage.py makemigrations</code></li>
+        <li><code>python manage.py migrate</code></li>
     </ol>
 </div>
 
