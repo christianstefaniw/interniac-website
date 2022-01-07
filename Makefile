@@ -19,7 +19,7 @@ test:
 
 init-venv:
 	pip3 install virtualenv
-	python3 -m venv venv
+	virtualenv venv
 
 install-reqs:
 	pip install -r requirements.txt
