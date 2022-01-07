@@ -13,10 +13,10 @@
         <a href="https://www.python.org/downloads/release/python-394/">
             <img src="https://img.shields.io/badge/python-3.9.4-blue.svg" alt="Python 3.9.4" />
         </a>
-        <a href="https://github.com/Interniac/interniac-website/releases/">
+        <a href="https://github.com/christianstefaniw/interniac-website/releases/">
             <img src="https://img.shields.io/github/release/christianstefaniw/interniac-website.svg" alt="1.0.1" />
         </a>
-        <a href="https://github.com/Interniac/interniac-website/graphs/commit-activity">
+        <a href="https://github.com/christianstefaniw/interniac-website/graphs/commit-activity">
             <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="yes" />
         </a>
         <a href="https://lgtm.com/projects/g/christianstefaniw/interniac-website/context:python"><img alt="Language grade: Python" src="https://img.shields.io/lgtm/grade/python/g/christianstefaniw/interniac-website.svg?logo=lgtm&logoWidth=18"/></a>
@@ -54,7 +54,7 @@
     <p>Ensure you have the Redis CLI installed - <a href="https://redis.io/topics/quickstart">Mac/Linux</a>, <a href="https://redis.com/blog/redis-on-windows-10/">Windows</a> </p>
     <p>Ensure you have Make installed - <a href="https://ftp.gnu.org/gnu/make/">Mac/Linux</a>, <a href="http://gnuwin32.sourceforge.net/packages/make.htm">Windows</a> </p>
     <ol>
-        <li><code>git clone https://github.com/Interniac/interniac-website.git </code></li>
+        <li><code>git clone https://github.com/christianstefaniw/interniac-website.git </code></li>
         <li><code>cd interniac-website</code></li>
         <li><code>make init-venv</code></li>
         <li><code>source ./venv/bin/activate</code> (Mac/Linux)</li>
