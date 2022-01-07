@@ -11,7 +11,7 @@
 
 <div align="center">
         <a href="https://www.python.org/downloads/release/python-395/">
-            <img src="https://img.shields.io/badge/python-3.9.5-blue.svg" alt="Python 3.9.4" />
+            <img src="https://img.shields.io/badge/python-3.9.5-blue.svg" alt="Python 3.9.5" />
         </a>
         <a href="https://github.com/christianstefaniw/interniac-website/releases/">
             <img src="https://img.shields.io/github/release/christianstefaniw/interniac-website.svg" alt="1.0.1" />
@@ -24,9 +24,9 @@
 </div>
 
 <div align="center">
-    <a href="https://codecov.io/gh/christianstefaniw/interniac-website">
-        <img src="https://codecov.io/gh/christianstefaniw/interniac-website/branch/master/graph/badge.svg?token=AN189HSGXH"/>
-    </a>
+      <a href="https://codecov.io/gh/christianstefaniw/interniac-website">
+        <img src="https://codecov.io/gh/christianstefaniw/interniac-website/branch/master/graph/badge.svg?token=F09XY8CJOK"/>
+      </a>
     <a href="https://www.interniac.org">
         <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fwww.interniac.org%2Fstats%2Fnum-students%2F">
     </a>
