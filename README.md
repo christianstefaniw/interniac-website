@@ -14,19 +14,18 @@
             <img src="https://img.shields.io/badge/python-3.9.4-blue.svg" alt="Python 3.9.4" />
         </a>
         <a href="https://github.com/Interniac/interniac-website/releases/">
-            <img src="https://img.shields.io/github/release/Interniac/interniac-website.svg" alt="1.0.1" />
+            <img src="https://img.shields.io/github/release/christianstefaniw/interniac-website.svg" alt="1.0.1" />
         </a>
         <a href="https://github.com/Interniac/interniac-website/graphs/commit-activity">
             <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="yes" />
         </a>
-        <a href="https://lgtm.com/projects/g/Interniac/interniac-website/context:python"><img alt="Language grade: Python" src="https://img.shields.io/lgtm/grade/python/g/Interniac/interniac-website.svg?logo=lgtm&logoWidth=18"/></a>
-    </a>
+        <a href="https://lgtm.com/projects/g/christianstefaniw/interniac-website/context:python"><img alt="Language grade: Python" src="https://img.shields.io/lgtm/grade/python/g/christianstefaniw/interniac-website.svg?logo=lgtm&logoWidth=18"/></a>
 </div>
 
 <div align="center">
-    <a href="https://codecov.io/gh/Interniac/interniac-website">
-        <img src="https://codecov.io/gh/Interniac/interniac-website/branch/master/graph/badge.svg?token=AN189HSGXH"/>
-    </a>
+      <a href="https://codecov.io/gh/christianstefaniw/interniac-website">
+        <img src="https://codecov.io/gh/christianstefaniw/interniac-website/branch/master/graph/badge.svg?token=F09XY8CJOK"/>
+    </a> 
     <a href="https://www.interniac.org">
         <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fwww.interniac.org%2Fstats%2Fnum-students%2F">
     </a>
