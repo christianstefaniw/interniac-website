@@ -10,8 +10,8 @@
     </div>
 
 <div align="center">
-        <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/christianstefaniw/interniac-website?style=social">
-        <a href="https://github.com/christianstefaniw/interniac-website/releases/">
+    <img alt="GitHub issues" src="https://img.shields.io/github/issues/christianstefaniw/interniac-website">
+    <a href="https://github.com/christianstefaniw/interniac-website/releases/">
             <img src="https://img.shields.io/github/release/christianstefaniw/interniac-website.svg" alt="1.0.1" />
         </a>
         <a href="https://github.com/christianstefaniw/interniac-website/graphs/commit-activity">
