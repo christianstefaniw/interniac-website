@@ -19,7 +19,7 @@
         <a href="https://github.com/christianstefaniw/interniac-website/graphs/commit-activity">
             <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="yes" />
         </a>
-        <a href="https://lgtm.com/projects/g/christianstefaniw/interniac-website/context:python"><img alt="Language grade: Python" src="https://img.shields.io/lgtm/grade/python/g/christianstefaniw/interniac-website.svg?logo=lgtm&logoWidth=18"/></a>
+        <a href="https://api.codiga.io/project/30834/status/svg"><img alt="Language grade: Python" src="https://api.codiga.io/project/30834/status/svg"/></a>
     </a>
 </div>
 
