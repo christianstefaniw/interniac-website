@@ -5,7 +5,7 @@ from nocaptcha_recaptcha import NoReCaptchaField
 
 from helpers.email import send_email
 from .helpers import insert_into_spreadsheet
-
+from .blocked import blocked_people
 
 class ContactForm(forms.Form):
     name = forms.CharField(max_length=120, widget=forms.TextInput())
@@ -19,6 +19,11 @@ class ContactForm(forms.Form):
         message = self.cleaned_data['message'] + f"\nFrom: {name}"
         send_email(body=message, from_email=email, to=[os.environ.get("EMAIL")],
                           reply_to=[email], subject=f'Message from {name}')
+
+    def clean_name(self):
+        if self.cleaned_data['name'] in blocked_people:
+            raise forms.ValidationError()
+        return self.cleaned_data['name']
 
 
 class EmailForm(forms.Form):

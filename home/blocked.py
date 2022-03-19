@@ -1,0 +1,1 @@
+blocked_people = ['Eric Jones']
