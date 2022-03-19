@@ -19,7 +19,7 @@
         <a href="https://github.com/christianstefaniw/interniac-website/graphs/commit-activity">
             <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="yes" />
         </a>
-        <a href="https://lgtm.com/projects/g/christianstefaniw/interniac-website/context:python"><img alt="Language grade: Python" src="https://img.shields.io/lgtm/grade/python/g/christianstefaniw/interniac-website.svg?logo=lgtm&logoWidth=18"/></a>
+        <a href="https://api.codiga.io/project/30834/score/svg"><img alt="Language grade: Python" src="https://api.codiga.io/project/30834/score/svg"/></a>
     </a>
 </div>
 
@@ -52,8 +52,9 @@
 <div align="left" style='margin-top: 5rem'>
     <b><h2>Installation Instructions</h2></b>
     <p style='font-size: 2px'><i>contact repo owner for env file</i></p>
-    <p>Ensure you have the Redis CLI installed - <a href="https://redis.io/topics/quickstart">Mac/Linux</a>, <a href="https://redis.com/blog/redis-on-windows-10/">Windows</a> </p>
+    <p>Ensure you have the Redis CLI installed - <a href="https://phoenixnap.com/kb/install-redis-on-mac">Mac</a>, <a href="https://redis.io/topics/quickstart">Linux</a>, <a href="https://redis.com/blog/redis-on-windows-10/">Windows</a> </p>
     <p>Ensure you have Make installed - <a href="https://ftp.gnu.org/gnu/make/">Mac/Linux</a>, <a href="http://gnuwin32.sourceforge.net/packages/make.htm">Windows</a> </p>
+    <p>Ensure you have Python installed - <a href="https://www.python.org/downloads/">Mac/Linux</a>, <a href="https://www.python.org/downloads/windows/">Windows</a>
     <ol>
         <li><code>git clone https://github.com/christianstefaniw/interniac-website.git </code></li>
         <li><code>cd interniac-website</code></li>
@@ -61,6 +62,7 @@
         <li><code>source ./venv/bin/activate</code> (Mac/Linux)</li>
         <li><code>./venv/bin/activate.bat</code> (Windows)</li>
         <li><code>make install-reqs</code></li>
+        <li><code>make migrate</code></li>
     </ol>
 </div>
 
