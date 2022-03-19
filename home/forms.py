@@ -20,10 +20,10 @@ class ContactForm(forms.Form):
         send_email(body=message, from_email=email, to=[os.environ.get("EMAIL")],
                           reply_to=[email], subject=f'Message from {name}')
 
-    def clean_name(self):
-        if self.cleaned_data['name'] in blocked_people:
+    def clean_email(self):
+        if self.cleaned_data['email'] in blocked_people:
             raise forms.ValidationError()
-        return self.cleaned_data['name']
+        return self.cleaned_data['email']
 
 
 class EmailForm(forms.Form):

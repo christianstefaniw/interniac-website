@@ -1,1 +1,1 @@
-blocked_people = ['Eric Jones']
+blocked_people = ['eric.jones.z.mail@gmail.com']
