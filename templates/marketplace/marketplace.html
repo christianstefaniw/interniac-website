@@ -60,7 +60,7 @@
         <div id="market-container">
             <section>
                 <div class="row justify-content-around">
-                    <div class="col-md-3 mb-5">
+                    <div class="col-md-2 mb-5">
                         {% if user.is_employer %}
                             <div class="mb-3">
                                 <a href="{% url 'createlisting' %}">Create a listing</a>
@@ -70,7 +70,7 @@
                             {% include 'marketplace/filters.html' %}
                         </div>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-9">
                         {% include 'marketplace/search-bar.html' %}
                         <div id="listings">
                             {% include 'marketplace/listings.html' %}
