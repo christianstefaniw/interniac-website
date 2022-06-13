@@ -21,7 +21,6 @@ class ContactForm(forms.Form):
                           reply_to=[email], subject=f'Message from {name}')
 
     def clean_email(self):
-        print(self.cleaned_data['email'] in blocked_people)
         if self.cleaned_data['email'] in blocked_people:
             raise forms.ValidationError("Error")
         return self.cleaned_data['email']
