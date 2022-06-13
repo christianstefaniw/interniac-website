@@ -23,6 +23,7 @@ class HomePage(TemplateView):
         if 'email_signup' in self.request.POST:
             form = EmailForm(request.POST)
             if form.is_valid():
+                form.signup()
                 return redirect('success')
             return redirect('error')
 
