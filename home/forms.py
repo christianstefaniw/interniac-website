@@ -28,9 +28,8 @@ class ContactForm(forms.Form):
 
 class EmailForm(forms.Form):
     email_signup = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'Email Address'}))
-
-    def is_valid(self):
+    
+    def signup(self):
         insert_into_spreadsheet(self.data['email_signup'])
         send_email(from_email=os.environ.get('EMAIL'), body='Thank you for signing up for our newsletter.',
                           to=[self.data['email_signup']], reply_to=[None], subject='Thank you!')
-        return super(EmailForm, self).is_valid()
