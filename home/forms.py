@@ -23,7 +23,7 @@ class ContactForm(forms.Form):
     def clean_email(self):
         print(self.cleaned_data['email'] in blocked_people)
         if self.cleaned_data['email'] in blocked_people:
-            raise forms.ValidationError(_("Error"))
+            raise forms.ValidationError("Error")
         return self.cleaned_data['email']
 
 
