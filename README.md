@@ -1,7 +1,7 @@
 <div align="center">
     <h1>
     🔨  Interniac's Official Website  🔨 <br>
-        <a href='https://interniac.herokuapp.com'>https://interniac.org</a>
+        <a href='https://interniac.herokuapp.com'>interniac.org</a>
     </h1>
 </div>
 
