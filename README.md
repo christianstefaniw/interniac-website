@@ -6,7 +6,7 @@
 </div>
 
 <div align='center'>    
-        <img src="https://www.interniac.org/static/assets/images/logos/logo-transparent.a2623b276c16.png" />
+        <img src="https://interniac.herokuapp.com/static/assets/images/logos/logo-transparent.a2623b276c16.png" />
     </div>
 
 <div align="center">
@@ -28,10 +28,10 @@
         <img src="https://codecov.io/gh/christianstefaniw/interniac-website/branch/master/graph/badge.svg?token=F09XY8CJOK"/>
       </a>
     <a href="https://interniac.herokuapp.com/">
-        <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fwww.interniac.herokuapp.com/%2Fstats%2Fnum-students%2F">
+        <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Finterniac.herokuapp.com/%2Fstats%2Fnum-students%2F">
     </a>
     <a href="https://interniac.herokuapp.com/">
-        <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fwww.interniac.herokuapp.com/%2Fstats%2Fnum-employers%2F">
+        <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Finterniac.herokuapp.com/%2Fstats%2Fnum-employers%2F">
     </a>
     <a href="https://interniac.herokuapp.com/">
         <img src="https://img.shields.io/badge/students%20hired-20%2B-green">
