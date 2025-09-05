@@ -4,10 +4,6 @@
     </h1>
 </div>
 
-<div align='center'>    
-        <img src="https://interniac.herokuapp.com/static/assets/images/logos/logo-transparent.a2623b276c16.png" />
-    </div>
-
 <div align="center">
         <a href="https://www.python.org/downloads/release/python-395/">
             <img src="https://img.shields.io/badge/python-3.9.5-blue.svg" alt="Python 3.9.5" />
