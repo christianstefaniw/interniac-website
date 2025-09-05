@@ -12,7 +12,7 @@
             <img src="https://img.shields.io/github/release/christianstefaniw/interniac-website.svg" alt="1.0.1" />
         </a>
         <a href="https://github.com/christianstefaniw/interniac-website/graphs/commit-activity">
-            <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="yes" />
+            <img src="https://img.shields.io/badge/Maintained%3F-no-red.svg" alt="no" />
         </a>
     </a>
 </div>
