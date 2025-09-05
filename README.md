@@ -18,7 +18,6 @@
         <a href="https://github.com/christianstefaniw/interniac-website/graphs/commit-activity">
             <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="yes" />
         </a>
-        <a href="https://api.codiga.io/project/30834/score/svg"><img alt="Language grade: Python" src="https://api.codiga.io/project/30834/score/svg"/></a>
     </a>
 </div>
 
