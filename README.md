@@ -1,7 +1,6 @@
 <div align="center">
     <h1>
-    🔨  Interniac's Official Website  🔨 <br>
-        <a href='https://interniac.herokuapp.com'>interniac.org</a>
+    🔨  Interniac's Official Website  🔨 
     </h1>
 </div>
 
@@ -27,15 +26,6 @@
       <a href="https://codecov.io/gh/christianstefaniw/interniac-website">
         <img src="https://codecov.io/gh/christianstefaniw/interniac-website/branch/master/graph/badge.svg?token=F09XY8CJOK"/>
       </a>
-    <a href="https://interniac.herokuapp.com/">
-        <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Finterniac.herokuapp.com%2Fstats%2Fnum-students%2F">
-    </a>
-    <a href="https://interniac.herokuapp.com/">
-        <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Finterniac.herokuapp.com%2Fstats%2Fnum-employers%2F">
-    </a>
-    <a href="https://interniac.herokuapp.com/">
-        <img src="https://img.shields.io/badge/students%20hired-20%2B-green">
-    </a>
 </div>
 
 <div align='left' style='margin-top: 5rem'>
